@@ -55,19 +55,3 @@ Session.vim
 
 # Idea
 .idea/
-
-# Sublime
-*.sublime-project
-*.sublime-workspace
-
-# Other
-# ===========================
-
-.rake_tasks
-.meteor/
-.tags
-tags
-.starscope.db
-default-gems
-.tern-project
-.tern-port

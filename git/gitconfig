@@ -1,6 +1,5 @@
 [user]
-    name = Martin Toma
-    email = martin.toma.svk@gmail.com
+    name = Adrian Kumpf
 [credential]
     helper = cache --timeout=3600
 [core]
@@ -25,10 +24,6 @@
     co = checkout
     pl = pull
     ps = push
-    pom = push origin master
-    pbm = push backup master
-    pod = push origin develop
-    pbd = push backup develop
     rb = rebase -i HEAD~10
     st = status -sb
     br = branch
@@ -42,7 +37,7 @@
     unstage = reset HEAD --
     edit = "!nvim `git ls-files -m`"
 [github]
-    user = martin-svk
+    user = techfused
 [branch]
     autosetuprebase = always
 [diff]
