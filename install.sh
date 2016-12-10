@@ -27,6 +27,57 @@ install_nvim_folder() {
   ln -sf $current_path/neovim/UltiSnips ~/.config/nvim/UltiSnips
   ln -sf $current_path/neovim/init.vim ~/.config/nvim/init.vim
 }
+#-----------------------------------------------------
+# FISH installation
+#-----------------------------------------------------
+
+echo -n "[ Fish ]"
+
+if ! command_exists fish; then
+  echo "    Installing Fish"
+  brew install fish
+fi
+
+if ! command_exists fisher; then
+  echo "    Installing Fisherman"
+  brew tap fisherman/tap
+  brew install fisherman
+fi
+
+if [ ! -f ~/.config/fish/config.fish ]; then
+  echo "    Creating config.fish!"
+  ln -sf $current_path/fish/config.fish ~/.config/fish/config.fish
+elif $REPLACE_FILES; then
+  echo "    Deleting old config.fish!"
+  rm ~/.config/fish/config.fish
+  ln -sf $current_path/fish/config.fish ~/.config/fish/config.fish
+else
+  echo "    Keeping existing config.fish!"
+fi
+
+if [ ! -d ~/.config/fisherman/z/ ]; then
+  echo "    Installing plugin: z"
+  fisher z
+fi
+if [ ! -d ~/.config/fisherman/done/ ]; then
+  echo "    Installing plugin: done"
+  fisher done
+fi
+if [ ! -d ~/.config/fisherman/fnm/ ]; then
+  echo "    Installing plugin: fnm"
+  fisher fnm
+fi
+if [ ! -d ~/.config/fisherman/fzf/ ]; then
+  echo "    Installing plugin: fzf"
+  fisher fzf
+fi
+
+if [ ! -f ~/.config/fish/functions/fish_title.fish ]; then
+  echo "    Installing theme: snazzy"
+  ln -sf $current_path/functions/fish_title.fish ~/.config/fish/functions/fish_title.fish
+  ln -sf $current_path/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
+fi
+
 
 #-----------------------------------------------------
 # Git (config, ignore)
