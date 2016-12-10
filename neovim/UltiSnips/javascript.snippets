@@ -1,5 +1,5 @@
 # ===============================================
-# Declarations
+# Variables
 # ===============================================
 snippet fun "function" b
 function $1($2) {
@@ -36,13 +36,11 @@ endsnippet
 
 snippet switch "switch case statement" b
 switch (${1:variable}) {
-	case ${2:value}: {
-		$3
-		break;
-	}
-	default: {
-		return;
-	}
+case ${2:value}:
+	$3
+	break;
+default:
+	return;
 }
 endsnippet
 
@@ -57,8 +55,25 @@ snippet bt "bind this" w
 bind(this);
 endsnippet
 
+snippet acl "addChangeListener" w
+addChangeListener(this.${1:_onChange});
+endsnippet
+
+snippet rcl "removeChangeListener" w
+removeChangeListener(this.${1:_onChange});
+endsnippet
+
+# ===============================================
+# Miscleanous
+# ===============================================
 snippet strict "enable strict mode" b
 'use strict';
+endsnippet
+
+snippet /* "block comment" b
+/**
+ * ${1:Description of class or function}
+ */
 endsnippet
 
 snippet req "require statement" b
@@ -66,7 +81,11 @@ require('$1');
 endsnippet
 
 snippet ret "return"
-return $1;
+return($1);
+endsnippet
+
+snippet cp "key value constant pair" b
+${1:KEY}: '$1'
 endsnippet
 
 snippet dbg "debugger" b
