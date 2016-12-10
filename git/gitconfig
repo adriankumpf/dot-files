@@ -1,5 +1,6 @@
 [user]
     name = Adrian Kumpf
+    email = adrian.kumpf@posteo.de
 [credential]
     helper = cache --timeout=3600
 [core]
@@ -43,4 +44,4 @@
 [diff]
     tool = nvimdiff
 [difftool "nvimdiff"]
-    cmd = diff_wrapper "$LOCAL" "$REMOTE"
+    cmd = nvim -d "$LOCAL" "$REMOTE"
