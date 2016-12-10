@@ -22,6 +22,7 @@ install_plug_nvim() {
 install_nvim_folder() {
   mkdir -p ~/.config/nvim/autoload
   install_plug_nvim
+  ln -sf $current_path/neovim/autoload/utils.vim ~/.config/nvim/autoload/utils.vim
   ln -sf $current_path/neovim/spell/dictionary.utf-8.add ~/.config/nvim/dictionary.utf-8.add
   ln -sf $current_path/neovim/UltiSnips ~/.config/nvim/UltiSnips
   ln -sf $current_path/neovim/init.vim ~/.config/nvim/init.vim
