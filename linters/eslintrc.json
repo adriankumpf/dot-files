@@ -15,6 +15,10 @@
     "parser": "babel-eslint",
     "plugins": [],
     "rules": {
+        "arrow-body-style": [
+            2,
+            "as-needed"
+        ],
         "class-methods-use-this": 0,
         "comma-dangle": 0,
         "global-require": 0,
