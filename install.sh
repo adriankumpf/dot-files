@@ -57,25 +57,24 @@ fi
 
 if [ ! -d ~/.config/fisherman/z/ ]; then
   echo "    Installing plugin: z"
-  fisher z
+  fish -c "fisher z"
 fi
 if [ ! -d ~/.config/fisherman/done/ ]; then
   echo "    Installing plugin: done"
-  fisher done
+  fish -c "fisher done"
 fi
 if [ ! -d ~/.config/fisherman/fnm/ ]; then
   echo "    Installing plugin: fnm"
-  fisher fnm
+  fish -c "fisher fnm"
 fi
 if [ ! -d ~/.config/fisherman/fzf/ ]; then
   echo "    Installing plugin: fzf"
-  fisher fzf
+  fish -c "fisher fzf"
 fi
 
-if [ ! -f ~/.config/fish/functions/fish_title.fish ]; then
-  echo "    Installing theme: snazzy"
-  ln -sf $current_path/functions/fish_title.fish ~/.config/fish/functions/fish_title.fish
-  ln -sf $current_path/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
+if [ ! -f ~/.config/fish/functions/__format_time.fish ]; then
+  echo "    Installing theme: pure"
+  fish -c "fisher i rafaelrinaldi/pure"
 fi
 
 if [ ! -f ~/.config/fish/functions/update.fish ]; then
