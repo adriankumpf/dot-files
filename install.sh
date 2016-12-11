@@ -78,6 +78,11 @@ if [ ! -f ~/.config/fish/functions/fish_title.fish ]; then
   ln -sf $current_path/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
 fi
 
+if [ ! -f ~/.config/fish/functions/update.fish ]; then
+  echo "    Installing update function"
+  ln -sf $current_path/functions/update.fish ~/.config/fish/functions/update.fish
+fi
+
 
 #-----------------------------------------------------
 # Git (config, ignore)
