@@ -38,7 +38,7 @@ if ! command_exists fish; then
   brew install fish
 fi
 
-if ! command_exists fisher; then
+if ! fish -c "type fisher" &>/dev/null; then
   echo "    Installing Fisherman"
   brew tap fisherman/tap
   brew install fisherman
@@ -79,7 +79,7 @@ fi
 
 if [ ! -f ~/.config/fish/functions/update.fish ]; then
   echo "    Installing update function"
-  ln -sf $current_path/functions/update.fish ~/.config/fish/functions/update.fish
+  ln -sf $current_path/fish/functions/update.fish ~/.config/fish/functions/update.fish
 fi
 
 
@@ -135,6 +135,12 @@ elif $REPLACE_FILES; then
 else
   echo "    Keeping existing nvim folder!"
 fi
+
+if [ ! -f ~/.config/nvim/sync.sh ]; then
+  echo "    Copying sync script"
+  ln -sf $current_path/neovim/sync.sh ~/.config/nvim/sync.sh
+fi
+
 
 #-----------------------------------------------------
 # Installing Ag

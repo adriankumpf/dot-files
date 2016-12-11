@@ -1,5 +1,6 @@
 function update
   fnm latest
+  fisher u
 
   if [ (which brew) ]
     brew update; and brew upgrade
