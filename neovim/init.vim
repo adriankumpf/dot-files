@@ -36,8 +36,10 @@ Plug 'lfilho/cosco.vim'
 Plug 'sheerun/vim-polyglot'
 " JS libs syntax (React, Angular)
 Plug 'othree/javascript-libraries-syntax.vim'
+" sfsa
+Plug 'kewah/vim-stylefmt'
 " Color highlighter
-Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'] }
+Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'stylus', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'] }
 " Elixir
 Plug 'slashmili/alchemist.vim'
 " Markdown/Latex

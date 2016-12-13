@@ -113,7 +113,7 @@ function! g:utils#useOmniTabWrapper() abort
 endfunction
 
 " Format function
-" Needs: npm install js-beautify, gem install rbeautify, python
+" Needs: npm install js-beautify, gem install rbeautify, python, npm install -g stylefmt
 function! g:utils#formatFile() abort
   let l:line = line('.')
   let l:col = col('.')
@@ -125,6 +125,8 @@ function! g:utils#formatFile() abort
     let l:command = 'html-beautify -f -'
   elseif &filetype ==? 'css'
     let l:command = 'css-beautify -f -'
+  elseif &filetype ==? 'stylus'
+    let l:command = 'stylefmt'
   elseif &filetype ==? 'json'
     let l:command = 'python -m json.tool'
   elseif &filetype ==? 'ruby'
