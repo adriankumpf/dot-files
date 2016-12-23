@@ -171,7 +171,7 @@ if command_exists eslint; then
 else
   if command_exists npm; then
     npm install -g eslint
-    ln -sf $current_path/linters/eslintrc ~/.eslintrc
+    ln -sf $current_path/linters/eslintrc.json ~/.eslintrc
   else
     echo "   Install node and npm, then rerun script again!"
     exit
