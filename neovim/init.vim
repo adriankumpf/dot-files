@@ -126,7 +126,7 @@ call plug#end()
 
 " Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
 "
-set shell=/usr/local/bin/fish               " Setting shell to zsh
+" set shell=/usr/local/bin/fish               " Setting shell to zsh
 set number                                  " Line numbers on
 set showmode                                " Always show mode
 set showcmd                                 " Show commands as you type them
