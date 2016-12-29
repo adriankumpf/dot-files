@@ -60,6 +60,8 @@ function! g:utils#runCurrentFile() abort
     let l:command = 'ruby %'
   elseif &filetype ==? 'sh'
     let l:command = 'sh %'
+  elseif &filetype ==? 'elixir'
+    let l:command = 'elixir %'
   else
     echom "Can't run current file (unsupported filetype: " . &filetype . ')'
   endif
