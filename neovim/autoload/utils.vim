@@ -62,6 +62,8 @@ function! g:utils#runCurrentFile() abort
     let l:command = 'sh %'
   elseif &filetype ==? 'elixir'
     let l:command = 'elixir %'
+  elseif &filetype ==? 'javascript.jsx'
+    let l:command = 'node %'
   else
     echom "Can't run current file (unsupported filetype: " . &filetype . ')'
   endif
