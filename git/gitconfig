@@ -20,6 +20,7 @@
     ds = diff --staged
     dt = difftool --no-prompt
     ci = commit --verbose
+    cm = commit -m
     cim = commit --verbose --reedit-message=HEAD --reset-author
     amend = commit --amend --verbose
     co = checkout
