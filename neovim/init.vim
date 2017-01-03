@@ -21,6 +21,8 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'cohama/lexima.vim'
 " Snippet support (C-j)
 Plug 'SirVer/ultisnips'
+" Snippets for everything!
+Plug 'honza/vim-snippets'
 " Commenting support (gc)
 Plug 'tpope/vim-commentary'
 " Heuristically set indent settings
@@ -126,7 +128,7 @@ call plug#end()
 
 " Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
 "
-" set shell=/usr/local/bin/fish               " Setting shell to zsh
+set shell=/bin/bash                         " Setting shell to zsh
 set number                                  " Line numbers on
 set showmode                                " Always show mode
 set showcmd                                 " Show commands as you type them
@@ -351,12 +353,6 @@ nnoremap ,? ?<CR>
 
 " F-key actions
 
-" nnoremap <silent> <F2>
-" nnoremap <silent> <F2>
-" nnoremap <silent> <F09>
-" nnoremap <silent> <F10>
-" nnoremap <silent> <F10>
-
 " Paste mode toggling
 nnoremap <silent> <F3> :set paste!<CR> :set paste?<CR>
 " Toggle spelling on and off
@@ -369,8 +365,6 @@ nnoremap <silent> <F6> :set nohlsearch!<CR> :set nohlsearch?<CR>
 nnoremap <silent> <F7> :set list!<CR> :set list?<CR>
 " New horizontal term buffer
 nnoremap <silent> <F8> :T ls<CR>
-" Echo out toggles legend on <F12>
-nnoremap <F12> :call utils#showToggles()<CR>
 
 " Window / Buffer management
 
@@ -384,12 +378,6 @@ nnoremap <silent> <C-Down> :resize -1<CR>
 nnoremap <silent> + :bn<CR>
 nnoremap <silent> _ :bp<CR>
 
-" Command abbreviations and mappings
-
-" Quiting and saving all
-cnoremap ww wqall
-cnoremap qq qall
-
 " Custom commands and functions
 
 " Run current file
@@ -399,9 +387,6 @@ nnoremap <silent> ,r :Run<CR>
 " Reformat whole or selection from file
 command! Format :call utils#formatFile()
 nnoremap <silent> ,f :Format<CR>
-
-" Profile
-command! Profile :call utils#profile()
 
 " Toogle wrap lines
 command! -nargs=* Wrap set wrap linebreak nolist
@@ -478,17 +463,17 @@ let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
 
 " Deoplete autocomplete settings
 let g:deoplete#enable_at_startup=1
-let g:deoplete#enable_refresh_always=1
 let g:deoplete#file#enable_buffer_path=1
-let g:deoplete#auto_completion_start_length=2
+
 let g:deoplete#sources={}
 let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
+let g:deoplete#sources.elixir = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'alchemist']
 let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
 let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
-let g:deoplete#sources['javascript.jsx'] = ['buffer', 'member', 'file', 'ultisnips']
+let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ultisnips', 'ternjs']
 let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-
+let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
 " Javascript libraries syntax settings
 let g:used_javascript_libs = 'chai,flux,react,underscore'
@@ -534,17 +519,24 @@ imap <C-x><C-l> <plug>(fzf-complete-line)
 
 " Ultisnips
 " Disable built-in cx-ck to be able to go backward
-inoremap <C-x><C-k> <NOP>
-let g:UltiSnipsExpandTrigger='<C-j>'
-let g:UltiSnipsListSnippets='<C-l>'
-let g:UltiSnipsJumpForwardTrigger='<C-j>'
-let g:UltiSnipsJumpBackwardTrigger='<C-k>'
+" inoremap <C-x><C-k> <NOP>
+ let g:UltiSnipsExpandTrigger='<C-j>'
+ let g:UltiSnipsListSnippets='<C-l>'
+ let g:UltiSnipsJumpForwardTrigger='<C-j>'
+ let g:UltiSnipsJumpBackwardTrigger='<C-k>'
 
 " Pandoc
 let g:pandoc#formatting#mode = "hA"
 let g:pandoc#formatting#smart_autoformat_on_cursormoved = 1
 let g:pandoc#folding#level = 4
 let g:pandoc#folding#mode = "relative"
+
+" Alchemist.vim
+
+let g:alchemist_iex_term_size = 120
+let g:alchemist_iex_term_split = 'vsplit'
+
+nnoremap <leader>i :IEx<CR>
 
 " Gitgutter
 nnoremap [h :GitGutterPrevHunk<CR>
@@ -570,9 +562,8 @@ nmap >a <Plug>Argumentative_MoveRight
 
 " Deoplete autocomplete
 " Insert <TAB> or select next match
-inoremap <silent> <expr> <Tab> utils#tabComplete()
-" Manually trigger tag autocomplete
-inoremap <silent> <expr> <C-]> utils#manualTagComplete()
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
 " <C-h>, <BS>: close popup and delete backword char
 inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"

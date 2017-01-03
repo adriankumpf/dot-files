@@ -1,27 +1,3 @@
-" Informative echo line
-function! g:utils#showToggles() abort
-  echom '<F1> Free | <F2> Free | <F3> Paste mode | <F4> Spellcheck | <F5> Reload rc | <F6> Search HL |' .
-        \' <F7> Whitechars | <F8> Vertical Term | <F9> Fire REST Request | <F10> Free  | <F11> How do I |' .
-        \' <F12> This message'
-endfunction
-
-" Copy and paste function using xclip
-function! g:utils#clipboardYank() abort
-  call system('xclip -i -selection clipboard', @@)
-endfunction
-
-function! g:utils#clipboardPaste() abort
-  let @@ = system('xclip -o -selection clipboard')
-endfunction
-
-" Profile neovim and save results to profile.log
-function! g:utils#profile() abort
-  execute 'profile start profile.log'
-  execute 'profile func *'
-  execute 'profile file *'
-  echom 'Profiling started (will last until you quit neovim).'
-endfunction
-
 " When cycling ignore NERDTree and Tagbar
 function! g:utils#intelligentCycling() abort
   " Cycle firstly
@@ -99,23 +75,6 @@ function! g:utils#stripTrailingWhitespaces() abort
   call cursor(l:line, l:col)
 endfunction
 
-" Tab wrapper
-function! g:utils#tabComplete() abort
-  let l:col = col('.') - 1
-  if !l:col || getline('.')[l:col - 1] !~# '\k'
-    return "\<TAB>"
-  else
-    if pumvisible()
-      return "\<C-n>"
-    endif
-  endif
-endfunction
-
-" Use omni complete source as default
-function! g:utils#useOmniTabWrapper() abort
-  inoremap <buffer> <expr> <TAB> utils#insertTabOmniWrapper()
-endfunction
-
 " Format function
 " Needs: npm install js-beautify, gem install rbeautify, python, npm install -g stylefmt
 function! g:utils#formatFile() abort
@@ -176,10 +135,4 @@ function! g:utils#lightLineFilename() abort
   return l:fname =~? 'NERD_tree' ? 'NERDTree' :
         \ &filetype ==? 'unite' ? g:unite#get_status_string() :
         \ ('' !=# l:fname ? l:fname : '[No Name]')
-endfunction
-
-" Search current word with CtrlSF
-" Inspired by github.com/zenbro
-function! g:utils#searchCurrentWordWithAg() abort
-  execute 'CtrlSF' expand('<cword>')
 endfunction

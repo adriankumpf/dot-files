@@ -26,6 +26,7 @@ install_nvim_folder() {
   ln -sf $current_path/neovim/spell/dictionary.utf-8.add ~/.config/nvim/dictionary.utf-8.add
   ln -sf $current_path/neovim/UltiSnips ~/.config/nvim/UltiSnips
   ln -sf $current_path/neovim/init.vim ~/.config/nvim/init.vim
+  ln -sf ~/.config/nvim/UltiSnips/ ~/.config/nvim/plugged/vim-snippets/UltiSnips
 }
 #-----------------------------------------------------
 # FISH installation
