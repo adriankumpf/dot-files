@@ -12,4 +12,6 @@ function update
   end
 
   ~/.config/nvim/sync.sh
+
+  echo "Don't forget to update uBlock Origin manually: https://github.com/el1t/uBlock-Safari/releases"
 end
