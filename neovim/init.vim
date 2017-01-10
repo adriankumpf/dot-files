@@ -27,18 +27,14 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 " Heuristically set indent settings
 Plug 'tpope/vim-sleuth'
-" .editorconfig support
-Plug 'editorconfig/editorconfig-vim'
 " context-aware pasting
 Plug 'sickill/vim-pasta'
-" Easy comma and semicolon insertion
-Plug 'lfilho/cosco.vim'
 
 " All languages in one
 Plug 'sheerun/vim-polyglot'
 " JS libs syntax (React, Angular)
 Plug 'othree/javascript-libraries-syntax.vim'
-" sfsa
+" Format stylsheets
 Plug 'kewah/vim-stylefmt'
 " Color highlighter
 Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'stylus', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'] }
@@ -70,56 +66,39 @@ Plug 'airblade/vim-gitgutter'
 " Git commit browser
 Plug 'int3/vim-extradite'
 
-" Highlight jump characters on f, F, t, T
-Plug 'unblevable/quick-scope'
+" Jump to any location specified by two characters
+Plug 'justinmk/vim-sneak'
 " Surround (cs"')
 Plug 'tpope/vim-surround'
 " Easy alignment
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' }
-" Safely editing in isolation
-Plug 'ferranpm/vim-isolate', { 'on':  ['Isolate', 'UnIsolate'] }
-" Titlecase motion (gt)
-Plug 'christoomey/vim-titlecase'
-" Custom text objects creation (dependency for the latter)
-Plug 'kana/vim-textobj-user'
 " Argument text object (via, >a)
 Plug 'PeterRincker/vim-argumentative'
 " Indent text object (vii)
 Plug 'kana/vim-textobj-indent'
-" Line text object (vil)
-Plug 'kana/vim-textobj-line'
-" Entire buffer text object (vae)
-Plug 'kana/vim-textobj-entire'
-" Ruby block text object (vir)
-Plug 'nelstrom/vim-textobj-rubyblock'
 " Comment text object (vac)
 Plug 'glts/vim-textobj-comment'
+" Custom text objects creation (dependency for others)
+Plug 'kana/vim-textobj-user'
 
 " Easily expand selected region
 Plug 'terryma/vim-expand-region'
-" Search for highlighted word with *
-Plug 'thinca/vim-visualstar'
 " Improve star by not jumping immediately
 Plug 'ironhouzi/vim-stim'
-" Intelligent buffer closing
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 " Iabbrev auto-correction library
 Plug 'chip/vim-fat-finger'
-" More . repeat functionality
-Plug 'tpope/vim-repeat'
-" Delete all but current buffer
-Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
-" Populate arglist with buffers in quickfix list
-Plug 'nelstrom/vim-qargs', { 'on': 'Qargs' }
 " Intelligently toogle relatv line numbers
 Plug 'myusuf3/numbers.vim'
 " Undo Tree
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+" Intelligent buffer closing
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+" Open Markdown files in Marked
+Plug 'itspriddle/vim-marked'
+" create directory if it does not exist
+Plug 'DataWraith/auto_mkdir'
 
-"
 " Colorschemes
-Plug 'nanotech/jellybeans.vim'
-Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
 Plug 'w0ng/vim-hybrid'
 
@@ -494,6 +473,9 @@ let g:webdevicons_enable_nerdtree = 0
 let g:WebDevIconsUnicodeDecorateFolderNodes = 0
 let g:webdevicons_conceal_nerdtree_brackets = 1
 
+" Open Markoff instead of Marked 2
+let g:marked_app = "Markoff"
+
 " ======================================================================================================================
 " Plugin mappings
 " ======================================================================================================================
@@ -597,8 +579,10 @@ nnoremap <silent> <Leader>, :call cosco#commaOrSemiColon()<CR>
 inoremap <silent> <Leader>, <c-o>:call cosco#commaOrSemiColon()<CR>
 
 " UndoTree
-
 noremap <Leader>u :GundoToggle<CR>
+
+" Marked
+nnoremap <leader>m :MarkedOpen!<CR>
 
 " ======================================================================================================================
 " Color and highlighting settings
