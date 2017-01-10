@@ -113,6 +113,9 @@ Plug 'vim-scripts/BufOnly.vim', { 'on': 'Bonly' }
 Plug 'nelstrom/vim-qargs', { 'on': 'Qargs' }
 " Intelligently toogle relatv line numbers
 Plug 'myusuf3/numbers.vim'
+" Undo Tree
+Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+
 "
 " Colorschemes
 Plug 'nanotech/jellybeans.vim'
@@ -170,7 +173,7 @@ set nohlsearch                              " Don't highlight after search
 " Persistent undo settings
 if has('persistent_undo')
   set undofile
-  set undodir=~/.config/nvim/tmp/undo//
+  set undodir=~/.config/nvim/tmp/undo/
 endif
 
 " White characters settings
@@ -202,7 +205,6 @@ set wildignore+=*.png,*.jpg,*.gif
 " Neovim specific settings
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1       	" Set an environment variable to use the t_SI/t_EI hack
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1       	" Turn on true colors support (does not work inside tmux yet)
-
 
 " ======================================================================================================================
 " Mapping settings
@@ -593,6 +595,10 @@ nnoremap <leader>n :call utils#nerdWrapper()<CR>
 " cosco.vim
 nnoremap <silent> <Leader>, :call cosco#commaOrSemiColon()<CR>
 inoremap <silent> <Leader>, <c-o>:call cosco#commaOrSemiColon()<CR>
+
+" UndoTree
+
+noremap <Leader>u :GundoToggle<CR>
 
 " ======================================================================================================================
 " Color and highlighting settings
