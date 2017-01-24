@@ -61,4 +61,5 @@ Session.vim
 
 npm-debug.log*
 node_modules/
+.nvmrc
 
