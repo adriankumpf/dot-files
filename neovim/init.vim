@@ -40,6 +40,8 @@ Plug 'kewah/vim-stylefmt'
 Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'stylus', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'] }
 " Elixir
 Plug 'slashmili/alchemist.vim'
+" Support ansi escape codes  in elxiir docs
+Plug 'powerman/vim-plugin-AnsiEsc'
 " Markdown/Latex
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -438,6 +440,7 @@ let g:neomake_error_sign = {
     \ 'text': '❯',
     \ 'texthl': 'ErrorMsg',
     \ }
+let g:neomake_elixir_enabled_makers = ['mix', 'credo']
 
 " Quick scope settings
 let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
