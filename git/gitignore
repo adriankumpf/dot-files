@@ -63,3 +63,9 @@ npm-debug.log*
 node_modules/
 .nvmrc
 
+# Elixir
+# ===========================
+
+_build/
+
+
