@@ -43,8 +43,8 @@ Plug 'slashmili/alchemist.vim'
 " Support ansi escape codes  in elxiir docs
 Plug 'powerman/vim-plugin-AnsiEsc'
 " Markdown/Latex
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+" Plug 'vim-pandoc/vim-pandoc'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
