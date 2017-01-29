@@ -178,3 +178,44 @@ else
     exit
   fi
 fi
+
+#-----------------------------------------------------
+# Installing linters
+#-----------------------------------------------------
+echo -n "[ Window Manager ]"
+
+if ! command_exists kwmc; then
+  brew install koekeishiya/formulae/kwm
+fi
+
+if command_exists kwmc; then
+  if [ ! -f ~/.kwm/kwmrc ]; then
+    echo "    Creating kwm config!"
+    ln -sf $current_path/window_manager/kwm ~/.kwm
+  elif $REPLACE_FILES; then
+    echo "    Deleting old kwm config!"
+    rm -rf ~/.kwm
+    ln -sf $current_path/window_manager/kwm ~/.kwm
+  else
+    echo "    Keeping existing kwm config!"
+  fi
+fi
+
+if ! command_exists khd; then
+  brew install koekeishiya/formulae/khd
+  brew services start khd
+fi
+
+if command_exists khd; then
+  if [ ! -f ~/.khdrc ]; then
+    echo "    Creating .khdrc!"
+    ln -sf $current_path/window_manager/.khdrc ~/.khdrc
+  elif $REPLACE_FILES; then
+    echo "    Deleting old .khdrc!"
+    rm ~/.khdrc
+    ln -sf $current_path/window_manager/.khdrc ~/.khdrc
+  else
+    echo "    Keeping existing .khdrc!"
+  fi
+fi
+
