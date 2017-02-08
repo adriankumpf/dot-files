@@ -1,37 +1,13 @@
 # enable kwm compatibility mode
 khd kwm on
 
-# set border color for different modes
-khd mode default color 0xFFDD5A45
-khd mode tree prefix on
-khd mode tree color 0xddfabd2f
-khd mode tree restore default
-khd mode tree timeout 1.00
+alt - h  :  /Users/adriankumpf/.kwm/scripts/move west
+alt - l  :  /Users/adriankumpf/.kwm/scripts/move east
+alt - j  :  /Users/adriankumpf/.kwm/scripts/move south
+alt - k  :  /Users/adriankumpf/.kwm/scripts/move north
 
-# toggle tree mode
-ctrl - s                            : khd -e "mode activate tree"
-
-# move focus between windows
-cmd + alt - h                       : kwmc window -f west
-cmd + alt - l                       : kwmc window -f east
-cmd + alt - j                       : kwmc window -f south
-cmd + alt - k                       : kwmc window -f north
-cmd + alt - b                       : kwmc window -fm prev
-cmd + alt - n                       : kwmc window -fm next
-
-# switch focused window position
-ctrl + alt - h                      : kwmc window -s west
-ctrl + alt - l                      : kwmc window -s east
-ctrl + alt - j                      : kwmc window -s south
-ctrl + alt - k                      : kwmc window -s north
-
-alt - 1                             : kwmc window -z fullscreen
-alt - 2                             : kwmc window -c expand 0.05 focused
-alt - 3                             : kwmc window -c reduce 0.05 focused
-alt - 4                             : kwmc window -t focused
-
-# swap
-tree - r                            : kwmc tree rotate 180
-
-# modify container split mode (horizontal, vertical)
-tree - s                            : kwmc window -c split - mode toggle;\ khd -e "mode activate default"
+alt - 1  :  kwmc window -z fullscreen
+alt - 2  :  kwmc window -c expand 0.05 focused
+alt - 3  :  kwmc window -c reduce 0.05 focused
+alt - 4  :  kwmc window -t focused
+alt - 5  :  kwmc window -c split - mode toggle;\ khd -e "mode activate default"
