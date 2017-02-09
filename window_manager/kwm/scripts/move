@@ -9,5 +9,5 @@ then
     kwmc window -s "$DIR"
 else
     kwmc window -m "$DIR"
-    kwmc window -f $FOCUSED_WINDOW
 fi
+

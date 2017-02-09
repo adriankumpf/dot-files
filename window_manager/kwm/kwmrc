@@ -8,6 +8,8 @@ kwmc config mouse-follows-focus on
 kwmc config standby-on-float on
 kwmc config float-non-resizable on
 kwmc config cycle-focus on
+kwmc config mouse-drag on
+kwmc config mouse-drag mod shift
 
 kwmc config tiling bsp
 kwmc config display 0 mode bsp
