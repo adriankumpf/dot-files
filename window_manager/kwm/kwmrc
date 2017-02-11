@@ -9,23 +9,22 @@ kwmc config standby-on-float on
 kwmc config float-non-resizable on
 kwmc config cycle-focus on
 kwmc config mouse-drag on
-kwmc config mouse-drag mod shift
+kwmc config mouse-drag mod ctrl+alt
 
 kwmc config tiling bsp
 kwmc config display 0 mode bsp
 kwmc config space bsp
 
-kwmc rule owner ="iTerm2"                 properties ={role="AXDialog"}
-kwmc rule owner ="Finder" role="AXDialog" properties ={float="true"}
-kwmc rule owner ="System Preferences"     properties ={float="true"}
-kwmc rule owner ="Screen Sharing"         properties ={float="true"}
-kwmc rule owner ="QuickTime Player"       properties ={float="true"}
-kwmc rule owner ="VLC"                    properties ={float="true"}
-kwmc rule owner ="Tweetbot"               properties ={float="true"}
-kwmc rule owner ="OTP Manager"            properties ={float="true"}
-kwmc rule owner ="Alfred Preferences"     properties ={float="true"}
-kwmc rule owner ="BetterTouchTool"        properties ={float="true"}
-kwmc rule owner ="Transmission"           properties ={float="true"}
-kwmc rule owner ="The Unarchiver"         properties ={float="true"}
-kwmc rule name="Preferences"              properties ={float="true"}
-kwmc rule owner ="iBooks"                 properties ={float="false"}
+kwmc rule owner="iTerm2"                 properties ={role="AXDialog"}
+kwmc rule owner="Finder" role="AXDialog" properties ={float="true"}
+kwmc rule owner="System Preferences"     properties ={float="true"}
+kwmc rule owner="Screen Sharing"         properties ={float="true"}
+kwmc rule owner="QuickTime Player"       properties ={float="true"}
+kwmc rule owner="VLC"                    properties ={float="true"}
+kwmc rule owner="OTP Manager"            properties ={float="true"}
+kwmc rule owner="Alfred Preferences"     properties ={float="true"}
+kwmc rule owner="BetterTouchTool"        properties ={float="true"}
+kwmc rule owner="Transmission"           properties ={float="true"}
+kwmc rule owner="The Unarchiver"         properties ={float="true"}
+kwmc rule  name="Preferences"            properties ={float="true"}
+kwmc rule owner="iBooks"                 properties ={float="false"}
