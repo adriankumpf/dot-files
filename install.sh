@@ -83,6 +83,14 @@ if [ ! -f ~/.config/fish/functions/update.fish ]; then
   ln -sf $current_path/fish/functions/update.fish ~/.config/fish/functions/update.fish
 fi
 
+#-----------------------------------------------------
+# Linking bin directory
+#-----------------------------------------------------
+
+if [ ! -d ~/bin/ ]; then
+  echo "Creating bin/ directory"
+  ln -sf $current_path/bin/ ~/bin
+fi
 
 #-----------------------------------------------------
 # Git (config, ignore)

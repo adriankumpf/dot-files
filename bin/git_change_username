@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Change the username of a all git repos in a given path to
+# the username in the (global) git config
+#
+# usage: ./rr ~/pojects
+
+function changeRemote() {
+	WORKING=$1
+	DIR="$WORKING/$2"
+
+	cd $DIR
+
+	CURREMOTE=`git remote -v |  grep push | awk -F\  '{print $2}'`
+	GITHUBUSER=$(git config github.user)
+	NEWREMOTE=${CURREMOTE/techfused/$GITHUBUSER}
+
+	git remote set-url origin $NEWREMOTE
+
+	echo "Done. -- $NEWREMOTE"
+
+	cd $WORKING
+}
+
+PWD=$1
+
+for d in $PWD/*/ ; do
+	changeRemote $d
+done
+

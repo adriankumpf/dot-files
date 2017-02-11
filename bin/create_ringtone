@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ffmpeg -i $1 -ac 1 -ab 128000 -f mp4 -c:a aac  -y -ss 0 -t 40  ringtone.m4r
