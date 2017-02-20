@@ -17,6 +17,7 @@ kwmc config space bsp
 
 kwmc rule owner="iTerm2"                 properties ={role="AXDialog"}
 kwmc rule owner="Finder" role="AXDialog" properties ={float="true"}
+kwmc rule owner="Shiori"     		 properties ={float="true"}
 kwmc rule owner="System Preferences"     properties ={float="true"}
 kwmc rule owner="Screen Sharing"         properties ={float="true"}
 kwmc rule owner="QuickTime Player"       properties ={float="true"}

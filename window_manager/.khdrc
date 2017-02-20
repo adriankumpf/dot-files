@@ -1,13 +1,16 @@
 # enable kwm compatibility mode
 khd kwm on
 
-ctrl + alt - h :  /Users/adriankumpf/.kwm/scripts/move west
-ctrl + alt - l :  /Users/adriankumpf/.kwm/scripts/move east
-ctrl + alt - k :  /Users/adriankumpf/.kwm/scripts/move south
-ctrl + alt - j :  /Users/adriankumpf/.kwm/scripts/move north
+ctrl + alt - h     : ~/.kwm/scripts/move west
+ctrl + alt - l     : ~/.kwm/scripts/move east
+ctrl + alt - k     : ~/.kwm/scripts/move south
+ctrl + alt - j     : ~/.kwm/scripts/move north
 
-alt - 1        :  kwmc window -z fullscreen
-alt - 2        :  kwmc window -c expand 0.05 focused
-alt - 3        :  kwmc window -c reduce 0.05 focused
-alt - 4        :  kwmc window -t focused
-ctrl + alt - 4 :  kwmc window -c split - mode toggle;\ khd -e "mode activate default"
+ctrl + alt - left  : ~/.kwm/scripts/move_and_focus_space left
+ctrl + alt - right : ~/.kwm/scripts/move_and_focus_space right
+
+alt - 1            : kwmc window -z fullscreen
+alt - 2            : kwmc window -c expand 0.05 focused
+alt - 3            : kwmc window -c reduce 0.05 focused
+alt - 4            : kwmc window -t focused
+ctrl + alt - 4     : kwmc window -c split - mode toggle;\ khd -e "mode activate default"
