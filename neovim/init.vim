@@ -13,8 +13,15 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-" Asynchronous maker and linter (needs linters to work)
-Plug 'benekastah/neomake', { 'on': ['Neomake'] }
+" Ale Linting
+" npm install -g jsonlint
+" yarn global add standard
+" gem install rubocop
+" gem install scsslint
+" gem install mdl
+" apt-get install shellcheck
+" pip3 install vim-vint
+Plug 'w0rp/ale'
 " Autocomplete
 Plug 'Shougo/deoplete.nvim'
 " Automatically closing pair stuff
@@ -411,10 +418,16 @@ let g:lightline = {
     \ },
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename' ] ],
-    \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype', 'fileencoding', 'fileformat' ] ]
+    \   'right': [ [ 'ale', 'lineinfo' ], [ 'percent' ], [ 'filetype', 'fileencoding', 'fileformat' ] ]
     \ },
     \ 'component': {
     \   'readonly': '%{&filetype=="help"?"HELP":&readonly?"RO":""}'
+    \ },
+    \ 'component_expand': {
+    \   'ale': 'ALEGetStatusLine'
+    \ },
+    \ 'component_type': {
+    \   'ale': 'error'
     \ },
     \ 'component_function': {
     \   'mode': 'utils#lightLineMode',
@@ -429,18 +442,6 @@ let g:lightline = {
     \ 'separator': { 'left': '', 'right': '' },
     \ 'subseparator': { 'left': '', 'right': '' }
     \ }
-
-" Neomake settings
-let g:neomake_verbose=0
-let g:neomake_warning_sign = {
-    \ 'text': '❯',
-    \ 'texthl': 'WarningMsg',
-    \ }
-let g:neomake_error_sign = {
-    \ 'text': '❯',
-    \ 'texthl': 'ErrorMsg',
-    \ }
-let g:neomake_elixir_enabled_makers = ['mix', 'credo']
 
 " Quick scope settings
 let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
@@ -478,6 +479,13 @@ let g:webdevicons_conceal_nerdtree_brackets = 1
 
 " Open Markoff instead of Marked 2
 let g:marked_app = "Markoff"
+
+" ALE
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 1
+let g:ale_sign_error = '❯'
+let g:ale_sign_warning = '❯'
 
 " ======================================================================================================================
 " Plugin mappings
@@ -644,24 +652,7 @@ augroup line_return
         \ endif
 augroup END
 
-" Run linters after save
-
-autocmd BufWritePost *.js Neomake eslint
-" npm install -g jsonlint
-autocmd BufWritePost *.json Neomake jsonlint
-" gem install rubocop
-autocmd BufWritePost *.rb Neomake rubocop
-" sudo apt-get install elixir
-autocmd BufWritePost *.ex Neomake elixir
-" apt-get install tidy
-autocmd BufWritePost *.html Neomake tidy
-" gem install haml_lint
-autocmd BufWritePost *.haml Neomake hamllint
-" gem install scsslint
-autocmd BufWritePost *.scss Neomake scsslint
-" gem install mdl
-autocmd BufWritePost *.md Neomake mdl
-" apt-get install shellcheck
-autocmd BufWritePost *.sh Neomake shellcheck
-" pip3 install vim-vint
-autocmd BufWritePost *.vim Neomake vint
+augroup UpdateAleLightLine
+  autocmd!
+  autocmd User ALELint call lightline#update()
+augroup END

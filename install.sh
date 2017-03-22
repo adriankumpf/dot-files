@@ -171,24 +171,7 @@ else
 fi
 
 #-----------------------------------------------------
-# Installing linters
-#-----------------------------------------------------
-echo -n "[ Eslint ]"
-
-if command_exists eslint; then
-  ln -sf $current_path/linters/eslintrc ~/.eslintrc
-else
-  if command_exists npm; then
-    npm install -g eslint
-    ln -sf $current_path/linters/eslintrc.json ~/.eslintrc
-  else
-    echo "   Install node and npm, then rerun script again!"
-    exit
-  fi
-fi
-
-#-----------------------------------------------------
-# Installing linters
+# Installing Window Managers
 #-----------------------------------------------------
 echo -n "[ Window Manager ]"
 
