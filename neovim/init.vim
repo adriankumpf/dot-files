@@ -22,6 +22,10 @@ call plug#begin('~/.config/nvim/plugged')
 " apt-get install shellcheck
 " pip3 install vim-vint
 Plug 'w0rp/ale'
+" Editorconfig support
+" brew install editorconfig
+" apt-get install editorconfig
+Plug 'editorconfig/editorconfig-vim'
 " Autocomplete
 Plug 'Shougo/deoplete.nvim'
 " Automatically closing pair stuff
@@ -486,6 +490,11 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 let g:ale_sign_error = '❯'
 let g:ale_sign_warning = '❯'
+
+" Editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:EditorConfig_core_mode = 'external_command'
+
 
 " ======================================================================================================================
 " Plugin mappings
