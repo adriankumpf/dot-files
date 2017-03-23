@@ -585,10 +585,6 @@ nnoremap <leader>gl :Extradite!<CR>
 " NERDTree
 nnoremap <leader>n :call utils#nerdWrapper()<CR>
 
-" cosco.vim
-nnoremap <silent> <Leader>, :call cosco#commaOrSemiColon()<CR>
-inoremap <silent> <Leader>, <c-o>:call cosco#commaOrSemiColon()<CR>
-
 " UndoTree
 noremap <Leader>u :GundoToggle<CR>
 
