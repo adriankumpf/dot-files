@@ -109,19 +109,17 @@ endfunction
 " Mode function for Lightline statusline
 function! g:utils#lightLineMode() abort
   let l:fname = expand('%:t')
-  return l:fname =~? 'NERD_tree' ? 'NT' :
-        \ &filetype ==? 'unite' ? 'Unite' :
-        \ winwidth(0) > 70 ? g:lightline#mode() : ''
+  return l:fname =~? 'NERD_tree' ? 'NT' : winwidth(0) > 70 ? g:lightline#mode() : ''
 endfunction
 
 " File format function for Lightline statusline
 function! g:utils#lightLineFileformat() abort
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+  return winwidth(0) > 70 ? (&fileformat) : ''
 endfunction
 
 " Filetype function for Lightline statusline
 function! g:utils#lightLineFiletype() abort
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
 endfunction
 
 " File encoding function for Lightline statusline
@@ -132,7 +130,5 @@ endfunction
 " File name function for Lightline statusline
 function! g:utils#lightLineFilename() abort
   let l:fname = expand('%:t')
-  return l:fname =~? 'NERD_tree' ? 'NERDTree' :
-        \ &filetype ==? 'unite' ? g:unite#get_status_string() :
-        \ ('' !=# l:fname ? l:fname : '[No Name]')
+  return l:fname =~? 'NERD_tree' ? 'NERDTree' : ('' !=# l:fname ? l:fname : '[No Name]')
 endfunction

@@ -1,5 +1,3 @@
-" Forked from https://github.com/martin-svk/dot-files
-
 " Autoinstall
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -14,18 +12,20 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " Ale Linting
-" npm install -g jsonlint
-" yarn global add standard
-" gem install rubocop
-" gem install scsslint
-" gem install mdl
-" apt-get install shellcheck
-" pip3 install vim-vint
+"  npm install -g jsonlint
+"  yarn global add standard
+"  gem install rubocop
+"  gem install scsslint
+"  gem install mdl
+"  apt-get install shellcheck
+"  pip3 install vim-vint
 Plug 'w0rp/ale'
+
 " Editorconfig support
-" brew install editorconfig
-" apt-get install editorconfig
+"  brew install editorconfig
+"  apt-get install editorconfig
 Plug 'editorconfig/editorconfig-vim'
+
 " Autocomplete
 Plug 'Shougo/deoplete.nvim'
 " Automatically closing pair stuff
@@ -43,8 +43,6 @@ Plug 'sickill/vim-pasta'
 
 " All languages in one
 Plug 'sheerun/vim-polyglot'
-" JS libs syntax (React, Angular)
-Plug 'othree/javascript-libraries-syntax.vim'
 " Format stylsheets
 Plug 'kewah/vim-stylefmt'
 " Color highlighter
@@ -53,9 +51,6 @@ Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'stylus', 'scss', 'less', 'h
 Plug 'slashmili/alchemist.vim'
 " Support ansi escape codes  in elxiir docs
 Plug 'powerman/vim-plugin-AnsiEsc'
-" Markdown/Latex
-" Plug 'vim-pandoc/vim-pandoc'
-" Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -64,8 +59,6 @@ Plug 'junegunn/fzf.vim'
 
 " Nerdtree file browser
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-" File Icons
-Plug 'ryanoasis/vim-devicons'
 " Lightline (simple status line)
 Plug 'itchyny/lightline.vim'
 " Buffers tabline
@@ -113,7 +106,7 @@ Plug 'DataWraith/auto_mkdir'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
-Plug 'w0ng/vim-hybrid'
+Plug 'pgdouyon/vim-yin-yang'
 
 call plug#end()
 
@@ -123,7 +116,6 @@ call plug#end()
 
 " Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
 "
-set shell=/bin/bash                         " Setting shell to zsh
 set number                                  " Line numbers on
 set showmode                                " Always show mode
 set showcmd                                 " Show commands as you type them
@@ -240,8 +232,6 @@ nnoremap gj 5j
 nnoremap gk 5k
 vnoremap j gj
 vnoremap k gk
-vnoremap gj 5j
-vnoremap gk 5k
 
 " scroll the viewport faster
 nnoremap <C-e> 3<C-e>
@@ -263,11 +253,13 @@ vnoremap <C-d> <C-d>zz
 vnoremap <C-f> <C-f>zz
 vnoremap <C-b> <C-b>zz
 
-" Remap H and L (top, bottom of screen to left and right end of line)
-nnoremap H ^
-nnoremap L $
-vnoremap H ^
-vnoremap L g_
+" Reselect indent in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+" Don't cancel visual select when shifting
+xnoremap <  <gv
+xnoremap >  >gv
 
 " More logical Y (default was alias for yy)
 nnoremap Y y$
@@ -288,17 +280,10 @@ nnoremap p p`]
 nmap cw ce
 nmap dw de
 
-" Uppercase word in insert mode
-inoremap <C-u> <ESC>mzgUiw`za
-
 " Matching brackets with TAB (using matchit) (Breaks the <C-i> jump)
 map <TAB> %
 silent! unmap [%
 silent! unmap ]%
-
-" Don't cancel visual select when shifting
-xnoremap <  <gv
-xnoremap >  >gv
 
 " Terminal mode mappings
 if has('nvim')
@@ -351,14 +336,10 @@ nnoremap ,? ?<CR>
 nnoremap <silent> <F3> :set paste!<CR> :set paste?<CR>
 " Toggle spelling on and off
 nnoremap <silent> <F4> :set spell!<CR> :set spell?<CR>
-" Source (reload configuration)
-nnoremap <silent> <F5> :source $MYNVIMRC<CR>
 " Toggle search highlight
 nnoremap <silent> <F6> :set nohlsearch!<CR> :set nohlsearch?<CR>
 " Toggle white characters visibility
 nnoremap <silent> <F7> :set list!<CR> :set list?<CR>
-" New horizontal term buffer
-nnoremap <silent> <F8> :T ls<CR>
 
 " Window / Buffer management
 
@@ -464,9 +445,6 @@ let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
-" Javascript libraries syntax settings
-let g:used_javascript_libs = 'chai,flux,react,underscore'
-
 " Plug settings
 let g:plug_timeout=20
 
@@ -476,25 +454,26 @@ let g:colorizer_nomap=1
 " Numbers.Vim settings
 let g:numbers_exclude = ['tagbar', 'startify', 'gundo', 'vimshell', 'w3m']
 
-" WebDevIcons
-let g:webdevicons_enable_nerdtree = 0
-let g:WebDevIconsUnicodeDecorateFolderNodes = 0
-let g:webdevicons_conceal_nerdtree_brackets = 1
-
 " Open Markoff instead of Marked 2
-let g:marked_app = "Markoff"
+let g:marked_app = 'Markoff'
 
 " ALE
-let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 1
 let g:ale_sign_error = '❯'
-let g:ale_sign_warning = '❯'
+let g:ale_sign_warning = '⚠'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:EditorConfig_core_mode = 'external_command'
 
+" Vim-Fat_finger
+iabbrev ok ok
 
 " ======================================================================================================================
 " Plugin mappings
@@ -503,8 +482,8 @@ let g:EditorConfig_core_mode = 'external_command'
 " FZF and extensions
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
-nnoremap <silent> <leader>o :GitFiles<CR>
-nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>nf :Files<CR>
+nnoremap <silent> <leader>f :GitFiles<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>l :BLines<CR>
 nnoremap <silent> <leader>L :Lines<CR>
@@ -520,6 +499,8 @@ nnoremap <silent> <leader>hm :Maps<CR>
 
 imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " Ultisnips
 " Disable built-in cx-ck to be able to go backward
@@ -530,10 +511,10 @@ imap <C-x><C-l> <plug>(fzf-complete-line)
  let g:UltiSnipsJumpBackwardTrigger='<C-k>'
 
 " Pandoc
-let g:pandoc#formatting#mode = "hA"
+let g:pandoc#formatting#mode = 'hA'
 let g:pandoc#formatting#smart_autoformat_on_cursormoved = 1
 let g:pandoc#folding#level = 4
-let g:pandoc#folding#mode = "relative"
+let g:pandoc#folding#mode = 'relative'
 
 " Alchemist.vim
 
@@ -582,9 +563,6 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit --verbose<CR>
 nnoremap <leader>gd :Gvdiff<CR>
 
-" BufOnly
-nnoremap ,C :Bonly<CR>
-
 " Gitv
 nnoremap <leader>gh :Gitv!<CR>
 
@@ -599,6 +577,11 @@ noremap <Leader>u :GundoToggle<CR>
 
 " Marked
 nnoremap <leader>m :MarkedOpen!<CR>
+"
+" JS standard --fix
+nnoremap <leader>ef :silent !eval standard % --fix<cr>
+
+
 
 " ======================================================================================================================
 " Color and highlighting settings
@@ -635,9 +618,6 @@ hi! link BufTabLineFill Comment
 
 " Keywordprg settings
 autocmd FileType vim setlocal keywordprg=:help
-
-" Apply changes after save
-autocmd BufWritePost init.vim source %
 
 " Turn spellcheck on for markdown files
 autocmd BufNewFile,BufRead *.md setlocal spell
