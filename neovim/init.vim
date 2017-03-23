@@ -1,3 +1,5 @@
+" Forked from https://github.com/martin-svk/dot-files
+
 " Autoinstall
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
