@@ -7,9 +7,9 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
-" ======================================================================================================================
+" ===============================
 " Plugins
-" ======================================================================================================================
+" ===============================
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -48,7 +48,10 @@ Plug 'sheerun/vim-polyglot'
 " Format stylsheets
 Plug 'kewah/vim-stylefmt'
 " Color highlighter
-Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'stylus', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'] }
+Plug 'lilydjwg/colorizer', { 'for': [
+      \ 'css', 'sass', 'stylus', 'scss', 'less',
+      \ 'html', 'xhtml', 'javascript', 'javascript.jsx'
+      \ ] }
 " Elixir
 Plug 'slashmili/alchemist.vim'
 " Support ansi escape codes  in elxiir docs
@@ -112,49 +115,80 @@ Plug 'pgdouyon/vim-yin-yang'
 
 call plug#end()
 
-" ======================================================================================================================
+" ===============================
 " General Settings
-" ======================================================================================================================
+" ===============================
 
-" Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults)
-"
-set number                                  " Line numbers on
-set showmode                                " Always show mode
-set showcmd                                 " Show commands as you type them
-set textwidth=120                           " Text width is 120 characters
-set cmdheight=1                             " Command line height
-set pumheight=10                            " Completion window max size
-set noswapfile                              " New buffers will be loaded without creating a swapfile
-set hidden                                  " Enables to switch between unsaved buffers and keep undo history
-set clipboard+=unnamed                      " Allow to use system clipboard
-set showmatch                               " Show matching brackets when text indicator is over them
-set matchtime=2                             " How many tenths of a second to blink when matching brackets
-set nostartofline                           " Prevent cursor from moving to beginning of line when switching buffers
-set virtualedit=block                       " To be able to select past EOL in visual block mode
-set nojoinspaces                            " No extra space when joining a line which ends with . ? !
-set scrolloff=7                             " Scroll when closing to top or bottom of the screen
-set updatetime=1000                         " Update time used to create swap file or other things
+" Line numbers on
+set number
+set showmode
+
+" Always show mode
+set showcmd
+
+" Show commands as you type them
+set textwidth=120
+
+" Text width is 80 characters
+set cmdheight=1
+
+set pumheight=10
+
+" Completion window max size
+set noswapfile
+
+" New buffers will be loaded without creating a swapfile
+set hidden
+
+" Enables to switch between unsaved buffers and keep undo history
+set clipboard+=unnamed
+
+" Allow to use system clipboard
+set showmatch
+
+" Show matching brackets when text indicator is over them
+set matchtime=2
+
+" How many tenths of a second to blink when matching brackets
+set nostartofline
+
+" Prevent cursor from moving to beginning of line when switching buffers
+set virtualedit=block
+
+" To be able to select past EOL in visual block mode
+set nojoinspaces
+
+" No extra space when joining a line which ends with . ? !
+set scrolloff=7
+
+" Scroll when closing to top or bottom of the screen
+set updatetime=1000
+
+" Update time used to create swap file or other things
+set tabstop=2
+
 
 " Split settings (more natural)
-set splitbelow                              " Splitting a window will put the new window below the current
-set splitright                              " Splitting a window will put the new window right of the current
+set splitbelow
+set splitright
 
-" Timeout settings
-" Time out on key codes but not mappings. Basically this makes terminal Vim work sanely. (by Steve Losh)
+" Time out on key codes but not mappings. Basically this makes terminal Vim work
+" sanely. (by Steve Losh)
 set notimeout
 set ttimeout
 set ttimeoutlen=10
 
 " Spelling settings
 set spellfile=~/.config/nvim/spell/dictionary.utf-8.add
-set spelllang=en_us                         " Set language to US English
-set nospell                                 " Disable checking by default (use <F4> to toggle)
+set spelllang=en_us
+" Disable checking by default (use <F4> to toggle)
+set nospell
 
 " Search settings
-set ignorecase                              " Ignore case by default
-set smartcase                               " Make search case sensitive only if it contains uppercase letters
-set wrapscan                                " Search again from top when reached the bottom
-set nohlsearch                              " Don't highlight after search
+set ignorecase
+set smartcase
+set wrapscan
+set nohlsearch
 
 " Persistent undo settings
 if has('persistent_undo')
@@ -163,7 +197,7 @@ if has('persistent_undo')
 endif
 
 " White characters settings
-set list                                    " Show listchars by default
+set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:·
 set showbreak=↪
 
@@ -171,14 +205,11 @@ set showbreak=↪
 filetype plugin on
 filetype indent on
 
-" Folding settings
-set foldmethod=marker                       " Markers are used to specify folds.
-set foldlevel=1                             " Start folding automatically from level 2
-set fillchars="fold: "                      " Characters to fill the statuslines and vertical separators
-set nofoldenable                            " don't fold by default
+" don't fold by default
+set nofoldenable
 
 " Omni completion settings
-set completeopt-=preview                    " Don't show preview scratch buffers
+set completeopt-=preview
 set wildignore=*.o,*.obj,*~
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
@@ -188,13 +219,14 @@ set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 
-" Neovim specific settings
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1       	" Set an environment variable to use the t_SI/t_EI hack
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1       	" Turn on true colors support (does not work inside tmux yet)
+" Set an environment variable to use the t_SI/t_EI hack
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+" Turn on true colors support (does not work inside tmux yet)
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-" ======================================================================================================================
+" ===============================
 " Mapping settings
-" ======================================================================================================================
+" ===============================
 
 " Setting leader
 let g:mapleader="\<space>"
@@ -273,7 +305,8 @@ nnoremap Q @q
 nnoremap c "xc
 xnoremap c "xc
 
-" After block yank and paste, move cursor to the end of operated text and don't override register
+" After block yank and paste, move cursor to the end of operated text
+" and don't override register
 vnoremap y y`]
 vnoremap p "_dP`]
 nnoremap p p`]
@@ -289,8 +322,8 @@ silent! unmap ]%
 
 " Terminal mode mappings
 if has('nvim')
-tnoremap <ESC> <C-\><C-n>
-tnoremap ,<ESC> <ESC>
+  tnoremap <ESC> <C-\><C-n>
+  tnoremap ,<ESC> <ESC>
 endif
 
 " Stay down after creating fold
@@ -369,9 +402,9 @@ nnoremap <silent> ,f :Format<CR>
 command! -nargs=* Wrap set wrap linebreak nolist
 command! -nargs=* Unwrap set nowrap nolinebreak list
 
-" ======================================================================================================================
+" ===============================
 " Plugins settings
-" ======================================================================================================================
+" ===============================
 
 " NERDTree
 let g:NERDTreeQuitOnOpen=1
@@ -398,37 +431,41 @@ let g:jsx_ext_required=0
 
 " Lightline settings
 let g:lightline = {
-    \ 'colorscheme': 'powerline',
-    \ 'tab': {
-    \   'active': [ 'filename' ],
-    \   'inactive': [ 'filename' ]
-    \ },
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename' ] ],
-    \   'right': [ [ 'ale', 'lineinfo' ], [ 'percent' ], [ 'filetype', 'fileencoding', 'fileformat' ] ]
-    \ },
-    \ 'component': {
-    \   'readonly': '%{&filetype=="help"?"HELP":&readonly?"RO":""}'
-    \ },
-    \ 'component_expand': {
-    \   'ale': 'ALEGetStatusLine'
-    \ },
-    \ 'component_type': {
-    \   'ale': 'error'
-    \ },
-    \ 'component_function': {
-    \   'mode': 'utils#lightLineMode',
-    \   'filename': 'utils#lightLineFilename',
-    \   'filetype': 'utils#lightLineFiletype',
-    \   'fileformat': 'utils#lightLineFileformat',
-    \   'fileencoding': 'utils#lightLineFileencoding'
-    \ },
-    \ 'component_visible_condition': {
-    \   'readonly': '(&readonly)'
-    \ },
-    \ 'separator': { 'left': '', 'right': '' },
-    \ 'subseparator': { 'left': '', 'right': '' }
-    \ }
+      \ 'colorscheme': 'powerline',
+      \ 'tab': {
+      \   'active': [ 'filename' ],
+      \   'inactive': [ 'filename' ]
+      \ },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename' ] ],
+      \   'right': [
+      \     [ 'ale', 'lineinfo' ],
+      \     [ 'percent' ],
+      \     [ 'filetype', 'fileencoding', 'fileformat' ]
+      \   ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"HELP":&readonly?"RO":""}'
+      \ },
+      \ 'component_expand': {
+      \   'ale': 'ALEGetStatusLine'
+      \ },
+      \ 'component_type': {
+      \   'ale': 'error'
+      \ },
+      \ 'component_function': {
+      \   'mode': 'utils#lightLineMode',
+      \   'filename': 'utils#lightLineFilename',
+      \   'filetype': 'utils#lightLineFiletype',
+      \   'fileformat': 'utils#lightLineFileformat',
+      \   'fileencoding': 'utils#lightLineFileencoding'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&readonly)'
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
 
 " Quick scope settings
 let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
@@ -439,10 +476,15 @@ let g:deoplete#file#enable_buffer_path=1
 
 let g:deoplete#sources={}
 let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
-let g:deoplete#sources.elixir = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'alchemist']
+let g:deoplete#sources.elixir = [
+\   'buffer', 'member', 'file',
+\   'omni', 'ultisnips', 'alchemist'
+\ ]
 let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
 let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
-let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ultisnips', 'ternjs']
+let g:deoplete#sources['javascript.jsx'] = [
+\   'buffer', 'file', 'omni', 'ultisnips'
+\ ]
 let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
@@ -477,9 +519,9 @@ let g:EditorConfig_core_mode = 'external_command'
 " Vim-Fat_finger
 iabbrev ok ok
 
-" ======================================================================================================================
+" ===============================
 " Plugin mappings
-" ======================================================================================================================
+" ===============================
 "
 " FZF and extensions
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
@@ -507,10 +549,10 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " Ultisnips
 " Disable built-in cx-ck to be able to go backward
 " inoremap <C-x><C-k> <NOP>
- let g:UltiSnipsExpandTrigger='<C-j>'
- let g:UltiSnipsListSnippets='<C-l>'
- let g:UltiSnipsJumpForwardTrigger='<C-j>'
- let g:UltiSnipsJumpBackwardTrigger='<C-k>'
+let g:UltiSnipsExpandTrigger='<C-j>'
+let g:UltiSnipsListSnippets='<C-l>'
+let g:UltiSnipsJumpForwardTrigger='<C-j>'
+let g:UltiSnipsJumpBackwardTrigger='<C-k>'
 
 " Pandoc
 let g:pandoc#formatting#mode = 'hA'
@@ -585,9 +627,9 @@ nnoremap <leader>ef :silent !eval standard % --fix<cr>
 
 
 
-" ======================================================================================================================
+" ===============================
 " Color and highlighting settings
-" ======================================================================================================================
+" ===============================
 
 syntax on
 
@@ -614,9 +656,9 @@ hi! link BufTabLineActive Comment
 hi! link BufTabLineHidden Comment
 hi! link BufTabLineFill Comment
 
-" ======================================================================================================================
+" ===============================
 " Autocommands
-" ======================================================================================================================
+" ===============================
 
 " Keywordprg settings
 autocmd FileType vim setlocal keywordprg=:help
@@ -630,7 +672,16 @@ autocmd BufWritePre * call utils#stripTrailingWhitespaces()
 " Resize splits when the window is resized
 autocmd VimResized * :wincmd =
 
-" Make sure Vim returns to the same line when you reopen a file. Thanks, Amit and Steve Losh.
+" Close window if last remaining window is NerdTree
+autocmd bufenter *
+  \ if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |
+  \   q |
+  \ endif
+
+" Highlight characters behind the 80 chars margin
+:match ErrorMsg '\%>80v.\+'
+
+" Make sure Vim returns to the same line when you reopen a file.
 augroup line_return
   au!
   au BufReadPost *
