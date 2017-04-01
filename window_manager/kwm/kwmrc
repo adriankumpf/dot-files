@@ -1,6 +1,6 @@
 kwmc config hotkeys on
 
-kwmc config padding 35 15 15 15
+kwmc config padding 55 35 45 45
 kwmc config gap 15 15
 
 kwmc config focus-follows-mouse on
@@ -17,7 +17,7 @@ kwmc config space bsp
 
 kwmc rule owner="iTerm2"                 properties ={role="AXDialog"}
 kwmc rule owner="Finder" role="AXDialog" properties ={float="true"}
-kwmc rule owner="Shiori"     		 properties ={float="true"}
+kwmc rule owner="Shiori"                 properties ={float="true"}
 kwmc rule owner="System Preferences"     properties ={float="true"}
 kwmc rule owner="Screen Sharing"         properties ={float="true"}
 kwmc rule owner="QuickTime Player"       properties ={float="true"}
