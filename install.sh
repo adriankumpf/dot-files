@@ -150,6 +150,25 @@ if [ ! -f ~/.config/nvim/sync.sh ]; then
   ln -sf $current_path/neovim/sync.sh ~/.config/nvim/sync.sh
 fi
 
+#-----------------------------------------------------
+# Installing Tmux
+#-----------------------------------------------------
+echo -n "[ Tmux ]"
+
+if command_exists tmux; then
+  if [ ! -f ~/.tmux.conf ]; then
+    echo "   Creating tmux.conf!"
+    ln -sf $current_path/.tmux.conf ~/.tmux.conf
+  else
+    echo "   Keeping existing tmux conf!"
+  fi
+else
+  echo "   Installing tmux!"
+  brew install tmux
+  brew install reattach-to-user-namespace
+  echo "   Creating tmux conf!"
+  ln -sf $current_path/.tmux.conf ~/.tmux.conf
+fi
 
 #-----------------------------------------------------
 # Installing Ag
