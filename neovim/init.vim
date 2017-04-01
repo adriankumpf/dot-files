@@ -1,22 +1,14 @@
+scriptencoding utf-8
+
 " Autoinstall
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
 	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall
+	augroup auto_install
+		au!
+		au VimEnter * PlugInstall
+	augroup END
 endif
-
-" npm install -g jsonlint
-" yarn global add standard
-" gem install rubocop
-" gem install scsslint
-" gem install mdl
-" apt-get install shellcheck
-" pip3 install vim-vint
-" brew install editorconfig
-" apt-get install editorconfig
-" npm install js-beautify
-" gem install rbeautify
-" npm install -g stylefmt
 
 " ===============================
 " Plugins
@@ -55,7 +47,6 @@ Plug 'kana/vim-textobj-user'                                             " Custo
 Plug 'terryma/vim-expand-region'                                         " Easily expand selected region
 Plug 'ironhouzi/vim-stim'                                                " Improve star by not jumping immediately
 Plug 'chip/vim-fat-finger'                                               " Iabbrev auto-correction library
-Plug 'myusuf3/numbers.vim'                                               " Intelligently toogle relatv line numbers
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }                            " Undo Tree
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                          " Intelligent buffer closing
 Plug 'itspriddle/vim-marked'                                             " Open Markdown files in Marked
@@ -68,6 +59,8 @@ call plug#end()
 " General Settings
 " ===============================
 
+set nonumber
+set norelativenumber
 set noshowmode
 set noshowcmd               " Don't show last cmd
 set laststatus=2
@@ -160,17 +153,17 @@ inoremap jj <esc>
 " Thanks to https://github.com/s3rvac/dotfiles/tree/master/vim
 if exists('$TMUX')
 	function! s:TmuxOrSplitSwitch(wincmd, tmuxdir)
-		let previous_winnr = winnr()
+		let l:previous_winnr = winnr()
 		silent! execute 'wincmd ' . a:wincmd
-		if previous_winnr == winnr()
+		if l:previous_winnr == winnr()
 			call system('tmux select-pane -' . a:tmuxdir)
 			redraw!
 		endif
 	endfunction
 
-	let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+	let g:previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
 	let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-	let &t_te = "\<Esc>]2;" . previous_title . "\<Esc>\\" . &t_te
+	let &t_te = "\<Esc>]2;" . g:previous_title . "\<Esc>\\" . &t_te
 
 	nnoremap <silent> <C-h> :call <SID>TmuxOrSplitSwitch('h', 'L')<CR>
 	nnoremap <silent> <C-j> :call <SID>TmuxOrSplitSwitch('j', 'D')<CR>
@@ -255,6 +248,17 @@ nnoremap ,s :%s///gc<Left><Left><Left>
 nnoremap <silent> <F3> :set paste!<CR> :set paste?<CR>
 " Toggle spelling on and off
 nnoremap <silent> <F4> :set spell!<CR> :set spell?<CR>
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set nonumber
+		set norelativenumber
+  else
+		set number
+    set relativenumber
+  endif
+endfunc
+nnoremap <silent> <F5> :call NumberToggle()<cr>
 " Toggle search highlight
 nnoremap <silent> <F6> :set nohlsearch!<CR> :set nohlsearch?<CR>
 " Toggle white characters visibility
@@ -534,6 +538,24 @@ autocmd bufenter *
 			\ if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |
 			\   q |
 			\ endif
+
+" Toggle between absolute and relative line numbers
+function! RelativeNumberOff()
+  if(&number == 1 && &relativenumber == 1)
+    set norelativenumber
+  endif
+endfunc
+function! RelativeNumberOn()
+	if(&number == 1 && &relativenumber == 0)
+		set relativenumber
+	endif
+endfunc
+
+augroup line_numbers
+	au!
+	au InsertEnter * call RelativeNumberOff()
+	au InsertLeave * call RelativeNumberOn()
+augroup END
 
 " Make sure Vim returns to the same line when you reopen a file.
 augroup line_return

@@ -22,10 +22,10 @@ install_plug_nvim() {
 install_nvim_folder() {
   mkdir -p ~/.config/nvim/autoload
   install_plug_nvim
-  ln -sf $current_path/neovim/autoload/utils.vim ~/.config/nvim/autoload/utils.vim
-  ln -sf $current_path/neovim/spell/dictionary.utf-8.add ~/.config/nvim/dictionary.utf-8.add
-  ln -sf $current_path/neovim/UltiSnips ~/.config/nvim/UltiSnips
-  ln -sf $current_path/neovim/init.vim ~/.config/nvim/init.vim
+  ln -sf "$current_path/neovim/autoload/utils.vim" ~/.config/nvim/autoload/utils.vim
+  ln -sf "$current_path/neovim/spell/dictionary.utf-8.add" ~/.config/nvim/dictionary.utf-8.add
+  ln -sf "$current_path/neovim/UltiSnips" ~/.config/nvim/UltiSnips
+  ln -sf "$current_path/neovim/init.vim" ~/.config/nvim/init.vim
   ln -sf ~/.config/nvim/UltiSnips/ ~/.config/nvim/plugged/vim-snippets/UltiSnips
 }
 #-----------------------------------------------------
@@ -47,11 +47,11 @@ fi
 
 if [ ! -f ~/.config/fish/config.fish ]; then
   echo "    Creating config.fish!"
-  ln -sf $current_path/fish/config.fish ~/.config/fish/config.fish
+  ln -sf "$current_path/fish/config.fish" ~/.config/fish/config.fish
 elif $REPLACE_FILES; then
   echo "    Deleting old config.fish!"
   rm ~/.config/fish/config.fish
-  ln -sf $current_path/fish/config.fish ~/.config/fish/config.fish
+  ln -sf "$current_path/fish/config.fish" ~/.config/fish/config.fish
 else
   echo "    Keeping existing config.fish!"
 fi
@@ -80,7 +80,7 @@ fi
 
 if [ ! -f ~/.config/fish/functions/update.fish ]; then
   echo "    Installing update function"
-  ln -sf $current_path/fish/functions/update.fish ~/.config/fish/functions/update.fish
+  ln -sf "$current_path/fish/functions/update.fish" ~/.config/fish/functions/update.fish
 fi
 
 #-----------------------------------------------------
@@ -89,7 +89,7 @@ fi
 
 if [ ! -d ~/bin/ ]; then
   echo "Creating bin/ directory"
-  ln -sf $current_path/bin/ ~/bin
+  ln -sf "$current_path/bin"/ ~/bin
 fi
 
 #-----------------------------------------------------
@@ -99,11 +99,11 @@ echo -n "[ gitconfig ]"
 
 if [ ! -f ~/.gitconfig ]; then
   echo "    Creating gitconfig!"
-  ln -sf $current_path/git/gitconfig ~/.gitconfig
+  ln -sf "$current_path/git/gitconfig" ~/.gitconfig
 elif $REPLACE_FILES; then
   echo "    Deleting old gitconfig!"
   rm ~/.gitconfig
-  ln -sf $current_path/git/gitconfig ~/.gitconfig
+  ln -sf "$current_path/git/gitconfig" ~/.gitconfig
 else
   echo "    Keeping existing gitconfig!"
 fi
@@ -112,11 +112,11 @@ echo -n "[ gitignore ]"
 
 if [ ! -f ~/.gitignore ]; then
   echo "    Creating gitignore!"
-  ln -sf $current_path/git/gitignore ~/.gitignore
+  ln -sf "$current_path/git/gitignore" ~/.gitignore
 elif $REPLACE_FILES; then
   echo "    Deleting old gitignore!"
   rm ~/.gitignore
-  ln -sf $current_path/git/gitignore ~/.gitignore
+  ln -sf "$current_path/git/gitignore" ~/.gitignore
 else
   echo "    Keeping existing gitignore!"
 fi
@@ -147,7 +147,7 @@ fi
 
 if [ ! -f ~/.config/nvim/sync.sh ]; then
   echo "    Copying sync script"
-  ln -sf $current_path/neovim/sync.sh ~/.config/nvim/sync.sh
+  ln -sf "$current_path/neovim/sync.sh" ~/.config/nvim/sync.sh
 fi
 
 #-----------------------------------------------------
@@ -158,7 +158,7 @@ echo -n "[ Tmux ]"
 if command_exists tmux; then
   if [ ! -f ~/.tmux.conf ]; then
     echo "   Creating tmux.conf!"
-    ln -sf $current_path/.tmux.conf ~/.tmux.conf
+    ln -sf "$current_path/.tmux.conf" ~/.tmux.conf
   else
     echo "   Keeping existing tmux conf!"
   fi
@@ -167,7 +167,7 @@ else
   brew install tmux
   brew install reattach-to-user-namespace
   echo "   Creating tmux conf!"
-  ln -sf $current_path/.tmux.conf ~/.tmux.conf
+  ln -sf "$current_path/.tmux.conf" ~/.tmux.conf
 fi
 
 #-----------------------------------------------------
@@ -178,7 +178,7 @@ echo -n "[ Ag ]"
 if command_exists ag; then
   if [ ! -f ~/.agignore ]; then
     echo "   Creating agignore!"
-    ln -sf $current_path/other/agignore ~/.agignore
+    ln -sf "$current_path/other/agignore" ~/.agignore
   else
     echo "   Keeping existing agignore!"
   fi
@@ -186,7 +186,7 @@ else
   echo "   Installing Ag!"
   brew install the_silver_searcher
   echo "   Creating agignore!"
-  ln -sf $current_path/other/agignore ~/.agignore
+  ln -sf "$current_path/other/agignore" ~/.agignore
 fi
 
 #-----------------------------------------------------
@@ -201,11 +201,11 @@ fi
 if command_exists kwmc; then
   if [ ! -f ~/.kwm/kwmrc ]; then
     echo "    Creating kwm config!"
-    ln -sf $current_path/window_manager/kwm ~/.kwm
+    ln -sf "$current_path/window_manager/kwm" ~/.kwm
   elif $REPLACE_FILES; then
     echo "    Deleting old kwm config!"
     rm -rf ~/.kwm
-    ln -sf $current_path/window_manager/kwm ~/.kwm
+    ln -sf "$current_path/window_manager/kwm" ~/.kwm
   else
     echo "    Keeping existing kwm config!"
   fi
@@ -219,13 +219,27 @@ fi
 if command_exists khd; then
   if [ ! -f ~/.khdrc ]; then
     echo "    Creating .khdrc!"
-    ln -sf $current_path/window_manager/.khdrc ~/.khdrc
+    ln -sf "$current_path/window_manager/.khdrc" ~/.khdrc
   elif $REPLACE_FILES; then
     echo "    Deleting old .khdrc!"
     rm ~/.khdrc
-    ln -sf $current_path/window_manager/.khdrc ~/.khdrc
+    ln -sf "$current_path/window_manager/.khdrc" ~/.khdrc
   else
     echo "    Keeping existing .khdrc!"
   fi
 fi
 
+# Linter
+
+# npm install -g jsonlint
+# yarn global add standard
+# gem install rubocop
+# gem install scsslint
+# gem install mdl
+# apt-get install shellcheck
+# pip3 install vim-vint
+# brew install editorconfig
+# apt-get install editorconfig
+# npm install js-beautify
+# gem install rbeautify
+# npm install -g stylefmt
