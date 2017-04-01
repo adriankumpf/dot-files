@@ -1,0 +1,62 @@
+- defaults:
+    link:
+      create: true
+      force: true
+
+- clean: ['~']
+- clean:
+    ~/.config:
+      force: true
+
+- tap:
+  - caskroom/fonts
+  - caskroom/cask
+  - caskroom/versions
+  - fisherman/tap
+  - neovim/neovim
+
+- brew:
+  - fish
+  - fisherman
+  - neovim --HEAD
+  - tmux
+  - reattach-to-user-namespace
+  - the_silver_searcher
+  - koekeishiya/formulae/kwm
+  - koekeishiya/formulae/khd
+  - editorconfig
+
+- cask: [betterzipql, qlvideo, cloudytabs, qlmarkdown, iterm2-beta, qlstephen, soundcleod, vlc]
+
+- shell:
+  - fish -c "fisher z"
+  - fish -c "fisher done"
+  - fish -c "fisher fnm"
+  - fish -c "fisher fzf"
+  - fish -c "fisher i rafaelrinaldi/pure"
+
+- link:
+  # fish shell
+    ~/.config/fish/functions/update.fish: fish/functions/update.fish
+    ~/.config/fish/fish.config: fish/fish.config
+  # neovim
+    ~/.config/nvim/spell/dictionary.utf-8.add: neovim/spell/dictionary.utf-8.add
+    ~/.config/nvim/plugged/vim-snippets/UltiSnips: neovim/UltiSnips
+    ~/.config/nvim/autoload/utils.vim: neovim/autoload/utils.vim
+    ~/.config/nvim/init.vim: neovim/init.vim
+    ~/.config/nvim/sync.sh: neovim/sync.sh
+  # git
+    ~/.gitconfig: git/gitconfig
+    ~/.gitignore: git/gitignore
+  # kwm & khd
+    ~/.khdrc: window_manager/.khdrc
+    ~/.kwm: window_manager/kwm
+  # tmux
+    ~/.tmux.conf: tmux/tmux.conf
+  # misc
+    ~/.agignore: other/agignore
+    ~/bin: bin
+
+- shell:
+  - brew services restart khd
+  - brew services restart kwm
