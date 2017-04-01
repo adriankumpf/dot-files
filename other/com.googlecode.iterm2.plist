@@ -4452,7 +4452,7 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>351 418 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame ProfilesPanel</key>
-	<string>967 15 937 1030 0 0 1920 1058 </string>
+	<string>45 35 1830 990 0 0 1920 1058 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>652 498 620 392 0 0 1920 1057 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
@@ -4462,11 +4462,11 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>15 24 936 1012 0 0 1920 1057 </string>
+	<string>48 43 1824 974 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>967 24 936 1012 0 0 1920 1057 </string>
+	<string>968 43 904 974 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>967 20 936 499 0 0 1920 1058 </string>
+	<string>46 39 905 982 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>15 16 1890 1028 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -4838,7 +4838,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string></string>
+			<string>tmux attach -t 0</string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -5397,7 +5397,7 @@
 	<key>OpenBookmark</key>
 	<false/>
 	<key>OpenNoWindowsAtStartup</key>
-	<true/>
+	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>0</integer>
 	<key>PMPrintingExpandedStateForPrint2</key>
@@ -5442,13 +5442,13 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/adriankumpf/dev/projects/dot-files</string>
+	<string>/Users/adriankumpf/dev/projects/dot-files/other</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
-	<false/>
+	<true/>
 	<key>RightCommand</key>
 	<integer>8</integer>
 	<key>RightOption</key>
@@ -5520,7 +5520,7 @@
 	<key>WindowStyle</key>
 	<integer>2</integer>
 	<key>WordCharacters</key>
-	<string>s</string>
+	<string></string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
 	<key>findRegex_iTerm</key>
