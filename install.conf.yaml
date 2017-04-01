@@ -58,5 +58,5 @@
     ~/bin: bin
 
 - shell:
-  - brew services restart khd
-  - brew services restart kwm
+  - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart khd; fi;'
+  - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart kwm; fi;'
