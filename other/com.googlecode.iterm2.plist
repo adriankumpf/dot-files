@@ -4458,15 +4458,15 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>562 332 796 473 0 0 1920 1058 </string>
+	<string>360 202 796 473 0 0 1440 878 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>48 43 1824 974 0 0 1920 1058 </string>
+	<string>48 39 1344 803 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>968 43 904 974 0 0 1920 1058 </string>
+	<string>728 39 664 803 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>46 39 905 982 0 0 1920 1058 </string>
+	<string>968 40 904 480 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>15 16 1890 1028 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -4838,7 +4838,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string>tmux attach -t 0</string>
+			<string></string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -5187,7 +5187,7 @@
 			<key>Scrollback Lines</key>
 			<integer>500000</integer>
 			<key>Scrollback With Status Bar</key>
-			<true/>
+			<false/>
 			<key>Scrollback in Alternate Screen</key>
 			<false/>
 			<key>Selected Text Color</key>
@@ -5464,7 +5464,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-03-31T22:20:40Z</date>
+	<date>2017-04-02T20:27:23Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
