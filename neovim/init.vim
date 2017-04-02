@@ -2,12 +2,12 @@ scriptencoding utf-8
 
 " Autoinstall
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	augroup auto_install
-		au!
-		au VimEnter * PlugInstall
-	augroup END
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  augroup auto_install
+    au!
+    au VimEnter * PlugInstall
+  augroup END
 endif
 
 " ===============================
@@ -19,7 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'w0rp/ale'                                                          " Ale Linting
 Plug 'editorconfig/editorconfig-vim'                                     " Editorconfig support
 Plug 'Shougo/deoplete.nvim'                                              " Autocomplete
-Plug 'cohama/lexima.vim'                                                 " Automatically closing pair stuff
+Plug 'jiangmiao/auto-pairs'                                              " Automatically closing pair stuff
 Plug 'SirVer/ultisnips'                                                  " Snippet support (C-j)
 Plug 'honza/vim-snippets'                                                " Snippets for everything!
 Plug 'tpope/vim-commentary'                                              " Commenting support (gc)
@@ -32,7 +32,6 @@ Plug 'powerman/vim-plugin-AnsiEsc'                                       " Suppo
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }        " Fuzzy finder
 Plug 'junegunn/fzf.vim'                                                  " Wrapper function
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } " Nerdtree file browser
-Plug 'ap/vim-buftabline'                                                 " Buffers tabline
 Plug 'tpope/vim-fugitive'                                                " Fugitive
 Plug 'gregsexton/gitv', { 'on': 'Gitv' }                                 " Git log viewer (Gitv! for file mode)
 Plug 'airblade/vim-gitgutter'                                            " Git changes showed on line numbers
@@ -52,6 +51,7 @@ Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                          " Intel
 Plug 'itspriddle/vim-marked'                                             " Open Markdown files in Marked
 Plug 'DataWraith/auto_mkdir'                                             " create directory if it does not exist
 Plug 'morhetz/gruvbox'                                                   " THE Colorscheme
+Plug 'jeetsukumaran/vim-buffergator'
 
 call plug#end()
 
@@ -62,40 +62,37 @@ call plug#end()
 set nonumber
 set norelativenumber
 set noshowmode
-set noshowcmd               " Don't show last cmd
+set noshowcmd                                                     " Don't show last cmd
 set laststatus=2
-set textwidth=120           " Text width is 80 characters
+set textwidth=120                                                 " Text width is 80 characters
 set cmdheight=1
-set pumheight=10            " Completion window max size
-set noswapfile              " New buffers will be loaded without creating a swapfile
-set hidden                  " Enables to switch between unsaved buffers and keep undo history
-set clipboard+=unnamed      " Allow to use system clipboard
-set showmatch               " Show matching brackets when text indicator is over them
-set matchtime=2             " How many tenths of a second to blink when matching brackets
-set nostartofline           " Prevent cursor from moving to beginning of line when switching buffers
-set virtualedit=block       " To be able to select past EOL in visual block mode
-set nojoinspaces            " No extra space when joining a line which ends with . ? !
-set scrolloff=7             " Scroll when closing to top or bottom of the screen
-set updatetime=1000         " Update time used to create swap file or other things
+set pumheight=10                                                  " Completion window max size
+set hidden                                                        " Enables to switch between unsaved buffers and keep undo history
+set clipboard+=unnamed                                            " Allow to use system clipboard
+set showmatch                                                     " Show matching brackets when text indicator is over them
+set matchtime=2                                                   " How many tenths of a second to blink when matching brackets
+set nostartofline                                                 " Prevent cursor from moving to beginning of line when switching buffers
+set virtualedit=block                                             " To be able to select past EOL in visual block mode
+set nojoinspaces                                                  " No extra space when joining a line which ends with . ? !
+set scrolloff=7                                                   " Scroll when closing to top or bottom of the screen
+set updatetime=1000                                               " Update time used to create swap file or other things
 set tabstop=2
-set mouse=nicr              " Enale the use of the mouse
-set splitbelow              " Split settings (more natural)
+set mouse=nicr                                                    " Enale the use of the mouse
+set splitbelow                                                    " Split settings (more natural)
 set splitright
-set notimeout               " Time out on key codes but not mappings.
+set notimeout                                                     " Time out on key codes but not mappings.
 set ttimeout
 set ttimeoutlen=10
-set spellfile=~/.config/nvim/spell/dictionary.utf-8.add
-set spelllang=en_us
-set nospell                 " Disable checking by default (use <F4> to toggle)
-set ignorecase              " Search settings
+set nospell                                                       " Disable checking by default (use <F4> to toggle)
+set ignorecase                                                    " Search settings
 set smartcase
 set wrapscan
 set nohlsearch
-set list                    " White characters settings
+set list                                                          " White characters settings
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:·
 set showbreak=↪
-set nofoldenable            " don't fold by default
-set completeopt-=preview    " Omni completion settings
+set nofoldenable                                                  " don't fold by default
+
 set wildignore=*.o,*.obj,*~
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
@@ -104,21 +101,57 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
+
 set statusline=%=%m\ %q\ %r\ %{ALEGetStatusLine()}\ %t\ %l:%c
 set fillchars=vert:\ ,stl:\ ,stlnc:\ ,
 
-" Persistent undo settings
-if has('persistent_undo')
-	set undofile
-	set undodir=~/.config/nvim/tmp/undo/
+set backspace=indent,start,eol                                    " allow unrestricted backspacing in insert mode
+
+if has('linebreak')
+  set breakindent                                                 " indent wrapped lines to match start
+  if exists('&breakindentopt')
+    set breakindentopt=shift:2                                    " emphasize broken lines by indenting them
+  endif
 endif
 
+if exists('$SUDO_USER')
+  set nobackup                                                    " don't create root-owned files
+  set nowritebackup                                               " don't create root-owned files
+else
+  set backupdir=~/.config/nvim/tmp/backup                         " keep backup files out of the way
+  set backupdir+=.
+endif
+
+if exists('$SUDO_USER')
+  set noswapfile                                                  " don't create root-owned files
+else
+  set directory=~/.config/nvim/tmp/swap//                         " keep swap files out of the way
+  set directory+=.
+endif
+
+set shortmess+=A                                                  " ignore annoying swapfile messages
+set shortmess+=I                                                  " no splash screen
+set shortmess+=O                                                  " file-read message overwrites previous
+set shortmess+=T                                                  " truncate non-file messages in middle
+set shortmess+=W                                                  " don't echo [w] [written]
+set shortmess+=a                                                  " use abbreviations in messages eg. `[RO]` instead of `[readonly]`
+set shortmess+=o                                                  " overwrite file-written messages
+set shortmess+=t                                                  " truncate file messages at start
+
+if has('persistent_undo')
+  if exists('$SUDO_USER')
+    set noundofile                                    " don't create root-owned files
+  else
+    set undodir=~/.config/nvim/tmp/undo/              " keep undo files out of the way
+    set undofile                                      " actually use undo files
+  endif
+endif
 " Filetype settings
 filetype plugin on
 filetype indent on
 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 " Set an environment variable to use the t_SI/t_EI hack
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " Turn on true colors support (does not work inside tmux yet)
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1                               " Set an environment variable to use the t_SI/t_EI hack
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1                                 " Turn on true colors support (does not work inside tmux yet)
 
 " ===============================
 " Mapping settings
@@ -146,43 +179,42 @@ nnoremap Q <NOP>
 " remap esc
 inoremap jj <esc>
 
-
 " Smart window switching with awareness of Tmux panes. Now, I can use Ctrl+hjkl
 " in both Vim and Tmux (without using the prefix). Based on
 " http://www.codeography.com/2013/06/19/navigating-vim-and-tmux-splits.
 " Thanks to https://github.com/s3rvac/dotfiles/tree/master/vim
 if exists('$TMUX')
-	function! s:TmuxOrSplitSwitch(wincmd, tmuxdir)
-		let l:previous_winnr = winnr()
-		silent! execute 'wincmd ' . a:wincmd
-		if l:previous_winnr == winnr()
-			call system('tmux select-pane -' . a:tmuxdir)
-			redraw!
-		endif
-	endfunction
+  function! s:TmuxOrSplitSwitch(wincmd, tmuxdir)
+    let l:previous_winnr = winnr()
+    silent! execute 'wincmd ' . a:wincmd
+    if l:previous_winnr == winnr()
+      call system('tmux select-pane -' . a:tmuxdir)
+      redraw!
+    endif
+  endfunction
 
-	let g:previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-	let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-	let &t_te = "\<Esc>]2;" . g:previous_title . "\<Esc>\\" . &t_te
+  let g:previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+  let &t_te = "\<Esc>]2;" . g:previous_title . "\<Esc>\\" . &t_te
 
-	nnoremap <silent> <C-h> :call <SID>TmuxOrSplitSwitch('h', 'L')<CR>
-	nnoremap <silent> <C-j> :call <SID>TmuxOrSplitSwitch('j', 'D')<CR>
-	nnoremap <silent> <C-k> :call <SID>TmuxOrSplitSwitch('k', 'U')<CR>
-	nnoremap <silent> <C-l> :call <SID>TmuxOrSplitSwitch('l', 'R')<CR>
+  nnoremap <silent> <C-h> :call <SID>TmuxOrSplitSwitch('h', 'L')<CR>
+  nnoremap <silent> <C-j> :call <SID>TmuxOrSplitSwitch('j', 'D')<CR>
+  nnoremap <silent> <C-k> :call <SID>TmuxOrSplitSwitch('k', 'U')<CR>
+  nnoremap <silent> <C-l> :call <SID>TmuxOrSplitSwitch('l', 'R')<CR>
 else
-	noremap <C-h> <C-w>h
-	noremap <C-j> <C-w>j
-	noremap <C-k> <C-w>k
-	noremap <C-l> <C-w>l
+  noremap <C-h> <C-w>h
+  noremap <C-j> <C-w>j
+  noremap <C-k> <C-w>k
+  noremap <C-l> <C-w>l
 endif
 
 " Make j and k move by virtual lines instead of physical lines
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
-" scroll the viewport faster
-nnoremap <C-e> 3<C-e>
-nnoremap <C-z> 3<C-y>
+" Store relative line number jumps in the jumplist if they exceed a threshold.
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : '') . 'j'
 
 " When jump to next match also center screen
 nnoremap n nzz
@@ -199,6 +231,8 @@ vnoremap <C-u> <C-u>zz
 vnoremap <C-d> <C-d>zz
 vnoremap <C-f> <C-f>zz
 vnoremap <C-b> <C-b>zz
+
+noremap <C-z> <C-y>
 
 " More logical Y (default was alias for yy)
 nnoremap Y y$
@@ -218,8 +252,8 @@ nnoremap p p`]
 
 " Terminal mode mappings
 if has('nvim')
-	tnoremap <ESC> <C-\><C-n>
-	tnoremap ,<ESC> <ESC>
+  tnoremap <ESC> <C-\><C-n>
+  tnoremap ,<ESC> <ESC>
 endif
 
 " Quick save and close buffer
@@ -243,7 +277,6 @@ nnoremap S mzi<CR><ESC>`z
 " Start substitute on current word under the cursor
 nnoremap ,s :%s///gc<Left><Left><Left>
 
-
 " Paste mode toggling
 nnoremap <silent> <F3> :set paste!<CR> :set paste?<CR>
 " Toggle spelling on and off
@@ -252,18 +285,19 @@ nnoremap <silent> <F4> :set spell!<CR> :set spell?<CR>
 function! NumberToggle()
   if(&relativenumber == 1)
     set nonumber
-		set norelativenumber
+    set norelativenumber
   else
-		set number
+    set number
     set relativenumber
   endif
 endfunc
 nnoremap <silent> <F5> :call NumberToggle()<cr>
+
 " Toggle search highlight
 nnoremap <silent> <F6> :set nohlsearch!<CR> :set nohlsearch?<CR>
+
 " Toggle white characters visibility
 nnoremap <silent> <F7> :set list!<CR> :set list?<CR>
-
 
 " Intelligent windows resizing using ctrl + arrow keys
 nnoremap <silent> <C-Right> :call utils#intelligentVerticalResize('right')<CR>
@@ -271,9 +305,8 @@ nnoremap <silent> <C-Left> :call utils#intelligentVerticalResize('left')<CR>
 nnoremap <silent> <C-Up> :resize +1<CR>
 nnoremap <silent> <C-Down> :resize -1<CR>
 
-" Buffers navigation and management
-nnoremap <silent> <tab> :bn<CR>
-nnoremap <silent> <S-tab> :bp<CR>
+" <Leader><Leader> -- Open last buffer.
+nnoremap <Leader><Leader> <C-^>
 
 " Run current file
 command! Run :call utils#runCurrentFile()
@@ -290,6 +323,10 @@ command! -nargs=* Unwrap set nowrap nolinebreak list
 " Close the opened HTML tag with Ctrl+_ (I do not use vim-closetag because it
 " often fails with an error).
 inoremap <silent> <C--> </<C-x><C-o><C-x>
+
+" Search in very magic mode
+nnoremap / /\v
+vnoremap / /\v
 
 " ===============================
 " Plugins settings
@@ -322,18 +359,18 @@ let g:jsx_ext_required=0
 " Deoplete autocomplete settings
 let g:deoplete#enable_at_startup=1
 let g:deoplete#file#enable_buffer_path=1
+let g:deoplete#enable_smart_case = 1
 
 let g:deoplete#sources={}
 let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
 let g:deoplete#sources.elixir = [
-			\   'buffer', 'member', 'file',
-			\   'omni', 'ultisnips', 'alchemist'
-			\ ]
+      \   'buffer', 'member', 'file', 'omni', 'ultisnips', 'alchemist'
+      \ ]
 let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
 let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
 let g:deoplete#sources['javascript.jsx'] = [
-			\   'buffer', 'file', 'omni', 'ultisnips'
-			\ ]
+      \   'buffer', 'file', 'omni', 'ultisnips'
+      \ ]
 let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
@@ -375,14 +412,15 @@ let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 " ===============================
 " Plugin mappings
 " ===============================
-"
+
 nnoremap <silent> <leader>F :Files<CR>
 nnoremap <silent> <leader>f :GitFiles<CR>
-nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>B :Buffers<CR>
 nnoremap <silent> <leader>l :BLines<CR>
 nnoremap <silent> <leader>L :Lines<CR>
 nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>s :Snippets<CR>
+
 nnoremap <silent> <leader>T :Tags<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
@@ -430,8 +468,9 @@ nmap <a <Plug>Argumentative_MoveLeft
 nmap >a <Plug>Argumentative_MoveRight
 
 " Deoplete autocomplete
-" Insert <TAB> or select next match
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 
 " <C-h>, <BS>: close popup and delete backword char
 inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
@@ -454,13 +493,13 @@ nnoremap <leader>gh :Gitv!<CR>
 nnoremap <leader>gl :Extradite!<CR>
 
 " NERDTree
-nnoremap <leader>n :call utils#nerdWrapper()<CR>
+nnoremap <silent> <leader>n :call utils#nerdWrapper()<CR>
 
 " UndoTree
-noremap <Leader>u :GundoToggle<CR>
+noremap <silent> <Leader>u :GundoToggle<CR>
 
 " Marked
-nnoremap <leader>m :MarkedOpen!<CR>
+nnoremap <silent> <leader>m :MarkedOpen!<CR>
 "
 " JS standard --fix
 nnoremap <leader>ef :silent !eval standard % --fix<cr>
@@ -486,13 +525,6 @@ highlight SpecialKey ctermfg=235 guifg=gray
 
 " Remove underline in folded lines
 hi! Folded term=NONE cterm=NONE gui=NONE ctermbg=NONE
-
-" Link highlight groups to improve buftabline colors
-hi! link BufTabLineCurrent Identifier
-hi! link BufTabLineActive Comment
-hi! link BufTabLineHidden Comment
-hi! link BufTabLineFill Comment
-
 hi vertsplit ctermfg=238 ctermbg=235
 hi LineNr ctermfg=237
 hi StatusLine ctermfg=235 ctermbg=245
@@ -513,12 +545,12 @@ hi EndOfBuffer ctermfg=237 ctermbg=235
 
 " Git commits
 augroup gitcommit
-	au!
-	au FileType gitcommit setl spell         " Enable spellchecking.
-	au FileType gitcommit setl expandtab     " Use spaces instead of tabs.
-	au FileType gitcommit setl tabstop=4     " A tab counts for 4 spaces.
-	au FileType gitcommit setl softtabstop=4 " Causes backspace to delete 4 spaces.
-	au FileType gitcommit setl shiftwidth=4  " Shift by 4 spaces.
+  au!
+  au FileType gitcommit setl spell         " Enable spellchecking.
+  au FileType gitcommit setl expandtab     " Use spaces instead of tabs.
+  au FileType gitcommit setl tabstop=4     " A tab counts for 4 spaces.
+  au FileType gitcommit setl softtabstop=4 " Causes backspace to delete 4 spaces.
+  au FileType gitcommit setl shiftwidth=4  " Shift by 4 spaces.
 augroup end
 
 " Keywordprg settings
@@ -535,9 +567,9 @@ autocmd VimResized * :wincmd =
 
 " Close window if last remaining window is NerdTree
 autocmd bufenter *
-			\ if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |
-			\   q |
-			\ endif
+      \ if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |
+      \   q |
+      \ endif
 
 " Toggle between absolute and relative line numbers
 function! RelativeNumberOff()
@@ -546,22 +578,22 @@ function! RelativeNumberOff()
   endif
 endfunc
 function! RelativeNumberOn()
-	if(&number == 1 && &relativenumber == 0)
-		set relativenumber
-	endif
+  if(&number == 1 && &relativenumber == 0)
+    set relativenumber
+  endif
 endfunc
 
 augroup line_numbers
-	au!
-	au InsertEnter * call RelativeNumberOff()
-	au InsertLeave * call RelativeNumberOn()
+  au!
+  au InsertEnter * call RelativeNumberOff()
+  au InsertLeave * call RelativeNumberOn()
 augroup END
 
 " Make sure Vim returns to the same line when you reopen a file.
 augroup line_return
-	au!
-	au BufReadPost *
-				\ if line("'\"") > 0 && line("'\"") <= line("$") |
-				\     execute 'normal! g`"zvzz' |
-				\ endif
+  au!
+  au BufReadPost *
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+	\     execute 'normal! g`"zvzz' |
+	\ endif
 augroup END
