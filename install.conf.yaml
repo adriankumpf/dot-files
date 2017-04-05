@@ -61,3 +61,5 @@
 - shell:
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart khd; fi;'
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart kwm; fi;'
+  - mkdir -p ~/.config/nvim/tmp/backup
+  - mkdir -p ~/.config/nvim/tmp/swap
