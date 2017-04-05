@@ -30,25 +30,6 @@ function! g:utils#intelligentVerticalResize(direction) abort
   execute l:command
 endfunction
 
-" Run current file
-function! g:utils#runCurrentFile() abort
-  if &filetype ==? 'ruby'
-    let l:command = 'ruby %'
-  elseif &filetype ==? 'sh'
-    let l:command = 'sh %'
-  elseif &filetype ==? 'elixir'
-    let l:command = 'elixir %'
-  elseif &filetype ==? 'javascript.jsx'
-    let l:command = 'node %'
-  else
-    echom "Can't run current file (unsupported filetype: " . &filetype . ')'
-  endif
-
-  if exists('command')
-    execute ':terminal ' . l:command
-  endif
-endfunction
-
 " Run NERDTreeFind or Toggle based on current buffer
 function! g:utils#nerdWrapper() abort
   if &filetype ==# '' " Empty buffer
@@ -132,3 +113,14 @@ function! g:utils#lightLineFilename() abort
   let l:fname = expand('%:t')
   return l:fname =~? 'NERD_tree' ? 'NERDTree' : ('' !=# l:fname ? l:fname : '[No Name]')
 endfunction
+
+" Toggle between relatvie numbers and no line numbers at all
+function! g:utils#numberToggle()
+  if(&relativenumber == 1)
+    set nonumber
+    set norelativenumber
+  else
+    set number
+    set relativenumber
+  endif
+endfunc

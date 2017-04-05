@@ -281,21 +281,10 @@ nnoremap ,s :%s///gc<Left><Left><Left>
 nnoremap <silent> <F3> :set paste!<CR> :set paste?<CR>
 " Toggle spelling on and off
 nnoremap <silent> <F4> :set spell!<CR> :set spell?<CR>
-
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set nonumber
-    set norelativenumber
-  else
-    set number
-    set relativenumber
-  endif
-endfunc
-nnoremap <silent> <F5> :call NumberToggle()<cr>
-
+" Toggle line numbers
+nnoremap <silent> <F5> :call utils#numberToggle()<cr>
 " Toggle search highlight
 nnoremap <silent> <F6> :set nohlsearch!<CR> :set nohlsearch?<CR>
-
 " Toggle white characters visibility
 nnoremap <silent> <F7> :set list!<CR> :set list?<CR>
 
@@ -307,10 +296,6 @@ nnoremap <silent> <C-Down> :resize -1<CR>
 
 " <Leader><Leader> -- Open last buffer.
 nnoremap <Leader><Leader> <C-^>
-
-" Run current file
-command! Run :call utils#runCurrentFile()
-nnoremap <silent> ,r :Run<CR>
 
 " Reformat whole or selection from file
 command! Format :call utils#formatFile()
@@ -435,8 +420,6 @@ nmap <silent> <C-x><C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-x><C-j> <Plug>(ale_next_wrap)
 
 " Ultisnips
-" Disable built-in cx-ck to be able to go backward
-" inoremap <C-x><C-k> <NOP>
 let g:UltiSnipsExpandTrigger='<C-j>'
 let g:UltiSnipsListSnippets='<C-l>'
 let g:UltiSnipsJumpForwardTrigger='<C-j>'
@@ -457,13 +440,9 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 " Argumentative (use a instead of ,)
 xmap ia <Plug>Argumentative_InnerTextObject
-xmap aa <Plug>Argumentative_OuterTextObject
 omap ia <Plug>Argumentative_OpPendingInnerTextObject
+xmap aa <Plug>Argumentative_OuterTextObject
 omap aa <Plug>Argumentative_OpPendingOuterTextObject
-nmap [a <Plug>Argumentative_Prev
-nmap ]a <Plug>Argumentative_Next
-xmap [a <Plug>Argumentative_XPrev
-xmap ]a <Plug>Argumentative_XNext
 nmap <a <Plug>Argumentative_MoveLeft
 nmap >a <Plug>Argumentative_MoveRight
 
@@ -523,7 +502,7 @@ highlight TermCursor ctermfg=green guifg=green
 highlight NonText ctermfg=235 guifg=gray
 highlight SpecialKey ctermfg=235 guifg=gray
 
-" Remove underline in folded lines
+" Customizations
 hi! Folded term=NONE cterm=NONE gui=NONE ctermbg=NONE
 hi vertsplit ctermfg=238 ctermbg=235
 hi LineNr ctermfg=237
@@ -553,47 +532,29 @@ augroup gitcommit
   au FileType gitcommit setl shiftwidth=4  " Shift by 4 spaces.
 augroup end
 
-" Keywordprg settings
-autocmd FileType vim setlocal keywordprg=:help
+  " Keywordprg settings
+  autocmd FileType vim setlocal keywordprg=:help
 
-" Turn spellcheck on for markdown files
-autocmd BufNewFile,BufRead *.md setlocal spell
+  " Turn spellcheck on for markdown files
+  autocmd BufNewFile,BufRead *.md setlocal spell
 
-" Remove trailing whitespaces automatically before save
-autocmd BufWritePre * call utils#stripTrailingWhitespaces()
+  " Remove trailing whitespaces automatically before save
+  autocmd BufWritePre * call utils#stripTrailingWhitespaces()
 
-" Resize splits when the window is resized
-autocmd VimResized * :wincmd =
+  " Resize splits when the window is resized
+  autocmd VimResized * :wincmd =
 
-" Close window if last remaining window is NerdTree
-autocmd bufenter *
-      \ if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |
-      \   q |
-      \ endif
-
-" Toggle between absolute and relative line numbers
-function! RelativeNumberOff()
-  if(&number == 1 && &relativenumber == 1)
-    set norelativenumber
-  endif
-endfunc
-function! RelativeNumberOn()
-  if(&number == 1 && &relativenumber == 0)
-    set relativenumber
-  endif
-endfunc
-
-augroup line_numbers
-  au!
-  au InsertEnter * call RelativeNumberOff()
-  au InsertLeave * call RelativeNumberOn()
-augroup END
-
-" Make sure Vim returns to the same line when you reopen a file.
-augroup line_return
-  au!
-  au BufReadPost *
-	\ if line("'\"") > 0 && line("'\"") <= line("$") |
-	\     execute 'normal! g`"zvzz' |
+  " Close window if last remaining window is NerdTree
+  autocmd bufenter *
+	\ if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |
+	\   q |
 	\ endif
-augroup END
+
+  " Make sure Vim returns to the same line when you reopen a file.
+  augroup line_return
+    au!
+    au BufReadPost *
+	  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+	  \     execute 'normal! g`"zvzz' |
+	  \ endif
+  augroup END
