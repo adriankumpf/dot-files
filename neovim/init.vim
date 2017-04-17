@@ -45,7 +45,6 @@ Plug 'glts/vim-textobj-comment'                                          " Comme
 Plug 'kana/vim-textobj-user'                                             " Custom text objects creation (dependency for others)
 Plug 'terryma/vim-expand-region'                                         " Easily expand selected region
 Plug 'ironhouzi/vim-stim'                                                " Improve star by not jumping immediately
-Plug 'chip/vim-fat-finger'                                               " Iabbrev auto-correction library
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }                            " Undo Tree
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                          " Intelligent buffer closing
 Plug 'itspriddle/vim-marked'                                             " Open Markdown files in Marked
@@ -76,7 +75,11 @@ set virtualedit=block                                             " To be able t
 set nojoinspaces                                                  " No extra space when joining a line which ends with . ? !
 set scrolloff=7                                                   " Scroll when closing to top or bottom of the screen
 set updatetime=1000                                               " Update time used to create swap file or other things
-set tabstop=2
+set expandtab     " Use spaces instead of tabs.
+set tabstop=2     " A tab counts for 4 spaces.
+set softtabstop=2 " Causes backspace to delete 4 spaces.
+set shiftwidth=2  " Shift by 4 spaces.
+
 set mouse=nicr                                                    " Enale the use of the mouse
 set splitbelow                                                    " Split settings (more natural)
 set splitright
@@ -283,10 +286,11 @@ nnoremap <silent> <F3> :set paste!<CR> :set paste?<CR>
 nnoremap <silent> <F4> :set spell!<CR> :set spell?<CR>
 " Toggle line numbers
 nnoremap <silent> <F5> :call utils#numberToggle()<cr>
-" Toggle search highlight
-nnoremap <silent> <F6> :set nohlsearch!<CR> :set nohlsearch?<CR>
 " Toggle white characters visibility
 nnoremap <silent> <F7> :set list!<CR> :set list?<CR>
+
+" Toggle search highlight
+nnoremap <silent> <CR> :set nohlsearch!<CR> :set nohlsearch?<CR>
 
 " Intelligent windows resizing using ctrl + arrow keys
 nnoremap <silent> <C-Right> :call utils#intelligentVerticalResize('right')<CR>
@@ -380,9 +384,6 @@ let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:EditorConfig_core_mode = 'external_command'
-
-" Vim-Fat_finger overwrite
-iabbrev ok ok
 
 " Smart Toggle between numbers
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree', 'vimshell']
