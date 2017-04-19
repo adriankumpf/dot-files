@@ -51,6 +51,7 @@ Plug 'itspriddle/vim-marked'                                             " Open 
 Plug 'DataWraith/auto_mkdir'                                             " create directory if it does not exist
 Plug 'morhetz/gruvbox'                                                   " THE Colorscheme
 Plug 'jeetsukumaran/vim-buffergator'
+Plug 'digitaltoad/vim-pug'                                               " Pug/Jade Syntax highlighting
 
 call plug#end()
 
@@ -394,6 +395,9 @@ let g:alchemist_iex_term_split = 'vsplit'
 
 " FZF and extensions
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+
+" vim-polyglot's pug syntax hightlighting is buggy
+let g:polyglot_disabled = ['pug']
 
 " ===============================
 " Plugin mappings
