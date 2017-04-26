@@ -61,7 +61,10 @@ Session.vim
 
 npm-debug.log*
 node_modules/
+
+# Version Manager
 .nvmrc
+.fnmrc
 
 # Elixir
 # ===========================
