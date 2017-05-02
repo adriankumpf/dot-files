@@ -77,7 +77,7 @@ set nojoinspaces                                                  " No extra spa
 set scrolloff=7                                                   " Scroll when closing to top or bottom of the screen
 set updatetime=1000                                               " Update time used to create swap file or other things
 set expandtab     " Use spaces instead of tabs.
-set tabstop=2     " A tab counts for 4 spaces.
+set tabstop=2     " A tab counts for 2 spaces.
 set softtabstop=2 " Causes backspace to delete 4 spaces.
 set shiftwidth=2  " Shift by 4 spaces.
 
