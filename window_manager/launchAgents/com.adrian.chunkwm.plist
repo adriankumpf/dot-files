@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Disabled</key>
+	<false/>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>CHUNKC_SOCKET</key>
+		<string>3920</string>
+		<key>PATH</key>
+		<string>/usr/local/bin</string>
+	</dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>com.adrian.chunkwm</string>
+	<key>Program</key>
+	<string>/usr/local/bin/chunkwm</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/chunkwm.stderr</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/chunkwm.stdout</string>
+</dict>
+</plist>

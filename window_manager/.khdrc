@@ -1,17 +1,74 @@
-# enable kwm compatibility mode
-khd kwm on
+# reload config
+cmd + alt + ctrl - l : khd -e "reload"
 
-ctrl + alt - h     : ~/.kwm/scripts/move west
-ctrl + alt - l     : ~/.kwm/scripts/move east
-ctrl + alt - k     : ~/.kwm/scripts/move south
-ctrl + alt - j     : ~/.kwm/scripts/move north
+# restart chunkwm
+cmd + alt + ctrl - r : launchctl stop com.adrian.chunkwm
 
-ctrl + alt - left  : ~/.kwm/scripts/move_and_focus_space left
-ctrl + alt - right : ~/.kwm/scripts/move_and_focus_space right
+# focus window
+alt - h : chunkc window --focus west
+alt - j : chunkc window --focus south
+alt - k : chunkc window --focus north
+alt - l : chunkc window --focus east
 
-alt - 1            : kwmc window -z fullscreen
-alt - 2            : kwmc window -c expand 0.05 focused
-alt - 3            : kwmc window -c reduce 0.05 focused
-alt - 4            : kwmc window -t focused
-ctrl + alt - 1     : brew services restart kwm
-ctrl + alt - 4     : kwmc window -c split - mode toggle;\ khd -e "mode activate default"
+# equalize size of windows
+shift + alt - 0 : chunkc desktop --equalize
+
+# swap window
+shift + alt - h : chunkc window --swap west
+shift + alt - j : chunkc window --swap south
+shift + alt - k : chunkc window --swap north
+shift + alt - l : chunkc window --swap east
+
+# move window
+shift + cmd - h : chunkc window --warp west
+shift + cmd - j : chunkc window --warp south
+shift + cmd - k : chunkc window --warp north
+shift + cmd - l : chunkc window --warp east
+
+# send window to desktop
+shift + alt - p : chunkc window --send-to-desktop prev
+shift + alt - n : chunkc window --send-to-desktop next
+
+# increase region size
+shift + alt - a : chunkc window --use-temporary-ratio 0.1 --adjust-window-edge west
+shift + alt - s : chunkc window --use-temporary-ratio 0.1 --adjust-window-edge south
+shift + alt - w : chunkc window --use-temporary-ratio 0.1 --adjust-window-edge north
+shift + alt - d : chunkc window --use-temporary-ratio 0.1 --adjust-window-edge east
+
+# decrease region size
+shift + cmd - a : chunkc window --use-temporary-ratio -0.1 --adjust-window-edge west
+shift + cmd - s : chunkc window --use-temporary-ratio -0.1 --adjust-window-edge south
+shift + cmd - w : chunkc window --use-temporary-ratio -0.1 --adjust-window-edge north
+shift + cmd - d : chunkc window --use-temporary-ratio -0.1 --adjust-window-edge east
+
+# rotate tree
+alt - r : chunkc desktop --rotate 90
+
+# mirror tree y-axis
+alt - y : chunkc desktop --mirror vertical
+
+# mirror tree x-axis
+alt - x : chunkc desktop --mirror horizontal
+
+# toggle desktop offset
+alt - a : chunkc desktop --toggle offset
+
+# toggle window fullscreen
+alt - f : chunkc window --toggle fullscreen
+
+# toggle window parent zoom
+alt - d : chunkc window --toggle parent
+
+# toggle window split type
+alt - e : chunkc window --toggle split
+
+# float / unfloat window
+alt - t : chunkc window --toggle float
+
+# float next window to be tiled
+shift + alt - t : chunkc config window_float_next 1
+
+# change layout of desktop
+ctrl + alt - a : chunkc desktop --layout bsp
+ctrl + alt - s : chunkc desktop --layout monocle
+ctrl + alt - d : chunkc desktop --layout float

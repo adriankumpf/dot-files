@@ -40,7 +40,6 @@
 - link:
   # fish shell
     ~/.config/fish/functions/update.fish: fish/functions/update.fish
-    ~/.config/fish/functions/rm.fish: fish/functions/rm.fish
     ~/.config/fish/functions/t.fish: fish/functions/t.fish
     ~/.config/fish/fish.config: fish/fish.config
   # neovim
@@ -53,6 +52,8 @@
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
   # kwm & khd
+    ~/.chunkwmtilingrc: window_manager/.chunkwmtilingrc
+    ~/.chunkwmrc: window_manager/.chunkwmrc
     ~/.khdrc: window_manager/.khdrc
     ~/.kwm: window_manager/kwm
   # tmux
@@ -63,6 +64,6 @@
 
 - shell:
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart khd; fi;'
-  - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart kwm; fi;'
+  # - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart kwm; fi;'
   - mkdir -p ~/.config/nvim/tmp/backup
   - mkdir -p ~/.config/nvim/tmp/swap
