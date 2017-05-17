@@ -64,7 +64,8 @@ function! g:utils#formatFile() abort
   let l:command_prefix = '%!'
 
   if &filetype ==? 'javascript.jsx'
-    let l:command = 'js-beautify -X -s 2 -b collapse-preserve-inline -f  - '
+    " let l:command = 'js-beautify -X -s 2 -b collapse-preserve-inline -f  - '
+    :Neoformat
   elseif &filetype ==? 'html'
     let l:command = 'html-beautify -f -'
   elseif &filetype ==? 'css'

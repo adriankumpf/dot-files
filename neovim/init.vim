@@ -52,6 +52,8 @@ Plug 'DataWraith/auto_mkdir'                                             " creat
 Plug 'morhetz/gruvbox'                                                   " THE Colorscheme
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'digitaltoad/vim-pug'                                               " Pug/Jade Syntax highlighting
+Plug 'sbdchd/neoformat'							 " Format / prettify code
+
 
 call plug#end()
 
@@ -381,6 +383,11 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
+
+" Neoformat
+
+autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --single-quote\
+let g:neoformat_try_formatprg = 1
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']

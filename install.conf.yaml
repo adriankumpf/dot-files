@@ -25,7 +25,7 @@
   - koekeishiya/formulae/kwm
   - koekeishiya/formulae/khd
   - editorconfig
-  - trash
+  - yarn
 
 
 - cask: [betterzipql, qlvideo, cloudytabs, qlmarkdown, iterm2-beta, qlstephen, soundcleod, vlc]
@@ -67,4 +67,5 @@
   - mkdir -p ~/.config/nvim/tmp/backup
   - mkdir -p ~/.config/nvim/tmp/swap
   - mkdir -p ~/.tmux/plugins
+  - yarn global add prettier
   - git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
