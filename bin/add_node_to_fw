@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# After updaing node with fnm it may happen that the macOS firewall cannot
+# handle the re-linking of node binaries. In that case remove node:
+#
+# $ sudo /usr/libexec/ApplicationFirewall/socketfilterfw --remove ~/.config/fnm/bin/node
+#
+# and reboot. Execute this script afterwards.
+
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add ~/.config/fnm/bin/node
