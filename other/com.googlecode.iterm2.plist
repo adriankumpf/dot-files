@@ -5,7 +5,7 @@
 	<key>AdjustWindowForFontSizeChange</key>
 	<true/>
 	<key>AllowClipboardAccess</key>
-	<false/>
+	<true/>
 	<key>AnimateDimming</key>
 	<false/>
 	<key>AppleAntiAliasingThreshold</key>
@@ -4462,17 +4462,19 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>48 39 1344 803 0 0 1440 878 </string>
+	<string>46 39 664 803 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>728 39 664 803 0 0 1440 878 </string>
+	<string>4 0 1436 878 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>968 40 904 480 0 0 1920 1058 </string>
+	<string>46 40 904 480 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>15 16 1890 1028 0 0 1920 1058 </string>
+	<string>48 40 992 480 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
-	<string>15 16 1890 1028 0 0 1920 1058 </string>
+	<string>1062 40 808 480 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 5</key>
-	<string>492 539 458 244 0 0 1920 1057 </string>
+	<string>389 42 320 385 0 0 1440 878 </string>
+	<key>NSWindow Frame iTerm Window 6</key>
+	<string>728 454 664 385 0 0 1440 878 </string>
 	<key>NeverWarnAboutShortLivedSessions_E6E1188C-2D6B-40E6-AED0-DB9179E0C2A3</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_E6E1188C-2D6B-40E6-AED0-DB9179E0C2A3_selection</key>
@@ -5464,13 +5466,13 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-04-02T20:27:23Z</date>
+	<date>2017-05-07T11:01:53Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
 	<true/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>ShowPaneTitles</key>
 	<false/>
 	<key>SmartPlacement</key>
@@ -5523,6 +5525,8 @@
 	<string></string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>

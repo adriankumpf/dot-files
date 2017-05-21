@@ -17,18 +17,24 @@
 
 - brew:
   - fish
+    # echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
+    # chsh -s /usr/local/bin/fish
   - fisherman
   - neovim --HEAD
   - tmux
-  - reattach-to-user-namespace
   - the_silver_searcher
-  - koekeishiya/formulae/kwm
   - koekeishiya/formulae/khd
   - editorconfig
   - yarn
+  - python3
+  - erlang
+  - elixir
+  - shellcheck
+  - ssh-copy-id
+  - youtube-dl
 
 
-- cask: [betterzipql, qlvideo, cloudytabs, qlmarkdown, iterm2-beta, qlstephen, soundcleod, vlc]
+- cask: [betterzipql, qlvideo, qlmarkdown, iterm2-beta, qlstephen, bartender]
 
 - shell:
   - fish -c "fisher z"
@@ -55,7 +61,6 @@
     ~/.chunkwmtilingrc: window_manager/.chunkwmtilingrc
     ~/.chunkwmrc: window_manager/.chunkwmrc
     ~/.khdrc: window_manager/.khdrc
-    ~/.kwm: window_manager/kwm
   # tmux
     ~/.tmux.conf: tmux/tmux.conf
   # misc
@@ -67,5 +72,8 @@
   - mkdir -p ~/.config/nvim/tmp/backup
   - mkdir -p ~/.config/nvim/tmp/swap
   - mkdir -p ~/.tmux/plugins
-  - yarn global add prettier
   - git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  - pip3 install --user neovim
+  - yarn global add prettier
+  - yarn global add standard
+  - ./install.sh
