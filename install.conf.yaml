@@ -32,9 +32,10 @@
   - shellcheck
   - ssh-copy-id
   - youtube-dl
+  - diff-so-fancy
 
 
-- cask: [betterzipql, qlvideo, qlmarkdown, iterm2-beta, qlstephen, bartender]
+- cask: [betterzipql, qlvideo, qlmarkdown, iterm2-beta, qlstephen, bartender, middleclick]
 
 - shell:
   - fish -c "fisher z"
