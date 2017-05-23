@@ -33,6 +33,7 @@
   - ssh-copy-id
   - youtube-dl
   - diff-so-fancy
+  - reattach-to-user-namespace
 
 
 - cask: [betterzipql, qlvideo, qlmarkdown, iterm2-beta, qlstephen, bartender, middleclick]
