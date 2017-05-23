@@ -156,7 +156,7 @@ endif
 filetype plugin on
 filetype indent on
 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1                               " Set an environment variable to use the t_SI/t_EI hack
+" let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1                               " Set an environment variable to use the t_SI/t_EI hack
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1                                 " Turn on true colors support (does not work inside tmux yet)
 
 " ===============================
@@ -345,30 +345,12 @@ let g:gitgutter_sign_removed='-'
 let g:gitgutter_sign_modified_removed='~'
 let g:gitgutter_sign_removed_first_line='-'
 
-" Vim JSX highlighting settings
-let g:jsx_ext_required=0
-
-" Deoplete autocomplete settings
-let g:deoplete#enable_at_startup=1
-let g:deoplete#file#enable_buffer_path=1
-let g:deoplete#enable_smart_case = 1
-
-let g:deoplete#sources={}
-let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
-let g:deoplete#sources.elixir = [
-      \   'buffer', 'member', 'file', 'omni', 'ultisnips', 'alchemist'
-      \ ]
-let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
-let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
-let g:deoplete#sources['javascript.jsx'] = [
-      \   'buffer', 'file', 'omni', 'ultisnips'
-      \ ]
-let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-
-" Plug settings
-let g:plug_timeout=20
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+" Let <Tab> also do completion
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
+" Close the documentation window when completion is done
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Open Markoff instead of Marked 2
 let g:marked_app = 'Markoff'
@@ -385,7 +367,6 @@ let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 
 " Neoformat
-
 autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --single-quote\
 let g:neoformat_try_formatprg = 1
 

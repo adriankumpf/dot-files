@@ -78,4 +78,4 @@
   - pip3 install --user neovim
   - yarn global add prettier
   - yarn global add standard
-  - ./install.sh
+  - ./osx/install.sh
