@@ -5,10 +5,10 @@ cmd + alt + ctrl - l : khd -e "reload"
 cmd + alt + ctrl - r : launchctl stop com.adrian.chunkwm
 
 # focus window
-# alt - h : chunkc window --focus west
-# alt - j : chunkc window --focus south
-# alt - k : chunkc window --focus north
-# alt - l : chunkc window --focus east
+ctrl + alt - h : chunkc window --focus west
+ctrl + alt - j : chunkc window --focus south
+ctrl + alt - k : chunkc window --focus north
+ctrl + alt - l : chunkc window --focus east
 
 # equalize size of windows
 shift + alt - 0 : chunkc desktop --equalize
