@@ -48,8 +48,8 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 sudo systemsetup -setrestartfreeze on
 
 # Key Repeat Rate
-defaults write -g InitialKeyRepeat -int 25
-defaults write -g KeyRepeat -int 20
+defaults write -g InitialKeyRepeat -int 15
+defaults write -g KeyRepeat -int 2
 
 # Screensaver Immediate Lock
 defaults write com.apple.screensaver askForPasswordDelay -int 0
