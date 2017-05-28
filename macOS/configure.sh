@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # https://github.com/herrbischoff/awesome-osx-command-line
 
 # Startup Chime: https://gist.github.com/ppo/6204781

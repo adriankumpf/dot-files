@@ -69,13 +69,21 @@
     ~/.agignore: other/agignore
     ~/bin: bin
 
+# macOS
 - shell:
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart khd; fi;'
+  - bash -c 'if [ "$(uname)" == "Darwin" ]; then ./macOS/configure.sh; fi;'
+
+# Additional Neovim setup
+- shell:
   - mkdir -p ~/.config/nvim/tmp/backup
   - mkdir -p ~/.config/nvim/tmp/swap
   - mkdir -p ~/.tmux/plugins
-  - git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  - bash -c 'if [ ! -d ~/.tmux/plugins/tpm ]; then git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm ; fi;'
   - pip3 install --user neovim
+
+# Yarn
+- shell:
   - yarn global add prettier
   - yarn global add standard
-  - ./osx/install.sh
+  - yarn global add stylefmt
