@@ -23,6 +23,7 @@
     cm = commit -m
     cim = commit --verbose --reedit-message=HEAD --reset-author
     amend = commit --amend --verbose
+    fixup = "!~/bin/git-fixup"
     co = checkout
     pl = pull
     ps = push

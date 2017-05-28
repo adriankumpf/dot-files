@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# Thanks to https://github.com/deiwin/git-dotfiles
+
+set -e
+
+usage() {
+cat << EOF
+Usage: $0 [options] <commit-ref>
+
+Fixes current staged changes up with the specified commit.  I.e. the current
+staged changes will be added to a fixup commit and then rebased against the
+parent of the commit that is to be fixed up, as if it had been rebased with
+--interactive --autosquash. Using the -e flag, one has the change to edit the
+commit list before going through with the rebase. Using the -a flag, one can
+set the fixup! and squash! commits to be autosquashed as during a normal
+--interactive --autosquash rebase.
+
+OPTIONS:
+   -h         Show this message
+   -a         Autosquash fixup! and squash! commits
+   -e         Edit the commit list before rebasing
+   -m MESSAGE Include a message in the fixup! commit
+EOF
+}
+
+while getopts “haem:” OPTION
+do
+  case $OPTION in
+    h)
+      usage
+      exit 0
+      ;;
+    a)
+      AUTOSQUASH=1
+      ;;
+    e)
+      EDIT=1
+      ;;
+    m)
+      HAS_MESSAGE=1
+      MESSAGE="$OPTARG"
+      ;;
+    ?)
+      usage
+      exit 1
+      ;;
+  esac
+done
+shift "$((OPTIND - 1))"
+
+if [ $# -ne 1 ]
+then
+  usage
+  exit 1
+fi
+
+# Get the reference to the commit before creating the fixup commit,
+# because, say, if the argument is relative to the HEAD then the
+# commit it refers to will change once we create a new commit on the
+# HEAD.
+COMMIT_TO_BE_FIXED=`git show --format=%H --no-patch $1`
+git commit --fixup=$COMMIT_TO_BE_FIXED
+
+# Stash unstaged changes (the staged changes will already be in the
+# commit created above) to avoid not being able to run the rebase
+# command.
+if [[ -n $(git status -s) ]]
+then
+  git stash --include-untracked
+  HAS_STASHED_CHANGES=true
+fi
+
+if [ -n "$HAS_MESSAGE" ]
+then
+  git filter-branch -f --msg-filter "ex -C --cmd \"execute \\\"norm ggo\<CR>$MESSAGE\\\"\" --cmd \"w >> /dev/stdout\" --cmd \"q! \" /dev/stdin" -- @~..@
+fi
+
+if [ -n "$AUTOSQUASH" ]; then
+  if [ -n "$EDIT" ]; then
+    git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+  else
+    GIT_SEQUENCE_EDITOR='true' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+  fi
+else
+  if [ -n "$EDIT" ]; then
+    # The last true is needed because otherwise the editor would get the file twice for some reason
+    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick "$1" && $EDITOR "$1" && true' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+  else
+    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+  fi
+fi
+if [[ -n "$HAS_STASHED_CHANGES" ]]
+then
+  git stash pop
+fi
+
