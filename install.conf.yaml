@@ -48,6 +48,7 @@
 - link:
   # fish shell
     ~/.config/fish/functions/update.fish: fish/functions/update.fish
+    ~/.config/fish/functions/preview.fish: fish/functions/preview.fish
     ~/.config/fish/functions/t.fish: fish/functions/t.fish
     ~/.config/fish/fish.config: fish/fish.config
   # neovim
