@@ -61,7 +61,6 @@
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
   # kwm & khd
-    ~/.chunkwmtilingrc: window_manager/.chunkwmtilingrc
     ~/.chunkwmrc: window_manager/.chunkwmrc
     ~/.khdrc: window_manager/.khdrc
   # tmux
