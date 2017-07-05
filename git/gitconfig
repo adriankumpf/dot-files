@@ -28,7 +28,6 @@
     co = checkout
     pl = pull
     ps = push
-		pst = push --tags
     rb = rebase -i HEAD~10
     st = status -sb
     br = branch
