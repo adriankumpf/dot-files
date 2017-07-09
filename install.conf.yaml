@@ -14,13 +14,14 @@
   - caskroom/versions
   - fisherman/tap
   - neovim/neovim
+  - crisidev/homebrew-chunkwm
 
 - brew:
   - fish
     # echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
     # chsh -s /usr/local/bin/fish
   - fisherman
-  - neovim --HEAD
+  - neovim
   - tmux
   - the_silver_searcher
   - koekeishiya/formulae/khd
@@ -34,6 +35,7 @@
   - youtube-dl
   - diff-so-fancy
   - reattach-to-user-namespace
+  - chunkwm --HEAD --with-ffm
 
 
 - cask: [betterzipql, qlvideo, qlmarkdown, iterm2-beta, qlstephen, bartender, middleclick]

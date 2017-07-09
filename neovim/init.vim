@@ -16,36 +16,39 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'w0rp/ale'                                                          " Ale Linting
-Plug 'Shougo/deoplete.nvim'                                              " Autocomplete
-Plug 'jiangmiao/auto-pairs'                                              " Automatically closing pair stuff
-Plug 'SirVer/ultisnips'                                                  " Snippet support (C-j)
-Plug 'honza/vim-snippets'                                                " Snippets for everything!
-Plug 'tpope/vim-commentary'                                              " Commenting support (gc)
-Plug 'tpope/vim-sleuth'                                                  " Heuristically set indent settings
-Plug 'sickill/vim-pasta'                                                 " context-aware pasting
-Plug 'sheerun/vim-polyglot'                                              " All languages in one
-Plug 'kewah/vim-stylefmt'                                                " Format stylsheets
-Plug 'slashmili/alchemist.vim'                                           " Elixir
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }        " Fuzzy finder
-Plug 'junegunn/fzf.vim'                                                  " Wrapper function
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } " Nerdtree file browser
-Plug 'tpope/vim-fugitive'                                                " Fugitive
-Plug 'gregsexton/gitv', { 'on': 'Gitv' }                                 " Git log viewer (Gitv! for file mode)
-Plug 'airblade/vim-gitgutter'                                            " Git changes showed on line numbers
-Plug 'tpope/vim-surround'                                                " Surround with cs
-Plug 'godlygeek/tabular', { 'on':  'Tabularize' }                        " Easy alignment
-Plug 'terryma/vim-expand-region'                                         " Easily expand selected region
-Plug 'ironhouzi/vim-stim'                                                " Improve star by not jumping immediately
-Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }                            " Undo Tree
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                          " Intelligent buffer closing
-Plug 'itspriddle/vim-marked'                                             " Open Markdown files in Marked
-Plug 'DataWraith/auto_mkdir'                                             " create directory if it does not exist
-Plug 'morhetz/gruvbox'                                                   " THE Colorscheme
-Plug 'jeetsukumaran/vim-buffergator'                                     " open a window listing all buffers
-Plug 'digitaltoad/vim-pug'                                               " Pug/Jade Syntax highlighting
-Plug 'sbdchd/neoformat'                                                  " Format / prettify code
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
+" Nerdtree file browser
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+
+Plug 'w0rp/ale'                                   " Ale Linting
+Plug 'Shougo/deoplete.nvim'                       " Autocomplete
+Plug 'jiangmiao/auto-pairs'                       " Automatically closing pair stuff
+Plug 'SirVer/ultisnips'                           " Snippet support (C-j)
+Plug 'honza/vim-snippets'                         " Snippets for everything!
+Plug 'tpope/vim-commentary'                       " Commenting support (gc)
+Plug 'tpope/vim-sleuth'                           " Heuristically set indent settings
+Plug 'sickill/vim-pasta'                          " context-aware pasting
+Plug 'sheerun/vim-polyglot'                       " All languages in one
+Plug 'kewah/vim-stylefmt'                         " Format stylsheets
+Plug 'slashmili/alchemist.vim'                    " Elixir
+Plug 'tpope/vim-fugitive'                         " Fugitive
+Plug 'gregsexton/gitv', { 'on': 'Gitv' }          " Git log viewer (Gitv! for file mode)
+Plug 'airblade/vim-gitgutter'                     " Git changes showed on line numbers
+Plug 'tpope/vim-surround'                         " Surround with cs
+Plug 'godlygeek/tabular', { 'on':  'Tabularize' } " Easy alignment
+Plug 'terryma/vim-expand-region'                  " Easily expand selected region
+Plug 'ironhouzi/vim-stim'                         " Improve star by not jumping immediately
+Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }     " Undo Tree
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }   " Intelligent buffer closing
+Plug 'itspriddle/vim-marked'                      " Open Markdown files in Marked
+Plug 'DataWraith/auto_mkdir'                      " create directory if it does not exist
+Plug 'morhetz/gruvbox'                            " THE Colorscheme
+Plug 'jeetsukumaran/vim-buffergator'              " open a window listing all buffers
+Plug 'digitaltoad/vim-pug'                        " Pug/Jade Syntax highlighting
+Plug 'sbdchd/neoformat'                           " Format / prettify code
 
 call plug#end()
 

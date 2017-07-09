@@ -2,7 +2,7 @@
 cmd + alt + ctrl - l : khd -e "reload"
 
 # restart chunkwm
-cmd + alt + ctrl - r : launchctl stop com.adrian.chunkwm
+cmd + alt + ctrl - r : brew services restart chunkwm
 
 # focus window
 ctrl + alt - h : chunkc tiling::window --focus west
@@ -55,9 +55,6 @@ shift + cmd - 3 : chunkc tiling::window -d 3; khd -p "cmd + alt - 3"
 shift + cmd - 4 : chunkc tiling::window -d 4; khd -p "cmd + alt - 4"
 shift + cmd - 5 : chunkc tiling::window -d 5; khd -p "cmd + alt - 5"
 shift + cmd - 6 : chunkc tiling::window -d 6; khd -p "cmd + alt - 6"
-
-# switch to last active desktop
-cmd + alt - x   : `id=$(chunkc get _last_active_desktop); khd -p "cmd + alt - $id" &> /dev/null`
 
 # focus monitor
 ctrl + alt - z  : chunkc tiling::monitor -f prev
@@ -126,9 +123,3 @@ shift + alt - t : chunkc set window_float_next 1
 ctrl + alt - a : chunkc tiling::desktop --layout bsp
 ctrl + alt - s : chunkc tiling::desktop --layout monocle
 ctrl + alt - d : chunkc tiling::desktop --layout float
-
-ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
-
-# remap caps-lock to escape for this config only !!!
-# macos sierra can also perform this remap for a given keyboard
-# - capslock : khd -p "- escape"
