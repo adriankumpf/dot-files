@@ -4,6 +4,9 @@ cmd + alt + ctrl - l : khd -e "reload"
 # restart chunkwm
 cmd + alt + ctrl - r : brew services restart chunkwm
 
+# Open iTerm
+cmd - return : open -na /Applications/iTerm.app
+
 # focus window
 ctrl + alt - h : chunkc tiling::window --focus west
 ctrl + alt - j : chunkc tiling::window --focus south
@@ -45,50 +48,6 @@ shift + alt - 4 : chunkc tiling::window --send-to-desktop 4
 shift + alt - 5 : chunkc tiling::window --send-to-desktop 5
 shift + alt - 6 : chunkc tiling::window --send-to-desktop 6
 
-# send window to desktop and switch desktop
-shift + cmd - x : `id=$(chunkc get _last_active_desktop); chunkc tiling::window -d $id; khd -p "cmd + alt - $id" &> /dev/null`
-shift + cmd - z : chunkc tiling::window -d prev; khd -p "cmd + alt - z"
-shift + cmd - c : chunkc tiling::window -d next; khd -p "cmd + alt - c"
-shift + cmd - 1 : chunkc tiling::window -d 1; khd -p "cmd + alt - 1"
-shift + cmd - 2 : chunkc tiling::window -d 2; khd -p "cmd + alt - 2"
-shift + cmd - 3 : chunkc tiling::window -d 3; khd -p "cmd + alt - 3"
-shift + cmd - 4 : chunkc tiling::window -d 4; khd -p "cmd + alt - 4"
-shift + cmd - 5 : chunkc tiling::window -d 5; khd -p "cmd + alt - 5"
-shift + cmd - 6 : chunkc tiling::window -d 6; khd -p "cmd + alt - 6"
-
-# focus monitor
-ctrl + alt - z  : chunkc tiling::monitor -f prev
-ctrl + alt - c  : chunkc tiling::monitor -f next
-ctrl + alt - 1  : chunkc tiling::monitor -f 1
-ctrl + alt - 2  : chunkc tiling::monitor -f 2
-ctrl + alt - 3  : chunkc tiling::monitor -f 3
-
-# send window to monitor and follow focus
-ctrl + cmd - z  : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
-ctrl + cmd - c  : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
-ctrl + cmd - 1  : chunkc tiling::window --send-to-monitor 1; chunkc tiling::monitor -f 1
-ctrl + cmd - 2  : chunkc tiling::window --send-to-monitor 2; chunkc tiling::monitor -f 2
-ctrl + cmd - 3  : chunkc tiling::window --send-to-monitor 3; chunkc tiling::monitor -f 3
-
-# increase region size
-shift + alt - a : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
-shift + alt - s : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
-shift + alt - w : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
-shift + alt - d : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
-
-# decrease region size
-shift + cmd - a : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
-shift + cmd - s : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge south
-shift + cmd - w : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
-shift + cmd - d : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
-
-# set insertion point
-ctrl + alt - f : chunkc tiling::window --use-insertion-point focus
-ctrl + alt - h : chunkc tiling::window --use-insertion-point west
-ctrl + alt - j : chunkc tiling::window --use-insertion-point south
-ctrl + alt - k : chunkc tiling::window --use-insertion-point north
-ctrl + alt - l : chunkc tiling::window --use-insertion-point east
-
 # rotate tree
 alt - r : chunkc tiling::desktop --rotate 90
 
@@ -111,7 +70,7 @@ shift + alt - f : chunkc tiling::window --toggle native-fullscreen
 alt - d : chunkc tiling::window --toggle parent
 
 # toggle window split type
-alt - e : chunkc tiling::window --toggle split
+shift + alt - e : chunkc tiling::window --toggle split
 
 # float / unfloat window
 alt - t : chunkc tiling::window --toggle float
