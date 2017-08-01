@@ -312,10 +312,14 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
+let g:ale_pattern_options = {
+\   '.*lib/core/.*\.js$': {'ale_enabled': 0},
+\   '.*test/core/.*\.js$': {'ale_enabled': 0},
+\}
 
 " Neoformat
-autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --single-quote\
-let g:neoformat_try_formatprg = 1
+" autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --single-quote\
+" let g:neoformat_try_formatprg = 1
 
 " Alchemist.vim
 let g:alchemist_iex_term_size = 120

@@ -7,3 +7,4 @@ bower_components/**
 .svn
 .bzr
 .hg
+core_template*.js

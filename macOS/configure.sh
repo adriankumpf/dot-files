@@ -58,7 +58,7 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 defaults write com.apple.screensaver askForPassword -int 1
 
 # Set Login Window Text
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "Property of Adrian Kumpf. If found call $(cat .phonenumber) to recieve a finder's reward."
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText ""
 
 # Enable Firewall
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
