@@ -95,7 +95,7 @@ set nofoldenable
 
 " Statusline
 set statusline=%=%m\ %q\ %r\ %{ALEGetStatusLine()}\ %t\ %l:%c
-set fillchars=vert:\ ,stl:\ ,stlnc:\ ,
+set fillchars=vert:│,stl:\ ,stlnc:\ ,
 
 " Disable Backup and Swap files
 set noswapfile
@@ -392,19 +392,22 @@ syntax on
 set background=dark
 colorscheme gruvbox
 
-" True color support (nvim)
-" set termguicolors
+" True color support
+set termguicolors
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Customizations
-hi vertsplit ctermfg=238 ctermbg=235
+
+" Gruvbox: 245 -> #928374 | 237 -> #3c3836
 
 hi LineNr ctermfg=237
+hi vertsplit ctermbg=235 ctermfg=245 guibg=bg guifg=#3c3836
 
-hi StatusLine ctermfg=235 ctermbg=245
-hi StatusLineNC ctermfg=235 ctermbg=237
+
+hi StatusLine guibg=#928374 guifg=bg
+hi StatusLineNC guibg=#928374 guifg=bg
 
 hi clear SignColumn
 
