@@ -48,7 +48,7 @@ Plug 'DataWraith/auto_mkdir'                      " create directory if it does 
 Plug 'morhetz/gruvbox'                            " THE Colorscheme
 Plug 'jeetsukumaran/vim-buffergator'              " open a window listing all buffers
 Plug 'digitaltoad/vim-pug'                        " Pug/Jade Syntax highlighting
-Plug 'sbdchd/neoformat'                           " Format / prettify code
+" Plug 'sbdchd/neoformat'                           " Format / prettify code
 
 call plug#end()
 
@@ -306,16 +306,35 @@ let g:marked_app = 'Markoff'
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 1
+
 let g:ale_sign_error = '❯'
 let g:ale_sign_warning = '⚠'
+
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s'
+
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\}
+let g:ale_linters = {
+\   'javascript': ['standard'],
+\   'elixir': ['credo'],
+\}
+
+let g:ale_javascript_prettier_options = '--single-quote --no-semi'
+let g:ale_elixir_credo_options = '--strict'
+
+
 " Neoformat
-autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --single-quote\
-let g:neoformat_try_formatprg = 1
+" let g:neoformat_elixir_exfmt = {
+"   \ 'exe': 'mix',
+"   \ 'args': ['exfmt', '--stdin'],
+"   \ 'stdin': 1
+"   \ }
+" let g:neoformat_enabled_elixir = ['exfmt']
 
 " Alchemist.vim
 let g:alchemist_iex_term_size = 120
