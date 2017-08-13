@@ -36,6 +36,7 @@
   - diff-so-fancy
   - reattach-to-user-namespace
   - chunkwm --HEAD --with-ffm
+  - fpp
 
 
 - cask: [betterzipql, qlvideo, qlmarkdown, iterm2-beta, qlstephen, bartender, middleclick]
