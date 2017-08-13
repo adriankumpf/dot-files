@@ -325,8 +325,6 @@ let g:ale_linters = {
 \}
 
 let g:ale_javascript_prettier_options = '--single-quote --no-semi'
-let g:ale_elixir_credo_options = '--strict'
-
 
 " Neoformat
 " let g:neoformat_elixir_exfmt = {
@@ -407,6 +405,11 @@ nnoremap <leader>ef :silent !eval standard % --fix<cr>
 " ===============================
 
 syntax on
+
+" Turn off syntax for long lines to improve performance
+set synmaxcol=320
+2mat ErrorMsg '\%80v.'
+
 
 set background=dark
 colorscheme gruvbox
