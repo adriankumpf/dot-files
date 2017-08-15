@@ -8,21 +8,16 @@
 [push]
     default = simple
     followTags = true
+    pager = less -S
 [color]
     status = always
     ui = true
 [core]
     editor = nvim
 [alias]
-    a = add
     aa = add --all
     ap = add --patch
-    di = diff
-    ds = diff --staged
-    dt = difftool --no-prompt
     ci = commit --verbose
-    cm = commit -m
-    cim = commit --verbose --reedit-message=HEAD --reset-author
     amend = commit --amend --verbose
     fixup = "!~/bin/git-fixup"
     co = checkout
@@ -30,22 +25,20 @@
     ps = push
     rb = rebase -i HEAD~10
     st = status -sb
-    br = branch
+    stf = "!git st | fpp"
     lo = log --oneline -n 15
-    lg = log --pretty=format:'%h | %cd | %an | %s' -n 15
-    ls = log --stat -n 5
-    lol = log --oneline --graph --all --decorate
-    g1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+    lg = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
 g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%cD%C(reset) %C(bold green)(%cr)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)' --abbrev-commit
     wc = whatchanged -p --abbrev-commit --pretty=medium
+    stash-all = stash save --include-untracked
     unstage = reset HEAD --
     edit = "!nvim `git ls-files -m`"
-    dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
+    dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=2 -SRFX; }; f"
+    # Show the branches, ordered by most recently updated closest to prompt.
+    # Also shows the last commit and committer for each branch listed.
+    recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
 [github]
     user = adriankumpf
 [branch]
     autosetuprebase = always
-[diff]
-    tool = nvimdiff
-[difftool "nvimdiff"]
-    cmd = nvim -d "$LOCAL" "$REMOTE"

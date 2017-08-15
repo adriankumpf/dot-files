@@ -40,6 +40,9 @@ chunkc set window_float_next             0
 chunkc set window_float_center           1
 chunkc set window_region_locked          1
 
+# chunkc set mouse_modifier              \"cmd shift\"
+chunkc set mouse_modifier                fn
+
 chunkc set preselect_border_color        0xffffff00
 chunkc set preselect_border_width        4
 chunkc set preselect_border_radius       0
@@ -69,4 +72,5 @@ chunkc core::load ffm.so
 # chunkc core::load border.so
 
 chunkc tiling::rule --owner \"System Preferences\" --state tile
+chunkc tiling::rule --owner iTerm --name Preferences --state tile
 chunkc tiling::rule --owner Finder --name Copy --state float

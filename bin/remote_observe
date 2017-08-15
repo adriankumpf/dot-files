@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+
+if [ $# -ne 3 ]; then
+cat << EOF
+Usage: $0 <remote host> <app name> <cookie>
+
+Observe a remote elixir node using ssh port forwarding.
+EOF
+exit 1
+fi
+
+REMOTE_HOST=$1
+REMOTE_NAME=$2
+COOKIE="$3"
+
+EPMD_PORT=$(ssh "${REMOTE_HOST}" "epmd -names" | grep epmd | sed 's/[^0-9]//g')
+NODE_PORT=$(ssh "${REMOTE_HOST}" "epmd -names" | grep name | sed 's/[^0-9]//g')
+
+printf "Creating tunnel for ports: [epmd=%s] [node=%s]\n" \
+  "${EPMD_PORT}" "$NODE_PORT"
+
+ssh \
+  -f -o ExitOnForwardFailure=yes \
+  -L "${EPMD_PORT}:${REMOTE_HOST}:${EPMD_PORT}"  \
+  -L "${NODE_PORT}:${REMOTE_HOST}:${NODE_PORT}" \
+  "${REMOTE_HOST}" \
+  sleep 5
+
+printf "Connecting with node [%s] \n\n" "$REMOTE_NAME"
+
+iex  \
+  --name "debug@127.0.0.1" \
+  --cookie "$COOKIE" \
+  -e "Node.connect(:\"$REMOTE_NAME@127.0.0.1\"); :observer.start()"
