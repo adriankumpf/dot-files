@@ -1,0 +1,17 @@
+name: 'bunchbox-dev'
+windows:
+    - name: 'editor'
+      root: '~/projects/bunchbox-app/'
+      panes:
+        - nvim
+
+    - name: 'processes'
+      layout: main-vertical
+      root: '~/projects/bunchbox-app/'
+      panes:
+        - ./scripts/dev api app worker collector
+
+    - name: 'git'
+      root: '~/projects/bunchbox-app/'
+      panes:
+        - git status

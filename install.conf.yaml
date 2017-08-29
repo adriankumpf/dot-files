@@ -9,17 +9,15 @@
       force: true
 
 - tap:
-  - caskroom/fonts
   - caskroom/cask
   - caskroom/versions
   - fisherman/tap
-  - neovim/neovim
   - crisidev/homebrew-chunkwm
 
 - brew:
+  # echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
+  # chsh -s /usr/local/bin/fish
   - fish
-    # echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
-    # chsh -s /usr/local/bin/fish
   - fisherman
   - neovim
   - tmux
@@ -37,9 +35,9 @@
   - reattach-to-user-namespace
   - chunkwm --HEAD --with-ffm
   - fpp
+  - ruby
 
-
-- cask: [betterzipql, qlvideo, qlmarkdown, iterm2-beta, qlstephen, bartender, middleclick]
+- cask: [betterzipql, qlvideo, qlmarkdown, iterm2-beta, qlstephen, bartender]
 
 - shell:
   - fish -c "fisher z"
@@ -52,6 +50,7 @@
   # fish shell
     ~/.config/fish/functions/update.fish: fish/functions/update.fish
     ~/.config/fish/functions/preview.fish: fish/functions/preview.fish
+    ~/.config/fish/functions/bbd.fish: fish/functions/bbd.fish
     ~/.config/fish/functions/t.fish: fish/functions/t.fish
     ~/.config/fish/fish.config: fish/fish.config
   # neovim
@@ -68,6 +67,7 @@
     ~/.khdrc: window_manager/.khdrc
   # tmux
     ~/.tmux.conf: tmux/tmux.conf
+    # ~/.teamocil: tmux/teamocil
   # misc
     ~/.agignore: other/agignore
     ~/bin: bin
@@ -81,9 +81,11 @@
 - shell:
   - mkdir -p ~/.config/nvim/tmp/backup
   - mkdir -p ~/.config/nvim/tmp/swap
-  - mkdir -p ~/.tmux/plugins
-  - bash -c 'if [ ! -d ~/.tmux/plugins/tpm ]; then git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm ; fi;'
   - pip3 install --user neovim
+
+# Teamocil (used to automatically create windows and panes in tmux)
+- shell:
+  - gem install teamocil
 
 # Yarn
 - shell:

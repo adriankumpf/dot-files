@@ -431,6 +431,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 hi LineNr ctermfg=237
 hi vertsplit ctermbg=235 ctermfg=245 guibg=bg guifg=#3c3836
 
+hi NonText ctermbg=235 ctermfg=245 guibg=bg guifg=#3c3836
 
 hi StatusLine guibg=#928374 guifg=bg
 hi StatusLineNC guibg=#928374 guifg=bg
