@@ -33,7 +33,7 @@
   - youtube-dl
   - diff-so-fancy
   - reattach-to-user-namespace
-  - chunkwm --HEAD --with-ffm
+  - chunkwm --HEAD
   - fpp
   - ruby
 

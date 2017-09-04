@@ -49,6 +49,8 @@ Plug 'morhetz/gruvbox'                            " THE Colorscheme
 Plug 'jeetsukumaran/vim-buffergator'              " open a window listing all buffers
 Plug 'digitaltoad/vim-pug'                        " Pug/Jade Syntax highlighting
 " Plug 'sbdchd/neoformat'                           " Format / prettify code
+Plug 'posva/vim-vue'
+Plug 'chrisbra/Colorizer'
 
 call plug#end()
 
@@ -475,6 +477,9 @@ autocmd bufenter *
       \   q |
       \ endif
 
+" autocmd FileType vue syntax sync fromstart
+" autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+
 " Make sure Vim returns to the same line when you reopen a file.
 augroup line_return
   au!
@@ -483,3 +488,4 @@ augroup line_return
 	\     execute 'normal! g`"zvzz' |
 	\ endif
 augroup END
+
