@@ -51,6 +51,8 @@ Plug 'digitaltoad/vim-pug'                        " Pug/Jade Syntax highlighting
 " Plug 'sbdchd/neoformat'                           " Format / prettify code
 Plug 'posva/vim-vue'
 Plug 'chrisbra/Colorizer'
+Plug 'int3/vim-extradite'
+Plug 'kshenoy/vim-signature'
 
 call plug#end()
 
@@ -230,12 +232,6 @@ vnoremap y y`]
 vnoremap p "_dP`]
 nnoremap p p`]
 
-" Terminal mode mappings
-if has('nvim')
-  tnoremap <ESC> <C-\><C-n>
-  tnoremap ,<ESC> <ESC>
-endif
-
 " Quick save and close buffer
 nnoremap ,w :w<CR>
 nnoremap <silent> ,q :Sayonara<CR>
@@ -406,6 +402,9 @@ nnoremap <silent> <leader>m :MarkedOpen!<CR>
 " JS standard --fix
 nnoremap <leader>ef :silent !eval standard % --fix<cr>
 
+" ...
+nnoremap <silent> <leader>g :!echo `git u`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
+
 " ===============================
 " Color and highlighting settings
 " ===============================
@@ -445,25 +444,21 @@ hi GitGutterChange ctermbg=235 ctermfg=245
 hi GitGutterDelete ctermbg=235 ctermfg=245
 hi GitGutterChangeDelete ctermbg=235 ctermfg=245
 
+" Make Cursor more visible
+hi! Cursor ctermfg=1 ctermbg=1 guifg=#FF0000 guibg=#FF0000
+
+
 " ===============================
 " Autocommands
 " ===============================
 
-" Git commits
-augroup gitcommit
-  au!
-  au FileType gitcommit setl spell         " Enable spellchecking.
-  au FileType gitcommit setl expandtab     " Use spaces instead of tabs.
-  au FileType gitcommit setl tabstop=4     " A tab counts for 4 spaces.
-  au FileType gitcommit setl softtabstop=4 " Causes backspace to delete 4 spaces.
-  au FileType gitcommit setl shiftwidth=4  " Shift by 4 spaces.
-augroup end
 
 " Keywordprg settings
 autocmd FileType vim setlocal keywordprg=:help
 
-" Turn spellcheck on for markdown files
+" Turn spellcheck on for markdown files & git commits
 autocmd BufNewFile,BufRead *.md setlocal spell
+autocmd FileType gitcommit setl spell
 
 " Remove trailing whitespaces automatically before save
 autocmd BufWritePre * call utils#stripTrailingWhitespaces()
@@ -488,4 +483,3 @@ augroup line_return
 	\     execute 'normal! g`"zvzz' |
 	\ endif
 augroup END
-
