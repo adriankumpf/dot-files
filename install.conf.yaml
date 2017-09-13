@@ -62,7 +62,7 @@
   # git
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
-  # kwm & khd
+  # chunkwm & khd
     ~/.chunkwmrc: window_manager/.chunkwmrc
     ~/.khdrc: window_manager/.khdrc
   # tmux
@@ -81,7 +81,10 @@
 - shell:
   - mkdir -p ~/.config/nvim/tmp/backup
   - mkdir -p ~/.config/nvim/tmp/swap
-  - pip3 install --user neovim
+  - pip install setuptools
+  - pip  install --upgrade neovim
+  - pip2 install --upgrade neovim
+  - pip3 install --upgrade neovim
 
 # Teamocil (used to automatically create windows and panes in tmux)
 - shell:

@@ -445,8 +445,9 @@ hi GitGutterDelete ctermbg=235 ctermfg=245
 hi GitGutterChangeDelete ctermbg=235 ctermfg=245
 
 " Make Cursor more visible
-hi! Cursor ctermfg=1 ctermbg=1 guifg=#FF0000 guibg=#FF0000
-
+set termguicolors
+set guicursor=i-ci:ver25-Cursor/lCursor
+hi Cursor ctermfg=1 ctermbg=1 guifg=#FFFFFF guibg=#FFFFFF
 
 " ===============================
 " Autocommands
