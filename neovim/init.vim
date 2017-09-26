@@ -405,6 +405,9 @@ nnoremap <leader>ef :silent !eval standard % --fix<cr>
 " ...
 nnoremap <silent> <leader>g :!echo `git u`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
+" Save file as root
+cmap w!! w !sudo tee > /dev/null %
+
 " ===============================
 " Color and highlighting settings
 " ===============================

@@ -10,6 +10,7 @@
 
 - tap:
   - caskroom/cask
+  - caskroom/fonts
   - caskroom/versions
   - fisherman/tap
   - crisidev/homebrew-chunkwm
@@ -36,6 +37,7 @@
   - chunkwm --HEAD
   - fpp
   - ruby
+  - font-fira-code
 
 - cask: [betterzipql, qlvideo, qlmarkdown, iterm2-beta, qlstephen, bartender]
 
