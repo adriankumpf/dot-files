@@ -464,6 +464,9 @@ autocmd FileType vim setlocal keywordprg=:help
 autocmd BufNewFile,BufRead *.md setlocal spell
 autocmd FileType gitcommit setl spell
 
+" Set correct Filetype for Dockerfiles
+autocmd BufNewFile,BufRead Dockerfile* setfiletype dockerfile
+
 " Remove trailing whitespaces automatically before save
 autocmd BufWritePre * call utils#stripTrailingWhitespaces()
 
