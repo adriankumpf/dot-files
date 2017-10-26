@@ -53,6 +53,8 @@ Plug 'posva/vim-vue'
 Plug 'chrisbra/Colorizer'
 Plug 'int3/vim-extradite'
 Plug 'kshenoy/vim-signature'
+Plug 'chew-z/itunes.vim'			  " Control iTunes with vim!
+Plug 'tpope/vim-rhubarb'			  " Open Github URLs
 
 call plug#end()
 

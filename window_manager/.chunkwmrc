@@ -69,6 +69,6 @@ chunkc core::load tiling.so
 chunkc core::load ffm.so
 # chunkc core::load border.so
 
-chunkc tiling::rule --owner \"System Preferences\" --state tile
+chunkc tiling::rule --owner \"System Preferences\" --state float
 chunkc tiling::rule --owner iTerm --name Preferences --state tile
 chunkc tiling::rule --owner Finder --name Copy --state float

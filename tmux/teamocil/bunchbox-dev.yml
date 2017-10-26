@@ -9,7 +9,7 @@ windows:
       layout: main-vertical
       root: '~/projects/bunchbox-app/'
       panes:
-        - ./scripts/dev api app worker collector demo
+        - make start local api app worker collector demo
         - docker-compose up
 
     - name: 'git'
