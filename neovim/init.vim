@@ -23,38 +23,43 @@ Plug 'junegunn/fzf.vim'
 " Nerdtree file browser
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
-Plug 'w0rp/ale'                                   " Ale Linting
-Plug 'Shougo/deoplete.nvim'                       " Autocomplete
-Plug 'jiangmiao/auto-pairs'                       " Automatically closing pair stuff
-Plug 'SirVer/ultisnips'                           " Snippet support (C-j)
-Plug 'honza/vim-snippets'                         " Snippets for everything!
-Plug 'tpope/vim-commentary'                       " Commenting support (gc)
-Plug 'tpope/vim-sleuth'                           " Heuristically set indent settings
-Plug 'sickill/vim-pasta'                          " context-aware pasting
-Plug 'sheerun/vim-polyglot'                       " All languages in one
-Plug 'kewah/vim-stylefmt'                         " Format stylsheets
-Plug 'slashmili/alchemist.vim'                    " Elixir
-Plug 'tpope/vim-fugitive'                         " Fugitive
-Plug 'gregsexton/gitv', { 'on': 'Gitv' }          " Git log viewer (Gitv! for file mode)
-Plug 'airblade/vim-gitgutter'                     " Git changes showed on line numbers
-Plug 'tpope/vim-surround'                         " Surround with cs
-Plug 'godlygeek/tabular', { 'on':  'Tabularize' } " Easy alignment
-Plug 'terryma/vim-expand-region'                  " Easily expand selected region
-Plug 'ironhouzi/vim-stim'                         " Improve star by not jumping immediately
-Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }     " Undo Tree
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }   " Intelligent buffer closing
-Plug 'itspriddle/vim-marked'                      " Open Markdown files in Marked
-Plug 'DataWraith/auto_mkdir'                      " create directory if it does not exist
-Plug 'morhetz/gruvbox'                            " THE Colorscheme
-Plug 'jeetsukumaran/vim-buffergator'              " open a window listing all buffers
-Plug 'digitaltoad/vim-pug'                        " Pug/Jade Syntax highlighting
 " Plug 'sbdchd/neoformat'                           " Format / prettify code
-Plug 'posva/vim-vue'
-Plug 'chrisbra/Colorizer'
-Plug 'int3/vim-extradite'
-Plug 'kshenoy/vim-signature'
-Plug 'chew-z/itunes.vim'			  " Control iTunes with vim!
-Plug 'tpope/vim-rhubarb'			  " Open Github URLs
+
+Plug 'DataWraith/auto_mkdir'                      " Create directory if it does not exist
+Plug 'Shougo/deoplete.nvim'                       " Autocomplete
+Plug 'SirVer/ultisnips'                           " Snippet support (C-j)
+Plug 'airblade/vim-gitgutter'                     " Git changes showed on line numbers
+Plug 'chew-z/itunes.vim'                          " Control iTunes with vim!
+Plug 'chrisbra/Colorizer'                         " color hex codes and color names
+Plug 'digitaltoad/vim-pug'                        " Pug/Jade Syntax highlighting
+Plug 'docunext/closetag.vim'                      " Functions and mappings to close open HTML/XML tags
+Plug 'godlygeek/tabular', { 'on':  'Tabularize' } " Easy alignment
+Plug 'gregsexton/gitv', { 'on': 'Gitv' }          " Git log viewer (Gitv! for file mode)
+Plug 'honza/vim-snippets'                         " Snippets for everything!
+Plug 'int3/vim-extradite'                         " A git commit browser for vim
+Plug 'ironhouzi/vim-stim'                         " Improve star by not jumping immediately
+Plug 'itspriddle/vim-marked'                      " Open Markdown files in Marked
+Plug 'jeetsukumaran/vim-buffergator'              " open a window listing all buffers
+Plug 'jiangmiao/auto-pairs'                       " Automatically closing pair stuff
+Plug 'kewah/vim-stylefmt'                         " Format stylsheets
+Plug 'kshenoy/vim-signature'                      " Toggle, display and navigate marks
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }   " Intelligent buffer closing
+Plug 'morhetz/gruvbox'                            " THE Colorscheme
+Plug 'posva/vim-vue'                              " Syntax Highlight for Vue.js components
+Plug 'qpkorr/vim-bufkill'                         " Delete a buffer without closing the split
+Plug 'sheerun/vim-polyglot'                       " All languages as one plugin
+Plug 'sickill/vim-pasta'                          " context-aware pasting
+Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }     " Undo Tree
+Plug 'slashmili/alchemist.vim'                    " Elixir Integration Into Vim
+Plug 'terryma/vim-expand-region'                  " Easily expand selected regions with 'v'
+Plug 'tpope/vim-commentary'                       " Commenting support (gc)
+Plug 'tpope/vim-fugitive'                         " An awesome Git wrapper
+Plug 'tpope/vim-repeat'                           " Repeat 'vim-surround' commands with '.'
+Plug 'tpope/vim-rhubarb'                          " Open Github URLs
+Plug 'tpope/vim-sleuth'                           " Heuristically set indent settings
+Plug 'tpope/vim-surround'                         " Surround with cs
+Plug 'w0rp/ale'                                   " Ale Linting
+
 
 call plug#end()
 
@@ -251,6 +256,9 @@ nnoremap S mzi<CR><ESC>`z
 " Start substitute on current word under the cursor
 nnoremap ,s :%s///gc<Left><Left><Left>
 
+" Search for the word under the cursor in the current directory
+nnoremap ,S :Ag 
+
 " Paste mode toggling
 nnoremap <silent> <F3> :set paste!<CR> :set paste?<CR>
 " Toggle spelling on and off
@@ -270,6 +278,12 @@ nnoremap <silent> ,f :Format<CR>
 " Search in very magic mode
 nnoremap / /\v
 vnoremap / /\v
+
+" Bufkill.vim: Alt-W to delete a buffer and remove it from the list but keep the window
+nmap ∑ :BD<CR>
+
+" Quickly fix spelling errors choosing the first result
+nmap <Leader>z z=1<CR><CR>
 
 " ===============================
 " Plugins settings
@@ -356,7 +370,7 @@ nnoremap <silent> <leader>F :Files<CR>
 nnoremap <silent> <leader>f :GitFiles<CR>
 nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>T :Tags<CR>
-nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+nnoremap <silent> <leader>/ :Ag<CR>
 nnoremap <silent> <leader>c :Commands<CR>
 
 " ALE
@@ -400,12 +414,9 @@ noremap <silent> <Leader>u :GundoToggle<CR>
 
 " Marked
 nnoremap <silent> <leader>m :MarkedOpen!<CR>
-"
+
 " JS standard --fix
 nnoremap <leader>ef :silent !eval standard % --fix<cr>
-
-" ...
-nnoremap <silent> <leader>g :!echo `git u`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
 " Save file as root
 cmap w!! w !sudo tee > /dev/null %
