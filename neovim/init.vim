@@ -43,6 +43,7 @@ Plug 'jeetsukumaran/vim-buffergator'              " open a window listing all bu
 Plug 'jiangmiao/auto-pairs'                       " Automatically closing pair stuff
 Plug 'kewah/vim-stylefmt'                         " Format stylsheets
 Plug 'kshenoy/vim-signature'                      " Toggle, display and navigate marks
+Plug 'machakann/vim-highlightedyank'		  " Make the yanked region apparant
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }   " Intelligent buffer closing
 Plug 'morhetz/gruvbox'                            " THE Colorscheme
 Plug 'posva/vim-vue'                              " Syntax Highlight for Vue.js components
@@ -127,6 +128,9 @@ set backspace=indent,start,eol
 
 " Limit completion window height
 set pumheight=5
+
+" Interactive substitutioon
+set inccommand=nosplit
 
 " Enable undo file as non-root
 if has('persistent_undo')
