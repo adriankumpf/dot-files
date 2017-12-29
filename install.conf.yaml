@@ -40,7 +40,6 @@
 - cask: [
     betterzipql,
     docker,
-    firefoxdeveloperedition,
     font-fira-code,
     iterm2,
     itsycal,
@@ -82,7 +81,7 @@
     ~/.khdrc: window_manager/.khdrc
   # tmux
     ~/.tmux.conf: tmux/tmux.conf
-    # ~/.teamocil: tmux/teamocil
+    ~/.teamocil: tmux/teamocil
   # misc
     ~/.agignore: other/agignore
     ~/bin: bin

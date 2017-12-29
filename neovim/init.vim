@@ -25,41 +25,45 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
 " Plug 'sbdchd/neoformat'                           " Format / prettify code
 
-Plug 'DataWraith/auto_mkdir'                      " Create directory if it does not exist
-Plug 'Shougo/deoplete.nvim'                       " Autocomplete
-Plug 'SirVer/ultisnips'                           " Snippet support (C-j)
-Plug 'airblade/vim-gitgutter'                     " Git changes showed on line numbers
-Plug 'chew-z/itunes.vim'                          " Control iTunes with vim!
-Plug 'chrisbra/Colorizer'                         " color hex codes and color names
-Plug 'digitaltoad/vim-pug'                        " Pug/Jade Syntax highlighting
-Plug 'docunext/closetag.vim'                      " Functions and mappings to close open HTML/XML tags
-Plug 'godlygeek/tabular', { 'on':  'Tabularize' } " Easy alignment
-Plug 'gregsexton/gitv', { 'on': 'Gitv' }          " Git log viewer (Gitv! for file mode)
-Plug 'honza/vim-snippets'                         " Snippets for everything!
-Plug 'int3/vim-extradite'                         " A git commit browser for vim
-Plug 'ironhouzi/vim-stim'                         " Improve star by not jumping immediately
-Plug 'itspriddle/vim-marked'                      " Open Markdown files in Marked
-Plug 'jeetsukumaran/vim-buffergator'              " open a window listing all buffers
-Plug 'jiangmiao/auto-pairs'                       " Automatically closing pair stuff
-Plug 'kewah/vim-stylefmt'                         " Format stylsheets
-Plug 'kshenoy/vim-signature'                      " Toggle, display and navigate marks
-Plug 'machakann/vim-highlightedyank'		  " Make the yanked region apparant
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }   " Intelligent buffer closing
-Plug 'morhetz/gruvbox'                            " THE Colorscheme
-Plug 'posva/vim-vue'                              " Syntax Highlight for Vue.js components
-Plug 'qpkorr/vim-bufkill'                         " Delete a buffer without closing the split
-Plug 'sheerun/vim-polyglot'                       " All languages as one plugin
-Plug 'sickill/vim-pasta'                          " context-aware pasting
-Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }     " Undo Tree
-Plug 'slashmili/alchemist.vim'                    " Elixir Integration Into Vim
-Plug 'terryma/vim-expand-region'                  " Easily expand selected regions with 'v'
-Plug 'tpope/vim-commentary'                       " Commenting support (gc)
-Plug 'tpope/vim-fugitive'                         " An awesome Git wrapper
-Plug 'tpope/vim-repeat'                           " Repeat 'vim-surround' commands with '.'
-Plug 'tpope/vim-rhubarb'                          " Open Github URLs
-Plug 'tpope/vim-sleuth'                           " Heuristically set indent settings
-Plug 'tpope/vim-surround'                         " Surround with cs
-Plug 'w0rp/ale'                                   " Ale Linting
+Plug 'autozimu/LanguageClient-neovim', {'tag': 'binary-*-x86_64-apple-darwin'} " Language Server Protocol (LSP) support
+Plug 'DataWraith/auto_mkdir'                                                   " Create directory if it does not exist
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                  " Autocomplete
+Plug 'SirVer/ultisnips'                                                        " Snippet support (C-j)
+Plug 'airblade/vim-gitgutter'                                                  " Git changes showed on line numbers
+Plug 'chew-z/itunes.vim'                                                       " Control iTunes with vim!
+Plug 'chrisbra/Colorizer'                                                      " color hex codes and color names
+Plug 'digitaltoad/vim-pug'                                                     " Pug/Jade Syntax highlighting
+Plug 'docunext/closetag.vim'                                                   " Functions and mappings to close open HTML/XML tags
+Plug 'godlygeek/tabular', { 'on':  'Tabularize' }                              " Easy alignment
+Plug 'gregsexton/gitv', { 'on': 'Gitv' }                                       " Git log viewer (Gitv! for file mode)
+Plug 'honza/vim-snippets'                                                      " Snippets for everything!
+Plug 'int3/vim-extradite'                                                      " A git commit browser for vim
+Plug 'ironhouzi/vim-stim'                                                      " Improve star by not jumping immediately
+Plug 'itspriddle/vim-marked'                                                   " Open Markdown files in Marked
+Plug 'jeetsukumaran/vim-buffergator'                                           " open a window listing all buffers
+Plug 'jiangmiao/auto-pairs'                                                    " Automatically closing pair stuff
+Plug 'kewah/vim-stylefmt'                                                      " Format stylsheets
+Plug 'kshenoy/vim-signature'                                                   " Toggle, display and navigate marks
+Plug 'machakann/vim-highlightedyank'                                           " Make the yanked region apparant
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                                " Intelligent buffer closing
+Plug 'morhetz/gruvbox'                                                         " THE Colorscheme
+Plug 'posva/vim-vue'                                                           " Syntax Highlight for Vue.js components
+Plug 'qpkorr/vim-bufkill'                                                      " Delete a buffer without closing the split
+Plug 'sheerun/vim-polyglot'                                                    " All languages as one plugin
+Plug 'sickill/vim-pasta'                                                       " context-aware pasting
+Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }                                  " Undo Tree
+Plug 'slashmili/alchemist.vim'                                                 " Elixir Integration Into Vim
+Plug 'terryma/vim-expand-region'                                               " Easily expand selected regions with 'v'
+Plug 'tpope/vim-commentary'                                                    " Commenting support (gc)
+Plug 'tpope/vim-fugitive'                                                      " An awesome Git wrapper
+Plug 'tpope/vim-repeat'                                                        " Repeat 'vim-surround' commands with '.'
+Plug 'tpope/vim-rhubarb'                                                       " Open Github URLs
+Plug 'tpope/vim-sleuth'                                                        " Heuristically set indent settings
+Plug 'tpope/vim-surround'                                                      " Surround with cs
+Plug 'w0rp/ale'                                                                " Ale Linting
+Plug 'rust-lang/rust.vim'                                                      " Official Rust vim plugin
+Plug 'racer-rust/vim-racer'                                                    " Rust code completion and navigation
+Plug 'sebastianmarkow/deoplete-rust'                                           " Deoplete support for Rust
 
 
 call plug#end()
@@ -363,8 +367,32 @@ let g:alchemist_iex_term_split = 'vsplit'
 " FZF and extensions
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
-" vim-polyglot's pug syntax hightlighting is buggy
-let g:polyglot_disabled = ['pug']
+" rust.vim
+let g:rustfmt_autosave = 1
+let g:rustfmt_command = "cargo +nightly-2017-12-20-x86_64-apple-darwin fmt --"
+
+" LanguageClient
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'beta', 'rls'],
+    \ }
+
+" Racer: show the complete function definition
+let g:racer_cmd = "$HOME/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+
+" deopelete-rust: Automatic racer binary and rust source path detection
+if executable('racer')
+  let g:deoplete#sources#rust#racer_binary = systemlist('which racer')[0]
+endif
+
+if executable('rustc')
+  "$ rustup component add rust-src
+    let rustc_root = systemlist('rustc --print sysroot')[0]
+    let rustc_src_dir = rustc_root . '/lib/rustlib/src/rust/src'
+    if isdirectory(rustc_src_dir)
+        let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
+    endif
+  endif
 
 " ===============================
 " Plugin mappings
@@ -398,6 +426,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+
 " Close the documentation window when completion is done
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 

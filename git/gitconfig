@@ -1,6 +1,6 @@
 [user]
     name = Adrian Kumpf
-    email = adrian@peaksandpies.com
+    email = adrian.kumpf@posteo.de
 [credential]
     helper = cache --timeout=3600
 [core]
