@@ -4450,15 +4450,15 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>530 477 620 392 0 0 1680 1028 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>-33 602 918 381 0 0 1680 1028 </string>
+	<string>420 340 1018 447 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>21 25 810 977 0 0 1680 1028 </string>
+	<string>849 25 810 977 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 0 1680 1028 0 0 1680 1028 </string>
+	<string>1607 898 1573 857 0 0 3200 1778 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>849 527 810 478 0 0 1680 1028 </string>
+	<string>895 897 1132 422 0 0 3200 1778 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>851 526 392 480 0 0 1680 1028 </string>
+	<string>893 896 1136 861 0 0 3200 1778 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
 	<string>720 449 720 423 0 0 1440 878 </string>
 	<key>NeverWarnAboutShortLivedSessions_E6E1188C-2D6B-40E6-AED0-DB9179E0C2A3</key>
@@ -5356,7 +5356,7 @@
 			<key>Use Non-ASCII Font</key>
 			<false/>
 			<key>Use Tab Color</key>
-			<true/>
+			<false/>
 			<key>Use Underline Color</key>
 			<false/>
 			<key>Vertical Spacing</key>
@@ -5381,6 +5381,8 @@
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>517075880.67088801</real>
+	<key>NoSyncTurnOffBracketedPasteOnHostChange</key>
+	<true/>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -5453,17 +5455,15 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-09-26T21:03:29Z</date>
+	<date>2017-11-28T11:11:17Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
-	<key>SUSkippedVersion</key>
-	<string>3.1.2.beta.2</string>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
 	<true/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>ShowPaneTitles</key>
 	<false/>
 	<key>SmartPlacement</key>
@@ -5519,7 +5519,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.1</string>
+	<string>3.1.5.beta.2</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
