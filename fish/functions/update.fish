@@ -3,6 +3,7 @@ function update
     case Darwin
       fnm list >/dev/null
       fnm latest
+      node -v > /dev/null
   end
 
   fisher u
@@ -13,7 +14,6 @@ function update
     brew cleanup
   end
 
-
   # for package in (npm -g outdated --parseable --depth=0 | cut -d: -f2)
   #   npm -g install "$package"
   # end
@@ -22,7 +22,8 @@ function update
 
   ~/.config/nvim/sync.sh
 
+  rustup update
+
   echo "Don't forget to update uBlock Origin manually: https://github.com/el1t/uBlock-Safari/releases"
 
-  node -v > /dev/null
 end
