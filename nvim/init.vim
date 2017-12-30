@@ -329,6 +329,8 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 1
 
+let g:ale_fix_on_save = 1
+
 let g:ale_sign_error = '❯'
 let g:ale_sign_warning = '⚠'
 
@@ -343,11 +345,10 @@ let g:ale_pattern_options = {
 \}
 
 let g:ale_fixers = {
-\   'javascript': ['prettier'],
+\   'javascript': ['prettier_standard'],
 \}
 let g:ale_linters = {
 \   'javascript': ['standard'],
-\   'elixir': ['credo'],
 \}
 
 let g:ale_javascript_prettier_options = '--single-quote --no-semi'
@@ -369,7 +370,7 @@ let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
 " rust.vim
 let g:rustfmt_autosave = 1
-let g:rustfmt_command = "cargo +nightly-2017-12-20-x86_64-apple-darwin fmt --"
+let g:rustfmt_command = "rustup run nightly-2017-12-20 rustfmt"
 
 " LanguageClient
 let g:LanguageClient_serverCommands = {
@@ -462,7 +463,7 @@ syntax on
 
 " Turn off syntax for long lines to improve performance
 set synmaxcol=320
-2mat ErrorMsg '\%80v.'
+2mat ErrorMsg '\%100v.'
 
 
 set background=dark

@@ -18,6 +18,7 @@
 - brew:
   - fish
   - fisherman
+    fzf
   - neovim
   - tmux
   - the_silver_searcher
@@ -68,11 +69,11 @@
     ~/.config/fish/functions/update.fish: fish/functions/update.fish
     ~/.config/fish/config.fish: fish/config.fish
   # neovim
-    ~/.config/nvim/spell/dictionary.utf-8.add: neovim/spell/dictionary.utf-8.add
-    ~/.config/nvim/plugged/vim-snippets/UltiSnips: neovim/UltiSnips
-    ~/.config/nvim/autoload/utils.vim: neovim/autoload/utils.vim
-    ~/.config/nvim/init.vim: neovim/init.vim
-    ~/.config/nvim/sync.sh: neovim/sync.sh
+    ~/.config/nvim/spell/dictionary.utf-8.add: nvim/spell/dictionary.utf-8.add
+    # ~/.config/nvim/plugged/vim-snippets/UltiSnips: nvim/UltiSnips
+    ~/.config/nvim/autoload/utils.vim: nvim/autoload/utils.vim
+    ~/.config/nvim/init.vim: nvim/init.vim
+    ~/.config/nvim/sync.sh: nvim/sync.sh
   # git
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
@@ -89,6 +90,7 @@
 # macOS
 - shell:
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart khd; fi;'
+  - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart chunkwm; fi;'
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then ./macOS/configure.sh; fi;'
 
 # Additional Neovim setup
@@ -104,8 +106,13 @@
 - shell:
   - gem install teamocil
 
+# PIP
+- shell:
+  - pip install gitlint
+
 # Yarn
 - shell:
   - yarn global add prettier
   - yarn global add standard
   - yarn global add stylefmt
+  - yarn global add prettier-standard
