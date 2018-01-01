@@ -17,7 +17,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " Fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
 " Nerdtree file browser
@@ -265,7 +265,7 @@ nnoremap S mzi<CR><ESC>`z
 nnoremap ,s :%s///gc<Left><Left><Left>
 
 " Search for the word under the cursor in the current directory
-nnoremap ,S :Ag 
+nnoremap ,S :Rg 
 
 " Paste mode toggling
 nnoremap <silent> <F3> :set paste!<CR> :set paste?<CR>
@@ -368,6 +368,22 @@ let g:alchemist_iex_term_split = 'vsplit'
 " FZF and extensions
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
+"Add :Rg (ripgrep) command - '?' toggles preview:
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" Toggle preview with '?' when searching w/ :Files
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(
+  \ <q-args>,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \ <bang>0)
+
 " rust.vim
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = "rustup run nightly-2017-12-20 rustfmt"
@@ -399,11 +415,10 @@ if executable('rustc')
 " Plugin mappings
 " ===============================
 
-nnoremap <silent> <leader>F :Files<CR>
-nnoremap <silent> <leader>f :GitFiles<CR>
+nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>T :Tags<CR>
-nnoremap <silent> <leader>/ :Ag<CR>
+nnoremap <silent> <leader>/ :Rg<CR>
 nnoremap <silent> <leader>c :Commands<CR>
 
 " ALE

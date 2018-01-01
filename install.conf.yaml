@@ -18,10 +18,11 @@
 - brew:
   - fish
   - fisherman
-    fzf
+  - fzf
+  - fd
+  - ripgrep
   - neovim
   - tmux
-  - the_silver_searcher
   - koekeishiya/formulae/khd
   - editorconfig
   - yarn
@@ -35,7 +36,6 @@
   - reattach-to-user-namespace
   - chunkwm --HEAD
   - ruby
-  - fd
   - tokei
 
 - cask: [
@@ -67,6 +67,7 @@
     ~/.config/fish/functions/preview.fish: fish/functions/preview.fish
     ~/.config/fish/functions/t.fish: fish/functions/t.fish
     ~/.config/fish/functions/update.fish: fish/functions/update.fish
+    ~/.config/fish/functions/rusti.fish: fish/functions/rusti.fish
     ~/.config/fish/config.fish: fish/config.fish
   # neovim
     ~/.config/nvim/spell/dictionary.utf-8.add: nvim/spell/dictionary.utf-8.add
