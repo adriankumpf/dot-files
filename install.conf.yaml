@@ -16,27 +16,28 @@
   - crisidev/homebrew-chunkwm
 
 - brew:
+  - chunkwm --HEAD
+  - diff-so-fancy
+  - editorconfig
+  - elixir
+  - erlang
+  - fd
   - fish
   - fisherman
   - fzf
-  - fd
-  - ripgrep
-  - neovim
-  - tmux
   - koekeishiya/formulae/khd
-  - editorconfig
-  - yarn
+  - mpg123
+  - neovim
   - python3
-  - erlang
-  - elixir
+  - reattach-to-user-namespace
+  - ripgrep
+  - ruby
   - shellcheck
   - ssh-copy-id
-  - youtube-dl
-  - diff-so-fancy
-  - reattach-to-user-namespace
-  - chunkwm --HEAD
-  - ruby
+  - tmux
   - tokei
+  - yarn
+  - youtube-dl
 
 - cask: [
     betterzipql,
