@@ -16,23 +16,11 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-" Fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-
-" Nerdtree file browser
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-
-" Plug 'sbdchd/neoformat'                           " Format / prettify code
-
-Plug 'autozimu/LanguageClient-neovim', {'tag': 'binary-*-x86_64-apple-darwin'} " Language Server Protocol (LSP) support
 Plug 'DataWraith/auto_mkdir'                                                   " Create directory if it does not exist
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                  " Autocomplete
 Plug 'SirVer/ultisnips'                                                        " Snippet support (C-j)
 Plug 'airblade/vim-gitgutter'                                                  " Git changes showed on line numbers
-Plug 'chew-z/itunes.vim'                                                       " Control iTunes with vim!
-Plug 'chrisbra/Colorizer'                                                      " color hex codes and color names
-Plug 'digitaltoad/vim-pug'                                                     " Pug/Jade Syntax highlighting
+Plug 'autozimu/LanguageClient-neovim', {'tag': 'binary-*-x86_64-apple-darwin'} " Language Server Protocol (LSP) support
 Plug 'docunext/closetag.vim'                                                   " Functions and mappings to close open HTML/XML tags
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' }                              " Easy alignment
 Plug 'gregsexton/gitv', { 'on': 'Gitv' }                                       " Git log viewer (Gitv! for file mode)
@@ -42,6 +30,8 @@ Plug 'ironhouzi/vim-stim'                                                      "
 Plug 'itspriddle/vim-marked'                                                   " Open Markdown files in Marked
 Plug 'jeetsukumaran/vim-buffergator'                                           " open a window listing all buffers
 Plug 'jiangmiao/auto-pairs'                                                    " Automatically closing pair stuff
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }              " Fuzzy finder
+Plug 'junegunn/fzf.vim'
 Plug 'kewah/vim-stylefmt'                                                      " Format stylsheets
 Plug 'kshenoy/vim-signature'                                                   " Toggle, display and navigate marks
 Plug 'machakann/vim-highlightedyank'                                           " Make the yanked region apparant
@@ -49,6 +39,11 @@ Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                                "
 Plug 'morhetz/gruvbox'                                                         " THE Colorscheme
 Plug 'posva/vim-vue'                                                           " Syntax Highlight for Vue.js components
 Plug 'qpkorr/vim-bufkill'                                                      " Delete a buffer without closing the split
+Plug 'racer-rust/vim-racer'                                                    " Rust code completion and navigation
+Plug 'rust-lang/rust.vim'                                                      " Official Rust vim plugin
+Plug 'sbdchd/neoformat'                                                        " Format / prettify code
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }       " Nerdtree file browser
+Plug 'sebastianmarkow/deoplete-rust'                                           " Deoplete support for Rust
 Plug 'sheerun/vim-polyglot'                                                    " All languages as one plugin
 Plug 'sickill/vim-pasta'                                                       " context-aware pasting
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }                                  " Undo Tree
@@ -61,10 +56,6 @@ Plug 'tpope/vim-rhubarb'                                                       "
 Plug 'tpope/vim-sleuth'                                                        " Heuristically set indent settings
 Plug 'tpope/vim-surround'                                                      " Surround with cs
 Plug 'w0rp/ale'                                                                " Ale Linting
-Plug 'rust-lang/rust.vim'                                                      " Official Rust vim plugin
-Plug 'racer-rust/vim-racer'                                                    " Rust code completion and navigation
-Plug 'sebastianmarkow/deoplete-rust'                                           " Deoplete support for Rust
-
 
 call plug#end()
 
@@ -78,7 +69,6 @@ set norelativenumber
 
 " Buffer settings
 set hidden
-set nostartofline
 
 " Whitespace settings
 set expandtab
@@ -93,14 +83,10 @@ set mouse=nicr
 set splitbelow
 set splitright
 
-" Disable checking by default (use <F4> to toggle)
-set nospell
-
 " Search settings
 set ignorecase
 set smartcase
-set wrapscan
-set nohlsearch
+" set nohlsearch
 
 " Show trailing spaces and highlight hard tabs
 set list listchars=tab:▸\ ,trail:·
@@ -110,7 +96,7 @@ set showbreak=↪
 set nofoldenable
 
 " Statusline
-set statusline=%=%m\ %q\ %r\ %{ALEGetStatusLine()}\ %t\ %l:%c
+set statusline=%=%m\ %q\ %r\ %{ALEGetStatusLine()}\ %f\ %l:%c
 set fillchars=vert:│,stl:\ ,stlnc:\ ,
 
 " Disable Backup and Swap files
@@ -135,6 +121,12 @@ set pumheight=5
 
 " Interactive substitutioon
 set inccommand=nosplit
+
+" Don't use fish shell
+set shell=bash
+
+" smart autoindenting when starting a new line.
+set smartindent
 
 " Enable undo file as non-root
 if has('persistent_undo')
@@ -219,21 +211,6 @@ nnoremap N Nzz
 vnoremap n nzz
 vnoremap N Nzz
 
-" Same when moving up and down
-nnoremap <C-u> <C-u>zz
-nnoremap <C-d> <C-d>zz
-nnoremap <C-f> <C-f>zz
-nnoremap <C-b> <C-b>zz
-vnoremap <C-u> <C-u>zz
-vnoremap <C-d> <C-d>zz
-vnoremap <C-f> <C-f>zz
-vnoremap <C-b> <C-b>zz
-
-noremap <C-z> <C-y>
-
-" More logical Y (default was alias for yy)
-nnoremap Y y$
-
 " Quick replay 'q' macro
 nnoremap Q @q
 
@@ -265,14 +242,6 @@ nnoremap S mzi<CR><ESC>`z
 nnoremap ,s :%s///gc<Left><Left><Left>
 
 " Search for the word under the cursor in the current directory
-nnoremap ,S :Rg 
-
-" Paste mode toggling
-nnoremap <silent> <F3> :set paste!<CR> :set paste?<CR>
-" Toggle spelling on and off
-nnoremap <silent> <F4> :set spell!<CR> :set spell?<CR>
-" Toggle line numbers
-nnoremap <silent> <F5> :call utils#numberToggle()<cr>
 " Toggle search highlight
 nnoremap <silent> <CR> :set nohlsearch!<CR> :set nohlsearch?<CR>
 
@@ -353,14 +322,6 @@ let g:ale_linters = {
 
 let g:ale_javascript_prettier_options = '--single-quote --no-semi'
 
-" Neoformat
-" let g:neoformat_elixir_exfmt = {
-"   \ 'exe': 'mix',
-"   \ 'args': ['exfmt', '--stdin'],
-"   \ 'stdin': 1
-"   \ }
-" let g:neoformat_enabled_elixir = ['exfmt']
-
 " Alchemist.vim
 let g:alchemist_iex_term_size = 120
 let g:alchemist_iex_term_split = 'vsplit'
@@ -431,9 +392,6 @@ let g:UltiSnipsListSnippets='<C-l>'
 let g:UltiSnipsJumpForwardTrigger='<C-j>'
 let g:UltiSnipsJumpBackwardTrigger='<C-k>'
 
-" Alchemist.vim
-nnoremap <leader>i :IEx<CR>
-
 " Expand region
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -464,9 +422,6 @@ noremap <silent> <Leader>u :GundoToggle<CR>
 " Marked
 nnoremap <silent> <leader>m :MarkedOpen!<CR>
 
-" JS standard --fix
-nnoremap <leader>ef :silent !eval standard % --fix<cr>
-
 " Save file as root
 cmap w!! w !sudo tee > /dev/null %
 
@@ -479,7 +434,6 @@ syntax on
 " Turn off syntax for long lines to improve performance
 set synmaxcol=320
 2mat ErrorMsg '\%100v.'
-
 
 set background=dark
 colorscheme gruvbox
@@ -518,13 +472,12 @@ hi Cursor ctermfg=1 ctermbg=1 guifg=#FFFFFF guibg=#FFFFFF
 " Autocommands
 " ===============================
 
-
 " Keywordprg settings
 autocmd FileType vim setlocal keywordprg=:help
 
 " Turn spellcheck on for markdown files & git commits
-autocmd BufNewFile,BufRead *.md setlocal spell
-autocmd FileType gitcommit setl spell
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
 
 " Set correct Filetype for Dockerfiles
 autocmd BufNewFile,BufRead Dockerfile* setfiletype dockerfile
@@ -541,9 +494,6 @@ autocmd bufenter *
       \   q |
       \ endif
 
-" autocmd FileType vue syntax sync fromstart
-" autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
-
 " Make sure Vim returns to the same line when you reopen a file.
 augroup line_return
   au!
@@ -551,4 +501,10 @@ augroup line_return
 	\ if line("'\"") > 0 && line("'\"") <= line("$") |
 	\     execute 'normal! g`"zvzz' |
 	\ endif
+augroup END
+
+" Neoformat: format Elixir files on save
+augroup fmt
+  autocmd!
+  autocmd BufWritePre *.ex*  undojoin | Neoformat
 augroup END
