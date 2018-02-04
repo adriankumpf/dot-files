@@ -1,8 +1,6 @@
 [user]
     name = Adrian Kumpf
     email = adrian.kumpf@posteo.de
-[credential]
-    helper = cache --timeout=3600
 [core]
     excludesfile = ~/.gitignore
 [push]
@@ -14,6 +12,9 @@
 	ui = true
 [core]
     editor = nvim
+[help]
+    # Automatically correct and execute mistyped commands
+    autocorrect = 1
 [alias]
     aa = add --all
     ap = add --patch
