@@ -1,14 +1,18 @@
 function update
-  switch (uname)
-    case Darwin
-      fnm list >/dev/null
-      fnm latest
-      node -v > /dev/null
+  if type -q fnm
+    echo \nUpdating node with fnm\n
+    fnm list >/dev/null
+    fnm latest
+    node -v > /dev/null
   end
 
-  fisher u
+  if type -q fisher
+    echo \nFish plugins with fisher\n
+    fisher u
+  end
 
-  if [ (which brew) ]
+  if type -q brew
+    echo \nUpdating brew packages\n
     brew update
     brew upgrade
     brew cleanup
@@ -18,12 +22,15 @@ function update
   #   npm -g install "$package"
   # end
 
-  yarn global upgrade
+  if type -q yarn
+    echo \nUpdating global yarn packages\n
+    yarn global upgrade
+  end
 
   ~/.config/nvim/sync.sh
 
-  rustup update
-
-  echo "Don't forget to update uBlock Origin manually: https://github.com/el1t/uBlock-Safari/releases"
-
+  if type -q rustup
+    echo \nUpdating rust channels\n
+    rustup update
+  end
 end
