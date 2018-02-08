@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# export CHUNKC_SOCKET=3920
-
 chunkc core::plugin_dir /usr/local/opt/chunkwm/share/chunkwm/plugins
 chunkc core::hotload 1
 
@@ -37,11 +35,13 @@ chunkc set window_focus_cycle            monitor
 
 chunkc set mouse_follows_focus           intrinsic
 chunkc set window_float_next             0
-chunkc set window_float_center           1
 chunkc set window_region_locked          1
 
-# chunkc set mouse_modifier              \"cmd shift\"
-chunkc set mouse_modifier                fn
+if [[ $(hostname) =~ mbp.* ]]; then
+  chunkc set mouse_modifier              fn
+else
+  chunkc set mouse_modifier              \"cmd shift\"
+fi
 
 chunkc set preselect_border_color        0xffffff00
 chunkc set preselect_border_width        4
