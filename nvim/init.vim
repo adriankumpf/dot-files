@@ -349,11 +349,10 @@ command! -bang -nargs=? -complete=dir Files
 
 " rust.vim
 let g:rustfmt_autosave = 1
-let g:rustfmt_command = "rustup run nightly-2017-12-20 rustfmt"
 
 " LanguageClient
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'beta', 'rls'],
+    \ 'rust': ['rls'],
     \ }
 
 " Racer: show the complete function definition
@@ -426,6 +425,9 @@ nnoremap <silent> <leader>m :MarkedOpen!<CR>
 
 " Save file as root
 cmap w!! w !sudo tee > /dev/null %
+
+" LanguageClient
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " ===============================
 " Color and highlighting settings
