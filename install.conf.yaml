@@ -16,7 +16,7 @@
   - crisidev/homebrew-chunkwm
 
 - brew:
-  - chunkwm --HEAD
+  - chunkwm
   - diff-so-fancy
   - editorconfig
   - elixir
