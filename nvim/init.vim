@@ -56,6 +56,8 @@ Plug 'tpope/vim-rhubarb'                                                       "
 Plug 'tpope/vim-sleuth'                                                        " Heuristically set indent settings
 Plug 'tpope/vim-surround'                                                      " Surround with cs
 Plug 'w0rp/ale'                                                                " Ale Linting
+Plug 'ludovicchabant/vim-gutentags'                                            " manage tag files
+
 
 call plug#end()
 
@@ -96,7 +98,7 @@ set showbreak=↪
 set nofoldenable
 
 " Statusline
-set statusline=%=%m\ %q\ %r\ %{ALEGetStatusLine()}\ %f\ %l:%c
+set statusline=%=%m\ %q\ %r\ %{ALEGetStatusLine()}\ %f\ %l:%c\ %{gutentags#statusline()}
 set fillchars=vert:│,stl:\ ,stlnc:\ ,
 
 " Disable Backup and Swap files
@@ -372,6 +374,9 @@ if executable('rustc')
         let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
     endif
   endif
+
+" gutentags
+let g:gutentags_cache_dir = '~/.tags_cache'
 
 " ===============================
 " Plugin mappings

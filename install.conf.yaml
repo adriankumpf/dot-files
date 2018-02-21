@@ -17,6 +17,7 @@
 
 - brew:
   - chunkwm
+  - ctags
   - diff-so-fancy
   - editorconfig
   - elixir
@@ -89,6 +90,7 @@
   # misc
     ~/.agignore: other/agignore
     ~/bin: bin
+    ~/.ctags: ctags
 
 # macOS
 - shell:
