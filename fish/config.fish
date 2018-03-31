@@ -20,8 +20,13 @@ if type -q fd
   set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden --exclude .git"
 end
 
+if type -q cabal
+  set -g fish_user_paths "$HOME/Library/Haskell/bin" $fish_user_paths
+end
+
+
 set -gx BROWSER "firefox"
 set -gx EDITOR "nvim"
 set -gx ERL_AFLAGS "-kernel shell_history enabled"
 
-alias vim="nvim"
+alias nvim="env MIX_ENV=test nvim"

@@ -37,11 +37,10 @@ Plug 'kshenoy/vim-signature'                                                   "
 Plug 'machakann/vim-highlightedyank'                                           " Make the yanked region apparant
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                                " Intelligent buffer closing
 Plug 'morhetz/gruvbox'                                                         " THE Colorscheme
-Plug 'posva/vim-vue'                                                           " Syntax Highlight for Vue.js components
+Plug 'posva/vim-vue', {'for': 'vue'}                                           " Syntax Highlight for Vue.js components
 Plug 'qpkorr/vim-bufkill'                                                      " Delete a buffer without closing the split
 Plug 'racer-rust/vim-racer'                                                    " Rust code completion and navigation
 Plug 'rust-lang/rust.vim'                                                      " Official Rust vim plugin
-Plug 'sbdchd/neoformat'                                                        " Format / prettify code
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }       " Nerdtree file browser
 Plug 'sebastianmarkow/deoplete-rust'                                           " Deoplete support for Rust
 Plug 'sheerun/vim-polyglot'                                                    " All languages as one plugin
@@ -55,9 +54,8 @@ Plug 'tpope/vim-repeat'                                                        "
 Plug 'tpope/vim-rhubarb'                                                       " Open Github URLs
 Plug 'tpope/vim-sleuth'                                                        " Heuristically set indent settings
 Plug 'tpope/vim-surround'                                                      " Surround with cs
-Plug 'w0rp/ale'                                                                " Ale Linting
+Plug 'w0rp/ale'                                                                " Ale Linting & Fixing / Formatting
 Plug 'ludovicchabant/vim-gutentags'                                            " manage tag files
-
 
 call plug#end()
 
@@ -318,10 +316,17 @@ let g:ale_pattern_options = {
 \}
 
 let g:ale_fixers = {
+\   'elixir': ['mix_format'],
+\   'html': ['prettier'],
 \   'javascript': ['prettier_standard'],
+\   'markdown': ['prettier'],
+\   'stylus': ['stylelint'],
+\   'vue': ['prettier'],
 \}
+
 let g:ale_linters = {
 \   'javascript': ['standard'],
+\   'vue': [],
 \}
 
 let g:ale_javascript_prettier_options = '--single-quote --no-semi'
@@ -512,8 +517,5 @@ augroup line_return
 	\ endif
 augroup END
 
-" Neoformat: format Elixir files on save
-augroup fmt
-  autocmd!
-  autocmd BufWritePre *.ex*  undojoin | Neoformat
-augroup END
+" Ensure syntax highlighting doesn't break on Vue files
+autocmd FileType vue syntax sync fromstart
