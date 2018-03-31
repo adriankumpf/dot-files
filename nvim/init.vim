@@ -341,7 +341,7 @@ let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 "Add :Rg (ripgrep) command - '?' toggles preview:
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --hidden -g !.git/ --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --hidden -g !.git/ -g !*.lock --no-heading -i --color=always '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
