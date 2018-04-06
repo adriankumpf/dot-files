@@ -55,7 +55,6 @@ Plug 'tpope/vim-rhubarb'                                                       "
 Plug 'tpope/vim-sleuth'                                                        " Heuristically set indent settings
 Plug 'tpope/vim-surround'                                                      " Surround with cs
 Plug 'w0rp/ale'                                                                " Ale Linting & Fixing / Formatting
-Plug 'ludovicchabant/vim-gutentags'                                            " manage tag files
 
 call plug#end()
 
@@ -96,7 +95,7 @@ set showbreak=↪
 set nofoldenable
 
 " Statusline
-set statusline=%=%m\ %q\ %r\ %{ALEGetStatusLine()}\ %f\ %l:%c\ %{gutentags#statusline()}
+set statusline=%=%m\ %q\ %r\ %f\ %{AleLinterStatus()}\ %l:%c
 set fillchars=vert:│,stl:\ ,stlnc:\ ,
 
 " Disable Backup and Swap files
@@ -309,7 +308,6 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s'
 
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 let g:ale_pattern_options = {
 \   '.*lib/core/.*\.js$': {'ale_enabled': 0},
 \   '.*test/core/.*\.js$': {'ale_enabled': 0},
@@ -318,18 +316,31 @@ let g:ale_pattern_options = {
 let g:ale_fixers = {
 \   'elixir': ['mix_format'],
 \   'html': ['prettier'],
-\   'javascript': ['prettier_standard'],
+\   'javascript': [],
 \   'markdown': ['prettier'],
 \   'stylus': ['stylelint'],
 \   'vue': ['prettier'],
 \}
 
 let g:ale_linters = {
-\   'javascript': ['standard'],
+\   'javascript': ['eslint'],
 \   'vue': [],
 \}
 
-let g:ale_javascript_prettier_options = '--single-quote --no-semi'
+let g:ale_javascript_prettier_options = '--single-quote --use-tabs'
+
+function! AleLinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '⨉ %d ⚠ %d',
+    \   all_non_errors,
+    \   all_errors
+    \)
+  endfunction
 
 " Alchemist.vim
 let g:alchemist_iex_term_size = 120
@@ -380,16 +391,11 @@ if executable('rustc')
     endif
   endif
 
-" gutentags
-let g:gutentags_cache_dir = '~/.tags_cache'
-
 " ===============================
 " Plugin mappings
 " ===============================
 
 nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>t :BTags<CR>
-nnoremap <silent> <leader>T :Tags<CR>
 nnoremap <silent> <leader>/ :Rg<CR>
 nnoremap <silent> <leader>c :Commands<CR>
 
