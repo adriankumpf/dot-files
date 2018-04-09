@@ -316,7 +316,7 @@ let g:ale_pattern_options = {
 let g:ale_fixers = {
 \   'elixir': ['mix_format'],
 \   'html': ['prettier'],
-\   'javascript': [],
+\   'javascript': ['prettier-standard'],
 \   'markdown': ['prettier'],
 \   'stylus': ['stylelint'],
 \   'vue': ['prettier'],

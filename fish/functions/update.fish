@@ -16,6 +16,7 @@ function update
     brew update
     brew upgrade
     brew cleanup
+    brew cask cleanup
   end
 
   # for package in (npm -g outdated --parseable --depth=0 | cut -d: -f2)

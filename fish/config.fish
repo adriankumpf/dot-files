@@ -9,7 +9,7 @@ if type -q cargo
   set -g fish_user_paths "$HOME/.cargo/bin" $fish_user_paths
 end
 
-if test -x go
+if type -q go
   set -gx GOPATH (go env GOPATH)
   set -g fish_user_paths "$GOPATH/bin" $fish_user_paths
   set -g fish_user_paths "/usr/local/opt/go/libexec/bin" $fish_user_paths
@@ -23,7 +23,6 @@ end
 if type -q cabal
   set -g fish_user_paths "$HOME/Library/Haskell/bin" $fish_user_paths
 end
-
 
 set -gx BROWSER "firefox"
 set -gx EDITOR "nvim"
