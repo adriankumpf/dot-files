@@ -38,9 +38,11 @@ chunkc set window_float_next             0
 chunkc set window_region_locked          1
 
 if [[ $(hostname) =~ mbp.* ]]; then
-  chunkc set mouse_modifier              fn
+  chunkc set mouse_move_window           \"fn 1\"
+  chunkc set mouse_resize_window         \"fn 2\"
 else
-  chunkc set mouse_modifier              \"cmd shift\"
+  chunkc set mouse_move_window           \"cmd shift 1\"
+  chunkc set mouse_resize_window         \"cmd shift 2\"
 fi
 
 chunkc set preselect_border_color        0xffffff00
