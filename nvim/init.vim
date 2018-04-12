@@ -323,11 +323,11 @@ let g:ale_fixers = {
 \}
 
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['prettier-standard'],
 \   'vue': [],
 \}
 
-let g:ale_javascript_prettier_options = '--single-quote --use-tabs'
+let g:ale_javascript_prettier_options = '--single-quote --no-semi'
 
 function! AleLinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
