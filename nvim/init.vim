@@ -132,7 +132,7 @@ if has('persistent_undo')
   if exists('$SUDO_USER')
     set noundofile
   else
-    set undodir=~/.config/nvim/tmp/undo/
+    set undodir=~/.config/nvim/undo/
     set undofile
   endif
 endif
@@ -249,10 +249,6 @@ nnoremap <silent> <CR> :set nohlsearch!<CR> :set nohlsearch?<CR>
 " <Leader><Leader> -- Open last buffer.
 nnoremap <Leader><Leader> <C-^>
 
-" Reformat whole or selection from file
-command! Format :call utils#formatFile()
-nnoremap <silent> ,f :Format<CR>
-
 " Search in very magic mode
 nnoremap / /\v
 vnoremap / /\v
@@ -309,38 +305,38 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s'
 
 let g:ale_pattern_options = {
-\   '.*lib/core/.*\.js$': {'ale_enabled': 0},
-\   '.*test/core/.*\.js$': {'ale_enabled': 0},
-\}
+      \   '.*lib/core/.*\.js$': {'ale_enabled': 0},
+      \   '.*test/core/.*\.js$': {'ale_enabled': 0},
+      \}
 
 let g:ale_fixers = {
-\   'elixir': ['mix_format'],
-\   'html': ['prettier'],
-\   'javascript': ['prettier-standard'],
-\   'markdown': ['prettier'],
-\   'stylus': ['stylelint'],
-\   'vue': ['prettier'],
-\}
+      \   'elixir': ['mix_format'],
+      \   'html': ['prettier'],
+      \   'javascript': ['prettier-standard'],
+      \   'markdown': ['prettier'],
+      \   'stylus': ['stylelint'],
+      \   'vue': ['prettier'],
+      \}
 
 let g:ale_linters = {
-\   'javascript': ['prettier-standard'],
-\   'vue': [],
-\}
+      \   'javascript': ['prettier-standard'],
+      \   'vue': [],
+      \}
 
 let g:ale_javascript_prettier_options = '--single-quote --no-semi'
 
 function! AleLinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
+  let l:counts = ale#statusline#Count(bufnr(''))
 
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
 
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '⨉ %d ⚠ %d',
-    \   all_non_errors,
-    \   all_errors
-    \)
-  endfunction
+  return l:counts.total == 0 ? 'OK' : printf(
+	\   '⨉ %d ⚠ %d',
+	\   all_non_errors,
+	\   all_errors
+	\)
+endfunction
 
 " Alchemist.vim
 let g:alchemist_iex_term_size = 120
@@ -351,27 +347,27 @@ let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
 "Add :Rg (ripgrep) command - '?' toggles preview:
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --hidden -g !.git/ -g !*.lock --no-heading -i --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --hidden -g !.git/ -g !*.lock --no-heading -i --color=always '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
 
 " Toggle preview with '?' when searching w/ :Files
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(
-  \ <q-args>,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \ <bang>0)
+      \ call fzf#vim#files(
+      \ <q-args>,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \ <bang>0)
 
 " rust.vim
 let g:rustfmt_autosave = 1
 
 " LanguageClient
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rls'],
-    \ }
+      \ 'rust': ['rls'],
+      \ }
 
 " Racer: show the complete function definition
 let g:racer_cmd = "$HOME/.cargo/bin/racer"
@@ -384,12 +380,12 @@ endif
 
 if executable('rustc')
   "$ rustup component add rust-src
-    let rustc_root = systemlist('rustc --print sysroot')[0]
-    let rustc_src_dir = rustc_root . '/lib/rustlib/src/rust/src'
-    if isdirectory(rustc_src_dir)
-        let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
-    endif
+  let rustc_root = systemlist('rustc --print sysroot')[0]
+  let rustc_src_dir = rustc_root . '/lib/rustlib/src/rust/src'
+  if isdirectory(rustc_src_dir)
+    let g:deoplete#sources#rust#rust_source_path = rustc_src_dir
   endif
+endif
 
 " ===============================
 " Plugin mappings
@@ -431,7 +427,7 @@ nnoremap <leader>pu :PlugUpdate<CR>
 nnoremap <leader>pc :PlugClean<CR>
 
 " NERDTree
-nnoremap <silent> <leader>n :call utils#nerdWrapper()<CR>
+nnoremap <silent> <leader>n :call NerdWrapper()<CR>
 
 " UndoTree
 noremap <silent> <Leader>u :GundoToggle<CR>
@@ -503,7 +499,7 @@ autocmd FileType gitcommit setlocal spell
 autocmd BufNewFile,BufRead Dockerfile* setfiletype dockerfile
 
 " Remove trailing whitespaces automatically before save
-autocmd BufWritePre * call utils#stripTrailingWhitespaces()
+autocmd BufWritePre * call StripTrailingWhitespaces()
 
 " Resize splits when the window is resized
 autocmd VimResized * :wincmd =
@@ -525,3 +521,33 @@ augroup END
 
 " Ensure syntax highlighting doesn't break on Vue files
 autocmd FileType vue syntax sync fromstart
+
+" ===============================
+" Utils
+" ===============================
+
+" Run NERDTreeFind or Toggle based on current buffer
+function! NerdWrapper() abort
+  if &filetype ==# '' " Empty buffer
+    :NERDTreeToggle
+  elseif expand('%:t') =~? 'NERD_tree' " In NERD_tree buffer
+    wincmd w
+  else " Normal file buffer
+    :NERDTreeFind
+  endif
+endfunction
+
+" Strip trailing spaces
+function! StripTrailingWhitespaces() abort
+  " Preparation: save last search, and cursor position.
+  let l:lastSearch = @/
+  let l:line = line('.')
+  let l:col = col('.')
+
+  " Do the business:
+  execute '%s/\s\+$//e'
+
+  " Clean up: restore previous search history, and cursor position
+  let @/ = l:lastSearch
+  call cursor(l:line, l:col)
+endfunction

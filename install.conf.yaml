@@ -17,9 +17,7 @@
 
 - brew:
   - chunkwm
-  - ctags
   - diff-so-fancy
-  - editorconfig
   - elixir
   - erlang
   - fd
@@ -45,7 +43,7 @@
     betterzipql,
     docker,
     font-fira-code,
-    iterm2,
+    iterm2-beta,
     itsycal,
     launchcontrol,
     qlmarkdown,
@@ -70,12 +68,8 @@
     ~/.config/fish/functions/preview.fish: fish/functions/preview.fish
     ~/.config/fish/functions/t.fish: fish/functions/t.fish
     ~/.config/fish/functions/update.fish: fish/functions/update.fish
-    ~/.config/fish/functions/rusti.fish: fish/functions/rusti.fish
     ~/.config/fish/config.fish: fish/config.fish
   # neovim
-    ~/.config/nvim/spell/dictionary.utf-8.add: nvim/spell/dictionary.utf-8.add
-    # ~/.config/nvim/plugged/vim-snippets/UltiSnips: nvim/UltiSnips
-    ~/.config/nvim/autoload/utils.vim: nvim/autoload/utils.vim
     ~/.config/nvim/init.vim: nvim/init.vim
     ~/.config/nvim/sync.sh: nvim/sync.sh
   # git
@@ -87,10 +81,7 @@
   # tmux
     ~/.tmux.conf: tmux/tmux.conf
     ~/.teamocil: tmux/teamocil
-  # misc
-    ~/.agignore: other/agignore
     ~/bin: bin
-    ~/.ctags: ctags
 
 # macOS
 - shell:
@@ -100,11 +91,8 @@
 
 # Additional Neovim setup
 - shell:
-  - mkdir -p ~/.config/nvim/tmp/backup
-  - mkdir -p ~/.config/nvim/tmp/swap
   - pip install setuptools
   - pip  install --upgrade neovim
-  - pip2 install --upgrade neovim
   - pip3 install --upgrade neovim
 
 # Teamocil
@@ -118,6 +106,6 @@
 # Yarn
 - shell:
   - yarn global add prettier
+  - yarn global add prettier-standard
   - yarn global add standard
   - yarn global add stylefmt
-  - yarn global add prettier-standard
