@@ -4452,11 +4452,11 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>1290 1039 620 392 0 0 3200 1778 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>297 1131 1018 447 0 0 3200 1778 </string>
+	<string>347 1099 918 512 0 0 3200 1778 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1608 896 1572 862 0 0 3200 1778 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>19 25 1573 1727 0 0 3200 1778 </string>
+	<string>19 22 1573 857 0 0 3200 1778 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>19 22 1573 857 0 0 3200 1778 </string>
 	<key>NSWindow Frame iTerm Window 2</key>

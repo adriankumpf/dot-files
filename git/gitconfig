@@ -13,7 +13,6 @@
 [core]
     editor = nvim
 [help]
-    # Automatically correct and execute mistyped commands
     autocorrect = 1
 [alias]
     aa = add --all
@@ -26,7 +25,6 @@
     ps = push
     rb = rebase -i HEAD~10
     st = status -sb
-    stf = "!git st | fpp"
     lo = log --oneline -n 15
     lg = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
 g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%cD%C(reset) %C(bold green)(%cr)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)' --abbrev-commit

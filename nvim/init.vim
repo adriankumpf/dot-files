@@ -313,12 +313,14 @@ let g:ale_fixers = {
       \   'elixir': ['mix_format'],
       \   'html': ['prettier'],
       \   'javascript': ['prettier-standard'],
+      \   'javascript.jsx': ['prettier'],
       \   'markdown': ['prettier'],
       \   'stylus': ['stylelint'],
       \   'vue': ['prettier'],
       \}
 
 let g:ale_linters = {
+      \   'javascript.jsx': ['prettier'],
       \   'javascript': ['prettier-standard'],
       \   'vue': [],
       \}
