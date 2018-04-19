@@ -23,6 +23,7 @@
   - fd
   - fish
   - fisherman
+  - fortune
   - fzf
   - hadolint
   - koekeishiya/formulae/khd
@@ -102,6 +103,7 @@
 # PIP
 - shell:
   - pip install gitlint
+  - pip install vim-vint
 
 # Yarn
 - shell:
