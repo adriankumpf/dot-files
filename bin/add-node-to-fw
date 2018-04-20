@@ -7,4 +7,8 @@
 #
 # and reboot. Execute this script afterwards.
 
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add ~/.config/fnm/bin/node
+set -e
+
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --remove /usr/local/bin/node
+cp -pf "$(which node)" /usr/local/bin/node
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add /usr/local/bin/node

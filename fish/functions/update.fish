@@ -4,6 +4,7 @@ function update
     fnm list >/dev/null
     fnm latest
     node -v > /dev/null
+    ~/bin/add-node-to-fw
   end
 
   if type -q fisher

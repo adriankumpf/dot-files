@@ -10,7 +10,7 @@ windows:
       root: '~/projects/bunchbox-app/'
       panes:
         - make start local api app worker collector demo
-        - docker-compose up
+        - docker-compose up -d
 
     - name: 'git'
       root: '~/projects/bunchbox-app/'
