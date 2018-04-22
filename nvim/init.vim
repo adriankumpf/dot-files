@@ -17,7 +17,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'DataWraith/auto_mkdir'                                                             " Create directory if it does not exist
-Plug 'Shougo/deoplete.nvim', { 'for': ['Elixir', 'Rust'], 'do': ':UpdateRemotePlugins' } " Autocomplete
+Plug 'Shougo/deoplete.nvim', { 'for': ['elixir', 'rust'], 'do': ':UpdateRemotePlugins' } " Autocomplete
 Plug 'airblade/vim-gitgutter'                                                            " Git changes showed on line numbers
 Plug 'docunext/closetag.vim'                                                             " Functions and mappings to close open HTML/XML tags
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' }                                        " Easy alignment
@@ -106,7 +106,7 @@ command! -bang -nargs=* Rg
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>/ :Rg<CR>
 nnoremap <silent> <leader>c :Commands<CR>
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>n :NERDTreeFind<CR>
 nnoremap <silent> <Leader>u :GundoToggle<CR> " UndoTree
 nnoremap <silent> <leader>m :MarkedOpen!<CR> " Marked
 
@@ -164,6 +164,16 @@ vnoremap N Nzz
 
 " Quick replay 'q' macro
 nnoremap Q @q
+
+" Don't yank to default register when changing something
+nnoremap c "xc
+xnoremap c "xc
+
+" After block yank and paste, move cursor to the end of operated text
+" and don't override register
+vnoremap y y`]
+vnoremap p "_dP`]
+nnoremap p p`]
 
 " Quick save and close buffer
 nnoremap <silent> ,w :w<CR>
