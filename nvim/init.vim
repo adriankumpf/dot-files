@@ -17,7 +17,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'DataWraith/auto_mkdir'                                                             " Create directory if it does not exist
-Plug 'Shougo/deoplete.nvim', { 'for': ['elixir', 'rust'], 'do': ':UpdateRemotePlugins' } " Autocomplete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for': ['elixir', 'rust'] } " Autocomplete
 Plug 'airblade/vim-gitgutter'                                                            " Git changes showed on line numbers
 Plug 'docunext/closetag.vim'                                                             " Functions and mappings to close open HTML/XML tags
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' }                                        " Easy alignment
@@ -106,7 +106,7 @@ command! -bang -nargs=* Rg
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>/ :Rg<CR>
 nnoremap <silent> <leader>c :Commands<CR>
-nnoremap <silent> <leader>n :NERDTreeFind<CR>
+nnoremap <silent> <leader>n :call NerdWrapper()<CR>
 nnoremap <silent> <Leader>u :GundoToggle<CR> " UndoTree
 nnoremap <silent> <leader>m :MarkedOpen!<CR> " Marked
 
@@ -208,6 +208,10 @@ vnoremap / /\v
 " Quickly fix spelling errors choosing the first result
 nnoremap <Leader>z z=1<CR><CR>
 
+" Given a register (* by default), opens it in the cmdline-window
+" Usage: <leader>m or "q<leader>m.
+nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+
 " ===============================
 " Plugins settings
 " ===============================
@@ -229,17 +233,17 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_fix_on_save = 1
 
 let g:ale_fixers = {
+      \   'c': ['clang-format'],
       \   'elixir': ['mix_format'],
       \   'html': ['prettier'],
-      \   'javascript': ['prettier-standard'],
+      \   'javascript': ['prettier'],
       \   'markdown': ['prettier'],
-      \   'stylus': ['stylelint'],
       \   'vue': ['prettier'],
       \}
 
 let g:ale_linters = {
-      \   'javascript': ['standard'],
-      \   'vue': [],
+      \   'javascript': ['eslint'],
+      \   'vue': ['eslint'],
       \}
 
 let g:ale_javascript_prettier_options = '--single-quote --no-semi'
@@ -347,4 +351,15 @@ function! AleLinterStatus() abort
   \   l:all_non_errors,
   \   l:all_errors
   \)
+endfunction
+
+" Run NERDTreeFind or Toggle based on current buffer
+function! NerdWrapper() abort
+  if &filetype ==# '' " Empty buffer
+    :NERDTreeToggle
+  elseif expand('%:t') =~? 'NERD_tree' " In NERD_tree buffer
+    wincmd w
+  else " Normal file buffer
+    :NERDTreeFind
+  endif
 endfunction
