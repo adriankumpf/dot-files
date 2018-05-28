@@ -1,7 +1,10 @@
 #!/bin/bash
 
 chunkc core::plugin_dir /usr/local/opt/chunkwm/share/chunkwm/plugins
-chunkc core::hotload 1
+chunkc core::hotload 0
+
+chunkc core::log_file /tmp/chunkwm.out
+chunkc core::log_level warn
 
 #
 # chunkwm-tiling
@@ -66,6 +69,6 @@ chunkc core::load tiling.so
 chunkc core::load ffm.so
 # chunkc core::load border.so
 
-chunkc tiling::rule --owner \"System Preferences\" --state float
-chunkc tiling::rule --owner iTerm --name Preferences --state tile
-chunkc tiling::rule --owner Finder --name Copy --state float
+chunkc tiling::rule --owner \"System Preferences\" --state float &
+chunkc tiling::rule --owner iTerm --name Preferences --state tile &
+chunkc tiling::rule --owner Finder --name Copy --state float &
