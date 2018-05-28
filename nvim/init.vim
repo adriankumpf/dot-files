@@ -17,7 +17,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'DataWraith/auto_mkdir'                                                             " Create directory if it does not exist
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for': ['elixir', 'rust'] } " Autocomplete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                            " Autocomplete
 Plug 'airblade/vim-gitgutter'                                                            " Git changes showed on line numbers
 Plug 'docunext/closetag.vim'                                                             " Functions and mappings to close open HTML/XML tags
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' }                                        " Easy alignment
@@ -44,6 +44,8 @@ Plug 'tpope/vim-rhubarb'                                                        
 Plug 'tpope/vim-sleuth'                                                                  " Heuristically set indent settings
 Plug 'tpope/vim-surround'                                                                " Surround with cs
 Plug 'w0rp/ale'                                                                          " Ale Linting & Fixing / Formatting
+Plug 'rakr/vim-one'
+Plug 'zchee/deoplete-clang'
 
 call plug#end()
 
@@ -51,7 +53,6 @@ call plug#end()
 " General Settings
 " ===============================
 
-set background=dark
 set backspace=indent,start,eol
 set clipboard+=unnamed
 set expandtab tabstop=2 softtabstop=2 shiftwidth=2
@@ -68,6 +69,7 @@ set smartcase
 set smartindent
 set splitbelow splitright
 set termguicolors
+set mouse=a
 
 set statusline=%=%m\ %q\ %r\ %f\ %{AleLinterStatus()}\ %l:%c
 
@@ -82,7 +84,6 @@ if has('persistent_undo')
 endif
 
 syntax on
-colorscheme gruvbox
 
 filetype plugin on
 filetype indent on
@@ -210,7 +211,7 @@ nnoremap <Leader>z z=1<CR><CR>
 
 " Given a register (* by default), opens it in the cmdline-window
 " Usage: <leader>m or "q<leader>m.
-nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+nnoremap <leader>M  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
 " ===============================
 " Plugins settings
@@ -225,6 +226,11 @@ let g:NERDTreeAutoDeleteBuffer=1
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
+let g:deoplete#sources#clang#libclang_path='/usr/local/Cellar/llvm/6.0.0/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header='/usr/local/opt/llvm/lib/clang/'
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
 " Open Markoff instead of Marked 2
 let g:marked_app = 'Markoff'
 
@@ -234,12 +240,14 @@ let g:ale_fix_on_save = 1
 
 let g:ale_fixers = {
       \   'c': ['clang-format'],
+      \   'cpp': ['clang-format'],
       \   'elixir': ['mix_format'],
       \   'html': ['prettier'],
-      \   'javascript': ['prettier'],
+      \   'javascript': ['eslint', 'prettier'],
       \   'markdown': ['prettier'],
-      \   'vue': ['prettier'],
+      \   'vue': ['eslint', 'prettier'],
       \}
+      "   'rust': ['rustfmt']
 
 let g:ale_linters = {
       \   'javascript': ['eslint'],
@@ -282,9 +290,17 @@ hi GitGutterChangeDelete ctermbg=235 ctermfg=245
 hi GitGutterDelete ctermbg=235 ctermfg=245
 hi LineNr ctermfg=237
 hi NonText ctermbg=235 ctermfg=245 guibg=bg guifg=#3c3836
-hi StatusLine guibg=#928374 guifg=bg
-hi StatusLineNC guibg=#928374 guifg=bg
 hi vertsplit ctermbg=235 ctermfg=245 guibg=bg guifg=#3c3836
+
+if $ITERM_PROFILE ==# 'light'
+  colorscheme one
+  set background=light
+else
+  colorscheme gruvbox
+  set background=dark
+  hi StatusLine guibg=#928374 guifg=bg
+  hi StatusLineNC guibg=#928374 guifg=bg
+endif
 
 " ===============================
 " Autocommands
@@ -295,6 +311,7 @@ augroup file_type
   autocmd FileType vim setlocal keywordprg=:help
   autocmd FileType markdown setlocal spell
   autocmd FileType gitcommit setlocal spell
+  autocmd FileType elixir hi link Define GruvboxRed
   autocmd FileType vue syntax sync fromstart " Ensure syntax highlighting doesn't break on Vue files
   autocmd BufNewFile,BufRead Dockerfile* setfiletype dockerfile " Set correct Filetype for Dockerfiles
 augroup END

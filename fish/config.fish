@@ -1,6 +1,10 @@
 set fish_greeting
 
-set fish_color_command white --bold
+if [ $ITERM_PROFILE = "light" ]
+  set fish_color_command black --bold
+else
+  set fish_color_command white --bold
+end
 
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 set -g fish_user_paths "$HOME/bin" $fish_user_paths
@@ -24,8 +28,10 @@ if type -q cabal
   set -g fish_user_paths "$HOME/Library/Haskell/bin" $fish_user_paths
 end
 
-set -gx BROWSER "firefox"
+if type -d /usr/local/opt/llvm/bin
+  set -g fish_user_paths "/usr/local/opt/llvm/bin" $fish_user_paths
+end
+
 set -gx EDITOR "nvim"
 set -gx ERL_AFLAGS "-kernel shell_history enabled"
 
-alias nvim="env MIX_ENV=test nvim"
