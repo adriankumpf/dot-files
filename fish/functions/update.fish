@@ -35,4 +35,9 @@ function update
     echo \nUpdating rust channels\n
     rustup update
   end
+
+  if type -q cargo-install-update
+    cargo install-update -a
+  end
+
 end

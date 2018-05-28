@@ -28,7 +28,7 @@ if type -q cabal
   set -g fish_user_paths "$HOME/Library/Haskell/bin" $fish_user_paths
 end
 
-if type -d /usr/local/opt/llvm/bin
+if test -d /usr/local/opt/llvm/bin
   set -g fish_user_paths "/usr/local/opt/llvm/bin" $fish_user_paths
 end
 
