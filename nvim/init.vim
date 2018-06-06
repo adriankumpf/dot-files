@@ -16,36 +16,41 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'DataWraith/auto_mkdir'                                                             " Create directory if it does not exist
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }                            " Autocomplete
-Plug 'airblade/vim-gitgutter'                                                            " Git changes showed on line numbers
-Plug 'docunext/closetag.vim'                                                             " Functions and mappings to close open HTML/XML tags
-Plug 'godlygeek/tabular', { 'on':  'Tabularize' }                                        " Easy alignment
-Plug 'ironhouzi/vim-stim'                                                                " Improve star by not jumping immediately
-Plug 'itspriddle/vim-marked', { 'for': 'markdown' }                                      " Open Markdown files in Marked
-Plug 'jeetsukumaran/vim-buffergator'                                                     " open a window listing all buffers
-Plug 'jiangmiao/auto-pairs'                                                              " Automatically closing pair stuff
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }                        " Fuzzy finder
+Plug 'DataWraith/auto_mkdir'                                              " Create directory if it does not exist
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }             " Autocomplete
+Plug 'airblade/vim-gitgutter'                                             " Git changes showed on line numbers
+Plug 'docunext/closetag.vim'                                              " Functions and mappings to close open HTML/XML tags
+Plug 'godlygeek/tabular', { 'on':  'Tabularize' }                         " Easy alignment
+Plug 'ironhouzi/vim-stim'                                                 " Improve star by not jumping immediately
+Plug 'itspriddle/vim-marked', { 'for': 'markdown' }                       " Open Markdown files in Marked
+Plug 'jeetsukumaran/vim-buffergator'                                      " open a window listing all buffers
+Plug 'jiangmiao/auto-pairs'                                               " Automatically closing pair stuff
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }         " Fuzzy finder
 Plug 'junegunn/fzf.vim'
-Plug 'kshenoy/vim-signature'                                                             " Toggle, display and navigate marks
-Plug 'machakann/vim-highlightedyank'                                                     " Make the yanked region apparant
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                                          " Intelligent buffer closing
-Plug 'morhetz/gruvbox'                                                                   " THE Colorscheme
-Plug 'racer-rust/vim-racer', { 'for': 'rust' }                                           " Rust code completion and navigation
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }                 " Nerdtree file browser
-Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }                                  " Deoplete support for Rust
-Plug 'sheerun/vim-polyglot'                                                              " All languages as one plugin
-Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }                                            " Undo Tree
-Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }                                      " Elixir Integration Into Vim
-Plug 'tpope/vim-commentary'                                                              " Commenting support (gc)
-Plug 'tpope/vim-fugitive'                                                                " An awesome Git wrapper
-Plug 'tpope/vim-repeat'                                                                  " Repeat 'vim-surround' commands with '.'
-Plug 'tpope/vim-rhubarb'                                                                 " GitHub Extension for fugitive
-Plug 'tpope/vim-sleuth'                                                                  " Heuristically set indent settings
-Plug 'tpope/vim-surround'                                                                " Surround with cs
-Plug 'w0rp/ale'                                                                          " Ale Linting & Fixing / Formatting
-Plug 'rakr/vim-one'
-Plug 'zchee/deoplete-clang'
+Plug 'kshenoy/vim-signature'                                              " Toggle, display and navigate marks
+Plug 'machakann/vim-highlightedyank'                                      " Make the yanked region apparant
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                           " Intelligent buffer closing
+Plug 'morhetz/gruvbox'                                                    " THE Colorscheme
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }                            " Rust code completion and navigation
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }  " Nerdtree file browser
+Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }                   " Deoplete support for Rust
+Plug 'sheerun/vim-polyglot'                                               " All languages as one plugin
+Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }                             " Undo Tree
+Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }                       " Elixir Integration Into Vim
+Plug 'tpope/vim-commentary'                                               " Commenting support (gc)
+Plug 'tpope/vim-fugitive'                                                 " An awesome Git wrapper
+Plug 'tpope/vim-repeat'                                                   " Repeat 'vim-surround' commands with '.'
+Plug 'tpope/vim-rhubarb'                                                  " GitHub Extension for fugitive
+Plug 'tpope/vim-sleuth'                                                   " Heuristically set indent settings
+Plug 'tpope/vim-surround'                                                 " Surround with cs
+Plug 'w0rp/ale'                                                           " Ale Linting & Fixing / Formatting
+Plug 'rakr/vim-one'                                                       " great light colorscheme
+Plug 'zchee/deoplete-clang'                                               " c++/c/obj-c completion
+Plug 'christoomey/vim-tmux-navigator'                                     " navigate seamlessly between vim and tmux splits
+Plug 'easymotion/vim-easymotion'                                          " Vim motions on speed!
+Plug 'tpope/vim-endwise'                                                  " wisely add 'end' in some PLs
+Plug 'AndrewRadev/splitjoin.vim'                                          " transition between multiline and single-line code (gJ | gS)
+
 
 call plug#end()
 
@@ -96,16 +101,17 @@ let g:mapleader="\<space>"
 
 inoremap jj <esc>
 
-"Add :Rg (ripgrep) command - '?' toggles preview:
-command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --hidden -g !.git/ -g !*.lock --no-heading -i --color=always '.shellescape(<q-args>), 1,
-      \   <bang>0 ? fzf#vim#with_preview('up:60%')
-      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-      \   <bang>0)
+if executable('rg')
+  "Add :Rg (ripgrep) command - '?' toggles preview:
+  command! -bang -nargs=* Rg
+        \ call fzf#vim#grep(
+        \   'rg --column --line-number --hidden -g !.git/ -g !*.lock --no-heading -i --color=always '.shellescape(<q-args>), 1,
+        \   <bang>0 ? fzf#vim#with_preview('up:60%')
+        \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+        \   <bang>0)
+endif
 
 nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>/ :Rg<CR>
 nnoremap <silent> <leader>c :Commands<CR>
 nnoremap <silent> <leader>n :call NerdWrapper()<CR>
 nnoremap <silent> <Leader>u :GundoToggle<CR> " UndoTree
@@ -130,32 +136,6 @@ inoremap <S-Tab> <C-n>
 
 " Save file as root
 cmap w!! w !sudo tee > /dev/null %
-
-" Smart window switching with awareness of Tmux panes. Thanks to https://github.com/s3rvac/dotfiles/tree/master/vim
-if exists('$TMUX')
-  function! s:TmuxOrSplitSwitch(wincmd, tmuxdir)
-    let l:previous_winnr = winnr()
-    silent! execute 'wincmd ' . a:wincmd
-    if l:previous_winnr == winnr()
-      call system('tmux select-pane -' . a:tmuxdir)
-      redraw!
-    endif
-  endfunction
-
-  let g:previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-  let &t_te = "\<Esc>]2;" . g:previous_title . "\<Esc>\\" . &t_te
-
-  nnoremap <silent> <C-h> :call <SID>TmuxOrSplitSwitch('h', 'L')<CR>
-  nnoremap <silent> <C-j> :call <SID>TmuxOrSplitSwitch('j', 'D')<CR>
-  nnoremap <silent> <C-k> :call <SID>TmuxOrSplitSwitch('k', 'U')<CR>
-  nnoremap <silent> <C-l> :call <SID>TmuxOrSplitSwitch('l', 'R')<CR>
-else
-  noremap <C-h> <C-w>h
-  noremap <C-j> <C-w>j
-  noremap <C-k> <C-w>k
-  noremap <C-l> <C-w>l
-endif
 
 " When jump to next match also center screen
 nnoremap n nzz
@@ -200,7 +180,7 @@ nnoremap ,S :Rg 
 nnoremap <silent> <CR> :set nohlsearch!<CR> :set nohlsearch?<CR>
 
 " <Leader><Leader> -- Open last buffer.
-nnoremap <Leader><Leader> <C-^>|
+" nnoremap <Leader><Leader> <C-^>|
 
 " Search in very magic mode
 nnoremap / /\v
@@ -234,6 +214,11 @@ inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 " Open Markoff instead of Marked 2
 let g:marked_app = 'Markoff'
 
+" Gundo
+if has('python3')
+  let g:gundo_prefer_python3 = 1
+endif
+
 " ALE
 let g:ale_lint_on_text_changed = 0
 let g:ale_fix_on_save = 1
@@ -243,18 +228,41 @@ let g:ale_fixers = {
       \   'cpp': ['clang-format'],
       \   'elixir': ['mix_format'],
       \   'html': ['prettier'],
-      \   'javascript': ['eslint', 'prettier'],
+      \   'javascript': ['prettier'],
       \   'markdown': ['prettier'],
-      \   'vue': ['eslint', 'prettier'],
+      \   'rust': ['rustfmt'],
+      \   'vue': ['prettier'],
       \}
-      "   'rust': ['rustfmt']
 
 let g:ale_linters = {
-      \   'javascript': ['eslint'],
-      \   'vue': ['eslint'],
+      \   'javascript': [],
+      \   'vue': [],
+      \   'elixir': [],
       \}
 
 let g:ale_javascript_prettier_options = '--single-quote --no-semi'
+
+function! AddLinterIfFileExists(lang, linter, file, lint, fix)
+  let l:current = g:ale_linters[a:lang]
+
+  if filereadable(a:file) && index(l:current, a:linter) == -1
+    if a:lint
+      let g:ale_linters[a:lang] = g:ale_linters[a:lang] + [a:linter]
+    endif
+    if a:fix
+      let g:ale_fixers[a:lang] = g:ale_fixers[a:lang] + [a:linter]
+    end
+  endif
+endfunction
+
+call AddLinterIfFileExists('elixir', 'credo', '.credo.exs', 1, 0)
+call AddLinterIfFileExists('elixir', 'credo', 'config/.credo.exs', 1, 0)
+call AddLinterIfFileExists('javascript', 'eslint', '.eslintrc.js', 1, 1)
+call AddLinterIfFileExists('javascript', 'standard', 'node_modules/.bin/standard', 1, 1)
+call AddLinterIfFileExists('vue', 'eslint', '.eslintrc.js', 1, 1)
+
+" polyglot
+let g:jsx_ext_required = 1
 
 " rust.vim
 let g:rustfmt_autosave = 1
@@ -274,6 +282,15 @@ if executable('rustc')
     let g:deoplete#sources#rust#rust_source_path = g:rustc_src_dir
   endif
 endif
+
+" Easymotion
+let g:EasyMotion_smartcase = 1
+
+" Buffergator
+let g:buffergator_split_size = 50
+let g:buffergator_sort_regime = 'filepath'
+let g:buffergator_show_full_directory_path = 0
+
 
 " ===============================
 " Color and highlighting settings
@@ -314,6 +331,7 @@ augroup file_type
   autocmd FileType elixir hi link Define GruvboxRed
   autocmd FileType vue syntax sync fromstart " Ensure syntax highlighting doesn't break on Vue files
   autocmd BufNewFile,BufRead Dockerfile* setfiletype dockerfile " Set correct Filetype for Dockerfiles
+  autocmd BufNewFile,BufRead *.js setfiletype javascript
 augroup END
 
 augroup buf_write
