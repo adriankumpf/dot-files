@@ -75,12 +75,13 @@ set smartindent
 set splitbelow splitright
 set termguicolors
 set mouse=a
+set signcolumn=yes
 
 set statusline=%=%m\ %q\ %r\ %f\ %{AleLinterStatus()}\ %l:%c
 
 set complete+=kspell   " Autocomplete with dictionary words when spell check is on
 set inccommand=nosplit " Interactive substitution
-set synmaxcol=320      " Turn off syntax for long lines to improve performance
+set synmaxcol=2000     " Turn off syntax for long lines to improve performance
 
 " Enable undo file as non-root
 if has('persistent_undo')
@@ -180,7 +181,7 @@ nnoremap ,S :Rg 
 nnoremap <silent> <CR> :set nohlsearch!<CR> :set nohlsearch?<CR>
 
 " <Leader><Leader> -- Open last buffer.
-" nnoremap <Leader><Leader> <C-^>|
+nnoremap <Leader><Leader> <C-^>|
 
 " Search in very magic mode
 nnoremap / /\v
@@ -192,6 +193,14 @@ nnoremap <Leader>z z=1<CR><CR>
 " Given a register (* by default), opens it in the cmdline-window
 " Usage: <leader>m or "q<leader>m.
 nnoremap <leader>M  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+
+" Easymotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+
+nmap <Leader>s <Plug>(easymotion-s2)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 " ===============================
 " Plugins settings
@@ -282,9 +291,6 @@ if executable('rustc')
     let g:deoplete#sources#rust#rust_source_path = g:rustc_src_dir
   endif
 endif
-
-" Easymotion
-let g:EasyMotion_smartcase = 1
 
 " Buffergator
 let g:buffergator_split_size = 50
