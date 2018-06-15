@@ -305,25 +305,26 @@ let g:buffergator_show_full_directory_path = 0
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-hi clear SignColumn
-
-hi GitGutterAdd ctermbg=235 ctermfg=245
-hi GitGutterChange ctermbg=235 ctermfg=245
-hi GitGutterChangeDelete ctermbg=235 ctermfg=245
-hi GitGutterDelete ctermbg=235 ctermfg=245
-hi LineNr ctermfg=237
-hi NonText ctermbg=235 ctermfg=245 guibg=bg guifg=#3c3836
-hi vertsplit ctermbg=235 ctermfg=245 guibg=bg guifg=#3c3836
-
 if $ITERM_PROFILE ==# 'light'
   colorscheme one
   set background=light
 else
   colorscheme gruvbox
   set background=dark
+
   hi StatusLine guibg=#928374 guifg=bg
   hi StatusLineNC guibg=#928374 guifg=bg
-endif
+
+  hi clear SignColumn
+
+  hi GitGutterAdd ctermfg=142 ctermbg=237 guifg=#b8bb26 guibg=bg
+  hi GitGutterChange ctermfg=108 ctermbg=237 guifg=#8ec07c guibg=bg
+  hi GitGutterChangeDelete ctermfg=108 ctermbg=237 guifg=#8ec07c guibg=bg
+  hi GitGutterDelete ctermfg=167 ctermbg=237 guifg=#fb4934 guibg=bg
+
+  hi vertsplit ctermbg=235 ctermfg=245 guifg=#3c3836 guibg=bg
+  hi NonText ctermbg=235 ctermfg=245 guifg=#3c3836 guibg=bg
+  endif
 
 " ===============================
 " Autocommands
@@ -361,9 +362,9 @@ autocmd bufenter *
 augroup line_return
   au!
   au BufReadPost *
-	\ if line("'\"") > 0 && line("'\"") <= line("$") |
-	\     execute 'normal! g`"zvzz' |
-	\ endif
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \     execute 'normal! g`"zvzz' |
+  \ endif
 augroup END
 
 " ===============================
