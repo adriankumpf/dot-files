@@ -3,7 +3,7 @@ scriptencoding utf-8
 " Autoinstall
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   augroup auto_install
     au!
     au VimEnter * PlugInstall
@@ -50,7 +50,7 @@ Plug 'christoomey/vim-tmux-navigator'                                     " navi
 Plug 'easymotion/vim-easymotion'                                          " Vim motions on speed!
 Plug 'tpope/vim-endwise'                                                  " wisely add 'end' in some PLs
 Plug 'AndrewRadev/splitjoin.vim'                                          " transition between multiline and single-line code (gJ | gS)
-
+Plug 'vim-airline/vim-airline'                                            " status/tabline
 
 call plug#end()
 
@@ -76,8 +76,7 @@ set splitbelow splitright
 set termguicolors
 set mouse=a
 set signcolumn=yes
-
-set statusline=%=%m\ %q\ %r\ %f\ %{AleLinterStatus()}\ %l:%c
+set noshowmode
 
 set complete+=kspell   " Autocomplete with dictionary words when spell check is on
 set inccommand=nosplit " Interactive substitution
@@ -281,6 +280,14 @@ if executable('racer')
   let g:racer_cmd = '$HOME/.cargo/bin/racer'
   let g:racer_experimental_completer = 1
   let g:deoplete#sources#rust#racer_binary = systemlist('which racer')[0]
+
+  augroup racer
+    au!
+    au FileType rust nmap gd <Plug>(rust-def)
+    au FileType rust nmap gs <Plug>(rust-def-split)
+    au FileType rust nmap gx <Plug>(rust-def-vertical)
+    au FileType rust nmap <leader>gd <Plug>(rust-doc)
+  augroup END
 endif
 
 if executable('rustc')
@@ -297,6 +304,9 @@ let g:buffergator_split_size = 50
 let g:buffergator_sort_regime = 'filepath'
 let g:buffergator_show_full_directory_path = 0
 
+" AirLine
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
 " ===============================
 " Color and highlighting settings
@@ -312,9 +322,6 @@ else
   colorscheme gruvbox
   set background=dark
 
-  hi StatusLine guibg=#928374 guifg=bg
-  hi StatusLineNC guibg=#928374 guifg=bg
-
   hi clear SignColumn
 
   hi GitGutterAdd ctermfg=142 ctermbg=237 guifg=#b8bb26 guibg=bg
@@ -324,7 +331,10 @@ else
 
   hi vertsplit ctermbg=235 ctermfg=245 guifg=#3c3836 guibg=bg
   hi NonText ctermbg=235 ctermfg=245 guifg=#3c3836 guibg=bg
-  endif
+
+  hi TabLineFill cterm=None ctermfg=15 ctermbg=242 gui=None guibg=bg
+  hi TabLineSel ctermfg=142 ctermbg=237 guifg=#b8bb26 guibg=bg
+endif
 
 " ===============================
 " Autocommands
@@ -380,19 +390,6 @@ function! StripTrailingWhitespaces() abort
 
   let @/ = l:lastSearch
   call cursor(l:line, l:col)
-endfunction
-
-function! AleLinterStatus() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-
-  return l:counts.total == 0 ? 'OK' : printf(
-  \   '⨉ %d ⚠ %d',
-  \   l:all_non_errors,
-  \   l:all_errors
-  \)
 endfunction
 
 " Run NERDTreeFind or Toggle based on current buffer

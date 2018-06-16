@@ -18,8 +18,10 @@
 	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
 	<true/>
+	<key>BadgeRightMargin</key>
+	<integer>0</integer>
 	<key>BadgeTopMargin</key>
-	<integer>10</integer>
+	<integer>0</integer>
 	<key>CheckTestRelease</key>
 	<true/>
 	<key>ClosingHotkeySwitchesSpaces</key>
@@ -4662,13 +4664,13 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>1290 1039 620 392 0 0 3200 1778 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>347 1099 918 512 0 0 3200 1778 </string>
+	<string>331 318 1018 447 0 0 1680 1028 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1608 896 1572 862 0 0 3200 1778 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>20 25 2028 1727 0 0 3200 1778 </string>
+	<string>22 25 1636 977 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>23 898 1566 857 0 0 3200 1778 </string>
+	<string>21 23 1638 982 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>1607 20 1573 1738 0 0 3200 1778 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -6464,7 +6466,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-05-26T11:52:45Z</date>
+	<date>2018-06-16T21:51:59Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUSkippedVersion</key>
@@ -6492,9 +6494,9 @@
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>TerminalMargin</key>
-	<integer>20</integer>
+	<integer>10</integer>
 	<key>TerminalVMargin</key>
-	<integer>20</integer>
+	<integer>5</integer>
 	<key>ThreeFingerEmulates</key>
 	<false/>
 	<key>TmuxDashboardLimit</key>
