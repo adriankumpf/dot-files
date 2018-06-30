@@ -90,6 +90,13 @@
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart chunkwm; fi;'
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then ./macOS/configure.sh; fi;'
 
+# terminfo
+- shell:
+  - tic -o ~/.terminfo ./terminfo/xterm-256color.terminfo
+  - tic -o ~/.terminfo ./terminfo/tmux-256color.terminfo
+  - tic -o ~/.terminfo ./terminfo/tmux.terminfo
+
+
 # Additional Neovim setup
 - shell:
   - pip install setuptools

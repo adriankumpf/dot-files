@@ -319,6 +319,7 @@ if $ITERM_PROFILE ==# 'light'
   colorscheme one
   set background=light
 else
+  let g:gruvbox_italic=1
   colorscheme gruvbox
   set background=dark
 
