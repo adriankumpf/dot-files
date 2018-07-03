@@ -1,1 +1,3 @@
-<html><body>You are being <a href="https://raw.githubusercontent.com/wincent/wincent/master/roles/terminfo/files/xterm-256color.terminfo">redirected</a>.</body></html>
+xterm-256color|xterm with 256 colors and italic,
+  sitm=\E[3m, ritm=\E[23m,
+  use=xterm-256color,

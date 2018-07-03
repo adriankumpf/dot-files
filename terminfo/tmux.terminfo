@@ -1,1 +1,4 @@
-<html><body>You are being <a href="https://raw.githubusercontent.com/wincent/wincent/master/roles/terminfo/files/tmux.terminfo">redirected</a>.</body></html>
+tmux|tmux terminal multiplexer,
+  sitm=\E[3m, ritm=\E[23m,
+  smso=\E[7m, rmso=\E[27m,
+  use=screen,
