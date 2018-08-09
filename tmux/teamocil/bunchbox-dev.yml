@@ -1,18 +1,18 @@
 name: 'bunchbox-dev'
 windows:
     - name: 'editor'
-      root: '~/projects/bunchbox-app/'
+      root: '~/dev/work/bunchbox-app/'
       panes:
         - nvim
 
     - name: 'processes'
       layout: main-vertical
-      root: '~/projects/bunchbox-app/'
+      root: '~/dev/work/bunchbox-app/'
       panes:
         - make start local api app worker collector demo
         - docker-compose up -d
 
     - name: 'git'
-      root: '~/projects/bunchbox-app/'
+      root: '~/dev/work/bunchbox-app/'
       panes:
         - git status

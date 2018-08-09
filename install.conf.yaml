@@ -44,7 +44,7 @@
     betterzipql,
     docker,
     font-fira-code,
-    iterm2-beta,
+    iterm2,
     itsycal,
     launchcontrol,
     qlmarkdown,
@@ -114,7 +114,4 @@
 
 # Yarn
 - shell:
-  - yarn global add prettier
-  - yarn global add prettier-standard
-  - yarn global add standard
   - yarn global add stylefmt

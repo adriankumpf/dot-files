@@ -105,7 +105,7 @@ if executable('rg')
   "Add :Rg (ripgrep) command - '?' toggles preview:
   command! -bang -nargs=* Rg
         \ call fzf#vim#grep(
-        \   'rg --column --line-number --hidden -g !.git/ -g !*.lock --no-heading -i --color=always '.shellescape(<q-args>), 1,
+        \   'rg --column --line-number --hidden -g !.git/ -g !*.lock -g !*-lock* --no-heading -i --color=always '.shellescape(<q-args>), 1,
         \   <bang>0 ? fzf#vim#with_preview('up:60%')
         \           : fzf#vim#with_preview('right:50%:hidden', '?'),
         \   <bang>0)
@@ -201,6 +201,10 @@ nmap <Leader>s <Plug>(easymotion-s2)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
+" Bring back the Escape key in terminal mode
+tnoremap <Esc> <C-\><C-n>
+
+
 " ===============================
 " Plugins settings
 " ===============================
@@ -236,10 +240,10 @@ let g:ale_fixers = {
       \   'cpp': ['clang-format'],
       \   'elixir': ['mix_format'],
       \   'html': ['prettier'],
-      \   'javascript': ['prettier'],
+      \   'javascript': [],
       \   'markdown': ['prettier'],
       \   'rust': ['rustfmt'],
-      \   'vue': ['prettier'],
+      \   'vue': [],
       \}
 
 let g:ale_linters = {
@@ -266,6 +270,7 @@ endfunction
 call AddLinterIfFileExists('elixir', 'credo', '.credo.exs', 1, 0)
 call AddLinterIfFileExists('elixir', 'credo', 'config/.credo.exs', 1, 0)
 call AddLinterIfFileExists('javascript', 'eslint', '.eslintrc.js', 1, 1)
+call AddLinterIfFileExists('javascript', 'eslint', '.eslintrc.json', 1, 1)
 call AddLinterIfFileExists('javascript', 'standard', 'node_modules/.bin/standard', 1, 1)
 call AddLinterIfFileExists('vue', 'eslint', '.eslintrc.js', 1, 1)
 
