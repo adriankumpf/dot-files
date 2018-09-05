@@ -15,9 +15,8 @@ function update
   if type -q brew
     echo \nUpdating brew packages\n
     brew update
-    brew upgrade
+    brew upgrade --display-times
     brew cleanup
-    brew cask cleanup
   end
 
   # for package in (npm -g outdated --parseable --depth=0 | cut -d: -f2)
