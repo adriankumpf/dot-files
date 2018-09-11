@@ -26,7 +26,7 @@
   - fortune
   - fzf
   - hadolint
-  - koekeishiya/formulae/khd
+  - koekeishiya/formulae/skhd
   - mpg123
   - neovim
   - python3
@@ -76,9 +76,9 @@
   # git
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
-  # chunkwm & khd
+  # chunkwm & skhd
     ~/.chunkwmrc: window_manager/.chunkwmrc
-    ~/.khdrc: window_manager/.khdrc
+    ~/.skhdrc: window_manager/.skhdrc
   # tmux
     ~/.tmux.conf: tmux/tmux.conf
     ~/.teamocil: tmux/teamocil
@@ -86,7 +86,7 @@
 
 # macOS
 - shell:
-  - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart khd; fi;'
+  - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart skhd; fi;'
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart chunkwm; fi;'
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then ./macOS/configure.sh; fi;'
 
