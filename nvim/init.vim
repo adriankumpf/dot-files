@@ -63,7 +63,7 @@ set clipboard+=unnamed
 set expandtab tabstop=2 softtabstop=2 shiftwidth=2
 set fillchars=vert:│,stl:\ ,stlnc:\ ,
 set hidden
-set list listchars=tab:▸\ ,trail:· showbreak=↪
+set list listchars=tab:▸\ ,trail:·,nbsp:‗ showbreak=↪
 set nojoinspaces
 set nonumber
 set norelativenumber
@@ -312,6 +312,13 @@ let g:buffergator_show_full_directory_path = 0
 " AirLine
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+
+" GitGutter
+let g:gitgutter_sign_added='┃'
+let g:gitgutter_sign_modified='┃'
+let g:gitgutter_sign_removed='◢'
+let g:gitgutter_sign_removed_first_line='◥'
+let g:gitgutter_sign_modified_removed='◢'
 
 " ===============================
 " Color and highlighting settings
