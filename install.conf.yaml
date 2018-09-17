@@ -12,7 +12,6 @@
   - caskroom/cask
   - caskroom/fonts
   - caskroom/versions
-  - fisherman/tap
   - crisidev/homebrew-chunkwm
 
 - brew:

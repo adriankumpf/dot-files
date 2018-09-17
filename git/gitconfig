@@ -56,5 +56,10 @@ g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)
 [pull]
     rebase = true
 [merge "npm-merge-driver"]
-	name = automatically merge npm lockfiles
-	driver = npx npm-merge-driver merge %A %O %B %P
+    name = automatically merge npm lockfiles
+    driver = npx npm-merge-driver merge %A %O %B %P
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
