@@ -2,4 +2,4 @@
 
 set -eu
 
-curl -s 'http://st01.dlf.de/dlf/01/128/mp3/stream.mp3' | mpg123 -
+curl -s 'https://dg-dradio-https-dus-dtag-cdn.sslcast.addradio.de/dradio/dlf/live/mp3/128/stream.mp3' | mpg123 -
