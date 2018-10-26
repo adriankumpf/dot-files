@@ -21,7 +21,6 @@
   - erlang
   - fd
   - fish
-  - fisherman
   - fortune
   - fzf
   - hadolint
@@ -44,7 +43,6 @@
     betterzipql,
     docker,
     font-fira-code,
-    iterm2,
     itsycal,
     launchcontrol,
     qlmarkdown,
@@ -52,13 +50,6 @@
     qlvideo,
     shiori,
   ]
-
-- shell:
-  - fish -c "fisher z"
-  - fish -c "fisher done"
-  - fish -c "fisher fnm"
-  - fish -c "fisher fzf"
-  - fish -c "fisher i adriankumpf/pure"
 
 - link:
   # fish shell
@@ -70,6 +61,7 @@
     ~/.config/fish/functions/t.fish: fish/functions/t.fish
     ~/.config/fish/functions/update.fish: fish/functions/update.fish
     ~/.config/fish/config.fish: fish/config.fish
+    ~/.config/fish/fishfile: fish/fishfile
   # neovim
     ~/.config/nvim/init.vim: nvim/init.vim
     ~/.config/nvim/sync.sh: nvim/sync.sh
