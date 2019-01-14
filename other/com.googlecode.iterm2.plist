@@ -799,7 +799,7 @@
 		</dict>
 	</dict>
 	<key>DarkThemeHasBlackTitlebar</key>
-	<false/>
+	<true/>
 	<key>Default Bookmark Guid</key>
 	<string>E6E1188C-2D6B-40E6-AED0-DB9179E0C2A3</string>
 	<key>DimBackgroundWindows</key>
@@ -831,7 +831,7 @@
 	<key>HideActivityIndicator</key>
 	<false/>
 	<key>HideMenuBarInFullscreen</key>
-	<false/>
+	<true/>
 	<key>HideScrollbar</key>
 	<true/>
 	<key>HideTab</key>
@@ -913,17 +913,17 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>1738 568 710 203 0 0 3200 1778 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
-	<string>572 1357 400 129 0 0 3200 1778 </string>
+	<string>1400 1236 400 129 0 0 3200 1777 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>1290 1039 620 392 0 0 3200 1778 </string>
+	<string>1290 1038 620 392 0 0 3200 1777 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>237 169 918 512 0 0 1680 1027 </string>
+	<string>840 461 937 566 0 0 1680 1027 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1608 896 1572 862 0 0 3200 1778 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>20 523 811 482 0 0 1680 1027 </string>
+	<string>840 0 839 1027 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>840 515 839 512 0 0 1680 1028 </string>
+	<string>0 515 839 512 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>1607 20 1573 1738 0 0 3200 1778 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -1164,13 +1164,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.11759774386882782</real>
+				<real>0.15294117647058825</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.11759573966264725</real>
+				<real>0.15294117647058825</real>
 				<key>Red Component</key>
-				<real>0.11759927868843079</real>
+				<real>0.15294117647058825</real>
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>
@@ -1693,7 +1693,7 @@
 			<key>Send Code When Idle</key>
 			<false/>
 			<key>Set Local Environment Vars</key>
-			<true/>
+			<false/>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Silence Bell</key>
@@ -1793,6 +1793,19 @@
 			</array>
 			<key>Sync Title</key>
 			<false/>
+			<key>Tab Color</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
+				<key>Blue Component</key>
+				<real>0.20635653054341674</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.20635653054341674</real>
+				<key>Red Component</key>
+				<real>0.799041748046875</real>
+			</dict>
 			<key>Tags</key>
 			<array/>
 			<key>Terminal Type</key>
@@ -2635,6 +2648,8 @@
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
+	<key>NoSyncHaveRequestedFullDiskAccess</key>
+	<true/>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
@@ -2645,6 +2660,88 @@
 	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
+	<key>NoSyncRecordedVariableNames</key>
+	<dict>
+		<key>1</key>
+		<array>
+			<string>session.jobName</string>
+			<string>session.id</string>
+			<string>session.badge</string>
+			<string>session.profileName</string>
+			<string>session.name</string>
+			<string>session.terminalIconName</string>
+			<string>session.tmuxClientName</string>
+			<string>session.termid</string>
+			<string>session.triggerName</string>
+			<string>session.tmuxWindowPane</string>
+			<string>session.hostname</string>
+			<string>session.username</string>
+			<string>session.tmuxStatusRight</string>
+			<string>session.tab</string>
+			<string>session.tmuxRole</string>
+			<string>session.path</string>
+			<string>session.creationTimeString</string>
+			<string>session.rows</string>
+			<string>session.tmuxWindowTitle</string>
+			<string>session.autoLogId</string>
+			<string>session.tty</string>
+			<string>session.autoName</string>
+			<string>session.terminalWindowName</string>
+			<string>iterm2</string>
+			<string>session.tmuxStatusLeft</string>
+			<string>session.autoNameFormat</string>
+			<string>session.jobPid</string>
+			<string>session.lastCommand</string>
+			<string>session.mouseReportingMode</string>
+			<string>session.pid</string>
+			<string>session.presentationName</string>
+			<string>session.columns</string>
+		</array>
+		<key>16</key>
+		<array>
+			<string>titleOverride</string>
+			<string>currentTab.currentSession.session.columns</string>
+			<string>currentTab</string>
+			<string>currentTab.currentSession</string>
+			<string>currentTab.currentSession.session.pid</string>
+			<string>currentTab.currentSession.session.mouseReportingMode</string>
+			<string>currentTab.currentSession.session.tty</string>
+			<string>currentTab.currentSession.session.presentationName</string>
+			<string>currentTab.currentSession.session.username</string>
+			<string>currentTab.currentSession.session.name</string>
+			<string>currentTab.currentSession.session.rows</string>
+			<string>currentTab.currentSession.session.jobName</string>
+			<string>iterm2</string>
+			<string>currentTab.currentSession.session.hostname</string>
+			<string>currentTab.currentSession.session.path</string>
+			<string>currentTab.currentSession.session.jobPid</string>
+		</array>
+		<key>2</key>
+		<array>
+			<string>currentSession</string>
+			<string>titleOverride</string>
+			<string>currentSession.session.pid</string>
+			<string>currentSession.session.name</string>
+			<string>currentSession.session.mouseReportingMode</string>
+			<string>currentSession.session.path</string>
+			<string>currentSession.session.hostname</string>
+			<string>currentSession.session.rows</string>
+			<string>currentSession.session.tty</string>
+			<string>currentSession.session.jobName</string>
+			<string>iterm2</string>
+			<string>tmuxWindow</string>
+			<string>currentSession.session.presentationName</string>
+			<string>currentSession.session.username</string>
+			<string>currentSession.session.jobPid</string>
+			<string>currentSession.session.columns</string>
+		</array>
+		<key>4</key>
+		<array>
+			<string>pid</string>
+			<string>localhostName</string>
+			<string>effectiveTheme</string>
+		</array>
+	</dict>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>517075880.67088801</real>
 	<key>NoSyncTurnOffBracketedPasteOnHostChange</key>
@@ -2667,6 +2764,8 @@
 	<false/>
 	<key>PasteTabToStringTabStopSize</key>
 	<integer>4</integer>
+	<key>PerPaneBackgroundImage</key>
+	<true/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -2717,15 +2816,13 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing.xml?shard=44</string>
+	<string>https://iterm2.com/appcasts/nightly.xml?shard=44</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-10-07T15:33:25Z</date>
+	<date>2018-12-19T17:50:38Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
-	<key>SUSkippedVersion</key>
-	<string>3.2.20180412-nightly</string>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>ShowBookmarkName</key>
@@ -2740,6 +2837,8 @@
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.10000000000000001</real>
+	<key>StatusBarPosition</key>
+	<integer>0</integer>
 	<key>StretchTabsToFillBar</key>
 	<false/>
 	<key>SwitchTabModifier</key>
@@ -2748,6 +2847,8 @@
 	<integer>9</integer>
 	<key>TabStyle</key>
 	<integer>1</integer>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>5</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>TerminalMargin</key>
@@ -2795,7 +2896,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.6beta5</string>
+	<string>3.3.20181211-nightly</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

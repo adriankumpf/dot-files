@@ -9,7 +9,7 @@ function update
 
   if type -q fisher
     echo \nFish plugins with fisher\n
-    fisher u
+    fisher
   end
 
   if type -q brew
