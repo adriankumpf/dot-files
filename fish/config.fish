@@ -15,17 +15,17 @@ else
   set fish_color_command white --bold
 end
 
-set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
-set -g fish_user_paths "$HOME/bin" $fish_user_paths
+set -x PATH "/usr/local/sbin" $PATH
+set -x PATH "$HOME/bin" $PATH
 
 if type -q cargo
-  set -g fish_user_paths "$HOME/.cargo/bin" $fish_user_paths
+  set -x PATH "$HOME/.cargo/bin" $PATH
 end
 
 # if type -q go
 #   set -gx GOPATH (`go env GOPATH`)
-#   set -g fish_user_paths "$GOPATH/bin" $fish_user_paths
-#   set -g fish_user_paths "/usr/local/opt/go/libexec/bin" $fish_user_paths
+#   set -x PATH "$GOPATH/bin" $PATH
+#   set -x PATH "/usr/local/opt/go/libexec/bin" $PATH
 # end
 
 if type -q fd
@@ -34,16 +34,16 @@ if type -q fd
 end
 
 if type -q cabal
-  set -g fish_user_paths "$HOME/Library/Haskell/bin" $fish_user_paths
+  set -x PATH "$HOME/Library/Haskell/bin" $PATH
 end
 
 
 if test -d /usr/local/opt/llvm/bin
-  set -g fish_user_paths "/usr/local/opt/llvm/bin" $fish_user_paths
+  set -x PATH "/usr/local/opt/llvm/bin" $PATH
 end
 
 if test -d ~/.cargo/bin
-  set -g fish_user_paths "$HOME/.cargo/bin" $fish_user_paths
+  set -x PATH "$HOME/.cargo/bin" $PATH
 end
 
 set -gx EDITOR "nvim"

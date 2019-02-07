@@ -1,10 +1,8 @@
 function update
-  if type -q fnm
-    echo \nUpdating node with fnm\n
-    fnm list >/dev/null
-    fnm latest
+  if type -q nvm
+    echo \nUpdating node with nvm\n
+    nvm use latest
     node -v > /dev/null
-    ~/bin/add-node-to-fw
   end
 
   if type -q fisher
@@ -16,6 +14,7 @@ function update
     echo \nUpdating brew packages\n
     brew update
     brew upgrade --display-times
+    brew cask upgrade
     brew cleanup
   end
 
