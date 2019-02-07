@@ -43,7 +43,6 @@
     betterzipql,
     docker,
     font-fira-code,
-    itsycal,
     launchcontrol,
     qlmarkdown,
     qlstephen,
@@ -73,7 +72,6 @@
     ~/.skhdrc: window_manager/.skhdrc
   # tmux
     ~/.tmux.conf: tmux/tmux.conf
-    ~/.teamocil: tmux/teamocil
     ~/bin: bin
 
 # macOS
@@ -94,10 +92,6 @@
   - pip install setuptools
   - pip  install --upgrade neovim
   - pip3 install --upgrade neovim
-
-# Teamocil
-- shell:
-  - gem install teamocil
 
 # PIP
 - shell:
