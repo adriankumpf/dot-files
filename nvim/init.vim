@@ -1,13 +1,19 @@
 scriptencoding utf-8
 
 " Autoinstall
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  augroup auto_install
-    au!
-    au VimEnter * PlugInstall
-  augroup END
+" if empty(glob('~/.config/nvim/autoload/plug.vim'))
+"   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   augroup auto_install
+"     au!
+"     au VimEnter * PlugInstall
+"   augroup END
+" endif
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " ===============================
@@ -18,7 +24,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'AndrewRadev/splitjoin.vim'                                          "  transition between multiline and single-line code (gJ | gS)
 Plug 'DataWraith/auto_mkdir'                                              "  Create directory if it does not exist
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }             "  Autocomplete
 Plug 'airblade/vim-gitgutter'                                             "  Git changes showed on line numbers
 Plug 'christoomey/vim-tmux-navigator'                                     "  navigate seamlessly between vim and tmux splits
 Plug 'docunext/closetag.vim'                                              "  Functions and mappings to close open HTML/XML tags
@@ -51,6 +56,18 @@ Plug 'vim-airline/vim-airline'                                            "  sta
 Plug 'w0rp/ale'                                                           "  Ale Linting & Fixing / Formatting
 Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }                      "  c++/c/obj-c completion
 
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }           "  Autocomplete
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+if !has('nvim')
+  Plug 'markonm/traces.vim'                                               "  Interactive Substitution for vim
+endif
+
 call plug#end()
 
 " ===============================
@@ -78,8 +95,11 @@ set signcolumn=yes
 set noshowmode
 
 set complete+=kspell   " Autocomplete with dictionary words when spell check is on
-set inccommand=nosplit " Interactive substitution
 set synmaxcol=2000     " Turn off syntax for long lines to improve performance
+
+if has("nvim")
+  set inccommand=nosplit " Interactive substitution
+endif
 
 " Enable undo file as non-root
 if has('persistent_undo')
