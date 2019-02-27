@@ -19,15 +19,6 @@ chunkc set global_desktop_offset_left    20
 chunkc set global_desktop_offset_right   20
 chunkc set global_desktop_offset_gap     15
 
-# chunkc set 2_desktop_offset_top          190
-# chunkc set 2_desktop_offset_bottom       190
-# chunkc set 2_desktop_offset_left         190
-# chunkc set 2_desktop_offset_right        190
-# chunkc set 2_desktop_offset_gap          15
-
-chunkc set desktop_padding_step_size     10.0
-chunkc set desktop_gap_step_size         5.0
-
 chunkc set bsp_spawn_left                1
 chunkc set bsp_optimal_ratio             1.618
 chunkc set bsp_split_mode                optimal
@@ -48,9 +39,10 @@ else
   chunkc set mouse_resize_window         \"cmd shift 2\"
 fi
 
-chunkc set preselect_border_color        0xffffff00
-chunkc set preselect_border_width        4
+chunkc set preselect_border_color        0xffcc231c
+chunkc set preselect_border_width        5
 chunkc set preselect_border_radius       0
+chunkc set preselect_border_outline      0
 
 #
 # chunkwm-border
@@ -70,5 +62,5 @@ chunkc core::load ffm.so
 # chunkc core::load border.so
 
 chunkc tiling::rule --owner \"System Preferences\" --state float &
-chunkc tiling::rule --owner iTerm --name Preferences --state tile &
+chunkc tiling::rule --owner iTerm --name Preferences --state float &
 chunkc tiling::rule --owner Finder --name Copy --state float &
