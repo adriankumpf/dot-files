@@ -46,4 +46,5 @@ end
 
 set -gx EDITOR "nvim"
 set -gx ERL_AFLAGS "-kernel shell_history enabled"
+set -gx LANG en_US.UTF-8
 
