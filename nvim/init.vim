@@ -356,6 +356,9 @@ else
 
   hi TabLineFill cterm=None ctermfg=15 ctermbg=242 gui=None guibg=bg
   hi TabLineSel ctermfg=142 ctermbg=237 guifg=#b8bb26 guibg=bg
+
+  hi cursorline cterm=none guibg=none
+  hi cursorlinenr ctermfg=red guifg=red
 endif
 
 " ===============================
