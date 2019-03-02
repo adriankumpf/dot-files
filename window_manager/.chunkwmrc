@@ -31,7 +31,9 @@ chunkc set mouse_follows_focus           intrinsic
 chunkc set window_float_next             0
 chunkc set window_region_locked          1
 
-if [[ $(hostname) =~ mbp.* ]]; then
+LID_CLOSED=$(ioreg -r -k AppleClamshellState | grep '"AppleClamshellState" = Yes' | cut -f2 -d"=")
+
+if [[ $(hostname) =~ mbp.* && "$LID_CLOSED" =~ "Yes" ]]; then
   chunkc set mouse_move_window           \"fn 1\"
   chunkc set mouse_resize_window         \"fn 2\"
 else

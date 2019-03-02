@@ -120,6 +120,12 @@ let g:mapleader="\<space>"
 
 inoremap jj <esc>
 
+" Disable  arrow keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
 if executable('rg')
   "Add :Rg (ripgrep) command - '?' toggles preview:
   command! -bang -nargs=* Rg
