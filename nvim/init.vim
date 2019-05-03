@@ -27,7 +27,6 @@ Plug 'DataWraith/auto_mkdir'                                              "  Cre
 Plug 'airblade/vim-gitgutter'                                             "  Git changes showed on line numbers
 Plug 'christoomey/vim-tmux-navigator'                                     "  navigate seamlessly between vim and tmux splits
 Plug 'docunext/closetag.vim'                                              "  Functions and mappings to close open HTML/XML tags
-Plug 'easymotion/vim-easymotion'                                          "  Vim motions on speed!
 Plug 'godlygeek/tabular', { 'on':  'Tabularize' }                         "  Easy alignment
 Plug 'ironhouzi/vim-stim'                                                 "  Improve star by not jumping immediately
 Plug 'itspriddle/vim-marked', { 'for': 'markdown' }                       "  Open Markdown files in Marked
@@ -217,14 +216,6 @@ nnoremap <Leader>z z=1<CR><CR>
 " Given a register (* by default), opens it in the cmdline-window
 " Usage: <leader>m or "q<leader>m.
 nnoremap <leader>M  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
-
-" Easymotion
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_smartcase = 1
-
-nmap <Leader>s <Plug>(easymotion-s2)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
 
 " Bring back the Escape key in terminal mode
 tnoremap <Esc> <C-\><C-n>
