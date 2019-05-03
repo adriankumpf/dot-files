@@ -31,20 +31,23 @@ chunkc set mouse_follows_focus           intrinsic
 chunkc set window_float_next             0
 chunkc set window_region_locked          1
 
-LID_CLOSED=$(ioreg -r -k AppleClamshellState | grep '"AppleClamshellState" = Yes' | cut -f2 -d"=")
-
-if [[ $(hostname) =~ mbp.* && "$LID_CLOSED" =~ "Yes" ]]; then
-  chunkc set mouse_move_window           \"fn 1\"
-  chunkc set mouse_resize_window         \"fn 2\"
-else
-  chunkc set mouse_move_window           \"cmd shift 1\"
-  chunkc set mouse_resize_window         \"cmd shift 2\"
-fi
+chunkc set mouse_move_window           \"cmd shift 1\"
+chunkc set mouse_resize_window         \"cmd shift 2\"
+chunkc set mouse_motion_interval         35
 
 chunkc set preselect_border_color        0xffcc231c
 chunkc set preselect_border_width        5
 chunkc set preselect_border_radius       0
 chunkc set preselect_border_outline      0
+
+#
+# chunkwm-ffm
+#
+
+
+chunkc set ffm_bypass_modifier           fn
+chunkc set ffm_standby_on_float          1
+chunkc set ffm_disable_autoraise         1
 
 #
 # chunkwm-border
@@ -63,6 +66,8 @@ chunkc core::load tiling.so
 chunkc core::load ffm.so
 # chunkc core::load border.so
 
+chunkc tiling::rule --owner Finder --name Copy --state float &
+chunkc tiling::rule --owner \"1Password 7\" --state tile &
+chunkc tiling::rule --owner \"Gas Mask\" --state float &
 chunkc tiling::rule --owner \"System Preferences\" --state float &
 chunkc tiling::rule --owner iTerm --name Preferences --state float &
-chunkc tiling::rule --owner Finder --name Copy --state float &
