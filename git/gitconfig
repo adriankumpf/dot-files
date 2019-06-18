@@ -53,8 +53,15 @@ g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)
     old = red bold
     new = green bold
     whitespace = red reverse
+[merge]
+    conflictStyle = diff3
+    log = 1000
 [pull]
     rebase = true
+[rebase]
+    autosquash = true
+[rerere]
+    enabled = true
 [merge "npm-merge-driver"]
     name = automatically merge npm lockfiles
     driver = npx npm-merge-driver merge %A %O %B %P
