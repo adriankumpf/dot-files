@@ -1,15 +1,6 @@
 scriptencoding utf-8
 
 " Autoinstall
-" if empty(glob('~/.config/nvim/autoload/plug.vim'))
-"   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"   augroup auto_install
-"     au!
-"     au VimEnter * PlugInstall
-"   augroup END
-" endif
-
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -34,13 +25,13 @@ Plug 'jeetsukumaran/vim-buffergator'                                      "  ope
 Plug 'jiangmiao/auto-pairs'                                               "  Automatically closing pair stuff
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }         "  Fuzzy finder
 Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-sneak'                                                 " Jump to any location specified by two characters.
 Plug 'kshenoy/vim-signature'                                              "  Toggle, display and navigate marks
 Plug 'machakann/vim-highlightedyank'                                      "  Make the yanked region apparant
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                           "  Intelligent buffer closing
 Plug 'morhetz/gruvbox'                                                    "  THE Colorscheme
 Plug 'rakr/vim-one'                                                       "  great light colorscheme
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }  "  Nerdtree file browser
-Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }                   "  Deoplete support for Rust
 Plug 'sheerun/vim-polyglot'                                               "  All languages as one plugin
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }                             "  Undo Tree
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }                       "  Elixir Integration Into Vim
@@ -53,19 +44,9 @@ Plug 'tpope/vim-sleuth'                                                   "  Heu
 Plug 'tpope/vim-surround'                                                 "  Surround with cs
 Plug 'vim-airline/vim-airline'                                            "  status/tabline
 Plug 'w0rp/ale'                                                           "  Ale Linting & Fixing / Formatting
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }             "  Autocomplete
 Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }                      "  c++/c/obj-c completion
-
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }           "  Autocomplete
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-if !has('nvim')
-  Plug 'markonm/traces.vim'                                               "  Interactive Substitution for vim
-endif
+Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }                   "  Deoplete support for Rust
 
 call plug#end()
 
@@ -92,13 +73,9 @@ set termguicolors
 set mouse=a
 set signcolumn=yes
 set noshowmode
-
 set complete+=kspell   " Autocomplete with dictionary words when spell check is on
 set synmaxcol=2000     " Turn off syntax for long lines to improve performance
-
-if has("nvim")
-  set inccommand=nosplit " Interactive substitution
-endif
+set inccommand=nosplit " Interactive substitution
 
 " Enable undo file as non-root
 if has('persistent_undo')
@@ -107,9 +84,7 @@ if has('persistent_undo')
 endif
 
 syntax on
-
-filetype plugin on
-filetype indent on
+filetype indent plugin on
 
 " ===============================
 " Mappings
@@ -125,18 +100,7 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-if executable('rg')
-  "Add :Rg (ripgrep) command - '?' toggles preview:
-  command! -bang -nargs=* Rg
-        \ call fzf#vim#grep(
-        \   'rg --column --line-number --hidden -g !.git/ -g !*.lock -g !*-lock* --no-heading -i --color=always '.shellescape(<q-args>), 1,
-        \   <bang>0 ? fzf#vim#with_preview('up:60%')
-        \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-        \   <bang>0)
-endif
-
 nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>c :Commands<CR>
 nnoremap <silent> <leader>n :call NerdWrapper()<CR>
 nnoremap <silent> <Leader>u :GundoToggle<CR> " UndoTree
 nnoremap <silent> <leader>m :MarkedOpen!<CR> " Marked
@@ -213,13 +177,11 @@ vnoremap / /\v
 " Quickly fix spelling errors choosing the first result
 nnoremap <Leader>z z=1<CR><CR>
 
-" Given a register (* by default), opens it in the cmdline-window
-" Usage: <leader>m or "q<leader>m.
-nnoremap <leader>M  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
-
 " Bring back the Escape key in terminal mode
 tnoremap <Esc> <C-\><C-n>
 
+" Sneak
+map s <Plug>Sneak_s
 
 " ===============================
 " Plugins settings
@@ -286,8 +248,6 @@ function! AddLinterIfFileExists(lang, linter, file, lint, fix)
   endif
 endfunction
 
-call AddLinterIfFileExists('elixir', 'credo', '.credo.exs', 1, 0)
-call AddLinterIfFileExists('elixir', 'credo', 'config/.credo.exs', 1, 0)
 call AddLinterIfFileExists('javascript', 'eslint', '.eslintrc.js', 1, 1)
 call AddLinterIfFileExists('javascript', 'eslint', '.eslintrc.json', 1, 1)
 call AddLinterIfFileExists('javascript', 'standard', 'node_modules/.bin/standard', 1, 1)
@@ -325,6 +285,11 @@ let g:gitgutter_sign_modified='┃'
 let g:gitgutter_sign_removed='◢'
 let g:gitgutter_sign_removed_first_line='◥'
 let g:gitgutter_sign_modified_removed='◢'
+
+" Sneak
+let g:sneak#label = 1
+let g:sneak#use_ic_scs = 1
+let g:sneak#absolute_dir = 1
 
 " ===============================
 " Color and highlighting settings
