@@ -67,7 +67,7 @@ chunkc core::load ffm.so
 # chunkc core::load border.so
 
 chunkc tiling::rule --owner Finder --name Copy --state float &
-chunkc tiling::rule --owner \"1Password 7\" --state tile &
+chunkc tiling::rule --owner \"1Password 7\" --state float &
 chunkc tiling::rule --owner \"Gas Mask\" --state float &
 chunkc tiling::rule --owner \"System Preferences\" --state float &
 chunkc tiling::rule --owner iTerm --name Preferences --state float &
