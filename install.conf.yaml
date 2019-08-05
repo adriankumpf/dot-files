@@ -9,13 +9,13 @@
       force: true
 
 - tap:
-  - caskroom/cask
-  - caskroom/fonts
-  - caskroom/versions
-  - crisidev/homebrew-chunkwm
+  - homebrew/cask
+  - homebrew/cask-fonts
+  - homebrew/cask-versions
+  - koekeishiya/formulae
 
 - brew:
-  - chunkwm
+  - yabai
   - diff-so-fancy
   - elixir
   - erlang
@@ -67,8 +67,8 @@
   # git
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
-  # chunkwm & skhd
-    ~/.chunkwmrc: window_manager/.chunkwmrc
+  # yabai & skhd
+    ~/.yabairc: window_manager/.yabairc
     ~/.skhdrc: window_manager/.skhdrc
   # tmux
     ~/.tmux.conf: tmux/tmux.conf
@@ -77,7 +77,7 @@
 # macOS
 - shell:
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart skhd; fi;'
-  - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart chunkwm; fi;'
+  - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart yabai; fi;'
   - bash -c 'if [ "$(uname)" == "Darwin" ]; then ./macOS/configure.sh; fi;'
 
 # terminfo
