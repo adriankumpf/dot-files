@@ -63,6 +63,7 @@ npm-debug.log*
 node_modules/
 
 # Version Manager
+# ===========================
 .nvmrc
 .fnmrc
 
@@ -72,5 +73,6 @@ node_modules/
 _build/
 .elixir_ls/
 
-
-
+# Secrets
+# ===========================
+.env
