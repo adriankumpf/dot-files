@@ -20,6 +20,10 @@ if type -q cargo
   set -x PATH "$HOME/.cargo/bin" $PATH
 end
 
+if type -q pip3
+  set -x PATH "$HOME/Library/Python/3.7/bin" $PATH
+end
+
 # if type -q go
 #   set -gx GOPATH (`go env GOPATH`)
 #   set -x PATH "$GOPATH/bin" $PATH
@@ -47,4 +51,3 @@ end
 set -gx EDITOR "nvim"
 set -gx ERL_AFLAGS "-kernel shell_history enabled"
 set -gx LANG en_US.UTF-8
-
