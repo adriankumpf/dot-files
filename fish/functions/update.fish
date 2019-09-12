@@ -27,7 +27,10 @@ function update
     yarn global upgrade
   end
 
-  ~/.config/nvim/sync.sh
+  if type -q nvim
+    nvim  +PlugUpgrade +PlugClean! +PlugUpdate +qa
+    nvim +UpdateRemotePlugins +qa
+  end
 
   if type -q rustup
     echo \nUpdating rust channels\n

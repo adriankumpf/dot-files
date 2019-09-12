@@ -62,8 +62,10 @@
     ~/.config/fish/config.fish: fish/config.fish
     ~/.config/fish/fishfile: fish/fishfile
   # neovim
+    ~/.config/nvim/autoload: nvim/autoload
+    ~/.config/nvim/ftdetect: nvim/ftdetect
+    ~/.config/nvim/ftplugin: nvim/ftplugin
     ~/.config/nvim/init.vim: nvim/init.vim
-    ~/.config/nvim/sync.sh: nvim/sync.sh
   # git
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
