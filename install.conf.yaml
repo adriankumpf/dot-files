@@ -52,10 +52,6 @@
 
 - link:
   # fish shell
-    ~/.config/fish/functions/bbd.fish: fish/functions/bbd.fish
-    ~/.config/fish/functions/docker-rm.fish: fish/functions/docker-rm.fish
-    ~/.config/fish/functions/docker-rmf.fish: fish/functions/docker-rmf.fish
-    ~/.config/fish/functions/docker-stop.fish: fish/functions/docker-stop.fish
     ~/.config/fish/functions/preview.fish: fish/functions/preview.fish
     ~/.config/fish/functions/t.fish: fish/functions/t.fish
     ~/.config/fish/functions/update.fish: fish/functions/update.fish
