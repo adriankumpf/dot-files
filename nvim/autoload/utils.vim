@@ -8,12 +8,3 @@ function! utils#StripTrailingWhitespaces() abort
   let @/ = l:lastSearch
   call cursor(l:line, l:col)
 endfunction
-
-function! utils#InsertTabWrapper()
-    let l:col = col('.') - 1
-    if !l:col || getline('.')[l:col - 1] !~# '\k'
-        return "\<Tab>"
-    else
-        return "\<C-n>"
-    endif
-  endfunction

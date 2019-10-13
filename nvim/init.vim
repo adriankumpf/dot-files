@@ -13,7 +13,6 @@ Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                "  Intelligent bu
 Plug 'morhetz/gruvbox'                                         "  *THE* Colorscheme
 Plug 'rakr/vim-one'                                            "  Great light colorscheme
 Plug 'sheerun/vim-polyglot'                                    "  All languages as one plugin
-Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }            "  Elixir Integration Into Vim
 Plug 'tpope/vim-commentary'                                    "  Commenting support (gc)
 Plug 'tpope/vim-endwise'                                       "  Wisely add 'end' in some PLs
 Plug 'tpope/vim-fugitive'                                      "  An awesome Git wrapper
@@ -23,6 +22,7 @@ Plug 'tpope/vim-surround'                                      "  Surround with 
 Plug 'tpope/vim-vinegar'                                       "  Improve netrw
 Plug 'vim-airline/vim-airline'                                 "  status/tabline
 Plug 'w0rp/ale'                                                "  Linting & Fixing / Formatting
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'for': 'elixir' }
 call plug#end()
 
 
@@ -48,6 +48,7 @@ set noshowmode
 set complete+=kspell
 set inccommand=nosplit
 set wildmode=list:longest,list:full
+set pumblend=35
 
 
 syntax on
@@ -65,14 +66,9 @@ nnoremap <Leader><Leader> <C-^>
 
 inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-inoremap <Tab> <C-r>=utils#InsertTabWrapper()<CR>
-inoremap <S-Tab> <C-n>
 
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>m :MarkedOpen!<CR>
-
-nnoremap <silent> <C-p> :ALEPrevious<Return>
-nnoremap <silent> <C-n> :ALENext<Return>
 
 nnoremap <silent> <CR> :set nohlsearch!<CR> :set nohlsearch?<CR>
 
@@ -110,7 +106,7 @@ let g:deoplete#enable_at_startup = 1
 
 let g:marked_app = 'Markoff'
 
-let g:ale_lint_on_text_changed = 0 " ALE
+let g:ale_lint_on_text_changed = 0
 let g:ale_fix_on_save = 1
 
 let g:ale_fixers = {
@@ -135,6 +131,13 @@ let g:ale_linters = {
       \   'rust': ['rls'],
       \   'vue': [],
       \}
+
+" let g:LanguageClient_loggingFile = expand('~/LanguageClient.log')
+let g:LanguageClient_serverCommands = {
+\ 'elixir': ['~/dev/third_party/elixir-ls/release/language_server.sh'],
+\ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+\ }
+
 
 let g:gitgutter_sign_added='┃'
 let g:gitgutter_sign_modified='┃'
