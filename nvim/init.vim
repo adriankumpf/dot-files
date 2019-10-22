@@ -19,7 +19,9 @@ Plug 'tpope/vim-fugitive'                                      "  An awesome Git
 Plug 'tpope/vim-rhubarb'                                       "  GitHub Extension for fugitive
 Plug 'tpope/vim-sleuth'                                        "  Heuristically set indent settings
 Plug 'tpope/vim-surround'                                      "  Surround with cs
-Plug 'tpope/vim-vinegar'                                       "  Improve netrw
+Plug 'tpope/vim-eunuch'                                        " Vim sugar for the UNIX shell commands that need it the most.
+Plug 'justinmk/vim-dirvish'                                    " Directory viewer
+Plug 'kristijanhusak/vim-dirvish-git'                          " Git support for dirvish.vim
 Plug 'vim-airline/vim-airline'                                 "  status/tabline
 Plug 'w0rp/ale'                                                "  Linting & Fixing / Formatting
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'for': 'elixir' }
@@ -100,9 +102,9 @@ vnoremap y y`]
 vnoremap p "_dP`]
 nnoremap p p`]
 
-let g:netrw_liststyle = 3
-
 let g:deoplete#enable_at_startup = 1
+
+let g:dirvish_mode = ':sort ,^.*[\/],'
 
 let g:marked_app = 'Markoff'
 
