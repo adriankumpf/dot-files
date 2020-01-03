@@ -1,2 +1,3 @@
 bin/bartender_*
 .phonenumber
+nvim/autoload/plug.vim*
