@@ -103,15 +103,19 @@ vnoremap p "_dP`]
 nnoremap p p`]
 
 
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+if executable('bat')
+  command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+endif
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+if executable('rg')
+  command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+    \   fzf#vim#with_preview(), <bang>0)
 
-command! -nargs=* -bang RG call utils#RipgrepFzf(<q-args>, <bang>0)
+  command! -nargs=* -bang RG call utils#RipgrepFzf(<q-args>, <bang>0)
+endif
 
 
 let g:deoplete#enable_at_startup = 1
