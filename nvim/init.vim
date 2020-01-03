@@ -102,6 +102,18 @@ vnoremap y y`]
 vnoremap p "_dP`]
 nnoremap p p`]
 
+
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+command! -nargs=* -bang RG call utils#RipgrepFzf(<q-args>, <bang>0)
+
+
 let g:deoplete#enable_at_startup = 1
 
 let g:dirvish_mode = ':sort ,^.*[\/],'
@@ -110,7 +122,6 @@ let g:marked_app = 'Markoff'
 
 let g:ale_lint_on_text_changed = 0
 let g:ale_fix_on_save = 1
-
 let g:ale_fixers = {
       \   'c': ['clang-format'],
       \   'cpp': ['clang-format'],
@@ -124,7 +135,6 @@ let g:ale_fixers = {
       \   'sql': ['pgformatter'],
       \   'vue': [],
       \}
-
 let g:ale_linters = {
       \   'elixir': [],
       \   'javascript': [],
@@ -139,7 +149,6 @@ let g:LanguageClient_serverCommands = {
 \ 'elixir': ['~/dev/third_party/elixir-ls/release/language_server.sh'],
 \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
 \ }
-
 
 let g:gitgutter_sign_added='┃'
 let g:gitgutter_sign_modified='┃'

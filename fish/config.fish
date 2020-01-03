@@ -23,16 +23,15 @@ if type -q pip3
   set -x PATH "$HOME/Library/Python/3.7/bin" $PATH
 end
 
-if type -q fd; and type -q bat
+if type -q fd
   set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
   set -gx FZF_DEFAULT_COMMAND "fish -c 'git ls-tree -r --name-only HEAD || fd --type f --type l --hidden --follow --exclude .git' 2> /dev/null"
-  set -gx FZF_DEFAULT_OPTS "--no-mouse --height 40% -1 --reverse --multi --inline-info --preview 'fish -c \"bat --style numbers --color always theme {} || cat {}\" 2> /dev/null | head -500'"
+  set -gx FZF_DEFAULT_OPTS "--no-mouse -1 --layout=reverse --multi --info=inline"
 end
 
 if type -q cabal
   set -x PATH "$HOME/Library/Haskell/bin" $PATH
 end
-
 
 if test -d /usr/local/opt/llvm/bin
   set -x PATH "/usr/local/opt/llvm/bin" $PATH
