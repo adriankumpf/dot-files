@@ -822,6 +822,8 @@
 	<false/>
 	<key>DrawOutlineAroundCursor</key>
 	<false/>
+	<key>EnableAPIServer</key>
+	<true/>
 	<key>EnableDivisionView</key>
 	<false/>
 	<key>EnableProxyIcon</key>
@@ -1039,9 +1041,9 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1608 896 1572 862 0 0 3200 1777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1079 20 2101 1734 0 0 3200 1800 </string>
+	<string>1064 20 2116 1734 0 0 3200 1800 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>20 20 925 862 0 0 3200 1800 </string>
+	<string>1605 20 1575 1734 0 0 3200 1800 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>20 20 1608 862 0 0 3200 1800 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -2956,7 +2958,7 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {3200, 1800}}</string>
 		<key>topLeft</key>
-		<string>{1297, 1462}</string>
+		<string>{810, 1320}</string>
 	</dict>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
@@ -2974,7 +2976,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>C7AD0CCE-054D-4B65-862C-CB4771C4AED9</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>1078</integer>
+	<integer>1188</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -4306,16 +4308,16 @@
 	</array>
 	<key>NoSyncSearchHistory2</key>
 	<array>
+		<string>run_sc</string>
+		<string>voltage corr</string>
+		<string>voltage cr</string>
+		<string>volatge</string>
 		<string>switch</string>
 		<string>state</string>
 		<string>car_seetings</string>
 		<string>path</string>
 		<string>car_version</string>
 		<string>end_ge</string>
-		<string>emd+gepfem</string>
-		<string>window</string>
-		<string>base_url</string>
-		<string>b asebase</string>
 	</array>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>517075880.67088801</real>
@@ -4395,7 +4397,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-11-25T09:37:54Z</date>
+	<date>2020-01-01T17:45:10Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
