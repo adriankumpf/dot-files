@@ -1,7 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'AndrewRadev/splitjoin.vim'                               "  Transition between multi- & single-line code (gJ | gS)
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  "  Autocomplete
-Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }        "  Deoplete support for Rust
 Plug 'airblade/vim-gitgutter'                                  "  Git changes showed on line numbers
 Plug 'ironhouzi/vim-stim'                                      "  Improve star by not jumping immediately
 Plug 'itspriddle/vim-marked', { 'for': 'markdown' }            "  Open Markdown files in Marked
@@ -11,15 +9,11 @@ Plug 'junegunn/fzf.vim'                                        "  FZF integratio
 Plug 'machakann/vim-highlightedyank'                           "  Make the yanked region apparant
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                "  Intelligent buffer closing
 Plug 'morhetz/gruvbox'                                         "  *THE* Colorscheme
-Plug 'rakr/vim-one'                                            "  Great light colorscheme
 Plug 'sheerun/vim-polyglot'                                    "  All languages as one plugin
 Plug 'tpope/vim-commentary'                                    "  Commenting support (gc)
 Plug 'tpope/vim-endwise'                                       "  Wisely add 'end' in some PLs
-Plug 'tpope/vim-fugitive'                                      "  An awesome Git wrapper
-Plug 'tpope/vim-rhubarb'                                       "  GitHub Extension for fugitive
 Plug 'tpope/vim-sleuth'                                        "  Heuristically set indent settings
 Plug 'tpope/vim-surround'                                      "  Surround with cs
-Plug 'tpope/vim-eunuch'                                        " Vim sugar for the UNIX shell commands that need it the most.
 Plug 'justinmk/vim-dirvish'                                    " Directory viewer
 Plug 'kristijanhusak/vim-dirvish-git'                          " Git support for dirvish.vim
 Plug 'vim-airline/vim-airline'                                 "  status/tabline
@@ -118,8 +112,6 @@ if executable('rg')
 endif
 
 
-let g:deoplete#enable_at_startup = 1
-
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
 let g:marked_app = 'Markoff'
@@ -163,30 +155,25 @@ let g:gitgutter_sign_modified_removed='◢'
 
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
 
-if $ITERM_PROFILE ==# 'light'
-  colorscheme one
-  set background=light
-else
-  let g:gruvbox_italic=1
-  colorscheme gruvbox
-  set background=dark
+let g:gruvbox_italic=1
+colorscheme gruvbox
+set background=dark
 
-  hi clear SignColumn
+hi clear SignColumn
 
-  hi GitGutterAdd ctermfg=142 ctermbg=237 guifg=#b8bb26 guibg=bg
-  hi GitGutterChange ctermfg=108 ctermbg=237 guifg=#8ec07c guibg=bg
-  hi GitGutterChangeDelete ctermfg=108 ctermbg=237 guifg=#8ec07c guibg=bg
-  hi GitGutterDelete ctermfg=167 ctermbg=237 guifg=#fb4934 guibg=bg
+hi GitGutterAdd ctermfg=142 ctermbg=237 guifg=#b8bb26 guibg=bg
+hi GitGutterChange ctermfg=108 ctermbg=237 guifg=#8ec07c guibg=bg
+hi GitGutterChangeDelete ctermfg=108 ctermbg=237 guifg=#8ec07c guibg=bg
+hi GitGutterDelete ctermfg=167 ctermbg=237 guifg=#fb4934 guibg=bg
 
-  hi vertsplit ctermbg=235 ctermfg=245 guifg=#3c3836 guibg=bg
-  hi NonText ctermbg=235 ctermfg=245 guifg=#3c3836 guibg=bg
+hi vertsplit ctermbg=235 ctermfg=245 guifg=#3c3836 guibg=bg
+hi NonText ctermbg=235 ctermfg=245 guifg=#3c3836 guibg=bg
 
-  hi TabLineFill cterm=None ctermfg=15 ctermbg=242 gui=None guibg=bg
-  hi TabLineSel ctermfg=142 ctermbg=237 guifg=#b8bb26 guibg=bg
+hi TabLineFill cterm=None ctermfg=15 ctermbg=242 gui=None guibg=bg
+hi TabLineSel ctermfg=142 ctermbg=237 guifg=#b8bb26 guibg=bg
 
-  hi cursorline cterm=none guibg=none
-  hi cursorlinenr ctermfg=red guifg=red
-endif
+hi cursorline cterm=none guibg=none
+hi cursorlinenr ctermfg=red guifg=red
 
 augroup buf_write
   au!
