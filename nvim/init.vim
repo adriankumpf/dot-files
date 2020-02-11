@@ -1,9 +1,10 @@
+let g:from_lock = {'do': 'yarn install --frozen-lockfile'}
+
 call plug#begin('~/.config/nvim/plugged')
 Plug 'AndrewRadev/splitjoin.vim'                               "  Transition between multi- & single-line code (gJ | gS)
 Plug 'airblade/vim-gitgutter'                                  "  Git changes showed on line numbers
 Plug 'ironhouzi/vim-stim'                                      "  Improve star by not jumping immediately
 Plug 'itspriddle/vim-marked', { 'for': 'markdown' }            "  Open Markdown files in Marked
-Plug 'jiangmiao/auto-pairs'                                    "  Automatically closing pair stuff
 Plug '/usr/local/opt/fzf'                                      "  FZF (brew install fzf)
 Plug 'junegunn/fzf.vim'                                        "  FZF integration
 Plug 'machakann/vim-highlightedyank'                           "  Make the yanked region apparant
@@ -11,14 +12,25 @@ Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                "  Intelligent bu
 Plug 'morhetz/gruvbox'                                         "  *THE* Colorscheme
 Plug 'sheerun/vim-polyglot'                                    "  All languages as one plugin
 Plug 'tpope/vim-commentary'                                    "  Commenting support (gc)
-Plug 'tpope/vim-endwise'                                       "  Wisely add 'end' in some PLs
 Plug 'tpope/vim-sleuth'                                        "  Heuristically set indent settings
 Plug 'tpope/vim-surround'                                      "  Surround with cs
 Plug 'justinmk/vim-dirvish'                                    " Directory viewer
 Plug 'kristijanhusak/vim-dirvish-git'                          " Git support for dirvish.vim
 Plug 'vim-airline/vim-airline'                                 "  status/tabline
-Plug 'w0rp/ale'                                                "  Linting & Fixing / Formatting
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'for': 'elixir' }
+Plug 'neoclide/coc.nvim', {'branch': 'release' }               " Intellisense engine
+Plug 'amiralies/coc-elixir',          g:from_lock
+Plug 'fannheyward/coc-sql',			      g:from_lock
+Plug 'fannheyward/coc-rust-analyzer', g:from_lock
+Plug 'neoclide/coc-css',              g:from_lock
+Plug 'neoclide/coc-stylelint',        g:from_lock
+Plug 'neoclide/coc-eslint',           g:from_lock
+Plug 'neoclide/coc-html',             g:from_lock
+Plug 'neoclide/coc-json',             g:from_lock
+Plug 'neoclide/coc-lists',            g:from_lock
+Plug 'neoclide/coc-tsserver',	        g:from_lock
+Plug 'neoclide/coc-pairs',            g:from_lock
+Plug 'neoclide/coc-snippets',         g:from_lock
+Plug 'neoclide/coc-prettier',         g:from_lock
 call plug#end()
 
 
@@ -60,13 +72,13 @@ nnoremap <silent> ,q :Sayonara<CR>
 
 nnoremap <Leader><Leader> <C-^>
 
-inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>m :MarkedOpen!<CR>
 
 nnoremap <silent> <CR> :set nohlsearch!<CR> :set nohlsearch?<CR>
+
+nnoremap <silent> <Tab> :bnext<CR>
+nnoremap <silent> <S-Tab> :bprevious<CR>
 
 nnoremap <Leader>z z=1<CR><CR>
 
@@ -96,6 +108,31 @@ vnoremap y y`]
 vnoremap p "_dP`]
 nnoremap p p`]
 
+nnoremap <silent> <Leader>co :<C-u>CocList outline<CR>
+nnoremap <silent> <Leader>cs :<C-u>CocList -I symbols<CR>
+nnoremap <silent> <Leader>cl :<C-u>CocList locationlist<CR>
+nnoremap <silent> <Leader>cc :<C-u>CocList commands<CR>
+
+nmap <Leader>$ <Plug>(coc-rename)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <silent> K :call utils#show_documentation()<CR>
+
+" Use tab for trigger completion
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>CheckBackSpace() ? "\<TAB>" :
+  \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:CheckBackSpace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1] =~# '\s'
+endfunction
+
 
 if executable('bat')
   command! -bang -nargs=? -complete=dir Files
@@ -111,40 +148,35 @@ if executable('rg')
   command! -nargs=* -bang RG call utils#RipgrepFzf(<q-args>, <bang>0)
 endif
 
+" let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'horizontal' } }
+let g:fzf_layout = { 'window': 'call CreateCentredFloatingWindow()' }
+function! CreateCentredFloatingWindow()
+	let width = float2nr(&columns * 0.8)
+	let height = float2nr(&lines * 0.4)
+	let top = ((&lines - height) / 2) - 1
+	let left = (&columns - width) / 2
+	let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
+
+	let top = "╭" . repeat("─", width - 2) . "╮"
+	let mid = "│" . repeat(" ", width - 2) . "│"
+	let bot = "╰" . repeat("─", width - 2) . "╯"
+	let lines = [top] + repeat([mid], height - 2) + [bot]
+	let s:buf = nvim_create_buf(v:false, v:true)
+	call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
+	call nvim_open_win(s:buf, v:true, opts)
+	set winhl=Normal:Floating
+	let opts.row += 1
+	let opts.height -= 2
+	let opts.col += 2
+	let opts.width -= 4
+	call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+	au BufWipeout <buffer> exe 'bw '.s:buf
+endfunction
+
 
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
 let g:marked_app = 'Markoff'
-
-let g:ale_lint_on_text_changed = 0
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-      \   'c': ['clang-format'],
-      \   'cpp': ['clang-format'],
-      \   'elixir': ['mix_format'],
-      \   'html': ['prettier'],
-      \   'javascript': ['prettier'],
-      \   'latex': ['latexindent'],
-      \   'markdown': ['prettier'],
-      \   'python': ['black'],
-      \   'rust': ['rustfmt'],
-      \   'sql': ['pgformatter'],
-      \   'vue': [],
-      \}
-let g:ale_linters = {
-      \   'elixir': [],
-      \   'javascript': [],
-      \   'latex': ['lacheck'],
-      \   'python': ['pylint'],
-      \   'rust': ['rls'],
-      \   'vue': [],
-      \}
-
-" let g:LanguageClient_loggingFile = expand('~/LanguageClient.log')
-let g:LanguageClient_serverCommands = {
-\ 'elixir': ['~/dev/third_party/elixir-ls/release/language_server.sh'],
-\ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-\ }
 
 let g:gitgutter_sign_added='┃'
 let g:gitgutter_sign_modified='┃'

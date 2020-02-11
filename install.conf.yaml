@@ -52,7 +52,6 @@
 
 - link:
   # fish shell
-    ~/.config/fish/functions/preview.fish: fish/functions/preview.fish
     ~/.config/fish/functions/t.fish: fish/functions/t.fish
     ~/.config/fish/functions/update.fish: fish/functions/update.fish
     ~/.config/fish/config.fish: fish/config.fish
@@ -62,6 +61,7 @@
     ~/.config/nvim/ftdetect: nvim/ftdetect
     ~/.config/nvim/ftplugin: nvim/ftplugin
     ~/.config/nvim/init.vim: nvim/init.vim
+    ~/.config/nvim/coc-settings.json: nvim/coc-settings.json
   # git
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
