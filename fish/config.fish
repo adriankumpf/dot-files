@@ -29,14 +29,6 @@ if type -q fd
   set -gx FZF_DEFAULT_OPTS "--no-mouse -1 --layout=reverse --multi --info=inline"
 end
 
-if type -q cabal
-  set -x PATH "$HOME/Library/Haskell/bin" $PATH
-end
-
-if test -d /usr/local/opt/llvm/bin
-  set -x PATH "/usr/local/opt/llvm/bin" $PATH
-end
-
 if test -d ~/.cargo/bin
   set -x PATH "$HOME/.cargo/bin" $PATH
 end
