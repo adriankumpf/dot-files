@@ -62,3 +62,6 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "
 
 # Enable Firewall
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+
+# Disable window-opening animation
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
