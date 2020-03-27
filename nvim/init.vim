@@ -57,6 +57,7 @@ set complete+=kspell
 set inccommand=nosplit
 set wildmode=list:longest,list:full
 set pumblend=35
+set noemoji
 
 
 syntax on
