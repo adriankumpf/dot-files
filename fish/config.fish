@@ -24,9 +24,9 @@ if type -q pip3
 end
 
 if type -q fd
+  set -gx FZF_DEFAULT_COMMAND "fish -c 'begin; git ls-tree -r --name-only HEAD; git ls-files --others --exclude-standard; end || fd --type f --type l --hidden --follow --exclude .git' 2> /dev/null"
   set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
-  set -gx FZF_DEFAULT_COMMAND "fish -c 'git ls-tree -r --name-only HEAD || fd --type f --type l --hidden --follow --exclude .git' 2> /dev/null"
-  set -gx FZF_DEFAULT_OPTS "--no-mouse -1 --layout=reverse --multi --info=inline"
+  set -gx FZF_DEFAULT_OPTS "--no-mouse -1 --multi --info=inline"
 end
 
 if test -d ~/.cargo/bin
