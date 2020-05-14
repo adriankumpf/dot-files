@@ -33,7 +33,7 @@
 	<key>ClosingTmuxTabKillsTmuxWindows_selection</key>
 	<integer>1</integer>
 	<key>CommandSelection</key>
-	<true/>
+	<false/>
 	<key>Control</key>
 	<integer>1</integer>
 	<key>CopyLastNewline</key>
@@ -816,6 +816,8 @@
 	<true/>
 	<key>DisableFullscreenTransparency</key>
 	<false/>
+	<key>DisableMetalWhenIdle</key>
+	<true/>
 	<key>DisableWindowSizeSnap</key>
 	<true/>
 	<key>DoubleClickPerformsSmartSelection</key>
@@ -825,7 +827,7 @@
 	<key>DrawOutlineAroundCursor</key>
 	<false/>
 	<key>EnableAPIServer</key>
-	<true/>
+	<false/>
 	<key>EnableDivisionView</key>
 	<false/>
 	<key>EnableProxyIcon</key>
@@ -835,7 +837,7 @@
 	<key>FlashTabBarInFullscreen</key>
 	<true/>
 	<key>FocusFollowsMouse</key>
-	<false/>
+	<true/>
 	<key>FsTabDelay</key>
 	<real>1</real>
 	<key>GlobalKeyMap</key>
@@ -988,11 +990,11 @@
 	<key>NSFontPanelAttributes</key>
 	<string>1, 4</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Documents</string>
+	<string>~/Desktop</string>
 	<key>NSNavLastUserSetHideExtensionButtonState</key>
 	<false/>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{712, 448}</string>
+	<string>{2361, 869}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -1039,7 +1041,7 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>677 165 710 77 0 0 1680 1027 </string>
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
-	<string>1426 1214 347 181 0 0 3200 1800 </string>
+	<string>138 376 2361 869 0 0 3200 1777 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>1400 1253 400 129 0 0 3200 1800 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
@@ -1049,9 +1051,9 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1608 896 1572 862 0 0 3200 1777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1094 20 2086 1734 0 0 3200 1800 </string>
+	<string>590 24 2589 1734 0 0 3200 1777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>829 20 2351 1734 0 0 3200 1800 </string>
+	<string>812 894 783 427 0 0 3200 1777 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>1198 268 462 239 0 0 1680 1050 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -2980,7 +2982,7 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {3200, 1800}}</string>
 		<key>topLeft</key>
-		<string>{810, 1320}</string>
+		<string>{810, 1323}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -2991,7 +2993,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>C7AD0CCE-054D-4B65-862C-CB4771C4AED9</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>1561</integer>
+	<integer>1796</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -4324,6 +4326,8 @@
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>0</integer>
+	<key>OptionClickMovesCursor</key>
+	<false/>
 	<key>PMPrintingExpandedStateForPrint2</key>
 	<false/>
 	<key>PassOnControlClick</key>
@@ -4388,7 +4392,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-03-26T12:48:50Z</date>
+	<date>2020-05-02T16:53:36Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
@@ -4445,6 +4449,8 @@
 	<array>
 		<string>Profiles</string>
 	</array>
+	<key>TrackingRunloopForLiveResize</key>
+	<true/>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
 	<key>UKCrashReporterLastCrashReportDate</key>
