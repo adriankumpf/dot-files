@@ -16,7 +16,7 @@
 
 - brew:
   - yabai
-  - diff-so-fancy
+  - git-delta
   - elixir
   - erlang
   - fd
