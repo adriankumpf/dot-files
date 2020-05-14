@@ -58,6 +58,7 @@ set inccommand=nosplit
 set wildmode=list:longest,list:full
 set pumblend=35
 set noemoji
+set lazyredraw
 
 
 syntax on
@@ -83,6 +84,9 @@ nnoremap <silent> <S-Tab> :bprevious<CR>
 
 nnoremap <Leader>z z=1<CR><CR>
 
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
 nnoremap J mzJ`z
 nnoremap S mzi<CR><ESC>`z
 
@@ -92,8 +96,7 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap ,s :%s///gc<Left><Left><Left>
 nnoremap ,S :Rg 
 
-nnoremap c "xc
-xnoremap c "xc
+nnoremap s "_d
 
 nnoremap n nzz
 nnoremap N Nzz
