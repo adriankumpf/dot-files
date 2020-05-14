@@ -24,7 +24,7 @@ if type -q pip3
 end
 
 if type -q fd
-  set -gx FZF_DEFAULT_COMMAND "fish -c 'begin; git ls-tree -r --name-only HEAD; git ls-files --others --exclude-standard; end || fd --type f --type l --hidden --follow --exclude .git' 2> /dev/null"
+  set -gx FZF_DEFAULT_COMMAND "fish -c 'begin; git ls-tree -r --name-only HEAD; git ls-files --others --exclude-standard; git diff --name-only --staged; end | sort -u || fd --type f --type l --hidden --follow --exclude .git' 2> /dev/null"
   set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
   set -gx FZF_DEFAULT_OPTS "--no-mouse -1 --multi --info=inline"
 end
@@ -37,6 +37,6 @@ set -gx EDITOR "nvim"
 set -gx ERL_AFLAGS "-kernel shell_history enabled"
 set -gx LANG en_US.UTF-8
 
-if type -q fd
+if type -q zoxide
   zoxide init fish | source
 end
