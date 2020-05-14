@@ -18,7 +18,7 @@ Plug 'justinmk/vim-dirvish'                                    " Directory viewe
 Plug 'kristijanhusak/vim-dirvish-git'                          " Git support for dirvish.vim
 Plug 'vim-airline/vim-airline'                                 "  status/tabline
 Plug 'neoclide/coc.nvim', {'branch': 'release' }               " Intellisense engine
-Plug 'amiralies/coc-elixir',          g:from_lock
+Plug 'amiralies/coc-elixir',          {'do': 'yarn install --frozen-lockfile && yarn run build'}
 Plug 'fannheyward/coc-sql',			      g:from_lock
 Plug 'fannheyward/coc-rust-analyzer', g:from_lock
 Plug 'neoclide/coc-css',              g:from_lock

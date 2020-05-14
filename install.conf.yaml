@@ -15,15 +15,16 @@
   - koekeishiya/formulae
 
 - brew:
-  - yabai
-  - git-delta
+  - bat
   - elixir
   - erlang
   - fd
   - fish
   - fortune
   - fzf
+  - git-delta
   - hadolint
+  - htop
   - koekeishiya/formulae/skhd
   - mpg123
   - neovim
@@ -31,23 +32,29 @@
   - reattach-to-user-namespace
   - ripgrep
   - ruby
+  - rust
   - shellcheck
   - ssh-copy-id
   - supertanker/homebrew-repo/ruplacer
   - tmux
   - tokei
+  - topgrade
+  - yabai
   - yarn
   - youtube-dl
 
 - cask: [
-    betterzipql,
     docker,
     font-fira-code,
     launchcontrol,
-    qlmarkdown,
     qlstephen,
     qlvideo,
-    shiori,
+    spotify,
+    iterm2,
+    iina,
+    firefox,
+    1password,
+    # airbar
   ]
 
 - link:
@@ -96,6 +103,7 @@
   - pip install gitlint
   - pip install vim-vint
 
-# Yarn
+# cargo
 - shell:
-  - yarn global add stylefmt
+  - cargo install zoxide -f
+
