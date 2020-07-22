@@ -8,5 +8,9 @@
     "elixir",
     "rust",
     "sql"
-  ]
+  ],
+  "diagnostic-languageserver.filetypes": {
+    "vim": "vint",
+    "sh": "shellcheck"
+  }
 }
