@@ -7,7 +7,6 @@ Plug 'ironhouzi/vim-stim'                                      "  Improve star b
 Plug 'itspriddle/vim-marked', { 'for': 'markdown' }            "  Open Markdown files in Marked
 Plug '/usr/local/opt/fzf'                                      "  FZF (brew install fzf)
 Plug 'junegunn/fzf.vim'                                        "  FZF integration
-Plug 'machakann/vim-highlightedyank'                           "  Make the yanked region apparant
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                "  Intelligent buffer closing
 Plug 'morhetz/gruvbox'                                         "  *THE* Colorscheme
 Plug 'sheerun/vim-polyglot'                                    "  All languages as one plugin
@@ -190,17 +189,10 @@ hi cursorlinenr ctermfg=red guifg=red
 
 augroup buf_write
   au!
-  autocmd BufWritePre * call utils#StripTrailingWhitespaces()
-augroup END
-
-augroup win_resize " Resize splits when the window is resized
-  au!
-  autocmd VimResized * :wincmd =
-augroup END
-
-augroup line_return " Return to same line when reopening a file
-  au!
-  au BufReadPost *
+  au BufWritePre * call utils#StripTrailingWhitespaces()
+  au TextYankPost * silent! lua require'vim.highlight'.on_yank()
+  au VimResized * :wincmd = " Resize splits when the window is resized
+  au BufReadPost * " Return to same line when reopening a file
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \     execute 'normal! g`"zvzz' |
   \ endif
