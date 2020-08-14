@@ -9,7 +9,8 @@
     "json",
     "elixir",
     "rust",
-    "sql"
+    "sql",
+    "yaml"
   ],
   "diagnostic-languageserver.filetypes": {
     "vim": "vint",

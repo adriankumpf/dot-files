@@ -31,6 +31,7 @@ Plug 'neoclide/coc-pairs',            g:from_lock
 Plug 'neoclide/coc-snippets',         g:from_lock
 Plug 'neoclide/coc-prettier',         g:from_lock
 Plug 'iamcco/coc-diagnostic',         g:from_lock
+Plug 'neoclide/coc-yaml',             g:from_lock
 call plug#end()
 
 
