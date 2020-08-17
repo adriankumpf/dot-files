@@ -5,12 +5,17 @@
     "css",
     "markdown",
     "javascript",
+    "vue",
+    "json",
     "elixir",
     "rust",
     "sql"
   ],
   "diagnostic-languageserver.filetypes": {
     "vim": "vint",
-    "sh": "shellcheck"
-  }
+    "sh": "shellcheck",
+    "Dockerfile": "hadolint",
+    "javascript": "eslint"
+  },
+  "eslint.autoFixOnSave": true
 }
