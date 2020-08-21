@@ -13,6 +13,7 @@
   - homebrew/cask-fonts
   - homebrew/cask-versions
   - koekeishiya/formulae
+  - ajeetdsouza/zoxide
 
 - brew:
   - bat
@@ -39,9 +40,11 @@
   - tmux
   - tokei
   - topgrade
+  - xsv
   - yabai
   - yarn
   - youtube-dl
+  - zoxide
 
 - cask: [
     docker,
