@@ -29,9 +29,9 @@ shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
 shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 
 # send window to desktop
-shift + cmd - x : yabai -m window --space recent
-shift + cmd - z : yabai -m window --space prev
-shift + cmd - c : yabai -m window --space next
+# shift + cmd - x : yabai -m window --space recent
+# shift + cmd - z : yabai -m window --space prev
+# shift + cmd - c : yabai -m window --space next
 shift + cmd - 1 : yabai -m window --space  1
 shift + cmd - 2 : yabai -m window --space  2
 shift + cmd - 3 : yabai -m window --space  3
