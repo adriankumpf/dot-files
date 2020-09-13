@@ -3,8 +3,10 @@ let g:from_lock = {'do': 'yarn install --frozen-lockfile'}
 call plug#begin('~/.config/nvim/plugged')
 Plug 'AndrewRadev/splitjoin.vim'                               "  Transition between multi- & single-line code (gJ | gS)
 Plug 'airblade/vim-gitgutter'                                  "  Git changes showed on line numbers
-Plug 'ironhouzi/vim-stim'                                      "  Improve star by not jumping immediately
 Plug 'itspriddle/vim-marked', { 'for': 'markdown' }            "  Open Markdown files in Marked
+Plug 'ironhouzi/vim-stim'                                      "  Improve star by not jumping immediately
+Plug 'PeterRincker/vim-searchlight'                            "  Highlight the current search match
+Plug 'romainl/vim-cool'                                        "  Make hlsearch more useful
 Plug '/usr/local/opt/fzf'                                      "  FZF (brew install fzf)
 Plug 'junegunn/fzf.vim'                                        "  FZF integration
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                "  Intelligent buffer closing
@@ -13,15 +15,14 @@ Plug 'sheerun/vim-polyglot'                                    "  All languages 
 Plug 'tpope/vim-commentary'                                    "  Commenting support (gc)
 Plug 'tpope/vim-sleuth'                                        "  Heuristically set indent settings
 Plug 'tpope/vim-surround'                                      "  Surround with cs
-Plug 'justinmk/vim-dirvish'                                    " Directory viewer
-Plug 'kristijanhusak/vim-dirvish-git'                          " Git support for dirvish.vim
+Plug 'justinmk/vim-dirvish'                                    "  Directory viewer
+Plug 'kristijanhusak/vim-dirvish-git'                          "  Git support for dirvish.vim
 Plug 'vim-airline/vim-airline'                                 "  status/tabline
-Plug 'neoclide/coc.nvim', {'branch': 'release' }               " Intellisense engine
+Plug 'neoclide/coc.nvim', {'branch': 'release' }               "  Intellisense engine
 Plug 'amiralies/coc-elixir',          {'do': 'yarn install --frozen-lockfile && yarn run build'}
 Plug 'fannheyward/coc-sql',			      g:from_lock
 Plug 'fannheyward/coc-rust-analyzer', g:from_lock
 Plug 'neoclide/coc-css',              g:from_lock
-Plug 'neoclide/coc-stylelint',        g:from_lock
 Plug 'neoclide/coc-eslint',           g:from_lock
 Plug 'neoclide/coc-html',             g:from_lock
 Plug 'neoclide/coc-json',             g:from_lock
@@ -45,8 +46,6 @@ set norelativenumber
 set noswapfile nobackup nowritebackup
 set undofile
 set scrolloff=7
-set ignorecase
-set smartcase
 set smartindent
 set splitbelow splitright
 set hidden
@@ -78,8 +77,6 @@ nnoremap <Leader><Leader> <C-^>
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>m :MarkedOpen!<CR>
 
-nnoremap <silent> <CR> :set nohlsearch!<CR> :set nohlsearch?<CR>
-
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <S-Tab> :bprevious<CR>
 
@@ -106,8 +103,8 @@ vnoremap N Nzz
 
 nnoremap Q @q
 
-nnoremap / /\v
-vnoremap / /\v
+nnoremap / /\v\c
+vnoremap / /\v\c
 
 vnoremap y y`]
 vnoremap p "_dP`]
@@ -188,13 +185,15 @@ hi TabLineSel ctermfg=142 ctermbg=237 guifg=#b8bb26 guibg=bg
 hi cursorline cterm=none guibg=none
 hi cursorlinenr ctermfg=red guifg=red
 
+hi link Searchlight Incsearch
+
 augroup buf_write
   au!
   au BufWritePre * call utils#StripTrailingWhitespaces()
   au TextYankPost * silent! lua require'vim.highlight'.on_yank()
   au VimResized * :wincmd = " Resize splits when the window is resized
-  au BufReadPost * " Return to same line when reopening a file
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \     execute 'normal! g`"zvzz' |
-  \ endif
+  au BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
 augroup END
