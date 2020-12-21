@@ -1,26 +1,26 @@
-let g:from_lock = {'do': 'yarn install --frozen-lockfile'}
+let g:from_lock = {'do': 'yarn install --frozen-lockfile && yarn prepack || yarn run build'}
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'AndrewRadev/splitjoin.vim'                               "  Transition between multi- & single-line code (gJ | gS)
-Plug 'airblade/vim-gitgutter'                                  "  Git changes showed on line numbers
-Plug 'itspriddle/vim-marked', { 'for': 'markdown' }            "  Open Markdown files in Marked
-Plug 'ironhouzi/vim-stim'                                      "  Improve star by not jumping immediately
-Plug 'PeterRincker/vim-searchlight'                            "  Highlight the current search match
-Plug 'romainl/vim-cool'                                        "  Make hlsearch more useful
-Plug '/usr/local/opt/fzf'                                      "  FZF (brew install fzf)
-Plug 'junegunn/fzf.vim'                                        "  FZF integration
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                "  Intelligent buffer closing
-Plug 'morhetz/gruvbox'                                         "  *THE* Colorscheme
-Plug 'sheerun/vim-polyglot'                                    "  All languages as one plugin
-Plug 'tpope/vim-commentary'                                    "  Commenting support (gc)
-Plug 'tpope/vim-sleuth'                                        "  Heuristically set indent settings
-Plug 'tpope/vim-surround'                                      "  Surround with cs
-Plug 'justinmk/vim-dirvish'                                    "  Directory viewer
-Plug 'kristijanhusak/vim-dirvish-git'                          "  Git support for dirvish.vim
-Plug 'vim-airline/vim-airline'                                 "  status/tabline
-Plug 'neoclide/coc.nvim', {'branch': 'release' }               "  Intellisense engine
-Plug 'amiralies/coc-elixir',          {'do': 'yarn install --frozen-lockfile && yarn run build'}
-Plug 'fannheyward/coc-sql',			      g:from_lock
+Plug 'AndrewRadev/splitjoin.vim'                    "  Transition between multi- & single-line code (gJ | gS)
+Plug 'airblade/vim-gitgutter'                       "  Git changes showed on line numbers
+Plug 'itspriddle/vim-marked', { 'for': 'markdown' } "  Open Markdown files in Marked
+Plug 'ironhouzi/vim-stim'                           "  Improve star by not jumping immediately
+Plug 'PeterRincker/vim-searchlight'                 "  Highlight the current search match
+Plug 'romainl/vim-cool'                             "  Make hlsearch more useful
+Plug '/usr/local/opt/fzf'                           "  FZF (brew install fzf)
+Plug 'junegunn/fzf.vim'                             "  FZF integration
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }     "  Intelligent buffer closing
+Plug 'morhetz/gruvbox'                              "  *THE* Colorscheme
+Plug 'sheerun/vim-polyglot'                         "  All languages as one plugin
+Plug 'tpope/vim-commentary'                         "  Commenting support (gc)
+Plug 'tpope/vim-sleuth'                             "  Heuristically set indent settings
+Plug 'tpope/vim-surround'                           "  Surround with cs
+Plug 'justinmk/vim-dirvish'                         "  Directory viewer
+Plug 'kristijanhusak/vim-dirvish-git'               "  Git support for dirvish.vim
+Plug 'vim-airline/vim-airline'                      "  status/tabline
+Plug 'neoclide/coc.nvim', {'branch': 'release' }    "  Intellisense engine
+Plug 'amiralies/coc-elixir',          g:from_lock
+Plug 'fannheyward/coc-sql',           g:from_lock
 Plug 'fannheyward/coc-rust-analyzer', g:from_lock
 Plug 'neoclide/coc-css',              g:from_lock
 Plug 'neoclide/coc-eslint',           g:from_lock
