@@ -43,7 +43,7 @@ g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)
     colorMoved = default
 [delta]
     features = line-numbers
-    max-line-length = 4096
+    max-line-length = 8192
 [github]
     user = adriankumpf
 [branch]
