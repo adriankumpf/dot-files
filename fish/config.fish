@@ -23,6 +23,10 @@ if type -q pip3
   set -x PATH "$HOME/Library/Python/3.7/bin" $PATH
 end
 
+if type -q rg
+  set -x RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
+end
+
 if type -q fd
   set -gx FZF_DEFAULT_COMMAND "fish -c 'begin; git ls-tree -r --name-only HEAD; git ls-files --others --exclude-standard; git diff --name-only --staged; end | sort -u || fd --type f --type l --hidden --follow --exclude .git' 2> /dev/null"
   set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"

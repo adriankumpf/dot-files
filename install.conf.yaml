@@ -3,109 +3,110 @@
       create: true
       force: true
 
-- clean: ['~']
+- clean: ["~"]
 - clean:
     ~/.config:
       force: true
 
 - tap:
-  - homebrew/cask
-  - homebrew/cask-fonts
-  - homebrew/cask-versions
-  - koekeishiya/formulae
+    - homebrew/cask
+    - homebrew/cask-fonts
+    - homebrew/cask-versions
+    - koekeishiya/formulae
 
 - brew:
-  - bat
-  - elixir
-  - erlang
-  - fd
-  - fish
-  - fortune
-  - fzf
-  - git-delta
-  - hadolint
-  - htop
-  - koekeishiya/formulae/skhd
-  - mpg123
-  - neovim
-  - python3
-  - reattach-to-user-namespace
-  - ripgrep
-  - ruby
-  - rust
-  - shellcheck
-  - ssh-copy-id
-  - supertanker/homebrew-repo/ruplacer
-  - tmux
-  - tokei
-  - topgrade
-  - xsv
-  - yabai
-  - yarn
-  - youtube-dl
-  - zoxide
+    - bat
+    - elixir
+    - erlang
+    - fd
+    - fish
+    - fortune
+    - fzf
+    - git-delta
+    - hadolint
+    - htop
+    - koekeishiya/formulae/skhd
+    - mpg123
+    - neovim
+    - python3
+    - reattach-to-user-namespace
+    - ripgrep
+    - ruby
+    - rust
+    - shellcheck
+    - ssh-copy-id
+    - supertanker/homebrew-repo/ruplacer
+    - tmux
+    - tokei
+    - topgrade
+    - xsv
+    - yabai
+    - yarn
+    - youtube-dl
+    - zoxide
 
-- cask: [
-    docker,
-    font-fira-code,
-    launchcontrol,
-    qlstephen,
-    qlvideo,
-    spotify,
-    iterm2,
-    iina,
-    firefox,
-    1password,
+- cask:
+    [
+      docker,
+      font-fira-code,
+      launchcontrol,
+      qlstephen,
+      qlvideo,
+      spotify,
+      iterm2,
+      iina,
+      firefox,
+      1password,
+    ]
     # airbar
-  ]
 
 - link:
-  # fish shell
+    # fish shell
     ~/.config/fish/functions/t.fish: fish/functions/t.fish
     ~/.config/fish/functions/update.fish: fish/functions/update.fish
     ~/.config/fish/config.fish: fish/config.fish
     ~/.config/fish/fishfile: fish/fishfile
-  # neovim
+    # neovim
     ~/.config/nvim/autoload: nvim/autoload
     ~/.config/nvim/ftdetect: nvim/ftdetect
     ~/.config/nvim/ftplugin: nvim/ftplugin
     ~/.config/nvim/init.vim: nvim/init.vim
     ~/.config/nvim/coc-settings.json: nvim/coc-settings.json
-  # git
+    # git
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
-  # yabai & skhd
+    # yabai & skhd
     ~/.yabairc: window_manager/.yabairc
     ~/.skhdrc: window_manager/.skhdrc
-  # tmux
+    # tmux
     ~/.tmux.conf: tmux/tmux.conf
     ~/bin: bin
+    # ripgrep
+    ~/.ripgreprc: other/.ripgreprc
 
 # macOS
 - shell:
-  - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart skhd; fi;'
-  - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart yabai; fi;'
-  - bash -c 'if [ "$(uname)" == "Darwin" ]; then ./macOS/configure.sh; fi;'
+    - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart skhd; fi;'
+    - bash -c 'if [ "$(uname)" == "Darwin" ]; then brew services restart yabai; fi;'
+    - bash -c 'if [ "$(uname)" == "Darwin" ]; then ./macOS/configure.sh; fi;'
 
 # terminfo
 - shell:
-  - tic -o ~/.terminfo ./terminfo/xterm-256color.terminfo
-  - tic -o ~/.terminfo ./terminfo/tmux-256color.terminfo
-  - tic -o ~/.terminfo ./terminfo/tmux.terminfo
-
+    - tic -o ~/.terminfo ./terminfo/xterm-256color.terminfo
+    - tic -o ~/.terminfo ./terminfo/tmux-256color.terminfo
+    - tic -o ~/.terminfo ./terminfo/tmux.terminfo
 
 # Additional Neovim setup
 - shell:
-  - pip install setuptools
-  - pip  install --upgrade neovim
-  - pip3 install --upgrade neovim
+    - pip install setuptools
+    - pip  install --upgrade neovim
+    - pip3 install --upgrade neovim
 
 # PIP
 - shell:
-  - pip install gitlint
-  - pip install vim-vint
+    - pip install gitlint
+    - pip install vim-vint
 
 # cargo
 - shell:
-  - cargo install zoxide -f
-
+    - cargo install zoxide -f
