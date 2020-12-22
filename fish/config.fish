@@ -44,3 +44,7 @@ set -gx LANG en_US.UTF-8
 if type -q zoxide
   zoxide init fish | source
 end
+
+if type -q mix
+  set -x PATH "$HOME/.mix/escripts" $PATH
+end
