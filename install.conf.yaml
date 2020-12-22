@@ -33,6 +33,7 @@
     - ripgrep
     - ruby
     - rust
+    - rust-analyzer
     - shellcheck
     - ssh-copy-id
     - supertanker/homebrew-repo/ruplacer
@@ -48,7 +49,7 @@
 - cask:
     [
       docker,
-      font-fira-code,
+      font-fira-code-nerd-font,
       launchcontrol,
       qlstephen,
       qlvideo,
@@ -71,7 +72,6 @@
     ~/.config/nvim/ftdetect: nvim/ftdetect
     ~/.config/nvim/ftplugin: nvim/ftplugin
     ~/.config/nvim/init.vim: nvim/init.vim
-    ~/.config/nvim/coc-settings.json: nvim/coc-settings.json
     # git
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
@@ -105,8 +105,3 @@
 # PIP
 - shell:
     - pip install gitlint
-    - pip install vim-vint
-
-# cargo
-- shell:
-    - cargo install zoxide -f

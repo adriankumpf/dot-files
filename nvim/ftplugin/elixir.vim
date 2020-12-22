@@ -1,1 +1,1 @@
-hi link Define GruvboxRed
+hi! link Define Debug
