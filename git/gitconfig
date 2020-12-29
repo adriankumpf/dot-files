@@ -1,6 +1,7 @@
 [user]
     name = Adrian Kumpf
-    email = adrian.kumpf@posteo.de
+	email = 8999358+adriankumpf@users.noreply.github.com
+	signingkey = 90DDFC695B282F94
 [interactive]
     diffFilter = delta --color-only --theme='gruvbox_dark_medium'
 [core]
@@ -68,3 +69,9 @@ g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)
     process = git-lfs filter-process
 [absorb]
     maxStack=50
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[tag]
+	gpgsign = true
