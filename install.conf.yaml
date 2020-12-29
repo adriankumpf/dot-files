@@ -31,8 +31,6 @@
     - python3
     - reattach-to-user-namespace
     - ripgrep
-    - ruby
-    - rust
     - rust-analyzer
     - shellcheck
     - ssh-copy-id
