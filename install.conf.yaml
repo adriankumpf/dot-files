@@ -23,11 +23,14 @@
     - fortune
     - fzf
     - git-delta
+    - gnupg
+    - gnupg2
     - hadolint
     - htop
     - koekeishiya/formulae/skhd
     - mpg123
     - neovim
+    - pinentry-mac
     - python3
     - reattach-to-user-namespace
     - ripgrep
@@ -73,6 +76,9 @@
     # git
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
+    # gnupg
+    ~/.gnupg/gpg.conf: gnupg/gpg.conf
+    ~/.gnupg/gpg-agent.conf: gnupg/gpg-agent.conf
     # yabai & skhd
     ~/.yabairc: window_manager/.yabairc
     ~/.skhdrc: window_manager/.skhdrc
