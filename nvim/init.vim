@@ -19,6 +19,7 @@ Plug 'justinmk/vim-dirvish'                         "  Directory viewer
 Plug 'kristijanhusak/vim-dirvish-git'               "  Git support for dirvish.vim
 Plug 'vim-airline/vim-airline'                      "  status/tabline
 Plug 'sbdchd/neoformat'
+Plug 'axelf4/vim-strip-trailing-whitespace'         " Remove trailing whitespace from *modified* lines on save
 call plug#end()
 
 
