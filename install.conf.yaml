@@ -28,6 +28,7 @@
     - hadolint
     - htop
     - koekeishiya/formulae/skhd
+    - mas
     - mpg123
     - neovim
     - pinentry-mac
