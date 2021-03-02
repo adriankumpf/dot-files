@@ -12,15 +12,15 @@ else
   set fish_color_command white --bold
 end
 
-set -x PATH "/usr/local/sbin" $PATH
-set -x PATH "$HOME/bin" $PATH
+fish_add_path "/usr/local/sbin"
+fish_add_path "$HOME/bin"
 
 if type -q cargo
-  set -x PATH "$HOME/.cargo/bin" $PATH
+  fish_add_path "$HOME/.cargo/bin"
 end
 
 if type -q pip3
-  set -x PATH "$HOME/Library/Python/3.7/bin" $PATH
+  fish_add_path "$HOME/Library/Python/3.7/bin"
 end
 
 if type -q rg
@@ -34,7 +34,7 @@ if type -q fd
 end
 
 if test -d ~/.cargo/bin
-  set -x PATH "$HOME/.cargo/bin" $PATH
+  fish_add_path "$HOME/.cargo/bin"
 end
 
 set -gx EDITOR "nvim"
@@ -46,5 +46,5 @@ if type -q zoxide
 end
 
 if type -q mix
-  set -x PATH "$HOME/.mix/escripts" $PATH
+  fish_add_path "$HOME/.mix/escripts"
 end
