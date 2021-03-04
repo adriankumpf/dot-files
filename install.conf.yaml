@@ -68,7 +68,7 @@
     ~/.config/fish/functions/t.fish: fish/functions/t.fish
     ~/.config/fish/functions/update.fish: fish/functions/update.fish
     ~/.config/fish/config.fish: fish/config.fish
-    ~/.config/fish/fishfile: fish/fishfile
+    ~/.config/fish/fish_plugins: fish/fish_plugins
     # neovim
     ~/.config/nvim/autoload: nvim/autoload
     ~/.config/nvim/ftdetect: nvim/ftdetect
