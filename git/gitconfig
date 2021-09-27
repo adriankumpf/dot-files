@@ -44,7 +44,7 @@ g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)
     colorMoved = default
 [delta]
     features = line-numbers
-    max-line-length = 8192
+    max-line-length = 16384
 [github]
     user = adriankumpf
 [branch]
@@ -75,3 +75,5 @@ g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)
 	program = gpg
 [tag]
 	gpgsign = true
+[init]
+	defaultBranch = main
