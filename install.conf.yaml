@@ -71,7 +71,7 @@
     ~/.config/nvim/autoload: nvim/autoload
     ~/.config/nvim/ftdetect: nvim/ftdetect
     ~/.config/nvim/ftplugin: nvim/ftplugin
-    ~/.config/nvim/init.vim: nvim/init.vim
+    ~/.config/nvim/init.lua: nvim/init.lua
     # git
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
