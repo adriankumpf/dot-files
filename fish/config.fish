@@ -48,3 +48,10 @@ end
 if type -q mix
   fish_add_path "$HOME/.mix/escripts"
 end
+
+if type -q go
+  set -gx GOPATH $HOME/go
+  set -gx GOROOT /usr/local/opt/go/libexec
+  fish_add_path $GOPATH/bin
+  fish_add_path $GOROOT/bin
+end
