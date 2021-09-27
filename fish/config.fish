@@ -20,7 +20,7 @@ if type -q cargo
 end
 
 if type -q pip3
-  fish_add_path "$HOME/Library/Python/3.7/bin"
+  fish_add_path "$HOME/Library/Python/3.9/bin"
 end
 
 if type -q rg
@@ -31,10 +31,6 @@ if type -q fd
   set -gx FZF_DEFAULT_COMMAND "fish -c 'begin; git ls-tree -r --name-only HEAD; git ls-files --others --exclude-standard; git diff --name-only --staged; end | sort -u || fd --type f --type l --hidden --follow --exclude .git' 2> /dev/null"
   set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
   set -gx FZF_DEFAULT_OPTS "--no-mouse -1 --multi --info=inline"
-end
-
-if test -d ~/.cargo/bin
-  fish_add_path "$HOME/.cargo/bin"
 end
 
 set -gx EDITOR "nvim"
