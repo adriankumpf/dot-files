@@ -51,3 +51,6 @@ if type -q go
   fish_add_path $GOPATH/bin
   fish_add_path $GOROOT/bin
 end
+
+set -gx DYLD_FALLBACK_LIBRARY_PATH (xcode-select --print-path)/usr/lib/
+set -g fish_user_paths "/usr/local/opt/node@14/bin" $fish_user_paths
