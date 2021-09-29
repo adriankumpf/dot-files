@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+
+set -eu
+
+repo_url="git@github.com:adriankumpf/dot-files.git"
+
+main () {
+  if [ ! "$(yadm remote get-url origin)" = $repo_url ]; then
+    echo "Updating the yadm repo origin URL"
+    yadm remote set-url origin $repo_url
+  fi
+
+  if [ "$(uname -s)" = "Darwin" ]; then
+
+    if ! command -v brew >/dev/null 2>&1; then
+      echo "Installing homebrew"
+      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+
+    if [ -f "$HOME/.Brewfile" ]; then
+      echo "Updating homebrew bundle"
+      brew bundle --global
+    fi
+
+    if [ -d "$HOME/.iterm2" ]; then
+      echo "Setting iTerm preference folder"
+      defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
+    fi
+
+    if command -v vim >/dev/null 2>&1; then
+      paq_dir=${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/pack/paqs/start/paq-nvim
+
+      if [ ! -d "$paq_dir" ]; then
+        echo "Installing paq for neovim"
+        git clone --depth=1 https://github.com/savq/paq-nvim.git "$paq_dir"
+      fi
+
+      echo "Bootstraping NeoVim"
+      nvim '+PaqSync' '+qall'
+    fi
+
+
+    echo "Configuring macOS"
+    configure_macos
+
+  fi
+
+  if [ -d "$HOME/.terminfo" ]; then
+    echo "Updating terminfo"
+    tic "$HOME/.terminfo/xterm-256color.terminfo"
+    tic "$HOME/.terminfo/tmux-256color.terminfo"
+    tic "$HOME/.terminfo/tmux.terminfo"
+  fi
+}
+
+configure_macos () {
+  # https://github.com/herrbischoff/awesome-osx-command-line
+
+  # Install Command Line Tools without Xcode
+  # xcode-select --install
+
+  # Set Dock Settings
+  defaults write com.apple.Dock autohide -float 1
+  defaults write com.apple.Dock autohide-delay -float 0
+  defaults write com.apple.Dock autohide-time-modifier -float 0.5
+  defaults write com.apple.Dock expose-animation-duration -float 0.15
+  defaults write com.apple.Dock largesize -float 42
+  defaults write com.apple.Dock magnification -float 1
+  defaults write com.apple.Dock minimize-to-application -float 0
+  defaults write com.apple.Dock autohide-delay -float 0
+  defaults write com.apple.Dock orientation -string left
+
+  # Auto Rearrange Spaces Based on Most Recent Use (Disable)
+  defaults write com.apple.dock mru-spaces -bool false
+
+  killall Dock
+
+  # Show All File Extensions
+  defaults write -g AppleShowAllExtensions -bool true
+
+  # Show Full Path in Finder Title
+  defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+  # Save to Disk by Default
+  defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+
+  # Set Current Folder as Default Search Scope
+  defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+  # Disable Creation of Metadata Files on Network Volumes
+  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+  # Disable Creation of Metadata Files on USB Volumes
+  defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+  # Hide removable media
+  defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+
+  # Key Repeat Rate
+  defaults write -g InitialKeyRepeat -int 15
+  defaults write -g KeyRepeat -int 2
+
+  # Screensaver Immediate Lock
+  defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+  # Screensaver Password Enable
+  defaults write com.apple.screensaver askForPassword -int 1
+
+  # Set Login Window Text
+  # sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText ""
+
+  # Disable window-opening animation
+  defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
+}
+
+main "$@"; exit
