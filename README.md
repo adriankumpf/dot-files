@@ -4,7 +4,7 @@ Usage
 -----
 
 ```sh
-yadm clone --bootstrap 'git@github.com:adriankumpf/dot-files.git'
+yadm clone --bootstrap 'https://github.com/adriankumpf/dot-files.git'
 ```
 
 [yadm]: https://github.com/TheLocehiliosan/yadm
