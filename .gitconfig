@@ -57,6 +57,7 @@ g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)
     rebase = true
 [rebase]
     autosquash = true
+	autoStash = true
 [rerere]
     enabled = true
 [merge "npm-merge-driver"]
