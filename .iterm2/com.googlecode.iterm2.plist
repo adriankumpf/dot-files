@@ -975,6 +975,10 @@
 	<integer>2</integer>
 	<key>MaxVertically</key>
 	<false/>
+	<key>MinimalTabStyleBackgroundColorDifference</key>
+	<real>0.0</real>
+	<key>MinimalTabStyleOutlineStrength</key>
+	<real>0.0</real>
 	<key>NeverWarnAboutShortLivedSessions_E6E1188C-2D6B-40E6-AED0-DB9179E0C2A3</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_E6E1188C-2D6B-40E6-AED0-DB9179E0C2A3_selection</key>
