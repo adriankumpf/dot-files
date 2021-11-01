@@ -45,6 +45,11 @@ main () {
 
   fi
 
+  if command -v bat >/dev/null 2>&1; then
+    echo "Updating bat cache"
+    bat cache --build
+  fi
+
   if [ -d "$HOME/.terminfo" ]; then
     echo "Updating terminfo"
     tic "$HOME/.terminfo/xterm-256color.terminfo"
