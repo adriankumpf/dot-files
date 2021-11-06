@@ -1,34 +1,51 @@
-require "paq" {
-  "savq/paq-nvim";                                                -- Let Paq manage itself
-  "neovim/nvim-lspconfig";
-  "nvim-lua/completion-nvim";
-  { "nvim-treesitter/nvim-treesitter", run = TSUpdate };
-  "AndrewRadev/splitjoin.vim";                                    --  Transition between multi- & single-line code (gJ | gS)
-  "lewis6991/gitsigns.nvim";
-  "ironhouzi/vim-stim";                                           --  Improve star by not jumping immediately
-  "PeterRincker/vim-searchlight";                                 --  Highlight the current search match
-  "romainl/vim-cool";                                             --  Make hlsearch more useful
-  "nvim-lua/plenary.nvim";
-  "nvim-telescope/telescope.nvim";
-  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" };
- 'hrsh7th/nvim-cmp'; -- Autocompletion plugin
- 'hrsh7th/cmp-nvim-lsp';
- 'saadparwaiz1/cmp_luasnip';
- 'L3MON4D3/LuaSnip'; -- Snippets plugin
-  "mhinz/vim-sayonara";                                           --  Intelligent buffer closing
-  'rktjmp/lush.nvim';
-  'ellisonleao/gruvbox.nvim';
-  "sheerun/vim-polyglot";                                         --  All languages as one plugin
-  "tpope/vim-commentary";                                         --  Commenting support (gc)
-  "tpope/vim-sleuth";                                             --  Heuristically set indent settings
-  "tpope/vim-surround";                                           --  Surround with cs
-  "justinmk/vim-dirvish";                                         --  Directory viewer
-  "kristijanhusak/vim-dirvish-git";                               --  Git support for dirvish.vim
-  "vim-airline/vim-airline";                                      --  status/tabline
-  "sbdchd/neoformat";
-  "axelf4/vim-strip-trailing-whitespace";                         -- Remove trailing whitespace from *modified* lines on save
-  { "iamcco/markdown-preview.nvim", run = "cd app && yarn install" }
-}
+local utils = require 'config.utils'
+local autocmd = utils.autocmd
+local map = utils.map
+
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
+
+require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'AndrewRadev/splitjoin.vim'                                    --  Transition between multi- & single-line code (gJ | gS)
+  use { 'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'} }
+  use 'PeterRincker/vim-searchlight'                                 --  Highlight the current search match
+  use 'ironhouzi/starlite-nvim'                                      --  Improve star by not jumping immediately
+  use 'romainl/vim-cool'                                             --  Make hlsearch more useful
+  use { 'mhinz/vim-sayonara', { cmd = 'Sayonara' } }
+  use { 'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'} }
+  use 'sheerun/vim-polyglot'                                         --  All languages as one plugin
+  use 'tpope/vim-commentary'                                         --  Commenting support (gc)
+  use 'tpope/vim-sleuth'                                             --  Heuristically set indent settings
+  use 'tpope/vim-surround'                                           --  Surround with cs
+  use 'justinmk/vim-dirvish'                                         --  Directory viewer
+  use 'kristijanhusak/vim-dirvish-git'                               --  Git support for dirvish.vim
+  use 'vim-airline/vim-airline'                                      --  status/tabline
+  use 'sbdchd/neoformat'
+  use 'axelf4/vim-strip-trailing-whitespace'                         -- Remove trailing whitespace from *modified* lines on save
+
+  use {
+    { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'telescope-fzf-native.nvim', }, cmd = 'Telescope', },
+    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', },
+  }
+
+  use {
+    'neovim/nvim-lspconfig',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/nvim-cmp',
+    'saadparwaiz1/cmp_luasnip',
+    'L3MON4D3/LuaSnip',
+  }
+
+  use { 'iamcco/markdown-preview.nvim', ft = {'markdown'}, cmd = 'cd app && yarn install', }
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
 
 vim.opt.clipboard:append {"unnamed"}
 vim.opt.expandtab = true; vim.opt.tabstop = 2; vim.opt.softtabstop = 2; vim.opt.shiftwidth = 2
@@ -115,6 +132,11 @@ map("v", "y", "y`]")
 map("v", "p", '"_dP`]')
 map("n", "p", "p`]")
 
+map("n", "*", [[<cmd> lua require'starlite'.star()<cr>]], { silent = true })
+map("n", "g*", [[<cmd> lua require'starlite'.g_star()<cr>]], { silent = true })
+map("n", "#", [[<cmd> :lua require'starlite'.hash()<cr>]], { silent = true })
+map("n", "g#", [[<cmd> :lua require'starlite'.g_hash()<cr>]], { silent = true })
+
 local function t(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -159,10 +181,7 @@ require('telescope').setup{
         ["<esc>"] = actions.close
       },
     },
-  }
-}
-
-require('telescope').setup {
+  },
   extensions = {
     fzf = {
       fuzzy = true,
@@ -173,14 +192,6 @@ require('telescope').setup {
   }
 }
 require('telescope').load_extension('fzf')
-
-
-
-
-
-
-
-
 
 -- LSP settings
 local nvim_lsp = require 'lspconfig'

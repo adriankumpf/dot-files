@@ -27,19 +27,6 @@ main () {
       defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
     fi
 
-    if command -v nvim >/dev/null 2>&1; then
-      paq_dir=${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/pack/paqs/start/paq-nvim
-
-      if [ ! -d "$paq_dir" ]; then
-        echo "Installing paq for neovim"
-        git clone --depth=1 https://github.com/savq/paq-nvim.git "$paq_dir"
-      fi
-
-      echo "Bootstraping NeoVim"
-      nvim '+PaqSync' '+qall'
-    fi
-
-
     echo "Configuring macOS"
     configure_macos
 
