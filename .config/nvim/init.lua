@@ -74,12 +74,6 @@ vim.opt.shortmess:append { c = true }
 
 vim.g.mapleader = " "
 
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true }
-  if opts then options = vim.tbl_extend("force", options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
 map("i", "jj", "<esc>")
 
 map("n", ",w", ":w<CR>", { silent = true })
@@ -390,28 +384,23 @@ vim.cmd [[
 ]]
 
 
-vim.cmd [[
-augroup highlights
-  au!
-  au VimEnter * highlight clear SignColumn
-  au VimEnter * highlight GitGutterAdd guibg=bg
-  au VimEnter * highlight GitGutterChange guibg=bg
-  au VimEnter * highlight GitGutterDelete guibg=bg
-augroup END
+autocmd('highlights', {
+  [[VimEnter * highlight clear SignColumn]],
+  [[VimEnter * highlight GitGutterAdd guibg=bg]],
+  [[VimEnter * highlight GitGutterChange guibg=bg]],
+  [[VimEnter * highlight GitGutterDelete guibg=bg]]
+}, true)
 
-augroup buf_write
-  au!
-  au TextYankPost * silent! lua require'vim.highlight'.on_yank()
-  au VimResized * :wincmd = " Resize splits when the window is resized
-  au BufReadPost *
+autocmd('buf_write', {
+  [[TextYankPost * silent! lua require'vim.highlight'.on_yank()]],
+  [[VimResized * :wincmd =]],
+  [[BufReadPost *
     \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
     \ |   exe "normal! g`\""
-    \ | endif
-augroup END
+    \ | endif]]
+}, true)
 
-augroup fmt
-  au!
-  au FileType html,css,scss,vue,javascript,markdown,json,sql,yaml au! BufWritePre * Neoformat
-  au FileType rust,elixir au! BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)
-augroup END
-]]
+autocmd('fmt', {
+  [[FileType html,css,scss,vue,javascript,markdown,json,sql,yaml au! BufWritePre * Neoformat]],
+  [[FileType rust,elixir au! BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)]],
+}, true)
