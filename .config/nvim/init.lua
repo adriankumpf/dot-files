@@ -16,7 +16,8 @@ require "paq" {
  'saadparwaiz1/cmp_luasnip';
  'L3MON4D3/LuaSnip'; -- Snippets plugin
   "mhinz/vim-sayonara";                                           --  Intelligent buffer closing
-  "lifepillar/gruvbox8";                                          --  *THE* Colorscheme
+  'rktjmp/lush.nvim';
+  'ellisonleao/gruvbox.nvim';
   "sheerun/vim-polyglot";                                         --  All languages as one plugin
   "tpope/vim-commentary";                                         --  Commenting support (gc)
   "tpope/vim-sleuth";                                             --  Heuristically set indent settings
@@ -356,8 +357,8 @@ require('gitsigns').setup {
 }
 
 vim.g.gruvbox_italicize_strings = 1
-vim.cmd("colorscheme gruvbox8")
 vim.opt.background = "dark"
+vim.cmd("colorscheme gruvbox")
 
 vim.cmd [[
   hi vertsplit ctermbg=235 ctermfg=245 guifg=#3c3836 guibg=bg
