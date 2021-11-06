@@ -90,6 +90,7 @@ map("i", '<S-Tab>', 'v:lua.smart_shift_tab()', { expr = true })
 vim.cmd [[match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$']] -- Highlight VCS conflict markers
 
 -- Colorscheme
+vim.g.gruvbox_sign_column = 'bg0'
 vim.g.gruvbox_italicize_strings = 1
 vim.opt.background = "dark"
 vim.cmd("colorscheme gruvbox")
