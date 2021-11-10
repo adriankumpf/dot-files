@@ -17,7 +17,14 @@ require('packer').startup(function(use)
   use 'tpope/vim-surround'                                           --  Surround with cs
   use 'axelf4/vim-strip-trailing-whitespace'                         -- Remove trailing whitespace from *modified* lines on save
   use { 'sbdchd/neoformat', config = [[require('config.neoformat')]] }
-  use { 'iamcco/markdown-preview.nvim', ft = {'markdown'}, cmd = 'cd app && yarn install' }
+
+  -- Markdown
+  use {
+    'iamcco/markdown-preview.nvim',
+    ft = {'markdown'},
+    run = 'cd app && npm install',
+    config = [[require('config.markdown_preview')]]
+  }
 
   -- Statusline
   use {
