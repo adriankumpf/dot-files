@@ -16,14 +16,20 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth'                                             --  Heuristically set indent settings
   use 'tpope/vim-surround'                                           --  Surround with cs
   use 'axelf4/vim-strip-trailing-whitespace'                         -- Remove trailing whitespace from *modified* lines on save
-  use { 'vim-airline/vim-airline', config = [[require('config.airline')]] }
   use { 'sbdchd/neoformat', config = [[require('config.neoformat')]] }
-  use { 'iamcco/markdown-preview.nvim', ft = {'markdown'}, cmd = 'cd app && yarn install', }
+  use { 'iamcco/markdown-preview.nvim', ft = {'markdown'}, cmd = 'cd app && yarn install' }
+
+  -- Statusline
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = [[require('config.lualine')]]
+  }
 
   -- Tabs
   use {
     'romgrk/barbar.nvim',
-    requires = {'kyazdani42/nvim-web-devicons'},
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = [[require('config.barbar')]]
   }
 
