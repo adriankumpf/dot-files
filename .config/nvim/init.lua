@@ -40,9 +40,6 @@ map("n", ",q", ":Sayonara<CR>", { silent = true })
 
 map("n", "<Leader><Leader>", "<C-^>")
 
-map("n", "<Tab>", ":bnext<CR>", { silent = true })
-map("n", "<S-Tab>", ":bprevious<CR>", { silent = true })
-
 map("n", "<Leader>z", "z=1<CR><CR>")
 
 map("n", "<expr>", 'k (v:count == 0 ? "gk" : "k")')

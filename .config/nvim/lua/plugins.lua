@@ -20,6 +20,13 @@ require('packer').startup(function(use)
   use { 'sbdchd/neoformat', config = [[require('config.neoformat')]] }
   use { 'iamcco/markdown-preview.nvim', ft = {'markdown'}, cmd = 'cd app && yarn install', }
 
+  -- Tabs
+  use {
+    'romgrk/barbar.nvim',
+    requires = {'kyazdani42/nvim-web-devicons'},
+    config = [[require('config.barbar')]]
+  }
+
   --  Directory viewer
   use {
     'justinmk/vim-dirvish',
