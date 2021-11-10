@@ -24,18 +24,9 @@ map('n', '<M-6>', ':BufferGoto 6<CR>', { silent = true })
 map('n', '<M-7>', ':BufferGoto 7<CR>', { silent = true })
 map('n', '<M-8>', ':BufferGoto 8<CR>', { silent = true })
 map('n', '<M-9>', ':BufferGoto 9<CR>', { silent = true })
-map('n', '<M-0>', ':BufferLast<CR>', { silent = true })
 
--- Close buffer
-map('n', '<M-c>', ':BufferClose<CR>', { silent = true })
-
--- Wipeout buffer
---                 :BufferWipeout<CR>
---
 -- Close commands
---                 :BufferCloseAllButCurrent<CR>
---                 :BufferCloseBuffersLeft<CR>
---                 :BufferCloseBuffersRight<CR>
+map('n', '<M-c>', ':BufferCloseAllButCurrent<CR>', { silent = true })
 
 -- Magic buffer-picking mode
 map('n', '<C-p>', ':BufferPick<CR>', { silent = true })
