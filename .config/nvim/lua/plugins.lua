@@ -62,16 +62,9 @@ require('packer').startup(function(use)
   }
 
   -- Search
-  use {
-    {
-      'nvim-telescope/telescope.nvim',
-      requires = { 'nvim-lua/plenary.nvim', 'telescope-fzf-native.nvim', },
-      setup = [[require('config.telescope_setup')]],
-      config = [[require('config.telescope')]],
-      cmd = 'Telescope',
-      module = 'telescope',
-    },
-    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', },
+  use { 'ibhagwan/fzf-lua',
+    requires = { 'vijaymarupudi/nvim-fzf', 'kyazdani42/nvim-web-devicons' },
+    config = [[require('config.fzf')]],
   }
 
   -- Highlights
