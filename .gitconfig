@@ -19,19 +19,14 @@
     ap = add --patch
     ci = commit --verbose
     amend = commit --amend --verbose
-    fixup = "!~/bin/git-fixup"
     co = checkout
     pl = pull
     ps = push
-    rb = rebase -i HEAD~10
     st = status -sb
     lo = log --oneline -n 15
-    lg = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
-g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%cD%C(reset) %C(bold green)(%cr)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)' --abbrev-commit
     wc = whatchanged -p --abbrev-commit --pretty=medium -- :!*package-lock.json :!*(yarn|Cargo).lock
     stash-all = stash save --include-untracked
     unstage = reset HEAD --
-    edit = "!nvim `git ls-files -m`"
     # Show the branches, ordered by most recently updated closest to prompt.
     # Also shows the last commit and committer for each branch listed.
     recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
