@@ -2,15 +2,11 @@
     name = Adrian Kumpf
 	email = 8999358+adriankumpf@users.noreply.github.com
 	signingkey = 90DDFC695B282F94
-[interactive]
-    diffFilter = delta --color-only --theme='gruvbox_dark_medium'
 [core]
     excludesfile = ~/.gitignore
-    pager = delta --theme='gruvbox_dark_medium'
 [push]
     default = simple
     followTags = true
-    pager = less -S
 [color]
     status = always
     ui = true
@@ -42,8 +38,19 @@ g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)
 
 [diff]
     colorMoved = default
+[pager]
+    diff = delta
+    show = delta
+    log = delta
+    blame = delta
+    grep = delta
+    reflog = delta
+[interactive]
+    diffFilter = delta --color-only
 [delta]
-    features = line-numbers
+    hyperlinks = true
+    line-numbers = true
+    syntax-theme = gruvbox_dark_medium
     max-line-length = 16384
 [github]
     user = adriankumpf
