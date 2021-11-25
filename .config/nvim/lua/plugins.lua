@@ -14,7 +14,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-commentary'                                         --  Commenting support (gc)
   use 'tpope/vim-sleuth'                                             --  Heuristically set indent settings
   use 'tpope/vim-surround'                                           --  Surround with cs
-  use { 'sbdchd/neoformat', config = [[require('config.neoformat')]] }
+
   use { 'McAuleyPenney/tidy.nvim', event = 'BufWritePre' }
 
   use { 'phaazon/hop.nvim', branch = 'v1', config = [[require('config.hop')]] }
@@ -89,6 +89,12 @@ require('packer').startup(function(use)
       event = 'InsertEnter *',
     },
     { 'neovim/nvim-lspconfig', config = [[require('config.lsp')]], }
+  }
+
+  -- Linting, Formatting & Code Actions
+  use { "jose-elias-alvarez/null-ls.nvim",
+    config = [[require('config.null_ls')]],
+    requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
   }
 
   if packer_bootstrap then

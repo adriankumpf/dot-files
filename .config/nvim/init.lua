@@ -110,7 +110,6 @@ autocmd('buf_write', {
 }, true)
 
 autocmd('fmt', {
-  [[FileType html,css,scss,vue,javascript,markdown,json,sql,yaml au! BufWritePre * Neoformat]],
   [[FileType rust,elixir au! BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)]],
 }, true)
 

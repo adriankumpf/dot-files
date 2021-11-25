@@ -37,4 +37,3 @@ map("n", "<leader>la", [[<cmd>FzfLua lsp_code_actions<cr>]])
 map("n", "<leader>lr", [[<cmd>FzfLua lsp_references<cr>]])
 
 map("n", ",S", [[<cmd>FzfLua grep_cword<cr>]])
-
