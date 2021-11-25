@@ -7,7 +7,6 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use 'AndrewRadev/splitjoin.vim'                                    --  Transition between multi- & single-line code (gJ | gS)
-  use 'PeterRincker/vim-searchlight'                                 --  Highlight the current search match
   use 'romainl/vim-cool'                                             --  Make hlsearch more useful
   use { 'mhinz/vim-sayonara', { cmd = 'Sayonara' } }
   use { 'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'} }
@@ -17,6 +16,8 @@ require('packer').startup(function(use)
   use 'tpope/vim-surround'                                           --  Surround with cs
   use { 'sbdchd/neoformat', config = [[require('config.neoformat')]] }
   use { 'McAuleyPenney/tidy.nvim', event = 'BufWritePre' }
+
+  use { 'phaazon/hop.nvim', branch = 'v1', config = [[require('config.hop')]] }
 
   -- Markdown
   use {
