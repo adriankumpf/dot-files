@@ -9,4 +9,3 @@ ts_configs.setup {
     highlight_current_scope = { enable = false }
   },
 }
-

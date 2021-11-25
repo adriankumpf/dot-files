@@ -15,8 +15,8 @@ require('packer').startup(function(use)
   use 'tpope/vim-commentary'                                         --  Commenting support (gc)
   use 'tpope/vim-sleuth'                                             --  Heuristically set indent settings
   use 'tpope/vim-surround'                                           --  Surround with cs
-  use 'axelf4/vim-strip-trailing-whitespace'                         -- Remove trailing whitespace from *modified* lines on save
   use { 'sbdchd/neoformat', config = [[require('config.neoformat')]] }
+  use { 'McAuleyPenney/tidy.nvim', event = 'BufWritePre' }
 
   -- Markdown
   use {
@@ -94,4 +94,3 @@ require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
