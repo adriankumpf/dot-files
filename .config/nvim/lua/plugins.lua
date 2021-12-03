@@ -35,6 +35,11 @@ require('packer').startup(function(use)
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = [[require('config.lualine')]]
   }
+  use {
+    'SmiteshP/nvim-gps',
+    config = "require('config.gps')",
+    requires = 'nvim-treesitter/nvim-treesitter'
+  }
 
   -- Tabs
   use {
@@ -61,6 +66,7 @@ require('packer').startup(function(use)
     'lewis6991/gitsigns.nvim',
     requires = {'nvim-lua/plenary.nvim'},
     config = [[require('config.gitsigns')]],
+    event = "BufRead"
   }
 
   -- Search
