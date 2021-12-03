@@ -6,18 +6,19 @@ end
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
+
   use 'AndrewRadev/splitjoin.vim'                                    --  Transition between multi- & single-line code (gJ | gS)
   use 'romainl/vim-cool'                                             --  Make hlsearch more useful
   use { 'mhinz/vim-sayonara', { cmd = 'Sayonara' } }
   use { 'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'} }
   use 'sheerun/vim-polyglot'                                         --  All languages as one plugin
-  use 'tpope/vim-commentary'                                         --  Commenting support (gc)
   use 'tpope/vim-sleuth'                                             --  Heuristically set indent settings
   use 'tpope/vim-surround'                                           --  Surround with cs
 
   use { 'McAuleyPenney/tidy.nvim', event = 'BufWritePre' }
 
-  use { 'phaazon/hop.nvim', branch = 'v1', config = [[require('config.hop')]] }
+  -- Comments
+  use { 'numToStr/Comment.nvim', config = [[require('config.comment')]] }
 
   -- Markdown
   use {
