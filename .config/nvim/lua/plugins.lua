@@ -72,7 +72,7 @@ require('packer').startup(function(use)
   -- Highlights
   use {
     'nvim-treesitter/nvim-treesitter',
-    requires = {'nvim-treesitter/nvim-treesitter-refactor'},
+    requires = {'nvim-treesitter/nvim-treesitter-refactor', 'RRethy/nvim-treesitter-textsubjects'},
     config = [[require('config.treesitter')]],
     run = ':TSUpdate',
   }

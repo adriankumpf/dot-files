@@ -8,4 +8,10 @@ ts_configs.setup {
     highlight_definitions = { enable = true },
     highlight_current_scope = { enable = false }
   },
+  textsubjects = {
+    enable = true,
+    keymaps = {
+      ['<cr>'] = 'textsubjects-smart', -- works in visual mode
+    }
+  },
 }
