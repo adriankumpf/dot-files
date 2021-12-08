@@ -35,11 +35,6 @@ require('packer').startup(function(use)
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = [[require('config.lualine')]]
   }
-  use {
-    'SmiteshP/nvim-gps',
-    config = "require('config.gps')",
-    requires = 'nvim-treesitter/nvim-treesitter'
-  }
 
   -- Tabs
   use {
