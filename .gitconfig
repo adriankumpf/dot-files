@@ -1,7 +1,7 @@
 [user]
     name = Adrian Kumpf
-	email = 8999358+adriankumpf@users.noreply.github.com
-	signingkey = 90DDFC695B282F94
+    email = 8999358+adriankumpf@users.noreply.github.com
+    signingkey = 7D277D998FC73FE6
 [core]
     excludesfile = ~/.gitignore
 [push]
