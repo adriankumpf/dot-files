@@ -108,7 +108,7 @@ autocmd('buf_write', {
 }, true)
 
 autocmd('fmt', {
-  [[FileType rust,elixir au! BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)]],
+  [[FileType rust,elixir,markdown au! BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)]],
 }, true)
 
 autocmd('packer_user_config', {
