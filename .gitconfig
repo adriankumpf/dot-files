@@ -53,7 +53,7 @@
     autosetuprebase = always
     sort = -committerdate
 [merge]
-    conflictStyle = diff3
+    conflictStyle = zdiff3
     log = 1000
 [pull]
     rebase = true
