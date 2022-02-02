@@ -61,7 +61,6 @@ Session.vim
 
 npm-debug.log*
 node_modules/
-.npmrc
 
 # Version Manager
 # ===========================
