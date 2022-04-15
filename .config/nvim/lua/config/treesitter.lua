@@ -1,6 +1,10 @@
 local ts_configs = require 'nvim-treesitter.configs'
 ts_configs.setup {
-  ensure_installed = "maintained",
+  ensure_installed = {
+    "comment", "css", "dockerfile", "eex", "elixir", "erlang", "fish", "go",
+    "heex", "html", "javascript", "json", "lua", "make", "markdown", "python",
+    "regex", "ruby", "rust", "scss", "vim", "vue", "yaml",
+  },
   highlight = { enable = true, },
   indent = { enable = true },
   refactor = {
