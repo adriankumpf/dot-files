@@ -11,6 +11,7 @@ end
 
 require('lualine').setup({
   options = {
+    globalstatus = true,
     theme = 'powerline',
   },
   sections = {
