@@ -3,5 +3,5 @@ jethrokuan/fzf
 jorgebucaran/fisher
 laughedelic/pisces
 bertonha/fish-posix-source
-IlanCosman/tide
 evanlucas/fish-kubectl-completions
+IlanCosman/tide@v5
