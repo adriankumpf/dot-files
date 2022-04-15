@@ -59,7 +59,7 @@
     rebase = true
 [rebase]
     autosquash = true
-	autoStash = true
+    autoStash = true
 [rerere]
     enabled = true
 [merge "npm-merge-driver"]
@@ -73,10 +73,12 @@
 [absorb]
     maxStack=50
 [commit]
-	gpgsign = true
+    gpgsign = true
 [gpg]
-	program = gpg
+    program = gpg
 [tag]
-	gpgsign = true
+    gpgsign = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
+[includeIf "gitdir:~/Developer/work/"]
+    path = ~/Developer/work/.gitconfig
