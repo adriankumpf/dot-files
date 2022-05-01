@@ -24,11 +24,13 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
 end
 
--- nvim-cmp supports additional completion capabilities
+require "nvim-lsp-installer".setup({
+    automatic_installation = true,
+})
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
--- Enable the following language servers
 local servers = {
   'cssls', 'html', 'jsonls', 'rust_analyzer', 'tsserver',
   'vimls', 'vuels', 'yamlls'
@@ -43,7 +45,6 @@ end
 nvim_lsp.elixirls.setup{
   on_attach= on_attach,
   capabilities = capabilities,
-  cmd = { vim.fn.expand("$HOME") .. "/Developer/third_party/elixir-ls/release/language_server.sh" },
   settings = {
     elixirLS = {
       dialyzerEnabled = false,

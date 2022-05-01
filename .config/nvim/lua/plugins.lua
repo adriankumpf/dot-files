@@ -90,7 +90,8 @@ require('packer').startup(function(use)
       config = [[require('config.cmp')]],
       event = 'InsertEnter *',
     },
-    { 'neovim/nvim-lspconfig', config = [[require('config.lsp')]], }
+    { 'neovim/nvim-lspconfig', config = [[require('config.lsp')]] },
+    { 'williamboman/nvim-lsp-installer' }
   }
 
   -- Linting, Formatting & Code Actions
