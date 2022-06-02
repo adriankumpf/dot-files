@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+cmd="${1}"
+
+function help() {
+  echo 'Usage:'
+  echo "  somafm"
+  echo "  somafm spacestation"
+}
+
+function play() {
+  local channel=$cmd
+  local playlist
+
+  if [ "$channel" == "" ]; then
+    channel=$(curl -s -H 'Accept: application/json' https://somafm.com/channels.json | \
+      jq -r '.channels | sort_by(.listeners | tonumber) | reverse | .[]' | \
+      jq -r '.id + " | " + .listeners + " listeners | " + .description' | \
+      fzf | \
+      awk '{print $1}')
+    echo
+  fi
+
+  playlist=$(curl -s -H 'Accept: application/json' https://somafm.com/channels.json | \
+    jq -r ".channels | map(select(.id == \"$channel\")) | .[]" | \
+    jq -r ".playlists | map(select(.quality == \"highest\")) | limit(1;.[]) | .url")
+
+  case "$playlist" in
+    '') return 1 ;;
+    *) mpv --no-config "$playlist" 2> /dev/null | \
+       awk '/title/ { s = ""; for (i = 2; i <= NF; i++) s = s $i " "; cmd="(date +'%H:%M:%S')"; cmd | getline d; print d,"|",s; close(cmd) }' ;;
+  esac
+}
+
+case "$cmd" in
+  --help|-h) help; exit 0 ;;
+  *) play; exit "$?" ;;
+esac
