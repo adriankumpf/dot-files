@@ -3,7 +3,7 @@ ts_configs.setup {
   ensure_installed = {
     "comment", "css", "dockerfile", "eex", "elixir", "erlang", "fish", "go",
     "heex", "html", "javascript", "json", "lua", "make", "markdown", "python",
-    "regex", "ruby", "rust", "scss", "vim", "vue", "yaml",
+    "regex", "ruby", "rust", "scss", "vim", "vue", "yaml", "bash"
   },
   highlight = { enable = true, },
   indent = { enable = true },
