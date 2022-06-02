@@ -25,7 +25,7 @@ require('packer').startup(function(use)
     'iamcco/markdown-preview.nvim',
     ft = {'markdown'},
     cmd = "MarkdownPreview",
-    run = 'cd app && npm install',
+    run = function() vim.fn["mkdp#util#install"]() end,
     config = [[require('config.markdown_preview')]]
   }
 
