@@ -3,25 +3,41 @@
 cmd="${1}"
 
 function help() {
-  echo 'Usage:'
-  echo "  somafm"
-  echo "  somafm spacestation"
+  echo 'somafm - Listen to SomaFM in your terminal'
+  echo
+  echo 'USAGE:'
+  echo '    somafm <channel>'
+  echo
+  echo 'ARGS:'
+  echo '    <channel>    The channel to listen to (optional)'
+}
+
+function check_dependencies() {
+  for command in jq mpv; do
+    if ! command -v $command &> /dev/null; then
+        echo "$command could not be found"
+        exit 1
+    fi
+  done
 }
 
 function play() {
   local channel=$cmd
+  local channels
   local playlist
 
+  channels=$(curl -s -H 'Accept: application/json' https://somafm.com/channels.json)
+
   if [ "$channel" == "" ]; then
-    channel=$(curl -s -H 'Accept: application/json' https://somafm.com/channels.json | \
+    channel=$( echo "$channels" | \
       jq -r '.channels | sort_by(.listeners | tonumber) | reverse | .[]' | \
       jq -r '.id + " | " + .listeners + " listeners | " + .description' | \
-      fzf | \
+      fzf --layout=reverse| \
       awk '{print $1}')
-    echo
+    clear
   fi
 
-  playlist=$(curl -s -H 'Accept: application/json' https://somafm.com/channels.json | \
+  playlist=$(echo "$channels" | \
     jq -r ".channels | map(select(.id == \"$channel\")) | .[]" | \
     jq -r ".playlists | map(select(.quality == \"highest\")) | limit(1;.[]) | .url")
 
@@ -34,5 +50,5 @@ function play() {
 
 case "$cmd" in
   --help|-h) help; exit 0 ;;
-  *) play; exit "$?" ;;
+  *) check_dependencies; play; exit "$?" ;;
 esac
