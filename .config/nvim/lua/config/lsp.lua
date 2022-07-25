@@ -24,9 +24,9 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
 end
 
-require "nvim-lsp-installer".setup({
+require("mason-lspconfig").setup {
     automatic_installation = true,
-})
+}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)

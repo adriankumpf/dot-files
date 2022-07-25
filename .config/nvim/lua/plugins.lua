@@ -72,10 +72,13 @@ require('packer').startup(function(use)
 
   -- Highlights
   use {
-    'nvim-treesitter/nvim-treesitter',
-    requires = {'nvim-treesitter/nvim-treesitter-refactor', 'RRethy/nvim-treesitter-textsubjects'},
-    config = [[require('config.treesitter')]],
-    run = ':TSUpdate',
+    {
+      'nvim-treesitter/nvim-treesitter',
+      requires = {'nvim-treesitter/nvim-treesitter-refactor', 'RRethy/nvim-treesitter-textsubjects'},
+      config = [[require('config.treesitter')]],
+      run = ':TSUpdate',
+    },
+    { 'lewis6991/spellsitter.nvim', config = function() require('spellsitter').setup() end }
   }
 
  -- Completion
@@ -90,8 +93,9 @@ require('packer').startup(function(use)
       config = [[require('config.cmp')]],
       event = 'InsertEnter *',
     },
-    { 'neovim/nvim-lspconfig', config = [[require('config.lsp')]] },
-    { 'williamboman/nvim-lsp-installer' }
+    { "williamboman/mason.nvim", config = function() require("mason").setup() end },
+    { "williamboman/mason-lspconfig.nvim", config = function() require("mason-lspconfig").setup() end },
+    { 'neovim/nvim-lspconfig', config = [[require('config.lsp')]] }
   }
 
   -- Linting, Formatting & Code Actions
