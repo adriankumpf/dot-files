@@ -2,4 +2,6 @@
 --hidden
 # but exclude git directory
 --glob=!**/.git/*
+# Treat the pattern as a literal string instead of a regular expression
+-F
 
