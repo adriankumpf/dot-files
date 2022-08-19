@@ -39,6 +39,10 @@ if type -q mix
   fish_add_path "$HOME/.mix/escripts"
 end
 
+if type -q pspg 
+  set -x PSQL_PAGER "pspg -s 16"
+end
+
 if type -q go
   set -gx GOPATH $HOME/go
   set -gx GOROOT /usr/local/opt/go/libexec
