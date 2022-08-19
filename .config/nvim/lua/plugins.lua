@@ -13,7 +13,10 @@ require('packer').startup(function(use)
   use { 'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'} }
   use 'sheerun/vim-polyglot'                                         --  All languages as one plugin
   use 'tpope/vim-sleuth'                                             --  Heuristically set indent settings
-  use 'tpope/vim-surround'                                           --  Surround with cs
+  use {
+    "kylechui/nvim-surround",
+    config = function() require("nvim-surround").setup({ }) end
+  } 
 
   use { 'McAuleyPenney/tidy.nvim', event = 'BufWritePre' }
 
