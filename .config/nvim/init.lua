@@ -1,8 +1,7 @@
 require 'plugins'
+require 'neovide'
 
-local utils = require 'config.utils'
-local map = utils.map
-local autocmd = utils.autocmd
+local utils = require 'config.utils' local map = utils.map local autocmd = utils.autocmd
 
 -- Settings
 vim.opt.clipboard:append {"unnamed"}
