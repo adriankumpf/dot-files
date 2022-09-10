@@ -50,4 +50,8 @@ if type -q go
   fish_add_path $GOROOT/bin
 end
 
+if type -q brew
+  set -gx HOMEBREW_INSTALL_FROM_API 1
+end
+
 set -gx DYLD_FALLBACK_LIBRARY_PATH (xcode-select --print-path)/usr/lib/
