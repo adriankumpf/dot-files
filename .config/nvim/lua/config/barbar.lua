@@ -1,5 +1,9 @@
 local map = require('config.utils').map
 
+require'bufferline'.setup {
+    icons = true,
+}
+
 vim.g.bufferline = {
   auto_hide = true,
   tabpages = true,
