@@ -26,11 +26,14 @@ vim.opt.emoji = false
 vim.opt.lazyredraw = true
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.shortmess:append { c = true }
+vim.opt.ch = 0
+vim.opt.spell = true
 
 vim.g.mapleader = " "
 
 vim.g.do_filetype_lua = 1
 vim.g.did_load_filetypes = 0
+
 
 -- Keybindings
 map("i", "jj", "<esc>")
