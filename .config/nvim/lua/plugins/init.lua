@@ -21,9 +21,7 @@ require('packer').startup(function(use)
   -- Strip trailing whitespace
   use { "mcauley-penney/tidy.nvim",
     event = 'BufWritePre',
-    config = function()
-      require("tidy").setup()
-    end
+    config = function() require("tidy").setup() end
   }
 
   --  Make hlsearch more useful
@@ -35,16 +33,7 @@ require('packer').startup(function(use)
   -- Colorscheme
   use { 'ellisonleao/gruvbox.nvim',
     requires = {'rktjmp/lush.nvim'},
-    config = function()
-      require("gruvbox").setup({
-        overrides = {
-          GitSignsAdd = { fg = "#b8bb26", bg = "#282828" },
-          GitSignsChange = { fg = "#8ec07c", bg = "#282828" },
-          GitSignsDelete = { fg = "#fb4934", bg = "#282828" },
-        }
-      })
-      vim.cmd("colorscheme gruvbox")
-    end,
+    config = function() require("plugins.gruvbox") end,
   }
 
   --  Heuristically set indent settings
@@ -52,16 +41,12 @@ require('packer').startup(function(use)
 
   -- Modifying surrounding delimiter pairs
   use { "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup()
-    end
+    config = function() require("nvim-surround").setup() end
   }
 
   -- Comments
   use { 'numToStr/Comment.nvim',
-    config = function()
-      require('config.comment')
-    end
+    config = function() require('plugins.comment') end
   }
 
   -- Markdown
@@ -69,38 +54,36 @@ require('packer').startup(function(use)
     ft = {'markdown'},
     cmd = "MarkdownPreview",
     run = function() vim.fn["mkdp#util#install"]() end,
-    config = [[require('config.markdown_preview')]]
+    config = function() require('plugins.markdown_preview') end,
   }
 
   -- Statusline
   use { 'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons' },
-    config = function()
-      require('config.lualine')
-    end
+    config = function() require('plugins.lualine') end,
   }
 
   -- Tabs
   use { 'romgrk/barbar.nvim',
     requires = {'kyazdani42/nvim-web-devicons' },
-    config = [[require('config.barbar')]]
+    config = function() require('plugins.barbar') end,
   }
 
   --  Directory viewer
   use { 'justinmk/vim-dirvish',
     requires = {'kristijanhusak/vim-dirvish-git'},
-    config = [[require('config.dirvish')]]
+    config = function() require('plugins.dirvish') end,
   }
 
   --  Improve star by not jumping immediately
   use { 'ironhouzi/starlite-nvim',
-    config = [[require('config.starlite')]],
+    config = function() require('plugins.starlite') end,
   }
 
   -- Git
   use { 'lewis6991/gitsigns.nvim',
     requires = {'nvim-lua/plenary.nvim'},
-    config = [[require('config.gitsigns')]],
+    config = function() require('plugins.gitsigns') end,
     event = "BufRead"
   }
 
@@ -110,28 +93,28 @@ require('packer').startup(function(use)
       'nvim-lua/plenary.nvim',
       {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     },
-    config = function()
-      require "config.telescope"
-    end,
+    config = function() require "plugins.telescope" end,
   }
 
   -- Highlights
   use {
     'nvim-treesitter/nvim-treesitter',
     requires = {'nvim-treesitter/nvim-treesitter-refactor', 'RRethy/nvim-treesitter-textsubjects'},
-    config = [[require('config.treesitter')]],
+    config = function() require('plugins.treesitter') end,
     run = ':TSUpdate',
   }
 
  -- LSP
-  use { "williamboman/mason.nvim", config = function() require("mason").setup() end }
-  use { "williamboman/mason-lspconfig.nvim", config = function()
-    require("mason-lspconfig").setup {
-        automatic_installation = true,
+  use { 'neovim/nvim-lspconfig',
+    config = function() require('plugins.lsp') end,
+    requires = {
+      use { "williamboman/mason.nvim", config = function() require("mason").setup() end },
+      use { "williamboman/mason-lspconfig.nvim",
+        config = function() require("mason-lspconfig").setup { automatic_installation = true, } end,
+      },
+      use { "lukas-reineke/lsp-format.nvim" }
     }
-  end }
-  use { "lukas-reineke/lsp-format.nvim" }
-  use { 'neovim/nvim-lspconfig', config = [[require('config.lsp')]] }
+  }
 
  -- Completion
   use {"rafamadriz/friendly-snippets",
@@ -141,17 +124,13 @@ require('packer').startup(function(use)
 
   use {"hrsh7th/nvim-cmp",
     after = "friendly-snippets",
-    config = function()
-      require("config.cmp")
-    end,
+    config = function() require("plugins.cmp") end,
   }
 
   use {"L3MON4D3/LuaSnip",
     wants = "friendly-snippets",
     after = "nvim-cmp",
-    config = function()
-      require("config.luasnip")
-    end,
+    config = function() require("plugins.luasnip") end,
   }
 
   use {"saadparwaiz1/cmp_luasnip", after = "LuaSnip" }
@@ -162,7 +141,7 @@ require('packer').startup(function(use)
 
   -- Linting, Formatting & Code Actions
   use { "jose-elias-alvarez/null-ls.nvim",
-    config = [[require('config.null_ls')]],
+    config = [[require('plugins.null_ls')]],
     requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
   }
 
