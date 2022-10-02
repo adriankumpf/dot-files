@@ -125,7 +125,12 @@ require('packer').startup(function(use)
 
  -- LSP
   use { "williamboman/mason.nvim", config = function() require("mason").setup() end }
-  use { "williamboman/mason-lspconfig.nvim", config = function() require("mason-lspconfig").setup() end }
+  use { "williamboman/mason-lspconfig.nvim", config = function()
+    require("mason-lspconfig").setup {
+        automatic_installation = true,
+    }
+  end }
+  use { "lukas-reineke/lsp-format.nvim" }
   use { 'neovim/nvim-lspconfig', config = [[require('config.lsp')]] }
 
  -- Completion

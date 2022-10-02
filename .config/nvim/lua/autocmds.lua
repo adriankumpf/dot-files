@@ -38,17 +38,6 @@ autocmd("BufReadPost", {
     end
 })
 
-autocmd("FileType", {
-    pattern = {"rust", "elixir", "markdown"},
-    callback = function()
-      autocmd("BufWritePre", {
-        pattern = {"*"},
-        callback = function()
-          vim.lsp.buf.formatting_sync(nil, 1000)
-        end
-      })
-    end
-})
 autocmd("BufWritePost", {
     pattern = {"plugins.lua"},
     callback = function()
