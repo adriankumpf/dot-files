@@ -18,17 +18,12 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", ",s", ":%s///gc<Left><Left><Left>")
 
-vim.keymap.set("n", "s", '"_d')
-
-vim.keymap.set("n", "n", "nzz")
-vim.keymap.set("n", "N", "Nzz")
-vim.keymap.set("v", "n", "nzz")
-vim.keymap.set("v", "N", "Nzz")
+vim.keymap.set({"n", "v"}, "n", "nzz")
+vim.keymap.set({"n", "v"}, "N", "Nzz")
 
 vim.keymap.set("n", "Q", "@q")
 
-vim.keymap.set("n", "/", [[/\v\c]])
-vim.keymap.set("v", "/", [[/\v\c]])
+vim.keymap.set({"n", "v"}, "/", [[/\v\c]])
 
 vim.keymap.set("v", "y", "y`]")
 vim.keymap.set("v", "p", '"_dP`]')
@@ -47,4 +42,3 @@ end
 
 vim.keymap.set("i", '<Tab>', smart_tab, { expr = true })
 vim.keymap.set("i", '<S-Tab>', smart_shift_tab, { expr = true })
-

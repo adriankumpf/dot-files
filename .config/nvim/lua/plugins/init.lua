@@ -80,6 +80,12 @@ require('packer').startup(function(use)
     config = function() require('plugins.starlite') end,
   }
 
+  -- Quick on-screen jumps
+  use {
+    "ggandor/leap.nvim",
+    config = function() require('plugins.leap') end,
+  }
+
   -- Git
   use { 'lewis6991/gitsigns.nvim',
     requires = {'nvim-lua/plenary.nvim'},
@@ -104,7 +110,7 @@ require('packer').startup(function(use)
     run = ':TSUpdate',
   }
 
- -- LSP
+  -- LSP
   use { 'neovim/nvim-lspconfig',
     config = function() require('plugins.lsp') end,
     requires = {
@@ -116,7 +122,7 @@ require('packer').startup(function(use)
     }
   }
 
- -- Completion
+  -- Completion
   use {"rafamadriz/friendly-snippets",
     module = { "cmp", "cmp_nvim_lsp" },
     event = "InsertEnter",

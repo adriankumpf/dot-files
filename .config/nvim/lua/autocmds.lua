@@ -39,7 +39,7 @@ autocmd("BufReadPost", {
 })
 
 autocmd("BufWritePost", {
-    pattern = {"plugins.lua"},
+    pattern = {"plugins/init.lua"},
     callback = function()
      vim.cmd [[source <afile> | PackerCompile]]
     end
