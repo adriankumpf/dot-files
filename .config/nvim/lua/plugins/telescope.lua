@@ -4,7 +4,7 @@ local builtin = require('telescope.builtin')
 project_files = function()
   local in_git_repo = vim.fn.systemlist"git rev-parse --is-inside-work-tree"[1] == 'true'
   if in_git_repo then
-    require("telescope.builtin").git_files()
+    require("telescope.builtin").git_files({ show_untracked=true })
   else
     require("telescope.builtin").find_files()
   end
