@@ -28,7 +28,7 @@ yabai -m config right_padding                20
 yabai -m config window_gap                   10
 
 yabai -m rule --add manage=off grid=4:4:1:1:2:2 app="1Password 7"
-yabai -m rule --add manage=off grid=4:4:1:1:2:2 app="System Preferences"
+yabai -m rule --add manage=off grid=4:4:1:1:2:2 app="System Settings"
 yabai -m rule --add manage=off grid=4:4:1:1:2:2 app=Finder title=Copy
 yabai -m rule --add manage=off grid=4:4:1:1:2:2 app=ObinsKit
 yabai -m rule --add manage=off grid=4:4:1:1:2:2 app=iTerm title=Preferences
