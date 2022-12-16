@@ -11,7 +11,7 @@ autocmd("FileType", {
 autocmd("TextYankPost", {
   pattern = "*",
   callback = function()
-    require'vim.highlight'.on_yank()
+    require 'vim.highlight'.on_yank()
   end,
 })
 
@@ -30,37 +30,44 @@ autocmd("VimResized", {
 })
 
 autocmd("BufReadPost", {
-    pattern = {"*"},
-    callback = function()
-        if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
-            vim.api.nvim_exec("normal! g'\"",false)
-        end
+  pattern = { "*" },
+  callback = function()
+    if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+      vim.api.nvim_exec("normal! g'\"", false)
     end
+  end
 })
 
 autocmd("BufWritePost", {
-    pattern = {"plugins/init.lua"},
-    callback = function()
-     vim.cmd [[source <afile> | PackerCompile]]
-    end
+  pattern = { "plugins/init.lua" },
+  callback = function()
+    vim.cmd [[source <afile> | PackerCompile]]
+  end
 })
 
 autocmd('RecordingEnter', {
-    pattern = '*',
-    callback = function()
-        vim.opt_local.cmdheight = 1
-    end,
+  pattern = '*',
+  callback = function()
+    vim.opt_local.cmdheight = 1
+  end,
 })
 
 autocmd('RecordingLeave', {
-    pattern = '*',
-    callback = function()
-      local timer = vim.loop.new_timer()
-      -- NOTE: Timer is here because we need to close cmdheight AFTER
-      -- the macro is ended, not during the Leave event
-      timer:start( 50, 0, vim.schedule_wrap(function()
-        vim.opt_local.cmdheight = 0
-      end)
-      )
-    end,
+  pattern = '*',
+  callback = function()
+    local timer = vim.loop.new_timer()
+    -- NOTE: Timer is here because we need to close cmdheight AFTER
+    -- the macro is ended, not during the Leave event
+    timer:start(50, 0, vim.schedule_wrap(function()
+      vim.opt_local.cmdheight = 0
+    end)
+    )
+  end,
+})
+
+autocmd("BufWritePre", {
+  pattern = '*',
+  callback = function()
+    pcall(vim.cmd['LspZeroFormat!'])
+  end
 })
