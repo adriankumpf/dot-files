@@ -1,5 +1,5 @@
-require'bufferline'.setup {
-    icons = true,
+require 'bufferline'.setup {
+  icons = true,
 }
 
 vim.g.bufferline = {

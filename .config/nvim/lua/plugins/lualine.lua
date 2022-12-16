@@ -15,6 +15,6 @@ require('lualine').setup({
     theme = 'powerline',
   },
   sections = {
-    lualine_b = {'branch', {'diff', source = diff_source}, {'diagnostics', sources = {'nvim_diagnostic', 'coc'} } },
+    lualine_b = { 'branch', { 'diff', source = diff_source }, { 'diagnostics', sources = { 'nvim_diagnostic', 'coc' } } },
   }
 })
