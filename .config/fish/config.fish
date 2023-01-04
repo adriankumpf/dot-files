@@ -12,6 +12,7 @@ else
   set fish_color_command white --bold
 end
 
+fish_add_path "$HOME/.local/bin"
 fish_add_path "/usr/local/sbin"
 fish_add_path "$HOME/bin"
 
