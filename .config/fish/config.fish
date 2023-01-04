@@ -39,7 +39,7 @@ if type -q mix
   fish_add_path "$HOME/.mix/escripts"
 end
 
-if type -q pspg 
+if type -q pspg
   set -x PSQL_PAGER "pspg -s 16"
 end
 
@@ -54,4 +54,6 @@ if type -q brew
   set -gx HOMEBREW_INSTALL_FROM_API 1
 end
 
-set -gx DYLD_FALLBACK_LIBRARY_PATH (xcode-select --print-path)/usr/lib/
+if type -q xcode-select
+  set -gx DYLD_FALLBACK_LIBRARY_PATH (xcode-select --print-path)/usr/lib/
+end
