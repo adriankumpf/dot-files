@@ -35,6 +35,7 @@
   "vim-cool": { "branch": "master", "commit": "80c19445728d70595c2f72d0436527e28292ebd9" },
   "vim-dirvish": { "branch": "master", "commit": "6233243f0caa71d27d27ea102540a88bce8eb6ea" },
   "vim-dirvish-git": { "branch": "master", "commit": "1d938c826503059660d89f186d2e8affc686a0e8" },
+  "vim-illuminate": { "branch": "master", "commit": "da80f3877896adcf77f59fb0bf74e9601615d372" },
   "vim-sayonara": { "branch": "master", "commit": "75c73f3cf3e96f8c09db5291970243699aadc02c" },
   "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" }
 }
