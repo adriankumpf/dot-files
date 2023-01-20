@@ -9,16 +9,12 @@ return {
 
   --  Improve star by not jumping immediately
   { 'ironhouzi/starlite-nvim',
-    keys = function()
-      local starlite = require('starlite')
-
-      return {
-        { "*", function() starlite.star() end, silent = true, desc = "Search forward" },
-        { "g*", function() starlite.g_star() end, silent = true, desc = "Search backward" },
-        { "#", function() starlite.hash() end, silent = true },
-        { "g#", function() starlite.g_hash() end, silent = true },
-      }
-    end
+    keys = {
+      { "*", function() require('starlite').star() end, silent = true, desc = "Search forward" },
+      { "g*", function() require('starlite').g_star() end, silent = true, desc = "Search backward" },
+      { "#", function() require('starlite').hash() end, silent = true },
+      { "g#", function() require('starlite').g_hash() end, silent = true },
+    }
   },
 
   -- Quick on-screen jumps
