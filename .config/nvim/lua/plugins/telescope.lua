@@ -18,7 +18,7 @@ vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>o', builtin.oldfiles, {})
 vim.keymap.set('n', '<leader>tk', builtin.keymaps, {})
-vim.keymap.set('n', ',S', builtin.grep_string, {})
+vim.keymap.set('n', ',S', function() builtin.grep_string({ use_regex = true }) end, {})
 vim.keymap.set('n', '<leader>gc', builtin.git_commits, {})
 vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
 
