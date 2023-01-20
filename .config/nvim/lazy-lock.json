@@ -1,5 +1,4 @@
 {
-  "Comment.nvim": { "branch": "master", "commit": "eab2c83a0207369900e92783f56990808082eac2" },
   "LuaSnip": { "branch": "master", "commit": "af60ac12fa1349dbad479fc1e95d5aea977c0c37" },
   "barbar.nvim": { "branch": "master", "commit": "c1b5d351ccd8f88fd2729b90ade2ef5d333463de" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
@@ -18,6 +17,7 @@
   "markdown-preview.nvim": { "branch": "master", "commit": "02cc3874738bc0f86e4b91f09b8a0ac88aef8e96" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "5b388c0de30f1605671ebfb9a20a620cda50ffce" },
   "mason.nvim": { "branch": "main", "commit": "41d6a88c9d08380f7e1e33d8471ffe36c0900347" },
+  "mini.comment": { "branch": "main", "commit": "a0f543e7846f67d10cbed5f2dce72eb26d0ca96b" },
   "null-ls.nvim": { "branch": "main", "commit": "ef3d4a438f96865e3ae018e33ed30156a955ed00" },
   "nvim-cmp": { "branch": "main", "commit": "11a95792a5be0f5a40bab5fc5b670e5b1399a939" },
   "nvim-lspconfig": { "branch": "master", "commit": "d228bcf7cd94611929482a09e114a42c41fe81a8" },
