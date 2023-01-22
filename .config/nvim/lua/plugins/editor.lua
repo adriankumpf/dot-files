@@ -33,9 +33,9 @@ return {
   { "kylechui/nvim-surround", config = true },
 
   -- Comments
-  { "echasnovski/mini.comment",
-    event = "VeryLazy",
-    config = function() require("mini.comment").setup() end
+  {
+    'numToStr/Comment.nvim',
+    config = true
   },
 
   -- Strip trailing whitespace
