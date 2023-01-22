@@ -3,7 +3,7 @@ return {
   { 'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = "VeryLazy",
-    config = function()
+    opts = function()
       local function diff_source()
         local gitsigns = vim.b.gitsigns_status_dict
         if gitsigns then
@@ -15,19 +15,37 @@ return {
         end
       end
 
-      require('lualine').setup({
+      return {
         options = {
+          theme = "powerline",
           globalstatus = true,
-          theme = 'powerline',
         },
         sections = {
-          lualine_b = {
-            'branch', { 'diff', source = diff_source },
-            { 'diagnostics', sources = { 'nvim_diagnostic', 'coc' } }
+          lualine_a = { "mode" },
+          lualine_b = { "branch" },
+          lualine_c = {
+            { "diagnostics" },
+            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+            { "filename", path = 1, symbols = { modified = "", unnamed = "" } },
+
           },
-        }
-      })
-    end
+          lualine_x = {
+            { require("lazy.status").updates, cond = require("lazy.status").has_updates },
+            { "diff", source = diff_source() },
+          },
+          lualine_y = {
+            { "progress", separator = "", padding = { left = 1, right = 0 } },
+            { "location", padding = { left = 0, right = 1 } },
+          },
+          lualine_z = {
+            function()
+              return " " .. os.date("%R")
+            end,
+          },
+        },
+        extensions = { 'quickfix' }
+      }
+    end,
   },
 
   -- Tabs

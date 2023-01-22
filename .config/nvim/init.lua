@@ -8,4 +8,10 @@ vim.opt.rtp:prepend(lazypath)
 require 'options'
 require 'mappings'
 require 'autocmds'
-require("lazy").setup("plugins")
+
+require "lazy".setup("plugins", {
+  checker = {
+    enabled = true,
+    notify = false
+  }
+})
