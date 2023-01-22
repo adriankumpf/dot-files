@@ -45,7 +45,11 @@ return {
   },
 
   --  Make hlsearch more useful
-  'romainl/vim-cool',
+  {
+    "asiryk/auto-hlsearch.nvim",
+    event = "VeryLazy",
+    config = true
+  },
 
   -- Git Stuff
   { 'lewis6991/gitsigns.nvim',
