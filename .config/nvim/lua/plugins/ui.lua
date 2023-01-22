@@ -1,7 +1,7 @@
 return {
   -- Statusline
   { 'nvim-lualine/lualine.nvim',
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = "VeryLazy",
     config = function()
       local function diff_source()
@@ -21,58 +21,66 @@ return {
           theme = 'powerline',
         },
         sections = {
-          lualine_b = { 'branch', { 'diff', source = diff_source },
-            { 'diagnostics', sources = { 'nvim_diagnostic', 'coc' } } },
+          lualine_b = {
+            'branch', { 'diff', source = diff_source },
+            { 'diagnostics', sources = { 'nvim_diagnostic', 'coc' } }
+          },
         }
       })
     end
   },
 
   -- Tabs
-  { 'romgrk/barbar.nvim',
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+  {
+    'akinsho/bufferline.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      { "tiagovla/scope.nvim", config = true }
+    },
     event = "VeryLazy",
-    config = function()
-      require 'bufferline'.setup {
-        icons = true,
-      }
+    opts = {
+      options = {
+        always_show_bufferline = true,
+        show_close_icon = false,
+        diagnostics = "nvim_lsp",
+        sort_by = 'relative_directory',
+      },
+      highlights = function(config)
+        local hl = {}
 
-      vim.g.bufferline = {
-        auto_hide = true,
-        tabpages = true,
-        closable = false,
-      }
+        for name, tbl in pairs(config.highlights) do
+          local tbl_copy = {}
+          for k, v in pairs(tbl) do
+            if k == 'bg' then
+              tbl_copy[k] = "NONE"
+            else
+              tbl_copy[k] = v
+            end
+          end
+          hl[name] = tbl_copy
+        end
 
+        return hl
+      end
+    },
+    config = function(_, opts)
       -- Move to previous/next
-      vim.keymap.set('n', '<M-,>', ':BufferPrevious<CR>', { silent = true })
-      vim.keymap.set('n', '<M-.>', ':BufferNext<CR>', { silent = true })
+      vim.keymap.set('n', '<M-,>', ':BufferLineCyclePrev<CR>', { silent = true })
+      vim.keymap.set('n', '<M-.>', ':BufferLineCycleNext<CR>', { silent = true })
 
       -- Re-order to previous/next
-      vim.keymap.set('n', '<M-<>', ':BufferMovePrevious<CR>', { silent = true })
-      vim.keymap.set('n', '<M->>', ' :BufferMoveNext<CR>', { silent = true })
+      vim.keymap.set('n', '<M-<>', ':BufferLineMovePrev<CR>', { silent = true })
+      vim.keymap.set('n', '<M->>', ' :BufferLineMoveNext<CR>', { silent = true })
 
-      -- Goto buffer in position...
-      vim.keymap.set('n', '<M-1>', ':BufferGoto 1<CR>', { silent = true })
-      vim.keymap.set('n', '<M-2>', ':BufferGoto 2<CR>', { silent = true })
-      vim.keymap.set('n', '<M-3>', ':BufferGoto 3<CR>', { silent = true })
-      vim.keymap.set('n', '<M-4>', ':BufferGoto 4<CR>', { silent = true })
-      vim.keymap.set('n', '<M-5>', ':BufferGoto 5<CR>', { silent = true })
-      vim.keymap.set('n', '<M-6>', ':BufferGoto 6<CR>', { silent = true })
-      vim.keymap.set('n', '<M-7>', ':BufferGoto 7<CR>', { silent = true })
-      vim.keymap.set('n', '<M-8>', ':BufferGoto 8<CR>', { silent = true })
-      vim.keymap.set('n', '<M-9>', ':BufferGoto 9<CR>', { silent = true })
+      local closeAllButCurrent = function()
+        vim.cmd("BufferLineCloseRight")
+        vim.cmd("BufferLineCloseLeft")
+      end
 
-      -- Close commands
-      vim.keymap.set('n', '<M-c>', ':BufferCloseAllButCurrent<CR>', { silent = true })
+      vim.keymap.set('n', '<M-c>', closeAllButCurrent, { silent = true })
 
-      -- Magic buffer-picking mode
-      vim.keymap.set('n', '<C-p>', ':BufferPick<CR>', { silent = true })
-
-      -- Sort automatically by...
-      vim.keymap.set('n', '<Space>bb', ':BufferOrderByBufferNumber<CR>', { silent = true })
-      vim.keymap.set('n', '<Space>bd', ':BufferOrderByDirectory<CR>', { silent = true })
-      vim.keymap.set('n', '<Space>bl', ':BufferOrderByLanguage<CR>', { silent = true })
-    end
+      require("bufferline").setup(opts)
+    end,
   },
 
   --  Directory viewer
