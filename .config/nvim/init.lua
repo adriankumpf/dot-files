@@ -12,6 +12,7 @@ require 'autocmds'
 require "lazy".setup("plugins", {
   checker = {
     enabled = true,
-    notify = false
+    notify = false,
+    frequency = 10800
   }
 })

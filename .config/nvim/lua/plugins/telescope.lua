@@ -56,10 +56,4 @@ return {
       telescope.load_extension('fzf')
     end
   },
-
-  {
-    'prochri/telescope-all-recent.nvim',
-    dependencies = { "kkharji/sqlite.lua" },
-    config = true
-  }
 }
