@@ -38,13 +38,6 @@ autocmd("BufReadPost", {
   end
 })
 
-autocmd("BufWritePost", {
-  pattern = { "plugins/init.lua" },
-  callback = function()
-    vim.cmd [[source <afile> | PackerCompile]]
-  end
-})
-
 autocmd('RecordingEnter', {
   pattern = '*',
   callback = function()
