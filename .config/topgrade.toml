@@ -2,7 +2,7 @@
 #assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["containers", "system", "gem", "mas", "go", "tlmgr"]
+disable = ["containers", "system", "gem", "mas", "go", "tlmgr", "ruby_gems", "pnpm"]
 
 # Ignore failures for these steps
 #ignore_failures = ["powershell"]
