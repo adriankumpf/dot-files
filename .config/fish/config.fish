@@ -14,6 +14,7 @@ end
 
 fish_add_path "$HOME/.local/bin"
 fish_add_path "/usr/local/sbin"
+fish_add_path "/opt/homebrew/sbin"
 fish_add_path "$HOME/bin"
 
 if test -d "$HOME/.cargo/bin"
