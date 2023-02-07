@@ -46,9 +46,8 @@ return {
 
   --  Make hlsearch more useful
   {
-    "asiryk/auto-hlsearch.nvim",
-    event = "VeryLazy",
-    config = true
+    "romainl/vim-cool",
+    event = "VeryLazy"
   },
 
   -- Git Stuff
