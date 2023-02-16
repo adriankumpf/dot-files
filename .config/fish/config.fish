@@ -53,7 +53,7 @@ if type -q go
 end
 
 if type -q brew
-  set -gx HOMEBREW_INSTALL_FROM_API 1
+  set -gx HOMEBREW_NO_GOOGLE_ANALYTICS 1
 end
 
 if type -q xcode-select
