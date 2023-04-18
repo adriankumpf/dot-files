@@ -22,6 +22,14 @@ return {
     config = function()
       local lsp = require('lsp-zero')
 
+      lsp.configure("yamlls", {
+        settings = {
+          yaml = {
+            keyOrdering = false
+          }
+        }
+      })
+
       lsp.preset('recommended')
       lsp.nvim_workspace()
       lsp.setup()
@@ -33,7 +41,8 @@ return {
   },
 
   -- Linting, Formatting & Code Actions
-  { "jose-elias-alvarez/null-ls.nvim",
+  {
+    "jose-elias-alvarez/null-ls.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig"
