@@ -4,7 +4,7 @@ return {
     dependencies = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim', cmd = "Mason" },
+      { 'williamboman/mason.nvim',          cmd = "Mason" },
       { 'williamboman/mason-lspconfig.nvim' },
 
       -- Autocompletion

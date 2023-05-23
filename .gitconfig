@@ -13,6 +13,7 @@
     ui = true
 [core]
     editor = nvim
+    pager = delta --features "${ITERM_PROFILE:-dark}"
 [help]
     autocorrect = 1
 [alias]
@@ -48,12 +49,17 @@
     grep = delta
     reflog = delta
 [interactive]
-    diffFilter = delta --color-only
+    diffFilter = delta --color-only --features "${ITERM_PROFILE:-dark}"
 [delta]
     hyperlinks = true
     line-numbers = true
-    syntax-theme = gruvbox_dark_medium
     max-line-length = 16384
+[delta "dark"]
+    light = false
+    syntax-theme = gruvbox_dark_medium
+[delta "light"]
+    light = true
+    syntax-theme = GitHub
 [github]
     user = adriankumpf
 [branch]

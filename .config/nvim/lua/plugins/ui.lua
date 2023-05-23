@@ -1,6 +1,9 @@
+local colorscheme = require 'utils'.colorscheme
+
 return {
   -- Statusline
-  { 'nvim-lualine/lualine.nvim',
+  {
+    'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = "VeryLazy",
     opts = function()
@@ -17,7 +20,7 @@ return {
 
       return {
         options = {
-          theme = "powerline",
+          theme = colorscheme() == "gruvbox" and "powerline" or nil,
           globalstatus = true,
         },
         sections = {
@@ -25,16 +28,16 @@ return {
           lualine_b = { "branch" },
           lualine_c = {
             { "diagnostics" },
-            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-            { "filename", path = 1, symbols = { modified = "", unnamed = "" } },
+            { "filetype",   icon_only = true, separator = "",                           padding = { left = 1, right = 0 } },
+            { "filename",   path = 1,         symbols = { modified = "", unnamed = "" } },
 
           },
           lualine_x = {
             { require("lazy.status").updates, cond = require("lazy.status").has_updates },
-            { "diff", source = diff_source() },
+            { "diff",                         source = diff_source() },
           },
           lualine_y = {
-            { "progress", separator = "", padding = { left = 1, right = 0 } },
+            { "progress", separator = "",                   padding = { left = 1, right = 0 } },
             { "location", padding = { left = 0, right = 1 } },
           },
           lualine_z = {
@@ -102,7 +105,8 @@ return {
   },
 
   --  Directory viewer
-  { 'justinmk/vim-dirvish',
+  {
+    'justinmk/vim-dirvish',
     dependencies = { 'kristijanhusak/vim-dirvish-git' },
     config = function()
       vim.g.dirvish_mode = [[:sort ,^.*[\/],]]
