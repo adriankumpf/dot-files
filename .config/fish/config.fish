@@ -63,3 +63,12 @@ end
 if type -q bat and   test "$ITERM_PROFILE" = "light"
   set -gx BAT_CONFIG_PATH ~/.config/bat/config_theme_light
 end
+
+if test -d "$(brew --prefix)/share/google-cloud-sdk"
+  source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
+  set -gx USE_GKE_GCLOUD_AUTH_PLUGIN True
+end
+
+if test -d "$(brew --prefix)/opt/asdf"
+  source $(brew --prefix)/opt/asdf/libexec/asdf.fish
+end
