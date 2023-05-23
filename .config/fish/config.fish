@@ -60,7 +60,7 @@ if type -q xcode-select
   set -gx DYLD_FALLBACK_LIBRARY_PATH (xcode-select --print-path)/usr/lib/
 end
 
-if type -q bat and   test "$ITERM_PROFILE" = "light"
+if type -q bat and test "$ITERM_PROFILE" = "light"
   set -gx BAT_CONFIG_PATH ~/.config/bat/config_theme_light
 end
 
@@ -70,5 +70,9 @@ if test -d "$(brew --prefix)/share/google-cloud-sdk"
 end
 
 if test -d "$(brew --prefix)/opt/asdf"
-  source $(brew --prefix)/opt/asdf/libexec/asdf.fish
+  # Instruct kerl to build Erlang documentation
+  set -xg KERL_BUILD_DOCS yes
+  set -xg KERL_INSTALL_HTMLDOCS no
+  set -xg KERL_INSTALL_MANPAGES no
+  source /opt/homebrew/opt/asdf/libexec/asdf.fish
 end
