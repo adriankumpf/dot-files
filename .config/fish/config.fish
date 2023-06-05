@@ -14,7 +14,6 @@ end
 
 fish_add_path "$HOME/.local/bin"
 fish_add_path "/usr/local/sbin"
-fish_add_path "/opt/homebrew/sbin"
 fish_add_path "$HOME/bin"
 
 if test -d "$HOME/.cargo/bin"
@@ -53,7 +52,22 @@ if type -q go
 end
 
 if type -q brew
+  fish_add_path "/opt/homebrew/sbin"
+
   set -gx HOMEBREW_NO_GOOGLE_ANALYTICS 1
+
+  if test -d "$(brew --prefix)/share/google-cloud-sdk"
+    source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
+    set -gx USE_GKE_GCLOUD_AUTH_PLUGIN True
+  end
+
+  if test -d "$(brew --prefix)/opt/asdf"
+    # Instruct kerl to build Erlang documentation
+    set -xg KERL_BUILD_DOCS yes
+    set -xg KERL_INSTALL_HTMLDOCS no
+    set -xg KERL_INSTALL_MANPAGES no
+    source /opt/homebrew/opt/asdf/libexec/asdf.fish
+  end
 end
 
 if type -q xcode-select
@@ -62,17 +76,4 @@ end
 
 if type -q bat and test "$ITERM_PROFILE" = "light"
   set -gx BAT_CONFIG_PATH ~/.config/bat/config_theme_light
-end
-
-if test -d "$(brew --prefix)/share/google-cloud-sdk"
-  source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
-  set -gx USE_GKE_GCLOUD_AUTH_PLUGIN True
-end
-
-if test -d "$(brew --prefix)/opt/asdf"
-  # Instruct kerl to build Erlang documentation
-  set -xg KERL_BUILD_DOCS yes
-  set -xg KERL_INSTALL_HTMLDOCS no
-  set -xg KERL_INSTALL_MANPAGES no
-  source /opt/homebrew/opt/asdf/libexec/asdf.fish
 end
