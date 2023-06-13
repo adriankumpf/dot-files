@@ -1,10 +1,11 @@
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
     dependencies = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim',          cmd = "Mason" },
+      { 'williamboman/mason.nvim',          cmd = "Mason", build = ":MasonUpdate" },
       { 'williamboman/mason-lspconfig.nvim' },
 
       -- Autocompletion
