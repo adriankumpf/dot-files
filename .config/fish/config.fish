@@ -74,6 +74,6 @@ if type -q xcode-select
   set -gx DYLD_FALLBACK_LIBRARY_PATH (xcode-select --print-path)/usr/lib/
 end
 
-if type -q bat and test "$ITERM_PROFILE" = "light"
+if type -q bat; and test "$ITERM_PROFILE" = "light"
   set -gx BAT_CONFIG_PATH ~/.config/bat/config_theme_light
 end
