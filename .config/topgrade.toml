@@ -1,8 +1,18 @@
+[misc]
 # Don't ask for confirmations
 #assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["containers", "system", "gem", "mas", "go", "tlmgr", "ruby_gems", "pnpm"]
+disable = [
+  "containers",
+  "system",
+  "gem",
+  "mas",
+  "go",
+  "tlmgr",
+  "ruby_gems",
+  "pnpm",
+]
 
 # Ignore failures for these steps
 #ignore_failures = ["powershell"]
@@ -45,7 +55,7 @@ cleanup = true
 skip_notify = true
 
 # Skip the preamble displayed when topgrade is run
-display_preamble = true
+# display_preamble = true
 
 [git]
 #max_concurrency = 5
