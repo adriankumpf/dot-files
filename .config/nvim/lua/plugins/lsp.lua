@@ -22,6 +22,7 @@ return {
     },
     config = function()
       local lsp = require('lsp-zero')
+      local cmp = require('cmp')
 
       lsp.configure("yamlls", {
         settings = {
@@ -34,6 +35,12 @@ return {
       lsp.preset('recommended')
       lsp.nvim_workspace()
       lsp.setup()
+
+      cmp.setup({
+        mapping = {
+          ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        }
+      })
 
       vim.diagnostic.config({
         virtual_text = true,
