@@ -54,7 +54,7 @@ end
 if type -q brew
   fish_add_path "/opt/homebrew/sbin"
 
-  set -gx HOMEBREW_NO_GOOGLE_ANALYTICS 1
+  set -gx HOMEBREW_NO_ANALYTICS 1
 
   if test -d "$(brew --prefix)/share/google-cloud-sdk"
     source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
