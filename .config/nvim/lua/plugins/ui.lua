@@ -64,7 +64,6 @@ return {
         always_show_bufferline = true,
         show_close_icon = false,
         diagnostics = "nvim_lsp",
-        sort_by = 'relative_directory',
       },
       highlights = function(config)
         local hl = {}
