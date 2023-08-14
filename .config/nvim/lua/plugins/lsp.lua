@@ -29,7 +29,7 @@ return {
 
       local lexical_config = {
         filetypes = { "elixir", "eelixir", },
-        cmd = { vim.loop.os_homedir() .. "/Developer/third_party/lexical/_build/dev/rel/lexical/start_lexical.sh" },
+        cmd = { vim.loop.os_homedir() .. "/Developer/third_party/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
         settings = {},
       }
 
