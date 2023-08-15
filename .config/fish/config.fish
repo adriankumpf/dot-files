@@ -61,12 +61,15 @@ if type -q brew
     set -gx USE_GKE_GCLOUD_AUTH_PLUGIN True
   end
 
-  if test -d "$(brew --prefix)/opt/asdf"
+  if test -d "$(brew --prefix)/opt/rtx"
+    set -xg HOMEBREW_PREFIX (brew --prefix)
+
     # Instruct kerl to build Erlang documentation
     set -xg KERL_BUILD_DOCS yes
     set -xg KERL_INSTALL_HTMLDOCS no
     set -xg KERL_INSTALL_MANPAGES no
-    source /opt/homebrew/opt/asdf/libexec/asdf.fish
+
+    rtx activate fish | source
   end
 end
 
