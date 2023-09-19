@@ -28,3 +28,12 @@ vim.keymap.set({ "n", "v" }, "/", [[/\v\c]])
 vim.keymap.set("v", "y", "y`]")
 vim.keymap.set("v", "p", '"_dP`]')
 vim.keymap.set("n", "p", "p`]")
+
+-- grab the current file and line number
+vim.keymap.set("n", "<leader>y", function()
+  vim.fn.setreg('+', { vim.fn.expand('%') .. ':' .. vim.fn.line('.') })
+end)
+
+vim.keymap.set("n", "<leader>Y", function()
+  vim.fn.setreg('+', { vim.fn.expand('%') })
+end)
