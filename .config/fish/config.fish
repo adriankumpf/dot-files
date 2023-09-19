@@ -80,3 +80,7 @@ end
 if type -q bat; and test "$ITERM_PROFILE" = "light"
   set -gx BAT_CONFIG_PATH ~/.config/bat/config_theme_light
 end
+
+if test -f "$__fish_config_dir/work.fish"
+  source "$__fish_config_dir/work.fish"
+end
