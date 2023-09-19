@@ -70,6 +70,8 @@ if type -q brew
     set -xg KERL_INSTALL_MANPAGES no
 
     rtx activate fish | source
+
+    fish_add_path "$HOME/.local/share/rtx/shims"
   end
 end
 
