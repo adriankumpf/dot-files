@@ -8,7 +8,7 @@ return {
     priority = 1000,
     config = function()
       if colorscheme() == "gruvbox" then
-        local palette = require("gruvbox.palette")
+        local palette = require('gruvbox').palette
 
         require("gruvbox").setup({
           overrides = {
