@@ -5,51 +5,70 @@ return {
     dependencies = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim',          cmd = "Mason", build = ":MasonUpdate" },
+      { 'williamboman/mason.nvim',          cmd = "Mason",  build = ":MasonUpdate" },
       { 'williamboman/mason-lspconfig.nvim' },
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-nvim-lua' },
+
+      {
+          "Exafunction/codeium.nvim",
+          dependencies = {
+              "nvim-lua/plenary.nvim",
+              "hrsh7th/nvim-cmp",
+          },
+          config = function()
+              require("codeium").setup({
+              })
+          end
+      },
 
       -- Snippets
       { 'L3MON4D3/LuaSnip' },
-      { 'rafamadriz/friendly-snippets' },
     },
     config = function()
-      local lsp = require('lsp-zero')
-      local cmp = require('cmp')
+      local lsp_zero = require('lsp-zero')
 
-      local lspconfig = require("lspconfig")
-      local configs = require("lspconfig.configs")
+      lsp_zero.on_attach(function(client, bufnr)
+        -- see :help lsp-zero-keybindings
+        -- to learn the available actions
+        lsp_zero.default_keymaps({buffer = bufnr})
+      end)
 
-      local lexical_config = {
-        filetypes = { "elixir", "eelixir", },
-        cmd = { vim.loop.os_homedir() .. "/Developer/third_party/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
-        settings = {},
-      }
+      require('mason').setup({})
+      require('mason-lspconfig').setup({
+        ensure_installed = {},
+        handlers = {
+          lsp_zero.default_setup,
+          lua_ls = function()
+            local lua_opts = lsp_zero.nvim_lua_ls()
+            require('lspconfig').lua_ls.setup(lua_opts)
+          end,
+        }
+      })
 
-      if not configs.lexical then
-        configs.lexical = {
+      local lsp_configurations = require('lspconfig.configs')
+
+      if not lsp_configurations.lexical then
+        lsp_configurations.lexical = {
           default_config = {
-            filetypes = lexical_config.filetypes,
-            cmd = lexical_config.cmd,
+            name = 'Lexical',
+            filetypes = { "elixir", "eelixir" },
+            cmd = { vim.loop.os_homedir() .. "/Developer/third_party/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
             root_dir = function(fname)
-              return lspconfig.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
+              return require('lspconfig.util').root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
             end,
-            -- optional settings
-            settings = lexical_config.settings,
-          },
+            settings = {}
+          }
         }
       end
 
-      lspconfig.lexical.setup({})
+      require('lspconfig').lexical.setup({})
 
-      lsp.configure("yamlls", {
+      require('lspconfig').yamlls.setup({
         settings = {
           yaml = {
             keyOrdering = false
@@ -57,14 +76,31 @@ return {
         }
       })
 
-      lsp.preset('recommended')
-      lsp.nvim_workspace()
-      lsp.setup()
+
+      local cmp = require('cmp')
+      local cmp_format = lsp_zero.cmp_format()
+      local cmp_action = require('lsp-zero').cmp_action()
 
       cmp.setup({
-        mapping = {
+        formatting = cmp_format,
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = "codeium" },
+          { name = 'buffer' },
+          { name = 'path' },
+        },
+        mapping = cmp.mapping.preset.insert({
+          -- scroll up and down the documentation window
+          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-d>'] = cmp.mapping.scroll_docs(4),
+
+          -- Use Enter to confirm completion
           ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        }
+
+          -- Enable 'Super Tab'
+          ['<Tab>'] = cmp_action.luasnip_supertab(),
+          ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+        }),
       })
 
       vim.diagnostic.config({
