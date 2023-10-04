@@ -31,9 +31,9 @@ vim.keymap.set("n", "p", "p`]")
 
 -- grab the current file and line number
 vim.keymap.set("n", "<leader>y", function()
-  vim.fn.setreg('+', { vim.fn.expand('%') .. ':' .. vim.fn.line('.') })
+	vim.fn.setreg("+", { vim.fn.expand("%") .. ":" .. vim.fn.line(".") })
 end)
 
 vim.keymap.set("n", "<leader>Y", function()
-  vim.fn.setreg('+', { vim.fn.expand('%') })
+	vim.fn.setreg("+", { vim.fn.expand("%") })
 end)
