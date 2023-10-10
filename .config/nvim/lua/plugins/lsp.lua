@@ -13,6 +13,7 @@ return {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
+			{ "L3MON4D3/LuaSnip" },
 
 			{
 				"Exafunction/codeium.nvim",
@@ -24,9 +25,6 @@ return {
 					require("codeium").setup({})
 				end,
 			},
-
-			-- Snippets
-			{ "L3MON4D3/LuaSnip" },
 		},
 		config = function()
 			local lsp_zero = require("lsp-zero")
@@ -99,10 +97,17 @@ return {
 					-- Use Enter to confirm completion
 					["<CR>"] = cmp.mapping.confirm({ select = false }),
 
-					-- Enable 'Super Tab'
+					-- Tab completion
+					-- ["<Tab>"] = cmp_action.tab_complete(),
+					-- ["<S-Tab>"] = cmp_action.select_prev_or_fallback(),
 					["<Tab>"] = cmp_action.luasnip_supertab(),
 					["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
 				}),
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
 			})
 
 			vim.diagnostic.config({
