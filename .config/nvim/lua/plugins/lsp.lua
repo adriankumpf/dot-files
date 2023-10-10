@@ -151,7 +151,18 @@ return {
 					},
 
 					elixir = {
-						require("formatter.filetypes.elixir").mixformat,
+						function()
+							return {
+								exe = "mix",
+								args = {
+									"format",
+									"--stdin-filename",
+									util.escape_path(util.get_current_buffer_file_path()),
+									"-",
+								},
+								stdin = true,
+							}
+						end,
 					},
 
 					sh = {
