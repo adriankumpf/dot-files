@@ -1,35 +1,38 @@
 #!/usr/bin/env sh
 
-# YABAI_CERT=yabai-cert sh -c "$(curl -sSL "https://git.io/update-yabai")" &
+yabai -m config                                 \
+    mouse_follows_focus          off            \
+    focus_follows_mouse          autofocus      \
+    window_origin_display        default        \
+    window_placement             second_child   \
+    window_zoom_persist          on             \
+    window_shadow                on             \
+    window_animation_frame_rate  120            \
+    window_opacity_duration      0.0            \
+    active_window_opacity        1.0            \
+    normal_window_opacity        0.90           \
+    window_opacity               off            \
+    insert_feedback_color        0xffd75f5f     \
+    split_ratio                  0.50           \
+    split_type                   auto           \
+    auto_balance                 off            \
+    top_padding                  12             \
+    bottom_padding               12             \
+    left_padding                 12             \
+    right_padding                12             \
+    window_gap                   06             \
+    layout                       bsp            \
+    mouse_modifier               alt            \
+    mouse_action1                move           \
+    mouse_action2                resize         \
+    mouse_drop_action            stack
 
-# global settings
-yabai -m config mouse_follows_focus          off
-yabai -m config focus_follows_mouse          autofocus
-yabai -m config window_placement             second_child
-yabai -m config active_window_opacity        1.0
-yabai -m config window_opacity               off
-yabai -m config window_opacity_duration      0.0
-yabai -m config window_shadow                on
-yabai -m config insert_feedback_color        0xaad75f5f
-yabai -m config normal_window_opacity        0.90
-yabai -m config split_ratio                  0.50
-yabai -m config auto_balance                 off
-yabai -m config mouse_modifier               alt
-yabai -m config mouse_action1                move
-yabai -m config mouse_action2                resize
-
-# general space settings
-yabai -m config layout                       bsp
-yabai -m config top_padding                  20
-yabai -m config bottom_padding               20
-yabai -m config left_padding                 20
-yabai -m config right_padding                20
-yabai -m config window_gap                   10
-
-yabai -m rule --add manage=off grid=4:4:1:1:2:2 app="Stats"
-yabai -m rule --add manage=off grid=4:4:1:1:2:2 app="1Password"
-yabai -m rule --add manage=off grid=4:4:1:1:2:2 app="System Settings"
-yabai -m rule --add manage=off grid=4:4:1:1:2:2 app=Finder title=Copy
-yabai -m rule --add manage=off grid=4:4:1:1:2:2 app=iTerm title=Preferences
+yabai -m rule                                                     \
+    --add manage=off grid=4:4:1:1:2:2 app="Stats"                 \
+    --add manage=off grid=4:4:1:1:2:2 app="OrbStack"              \
+    --add manage=off grid=4:4:1:1:2:2 app="1Password"             \
+    --add manage=off grid=4:4:1:1:2:2 app="System Settings"       \
+    --add manage=off grid=4:4:1:1:2:2 app=Finder title=Copy       \
+    --add manage=off grid=4:4:1:1:2:2 app=iTerm title=Preferences
 
 echo "yabai configuration loaded.."
