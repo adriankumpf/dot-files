@@ -14,17 +14,6 @@ return {
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
 			{ "L3MON4D3/LuaSnip" },
-
-			{
-				"Exafunction/codeium.nvim",
-				dependencies = {
-					"nvim-lua/plenary.nvim",
-					"hrsh7th/nvim-cmp",
-				},
-				config = function()
-					require("codeium").setup({})
-				end,
-			},
 		},
 		config = function()
 			local lsp_zero = require("lsp-zero")
