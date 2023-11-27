@@ -73,6 +73,10 @@ if type -q brew
 
         fish_add_path "$HOME/.local/share/rtx/shims"
     end
+
+    if test -d "$(brew --prefix)/opt/postgresql@16"
+        fish_add_path "$(brew --prefix)/opt/postgresql@16/bin"
+    end
 end
 
 if type -q xcode-select
