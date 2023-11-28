@@ -74,7 +74,6 @@ return {
 				formatting = cmp_format,
 				sources = {
 					{ name = "nvim_lsp" },
-					{ name = "codeium" },
 					{ name = "buffer" },
 					{ name = "path" },
 				},
