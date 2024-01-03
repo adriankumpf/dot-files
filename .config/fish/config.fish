@@ -52,7 +52,7 @@ if type -q go
 end
 
 if type -q brew
-    fish_add_path /opt/homebrew/sbin
+    fish_add_path "$(brew --prefix)/sbin"
 
     set -gx HOMEBREW_NO_ANALYTICS 1
 
@@ -61,7 +61,7 @@ if type -q brew
         set -gx USE_GKE_GCLOUD_AUTH_PLUGIN True
     end
 
-    if test -d "$(brew --prefix)/opt/rtx"
+    if test -d "$(brew --prefix)/opt/mise"
         set -xg HOMEBREW_PREFIX (brew --prefix)
 
         # Instruct kerl to build Erlang documentation
@@ -69,9 +69,9 @@ if type -q brew
         set -xg KERL_INSTALL_HTMLDOCS no
         set -xg KERL_INSTALL_MANPAGES no
 
-        rtx activate fish | source
+        mise activate fish | source
 
-        fish_add_path "$HOME/.local/share/rtx/shims"
+        fish_add_path "$HOME/.local/share/mise/shims"
     end
 
     if test -d "$(brew --prefix)/opt/postgresql@16"
