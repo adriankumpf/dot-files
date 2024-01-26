@@ -36,27 +36,34 @@ return {
 				},
 			})
 
-			local lsp_configurations = require("lspconfig.configs")
+			local lspconfig = require("lspconfig")
+			local configs = require("lspconfig.configs")
 
-			if not lsp_configurations.lexical then
-				lsp_configurations.lexical = {
+			local lexical_config = {
+				filetypes = { "elixir", "eelixir", "heex" },
+				cmd = {
+
+					vim.loop.os_homedir()
+						.. "/Developer/third_party/lexical/_build/dev/package/lexical/bin/start_lexical.sh",
+				},
+				settings = {},
+			}
+
+			if not configs.lexical then
+				configs.lexical = {
 					default_config = {
-						name = "Lexical",
-						filetypes = { "elixir", "eelixir" },
-						cmd = {
-							vim.loop.os_homedir()
-								.. "/Developer/third_party/lexical/_build/dev/package/lexical/bin/start_lexical.sh",
-						},
+						filetypes = lexical_config.filetypes,
+						cmd = lexical_config.cmd,
 						root_dir = function(fname)
-							return require("lspconfig.util").root_pattern("mix.exs", ".git")(fname)
-								or vim.loop.os_homedir()
+							return lspconfig.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
 						end,
-						settings = {},
+						-- optional settings
+						settings = lexical_config.settings,
 					},
 				}
 			end
 
-			require("lspconfig").lexical.setup({})
+			lspconfig.lexical.setup({})
 
 			require("lspconfig").yamlls.setup({
 				settings = {
