@@ -1,6 +1,14 @@
 return {
 	-- Sane buffer/window deletion.
 	{ "mhinz/vim-sayonara", cmd = "Sayonara" },
+	{
+		"ojroques/nvim-bufdel",
+		cmd = "BufDel",
+		opts = {
+			next = "tabs",
+			quit = true,
+		},
+	},
 
 	-- Transition between multi- & single-line code (gJ | gS)
 	"AndrewRadev/splitjoin.vim",

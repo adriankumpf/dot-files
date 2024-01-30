@@ -2,6 +2,7 @@ vim.keymap.set("i", "jj", "<esc>")
 
 vim.keymap.set("n", ",w", ":w<CR>", { silent = true })
 vim.keymap.set("n", ",q", ":Sayonara<CR>", { silent = true })
+vim.keymap.set("n", ",d", ":BufDel<CR>", { silent = true })
 
 vim.keymap.set("n", "<Leader><Leader>", "<C-^>")
 
