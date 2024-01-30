@@ -80,9 +80,10 @@ return {
 			cmp.setup({
 				formatting = cmp_format,
 				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "buffer" },
-					{ name = "path" },
+					{ name = "copilot", group_index = 2 },
+					{ name = "nvim_lsp", group_index = 2 },
+					{ name = "buffer", group_index = 2 },
+					{ name = "path", group_index = 2 },
 				},
 				mapping = cmp.mapping.preset.insert({
 					-- scroll up and down the documentation window
@@ -93,10 +94,12 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = false }),
 
 					-- Tab completion
-					-- ["<Tab>"] = cmp_action.tab_complete(),
-					-- ["<S-Tab>"] = cmp_action.select_prev_or_fallback(),
-					["<Tab>"] = cmp_action.luasnip_supertab(),
-					["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+					["<Tab>"] = cmp_action.tab_complete(),
+					["<S-Tab>"] = cmp_action.select_prev_or_fallback(),
+
+					-- Navigate between snippet placeholder
+					["<C-f>"] = cmp_action.luasnip_jump_forward(),
+					["<C-b>"] = cmp_action.luasnip_jump_backward(),
 				}),
 				snippet = {
 					expand = function(args)
@@ -185,6 +188,24 @@ return {
 					pcall(vim.cmd["FormatWriteLock"])
 				end,
 			})
+		end,
+	},
+
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = false },
+			})
+		end,
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		config = function()
+			require("copilot_cmp").setup()
 		end,
 	},
 }
