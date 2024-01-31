@@ -19,6 +19,9 @@ return {
 						DiagnosticSignWarn = { fg = palette.bright_yellow, bg = palette.dark0 },
 						DiagnosticSignInfo = { fg = palette.bright_blue, bg = palette.dark0 },
 						DiagnosticSignHint = { fg = palette.bright_aqua, bg = palette.dark0 },
+
+						-- Fix highlighting module definitions until gruvbox.nvim is updated
+						["@module.elixir"] = { link = "GruvboxYellow" },
 					},
 				})
 
