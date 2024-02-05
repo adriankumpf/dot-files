@@ -1,6 +1,4 @@
-local function isWorkMachine()
-	return string.find(vim.fn.hostname(), "^mbpw") ~= nil
-end
+local is_work_machine = require("utils").is_work_machine
 
 return {
 	{
@@ -205,13 +203,13 @@ return {
 				panel = { enabled = false },
 			})
 		end,
-		enabled = isWorkMachine,
+		enabled = is_work_machine,
 	},
 	{
 		"zbirenbaum/copilot-cmp",
 		config = function()
 			require("copilot_cmp").setup()
 		end,
-		enabled = isWorkMachine,
+		enabled = is_work_machine,
 	},
 }

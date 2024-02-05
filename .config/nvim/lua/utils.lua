@@ -10,4 +10,8 @@ function M.colorscheme()
 	end
 end
 
+function M.is_work_machine()
+	return string.find(vim.fn.hostname(), "^mbpw") ~= nil
+end
+
 return M
