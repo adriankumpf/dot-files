@@ -55,28 +55,28 @@ if type -q brew
     fish_add_path "$(brew --prefix)/sbin"
 
     set -gx HOMEBREW_NO_ANALYTICS 1
+    set -xg HOMEBREW_PREFIX (brew --prefix)
 
     if test -d "$(brew --prefix)/share/google-cloud-sdk"
         source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
         set -gx USE_GKE_GCLOUD_AUTH_PLUGIN True
     end
 
-    if test -d "$(brew --prefix)/opt/mise"
-        set -xg HOMEBREW_PREFIX (brew --prefix)
-
-        # Instruct kerl to build Erlang documentation
-        set -xg KERL_BUILD_DOCS yes
-        set -xg KERL_INSTALL_HTMLDOCS no
-        set -xg KERL_INSTALL_MANPAGES no
-
-        mise activate fish | source
-
-        fish_add_path "$HOME/.local/share/mise/shims"
-    end
 
     if test -d "$(brew --prefix)/opt/postgresql@16"
         fish_add_path "$(brew --prefix)/opt/postgresql@16/bin"
     end
+end
+
+if type -q mise
+    # Instruct kerl to build Erlang documentation
+    set -xg KERL_BUILD_DOCS yes
+    set -xg KERL_INSTALL_HTMLDOCS no
+    set -xg KERL_INSTALL_MANPAGES no
+
+    mise activate fish | source
+
+    fish_add_path "$HOME/.local/share/mise/shims"
 end
 
 if type -q xcode-select
