@@ -1,3 +1,7 @@
+local function isWorkMachine()
+	return string.find(vim.fn.hostname(), "^mbpw") ~= nil
+end
+
 return {
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -201,11 +205,13 @@ return {
 				panel = { enabled = false },
 			})
 		end,
+		enabled = isWorkMachine,
 	},
 	{
 		"zbirenbaum/copilot-cmp",
 		config = function()
 			require("copilot_cmp").setup()
 		end,
+		enabled = isWorkMachine,
 	},
 }
