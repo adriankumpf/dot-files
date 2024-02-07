@@ -11,7 +11,7 @@ function M.colorscheme()
 end
 
 function M.is_work_machine()
-	return string.find(vim.fn.hostname(), "^mbpw") ~= nil
+	return string.find(vim.fn.hostname(), "^Remote") ~= nil
 end
 
 return M
