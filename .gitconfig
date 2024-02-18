@@ -36,6 +36,7 @@
 [diff]
     tool = difftastic
     colorMoved = default
+    algorithm = histogram
 [difftool]
     prompt = false
 [difftool "difftastic"]

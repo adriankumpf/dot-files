@@ -94,7 +94,7 @@ return {
 
 			-- Re-order to previous/next
 			vim.keymap.set("n", "<M-<>", ":BufferLineMovePrev<CR>", { silent = true })
-			vim.keymap.set("n", "<M->>", " :BufferLineMoveNext<CR>", { silent = true })
+			vim.keymap.set("n", "<M->>", ":BufferLineMoveNext<CR>", { silent = true })
 
 			local closeAllButCurrent = function()
 				vim.cmd("BufferLineCloseRight")
@@ -109,10 +109,17 @@ return {
 
 	--  Directory viewer
 	{
-		"justinmk/vim-dirvish",
-		dependencies = { "kristijanhusak/vim-dirvish-git" },
-		config = function()
-			vim.g.dirvish_mode = [[:sort ,^.*[\/],]]
+		"stevearc/oil.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			view_options = {
+				show_hidden = true,
+			},
+		},
+		config = function(_, opts)
+			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+			require("oil").setup(opts)
 		end,
 	},
 }
