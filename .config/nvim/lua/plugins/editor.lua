@@ -13,43 +13,6 @@ return {
 	-- Transition between multi- & single-line code (gJ | gS)
 	"AndrewRadev/splitjoin.vim",
 
-	--  Improve star by not jumping immediately
-	{
-		"ironhouzi/starlite-nvim",
-		keys = {
-			{
-				"*",
-				function()
-					require("starlite").star()
-				end,
-				silent = true,
-				desc = "Search forward",
-			},
-			{
-				"g*",
-				function()
-					require("starlite").g_star()
-				end,
-				silent = true,
-				desc = "Search backward",
-			},
-			{
-				"#",
-				function()
-					require("starlite").hash()
-				end,
-				silent = true,
-			},
-			{
-				"g#",
-				function()
-					require("starlite").g_hash()
-				end,
-				silent = true,
-			},
-		},
-	},
-
 	-- Quick on-screen jumps
 	{
 		"ggandor/leap.nvim",
@@ -79,12 +42,6 @@ return {
 
 	-- Strip trailing whitespace
 	{ "mcauley-penney/tidy.nvim", event = "BufWritePre", config = true },
-
-	--  Make hlsearch more useful
-	{
-		"romainl/vim-cool",
-		event = "VeryLazy",
-	},
 
 	-- Git Stuff
 	{

@@ -122,4 +122,65 @@ return {
 			require("oil").setup(opts)
 		end,
 	},
+
+	{
+		"kevinhwang91/nvim-hlslens",
+		dependencies = { "ironhouzi/starlite-nvim" },
+		keys = {
+			{
+				"*",
+				function()
+					require("starlite").star()
+					require("hlslens").start()
+				end,
+				noremap = true,
+				silent = true,
+				desc = "Search forward",
+			},
+			{
+				"g*",
+				function()
+					require("starlite").g_star()
+					require("hlslens").start()
+				end,
+				noremap = true,
+				silent = true,
+				desc = "Search backward",
+			},
+			{
+				"#",
+				function()
+					require("starlite").hash()
+					require("hlslens").start()
+				end,
+				noremap = true,
+				silent = true,
+			},
+			{
+				"g#",
+				function()
+					require("starlite").g_hash()
+					require("hlslens").start()
+				end,
+				noremap = true,
+				silent = true,
+			},
+			{
+				"n",
+				[[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+				noremap = true,
+				silent = true,
+			},
+			{
+				"N",
+				[[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+				noremap = true,
+				silent = true,
+			},
+		},
+		opts = {
+			calm_down = true,
+			nearest_only = true,
+		},
+	},
 }
