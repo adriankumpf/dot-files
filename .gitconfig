@@ -1,7 +1,7 @@
 [user]
     name = Adrian Kumpf
     email = 8999358+adriankumpf@users.noreply.github.com
-    signingkey = 7D277D998FC73FE6
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPl+4tZygDqAIweVtCg1LO17A3O+Jc2+bIpheTK56VLg
 [core]
     excludesfile = ~/.gitignore
 [push]
@@ -89,7 +89,9 @@
 [commit]
     gpgsign = true
 [gpg]
-    program = gpg
+    format = ssh
+[gpg "ssh"]
+    program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [tag]
     gpgsign = true
 [init]
