@@ -135,60 +135,23 @@ return {
 	},
 
 	{
-		"mhartington/formatter.nvim",
-		config = function()
-			local util = require("formatter.util")
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		opts = {
+			format_on_save = { timeout_ms = 5000, lsp_fallback = true },
 
-			require("formatter").setup({
-				filetype = {
-					lua = {
-						require("formatter.filetypes.lua").stylua,
-					},
-
-					fish = {
-						require("formatter.filetypes.fish").fishindent,
-					},
-
-					elixir = {
-						function()
-							return {
-								exe = "mix",
-								args = {
-									"format",
-									"--stdin-filename",
-									util.escape_path(util.get_current_buffer_file_path()),
-									"-",
-								},
-								stdin = true,
-							}
-						end,
-					},
-
-					sh = {
-						function()
-							return {
-								exe = "shellharden",
-								args = {
-									"--transform",
-									util.escape_path(util.get_current_buffer_file_path()),
-									"--",
-								},
-								stdin = true,
-							}
-						end,
-					},
-
-					-- ["*"] = {
-					--   require("formatter.filetypes.any").remove_trailing_whitespace
-					-- }
-				},
-			})
-
-			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-				callback = function()
-					pcall(vim.cmd["FormatWriteLock"])
-				end,
-			})
+			formatters_by_ft = {
+				lua = { "stylua" },
+				elixir = { "mix" },
+				sh = { "shellharden" },
+				fish = { "fish_indent" },
+				-- filetypes that don't have other formatters configured
+				["_"] = { "trim_whitespace" },
+			},
+		},
+		init = function()
+			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 		end,
 	},
 }
