@@ -84,6 +84,7 @@ return {
 			cmp.setup({
 				formatting = cmp_format,
 				sources = {
+					{ name = "copilot", group_index = 2 },
 					{ name = "nvim_lsp", group_index = 2 },
 					{ name = "buffer", group_index = 2 },
 					{ name = "path", group_index = 2 },
@@ -155,5 +156,25 @@ return {
 		init = function()
 			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 		end,
+	},
+
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = false },
+			})
+		end,
+		enabled = is_work_machine,
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+		enabled = is_work_machine,
 	},
 }
