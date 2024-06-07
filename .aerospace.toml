@@ -37,15 +37,12 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
-# alt-v = 'split opposite'
-
 alt-f = 'fullscreen'
 alt-shift-f = 'macos-native-fullscreen'
 
 alt-s = 'layout v_accordion'
 alt-w = 'layout h_accordion'
 alt-e = 'layout tiles horizontal vertical'
-
 alt-t = 'layout floating tiling'
 
 alt-1 = 'workspace 1'
@@ -71,7 +68,6 @@ alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-c = 'reload-config'
 
 alt-r = 'mode resize'
-alt-shift-semicolon = 'mode service'
 
 [mode.resize.binding]
 h = 'resize width -50'
@@ -80,9 +76,3 @@ k = 'resize height -50'
 l = 'resize width +50'
 enter = 'mode main'
 esc = 'mode main'
-
-[mode.service.binding]
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
