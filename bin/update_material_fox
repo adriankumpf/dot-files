@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+FIREFOX_PROFILES_DIR="$HOME/Library/Application Support/Firefox/Profiles"
+DOWNLOAD_URL="https://github.com/edelvarden/material-fox-updated/releases/latest/download/chrome.zip"
+DOWNLOAD_FILE="/tmp/chrome.zip"
+
+FIREFOX_PROFILE_DIR=$(find "$FIREFOX_PROFILES_DIR" -mindepth 1 -maxdepth 1 -type d)
+if [ "$FIREFOX_PROFILE_DIR" = "" ] || [ "$(echo "$FIREFOX_PROFILE_DIR" | wc -l)" -ne 1 ]; then
+  echo "Error: Expected exactly one Firefox profile, but found an unexpected number." >&2
+  exit 1
+fi
+
+if curl -sSLo "$DOWNLOAD_FILE" "$DOWNLOAD_URL" && \
+   unzip -qo "$DOWNLOAD_FILE" -d "/tmp" && \
+   rm -rf "$FIREFOX_PROFILE_DIR/chrome" && \
+   mv "/tmp/chrome" "$FIREFOX_PROFILE_DIR"; then
+    echo "MaterialFox updated successfully"
+else
+    echo "Update failed." >&2
+    exit 1
+fi
