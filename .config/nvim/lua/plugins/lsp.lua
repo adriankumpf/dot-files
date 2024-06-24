@@ -3,7 +3,7 @@ local is_work_machine = require("utils").is_work_machine
 return {
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
+		branch = "v3.x",
 		dependencies = {
 			-- LSP Support
 			{ "neovim/nvim-lspconfig" },
@@ -30,7 +30,9 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {},
 				handlers = {
-					lsp_zero.default_setup,
+					function(server_name)
+						require("lspconfig")[server_name].setup({})
+					end,
 					lua_ls = function()
 						local lua_opts = lsp_zero.nvim_lua_ls()
 						require("lspconfig").lua_ls.setup(lua_opts)
