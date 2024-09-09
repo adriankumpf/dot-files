@@ -92,4 +92,9 @@ return {
 			{ "<leader>m", "<cmd> MarkdownPreview<cr>", silent = true },
 		},
 	},
+
+	{
+		"yorickpeterse/nvim-tree-pairs",
+		config = true,
+	},
 }
