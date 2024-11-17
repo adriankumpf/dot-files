@@ -93,8 +93,8 @@ return {
 			vim.keymap.set("n", "<M-.>", ":BufferLineCycleNext<CR>", { silent = true })
 
 			-- Re-order to previous/next
-			vim.keymap.set("n", "<M-<>", ":BufferLineMovePrev<CR>", { silent = true })
-			vim.keymap.set("n", "<M->>", ":BufferLineMoveNext<CR>", { silent = true })
+			vim.keymap.set("n", "<M-S-,>", ":BufferLineMovePrev<CR>", { silent = true })
+			vim.keymap.set("n", "<M-S-.>", ":BufferLineMoveNext<CR>", { silent = true })
 
 			local closeAllButCurrent = function()
 				vim.cmd("BufferLineCloseRight")
