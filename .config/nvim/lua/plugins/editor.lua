@@ -1,12 +1,16 @@
 return {
 	-- Sane buffer/window deletion.
-	{ "mhinz/vim-sayonara", cmd = "Sayonara" },
 	{
-		"ojroques/nvim-bufdel",
-		cmd = "BufDel",
-		opts = {
-			next = "tabs",
-			quit = true,
+		"mhinz/vim-sayonara",
+		cmd = "Sayonara",
+		keys = {
+			{
+				",q",
+				function()
+					vim.cmd.Sayonara()
+				end,
+				desc = "Delete Buffer",
+			},
 		},
 	},
 
@@ -96,5 +100,58 @@ return {
 	{
 		"yorickpeterse/nvim-tree-pairs",
 		config = true,
+	},
+
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		opts = {
+			dashboard = { enabled = true },
+			input = { enabled = true },
+			notifier = { enabled = true },
+		},
+		keys = {
+			{
+				",d",
+				function()
+					Snacks.bufdelete()
+				end,
+				desc = "Delete Buffer",
+			},
+			{
+				"<leader>gB",
+				function()
+					Snacks.gitbrowse()
+				end,
+				desc = "Git Browse",
+			},
+		},
+	},
+
+	{
+		"stevearc/quicker.nvim",
+		event = "FileType qf",
+		opts = {
+			highlight = {
+				load_buffers = true,
+			},
+		},
+		keys = {
+			{
+				">",
+				function()
+					require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
+				end,
+				desc = "Expand quickfix context",
+			},
+			{
+				"<",
+				function()
+					require("quicker").collapse()
+				end,
+				desc = "Collapse quickfix context",
+			},
+		},
 	},
 }
