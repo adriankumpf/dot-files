@@ -3119,7 +3119,7 @@
 	<key>ShowBookmarkName</key>
 	<true/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>ShowMetalFPSmeter</key>
 	<false/>
 	<key>ShowNewOutputIndicator</key>
@@ -3131,7 +3131,7 @@
 	<key>SoundForEsc</key>
 	<true/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.17708610372340422</real>
+	<real>0.053813428418526155</real>
 	<key>StatusBarPosition</key>
 	<integer>1</integer>
 	<key>StretchTabsToFillBar</key>
