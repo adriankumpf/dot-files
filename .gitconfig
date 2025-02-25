@@ -2,20 +2,23 @@
     name = Adrian Kumpf
     email = 8999358+adriankumpf@users.noreply.github.com
     signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPl+4tZygDqAIweVtCg1LO17A3O+Jc2+bIpheTK56VLg
-[core]
-    excludesfile = ~/.gitignore
 [push]
     default = simple
     followTags = true
     autoSetupRemote = true
 [fetch]
     prune = true
+    pruneTags = true
+    all = true
 [color]
     status = always
     ui = true
 [core]
+    excludesfile = ~/.gitignore
     editor = nvim
     pager = delta --features "${ITERM_PROFILE:-dark}"
+    # fsmonitor = true
+    # untrackedCache = true
 [help]
     autocorrect = 1
 [alias]
@@ -35,11 +38,12 @@
     # Also shows the last commit and committer for each branch listed.
     recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
     remove-gone = !git branch -D `git branch -v | grep '\\[gone\\]' | awk '{print($1)}'`
-
 [diff]
     tool = difftastic
-    colorMoved = default
+    colorMoved = plain
     algorithm = histogram
+    mnemonicPrefix = true
+    renames = true
 [difftool]
     prompt = false
 [difftool "difftastic"]
@@ -80,6 +84,7 @@
     updateRefs = true
 [rerere]
     enabled = true
+    autoupdate = true
 [merge "npm-merge-driver"]
     name = automatically merge npm lockfiles
     driver = npx npm-merge-driver merge %A %O %B %P
@@ -92,13 +97,17 @@
     maxStack=50
 [commit]
     gpgsign = true
+    verbose = true
 [gpg]
     format = ssh
 [gpg "ssh"]
     program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [tag]
     gpgsign = true
+    sort = version:refname
 [init]
     defaultBranch = main
 [includeIf "gitdir:~/Developer/work/"]
     path = ~/Developer/work/.gitconfig
+[column]
+    ui = auto
