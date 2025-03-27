@@ -72,11 +72,14 @@ return {
 			highlights = function(config)
 				local hl = {}
 
+				local palette = require("gruvbox").palette
+				local backgroud_color = palette.dark0 -- "NONE"
+
 				for name, tbl in pairs(config.highlights) do
 					local tbl_copy = {}
 					for k, v in pairs(tbl) do
 						if k == "bg" then
-							tbl_copy[k] = "NONE"
+							tbl_copy[k] = backgroud_color
 						else
 							tbl_copy[k] = v
 						end
