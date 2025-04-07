@@ -4,7 +4,7 @@ vim.keymap.set("n", ",w", ":w<CR>", { silent = true })
 
 vim.keymap.set("n", "<Leader><Leader>", "<C-^>")
 
-vim.keymap.set("n", "<Leader>z", "z=1<CR><CR>")
+vim.keymap.set("n", "<Leader>z", "1z=")
 
 vim.keymap.set("n", "<expr>", 'k (v:count == 0 ? "gk" : "k")')
 vim.keymap.set("n", "<expr>", 'j (v:count == 0 ? "gj" : "j")')
