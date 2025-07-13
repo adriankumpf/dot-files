@@ -27,15 +27,15 @@ alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
 
+alt-shift-h = 'swap left'
+alt-shift-j = 'swap down'
+alt-shift-k = 'swap up'
+alt-shift-l = 'swap right'
+
 cmd-shift-h = 'move left'
 cmd-shift-j = 'move down'
 cmd-shift-k = 'move up'
 cmd-shift-l = 'move right'
-
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
 
 alt-f = 'fullscreen'
 alt-shift-f = 'macos-native-fullscreen'
