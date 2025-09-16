@@ -1,4 +1,8 @@
-theme = GruvboxDark
+
+shell-integration-features = sudo
+
+theme = Gruvbox Dark
+# theme = GitHub Light Default
 macos-titlebar-style = tabs
 
 mouse-hide-while-typing = true
