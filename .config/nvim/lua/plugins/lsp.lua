@@ -1,121 +1,60 @@
 local is_work_machine = require("utils").is_work_machine
 
 return {
+	-- LSP Support
+	{ "neovim/nvim-lspconfig" },
 	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v3.x",
+		"mason-org/mason-lspconfig.nvim",
+		opts = {},
 		dependencies = {
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason.nvim", cmd = "Mason", build = ":MasonUpdate" },
-			{ "williamboman/mason-lspconfig.nvim" },
-
-			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-buffer" },
-			{ "hrsh7th/cmp-path" },
-			{ "L3MON4D3/LuaSnip" },
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
 		},
-		config = function()
-			local lsp_zero = require("lsp-zero")
+	},
 
-			lsp_zero.on_attach(function(client, bufnr)
-				-- see :help lsp-zero-keybindings
-				-- to learn the available actions
-				lsp_zero.default_keymaps({ buffer = bufnr })
-			end)
-
-			require("mason").setup({})
-			require("mason-lspconfig").setup({
-				ensure_installed = {},
-				handlers = {
-					function(server_name)
-						require("lspconfig")[server_name].setup({})
-					end,
-					lua_ls = function()
-						local lua_opts = lsp_zero.nvim_lua_ls()
-						require("lspconfig").lua_ls.setup(lua_opts)
-					end,
-				},
-			})
-
-			local lspconfig = require("lspconfig")
-			local configs = require("lspconfig.configs")
-
-			local lexical_config = {
-				filetypes = { "elixir", "eelixir", "heex" },
-				cmd = {
-
-					vim.loop.os_homedir()
-						.. "/Developer/third_party/lexical/_build/dev/package/lexical/bin/start_lexical.sh",
-				},
-				settings = {},
-			}
-
-			if not configs.lexical then
-				configs.lexical = {
-					default_config = {
-						filetypes = lexical_config.filetypes,
-						cmd = lexical_config.cmd,
-						root_dir = function(fname)
-							return lspconfig.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
-						end,
-						-- optional settings
-						settings = lexical_config.settings,
-					},
-				}
-			end
-
-			lspconfig.lexical.setup({})
-
-			require("lspconfig").yamlls.setup({
-				settings = {
-					yaml = {
-						keyOrdering = false,
+	-- Autocompletion
+	{
+		"saghen/blink.cmp",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			{
+				"fang2hou/blink-copilot",
+				dependencies = {
+					{
+						"zbirenbaum/copilot.lua",
+						cmd = "Copilot",
+						event = "InsertEnter",
+						opts = {
+							suggestion = { enabled = false },
+							panel = { enabled = false },
+							filetypes = {
+								markdown = true,
+								help = true,
+							},
+						},
+						enabled = is_work_machine,
 					},
 				},
-			})
-
-			local cmp = require("cmp")
-			local cmp_format = lsp_zero.cmp_format()
-			local cmp_action = require("lsp-zero").cmp_action()
-
-			cmp.setup({
-				formatting = cmp_format,
-				sources = {
-					{ name = "copilot", group_index = 2 },
-					{ name = "nvim_lsp", group_index = 2 },
-					{ name = "buffer", group_index = 2 },
-					{ name = "path", group_index = 2 },
+			},
+		},
+		version = "1.*",
+		opts = {
+			keymap = { preset = "enter" },
+			completion = { documentation = { auto_show = false } },
+			sources = {
+				default = { "lsp", "path", "copilot", "buffer", "snippets" },
+				providers = {
+					copilot = {
+						name = "copilot",
+						module = "blink-copilot",
+						score_offset = 100,
+						async = true,
+					},
 				},
-				mapping = cmp.mapping.preset.insert({
-					-- scroll up and down the documentation window
-					["<C-u>"] = cmp.mapping.scroll_docs(-4),
-					["<C-d>"] = cmp.mapping.scroll_docs(4),
-
-					-- Use Enter to confirm completion
-					["<CR>"] = cmp.mapping.confirm({ select = false }),
-
-					-- Tab completion
-					["<Tab>"] = cmp_action.tab_complete(),
-					["<S-Tab>"] = cmp_action.select_prev_or_fallback(),
-
-					-- Navigate between snippet placeholder
-					["<C-f>"] = cmp_action.luasnip_jump_forward(),
-					["<C-b>"] = cmp_action.luasnip_jump_backward(),
-				}),
-				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
-				},
-			})
-
-			vim.diagnostic.config({
-				virtual_text = true,
-			})
-		end,
+			},
+			fuzzy = { implementation = "prefer_rust_with_warning" },
+		},
+		opts_extend = { "sources.default" },
 	},
 
 	{
@@ -171,25 +110,5 @@ return {
 		init = function()
 			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 		end,
-	},
-
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({
-				suggestion = { enabled = false },
-				panel = { enabled = false },
-			})
-		end,
-		enabled = is_work_machine,
-	},
-	{
-		"zbirenbaum/copilot-cmp",
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-		enabled = is_work_machine,
 	},
 }

@@ -33,6 +33,8 @@ vim.opt.cmdheight = 0
 vim.opt.laststatus = 3
 vim.opt.spell = false
 
+vim.diagnostic.config({ virtual_text = true })
+
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
 vim.opt.whichwrap:append("<>[]hl")
