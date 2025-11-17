@@ -114,6 +114,15 @@ return {
 			dashboard = { enabled = true },
 			input = { enabled = true },
 			notifier = { enabled = true },
+			picker = {
+				win = {
+					input = {
+						keys = {
+							["<Esc>"] = { "close", mode = { "n", "i" } },
+						},
+					},
+				},
+			},
 		},
 		keys = {
 			{
@@ -129,6 +138,39 @@ return {
 					Snacks.gitbrowse()
 				end,
 				desc = "Git Browse",
+			},
+			{
+				"<leader>f",
+				function()
+					if require("utils").is_git_repo() then
+						Snacks.picker.git_files()
+					else
+						Snacks.picker.files()
+					end
+				end,
+				desc = "Find Files (Project)",
+			},
+			{
+				"<leader>r",
+				function()
+					Snacks.picker.grep()
+				end,
+				desc = "Find in Files (Grep)",
+			},
+			{
+				"<leader>a",
+				function()
+					Snacks.picker.files({ follow = true, ignored = true, hidden = true })
+				end,
+				desc = "Find Files (All)",
+			},
+			{
+				",S",
+				function()
+					Snacks.picker.grep_word({ regex = false })
+				end,
+				desc = "Find Word",
+				mode = { "n", "x" },
 			},
 		},
 	},
