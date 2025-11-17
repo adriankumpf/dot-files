@@ -46,9 +46,6 @@ return {
 		config = true,
 	},
 
-	-- Strip trailing whitespace
-	{ "mcauley-penney/tidy.nvim", event = "BufWritePre", config = true },
-
 	-- Git Stuff
 	{
 		"lewis6991/gitsigns.nvim",
