@@ -39,8 +39,18 @@ return {
 		},
 		version = "1.*",
 		opts = {
-			keymap = { preset = "enter" },
-			completion = { documentation = { auto_show = false } },
+			keymap = {
+				preset = "enter",
+				["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
+				["<S-Tab>"] = { "show_and_insert_or_accept_single", "select_prev" },
+			},
+			completion = {
+				list = {
+					selection = {
+						preselect = false,
+					},
+				},
+			},
 			sources = {
 				default = { "lsp", "path", "copilot", "buffer", "snippets" },
 				providers = {
@@ -48,6 +58,9 @@ return {
 						name = "copilot",
 						module = "blink-copilot",
 						score_offset = 100,
+						async = true,
+					},
+					lsp = {
 						async = true,
 					},
 				},
@@ -103,6 +116,7 @@ return {
 				fish = { "fish_indent" },
 				xml = { "xmlformat" },
 				markdown = { "prettier" },
+				json = { "prettier" },
 				-- filetypes that don't have other formatters configured
 				["_"] = { "trim_whitespace" },
 			},
