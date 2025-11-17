@@ -96,22 +96,9 @@ return {
 		opts = {
 			format_on_save = { timeout_ms = 5000, lsp_fallback = true },
 
-			formatters = {
-				-- Custom formatter that sets the cwd based on the location of mix.exs and not .formatter.exs
-				cmix = function()
-					return {
-						command = "mix",
-						args = { "format", "--stdin-filename", "$FILENAME", "-" },
-						cwd = require("conform.util").root_file({
-							"mix.exs",
-						}),
-					}
-				end,
-			},
-
 			formatters_by_ft = {
 				lua = { "stylua" },
-				elixir = { "cmix" },
+				elixir = { "mix" },
 				sh = { "shellharden" },
 				fish = { "fish_indent" },
 				xml = { "xmlformat" },
