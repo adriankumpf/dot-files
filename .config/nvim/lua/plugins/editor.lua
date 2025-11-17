@@ -19,15 +19,17 @@ return {
 
 	-- Quick on-screen jumps
 	{
-		"ggandor/leap.nvim",
+		"folke/flash.nvim",
 		event = "VeryLazy",
+		opts = {},
 		keys = {
 			{
 				"s",
+				mode = { "n", "x", "o" },
 				function()
-					require("leap").leap({ target_windows = { vim.fn.win_getid() } })
+					require("flash").jump()
 				end,
-				desc = "Leap",
+				desc = "Flash",
 			},
 		},
 	},
