@@ -25,10 +25,10 @@ return {
 		keys = {
 			{
 				"s",
-				mode = { "n", "x", "o" },
 				function()
 					require("flash").jump()
 				end,
+				mode = { "n", "x", "o" },
 				desc = "Flash",
 			},
 		},
@@ -63,6 +63,7 @@ return {
 		event = "BufReadPost",
 		opts = { delay = 200 },
 		config = function(_, opts)
+			-- illuminate does not use the standard 'setup' function
 			require("illuminate").configure(opts)
 		end,
 		keys = {

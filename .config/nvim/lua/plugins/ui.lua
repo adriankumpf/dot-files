@@ -70,44 +70,50 @@ return {
 				diagnostics = "nvim_lsp",
 			},
 			highlights = function(config)
-				local hl = {}
+				if colorscheme() == "gruvbox" then
+					local hl = {}
 
-				local palette = require("gruvbox").palette
-				local backgroud_color = palette.dark0 -- "NONE"
+					local palette = require("gruvbox").palette
+					local backgroud_color = palette.dark0 -- "NONE"
 
-				for name, tbl in pairs(config.highlights) do
-					local tbl_copy = {}
-					for k, v in pairs(tbl) do
-						if k == "bg" then
-							tbl_copy[k] = backgroud_color
-						else
-							tbl_copy[k] = v
+					for name, tbl in pairs(config.highlights) do
+						local tbl_copy = {}
+						for k, v in pairs(tbl) do
+							if k == "bg" then
+								tbl_copy[k] = backgroud_color
+							else
+								tbl_copy[k] = v
+							end
 						end
+						hl[name] = tbl_copy
 					end
-					hl[name] = tbl_copy
-				end
 
-				return hl
+					return hl
+				else
+					return {}
+				end
 			end,
 		},
-		config = function(_, opts)
+		keys = {
 			-- Move to previous/next
-			vim.keymap.set("n", "<M-,>", ":BufferLineCyclePrev<CR>", { silent = true })
-			vim.keymap.set("n", "<M-.>", ":BufferLineCycleNext<CR>", { silent = true })
+			{ "<M-,>", ":BufferLineCyclePrev<CR>", silent = true, mode = { "n" } },
+			{ "<M-.>", ":BufferLineCycleNext<CR>", silent = true, mode = { "n" } },
 
 			-- Re-order to previous/next
-			vim.keymap.set("n", "<M-S-,>", ":BufferLineMovePrev<CR>", { silent = true })
-			vim.keymap.set("n", "<M-S-.>", ":BufferLineMoveNext<CR>", { silent = true })
+			{ "<M-S-,>", ":BufferLineMovePrev<CR>", silent = true, mode = { "n" } },
+			{ "<M-S-.>", ":BufferLineMoveNext<CR>", silent = true, mode = { "n" } },
 
-			local closeAllButCurrent = function()
-				vim.cmd("BufferLineCloseRight")
-				vim.cmd("BufferLineCloseLeft")
-			end
-
-			vim.keymap.set("n", "<M-c>", closeAllButCurrent, { silent = true })
-
-			require("bufferline").setup(opts)
-		end,
+			-- Close all but current
+			{
+				"<M-c>",
+				function()
+					vim.cmd("BufferLineCloseRight")
+					vim.cmd("BufferLineCloseLeft")
+				end,
+				silent = true,
+				mode = { "n" },
+			},
+		},
 	},
 
 	--  Directory viewer
@@ -119,11 +125,10 @@ return {
 				show_hidden = true,
 			},
 		},
-		config = function(_, opts)
-			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-
-			require("oil").setup(opts)
-		end,
+		keys = {
+			{ "-", "<CMD>Oil<CR>", mode = { "n" }, desc = "Open parent directory" },
+		},
+		lazy = false,
 	},
 
 	{
