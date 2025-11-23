@@ -2,19 +2,20 @@ local is_work_machine = require("utils").is_work_machine
 
 return {
 	-- LSP Support
-	{ "neovim/nvim-lspconfig" },
 	{
 		"mason-org/mason-lspconfig.nvim",
-		opts = {},
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{ "mason-org/mason.nvim", opts = {} },
 			"neovim/nvim-lspconfig",
 		},
+		opts = {},
 	},
 
 	-- Autocompletion
 	{
 		"saghen/blink.cmp",
+		event = "InsertEnter",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			{
@@ -72,6 +73,7 @@ return {
 
 	{
 		"mfussenegger/nvim-lint",
+		event = "BufWritePost",
 		init = function()
 			local lint = require("lint")
 

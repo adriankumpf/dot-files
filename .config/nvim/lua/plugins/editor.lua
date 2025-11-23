@@ -15,7 +15,7 @@ return {
 	},
 
 	-- Transition between multi- & single-line code (gJ | gS)
-	"AndrewRadev/splitjoin.vim",
+	{ "AndrewRadev/splitjoin.vim", event = "VeryLazy" },
 
 	-- Quick on-screen jumps
 	{
@@ -35,16 +35,13 @@ return {
 	},
 
 	--  Heuristically set indent settings
-	"tpope/vim-sleuth",
+	{ "tpope/vim-sleuth", event = "VeryLazy" },
 
 	-- Modifying surrounding delimiter pairs
-	{ "kylechui/nvim-surround", config = true },
+	{ "kylechui/nvim-surround", event = "VeryLazy", config = true },
 
 	-- Comments
-	{
-		"numToStr/Comment.nvim",
-		config = true,
-	},
+	{ "numToStr/Comment.nvim", event = "VeryLazy", config = true },
 
 	-- Git Stuff
 	{
@@ -101,10 +98,7 @@ return {
 		},
 	},
 
-	{
-		"yorickpeterse/nvim-tree-pairs",
-		config = true,
-	},
+	{ "yorickpeterse/nvim-tree-pairs", event = "VeryLazy", config = true },
 
 	{
 		"folke/snacks.nvim",
