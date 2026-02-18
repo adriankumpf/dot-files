@@ -17,3 +17,19 @@ keybind = ctrl+h=goto_split:left
 keybind = ctrl+j=goto_split:bottom
 keybind = ctrl+k=goto_split:top
 keybind = ctrl+l=goto_split:right
+
+
+# Search entire scrollback history in default text editor
+keybind = cmd+f=write_scrollback_file:open
+
+# Search Selection
+# HOWTO: Cmd+triple_click to select your last output then press cmd+shift+f to search it
+keybind = cmd+shift+f=write_selection_file:open
+
+# RECOMMENDED: Set this to something big so you can capture all of your scrollback
+scrollback-limit = 60000000
+keybind = shift+enter=text:\x1b\r
+
+# Unbind fullscreen
+keybind = super+enter=unbind
+keybind = super+ctrl+f=unbind
