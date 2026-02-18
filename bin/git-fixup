@@ -59,8 +59,8 @@ fi
 # because, say, if the argument is relative to the HEAD then the
 # commit it refers to will change once we create a new commit on the
 # HEAD.
-COMMIT_TO_BE_FIXED=`git show --format=%H --no-patch $1`
-git commit --fixup=$COMMIT_TO_BE_FIXED
+COMMIT_TO_BE_FIXED=`git show --format=%H --no-patch "$1"`
+git commit --fixup="$COMMIT_TO_BE_FIXED" --no-verify
 
 # Stash unstaged changes (the staged changes will already be in the
 # commit created above) to avoid not being able to run the rebase
@@ -71,23 +71,23 @@ then
   HAS_STASHED_CHANGES=true
 fi
 
-if [ -n "$HAS_MESSAGE" ]
+if [ "$HAS_MESSAGE" != "" ]
 then
   git filter-branch -f --msg-filter "ex -C --cmd \"execute \\\"norm ggo\<CR>$MESSAGE\\\"\" --cmd \"w >> /dev/stdout\" --cmd \"q! \" /dev/stdin" -- @~..@
 fi
 
-if [ -n "$AUTOSQUASH" ]; then
-  if [ -n "$EDIT" ]; then
-    git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+if [ "$AUTOSQUASH" != "" ]; then
+  if [ "$EDIT" != "" ]; then
+    git rebase --interactive --autosquash "$COMMIT_TO_BE_FIXED"~
   else
-    GIT_SEQUENCE_EDITOR='true' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+    GIT_SEQUENCE_EDITOR='true' git rebase --interactive --autosquash "$COMMIT_TO_BE_FIXED"~
   fi
 else
-  if [ -n "$EDIT" ]; then
+  if [ "$EDIT" != "" ]; then
     # The last true is needed because otherwise the editor would get the file twice for some reason
-    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick "$1" && $EDITOR "$1" && true' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick "$1" && $EDITOR "$1" && true' git rebase --interactive --autosquash "$COMMIT_TO_BE_FIXED"~
   else
-    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick' git rebase --interactive --autosquash "$COMMIT_TO_BE_FIXED"~
   fi
 fi
 if [[ -n "$HAS_STASHED_CHANGES" ]]
