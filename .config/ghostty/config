@@ -4,10 +4,14 @@ shell-integration-features = sudo
 theme = Gruvbox Dark
 # theme = GitHub Light Default
 macos-titlebar-style = tabs
+macos-option-as-alt = true
 
 mouse-hide-while-typing = true
 
 font-size = 12
+font-family = "Maple Mono NF"
+# Maple Mono: Alternative Italic l without center tail
+font-feature = +cv35
 
 window-padding-x = 6
 window-padding-y = 2
