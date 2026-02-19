@@ -6,8 +6,8 @@ vim.keymap.set("n", "<Leader><Leader>", "<C-^>")
 
 vim.keymap.set("n", "<Leader>z", "1z=")
 
-vim.keymap.set("n", "<expr>", 'k (v:count == 0 ? "gk" : "k")')
-vim.keymap.set("n", "<expr>", 'j (v:count == 0 ? "gj" : "j")')
+vim.keymap.set("n", "k", 'v:count == 0 ? "gk" : "k"', { expr = true })
+vim.keymap.set("n", "j", 'v:count == 0 ? "gj" : "j"', { expr = true })
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "S", "mzi<CR><ESC>`z")
@@ -17,8 +17,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", ",s", ":%s///gc<Left><Left><Left>")
 
-vim.keymap.set({ "n", "v" }, "n", "nzzzv")
-vim.keymap.set({ "n", "v" }, "N", "Nzzzv")
 
 vim.keymap.set("n", "Q", "@q")
 

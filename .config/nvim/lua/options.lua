@@ -26,7 +26,6 @@ vim.opt.complete:append({ "kspell" })
 vim.opt.wildmode = "longest,full"
 vim.opt.pumblend = 35
 vim.opt.emoji = false
-vim.opt.lazyredraw = true
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.shortmess:append({ c = true })
 vim.opt.cmdheight = 0

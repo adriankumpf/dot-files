@@ -33,7 +33,7 @@ autocmd("BufReadPost", {
 	pattern = { "*" },
 	callback = function()
 		if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
-			vim.api.nvim_exec("normal! g'\"", false)
+			vim.cmd([[normal! g'"]])
 		end
 	end,
 })
@@ -48,7 +48,7 @@ autocmd("RecordingEnter", {
 autocmd("RecordingLeave", {
 	pattern = "*",
 	callback = function()
-		local timer = vim.loop.new_timer()
+		local timer = vim.uv.new_timer()
 		-- NOTE: Timer is here because we need to close cmdheight AFTER
 		-- the macro is ended, not during the Leave event
 		timer:start(

@@ -1,9 +1,7 @@
 local M = {}
 
 M.colorscheme = function()
-	local iterm_profile = os.getenv("ITERM_PROFILE")
-
-	if iterm_profile == "light" then
+	if vim.o.background == "light" then
 		return "github_light"
 	else
 		return "gruvbox"
