@@ -38,7 +38,7 @@ return {
 					},
 					lualine_x = {
 						{ require("lazy.status").updates, cond = require("lazy.status").has_updates },
-						{ "diff", source = diff_source() },
+						{ "diff", source = diff_source },
 					},
 					lualine_y = {
 						{ "progress", separator = "", padding = { left = 1, right = 0 } },

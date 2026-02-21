@@ -34,7 +34,7 @@ return {
 			highlight = { enable = true },
 			indent = { enable = true },
 			refactor = {
-				smart_rename = { enable = true, keymaps = { smart_rename = "grr" } },
+				smart_rename = { enable = true, keymaps = { smart_rename = "gR" } },
 				highlight_definitions = { enable = true },
 				highlight_current_scope = { enable = false },
 			},

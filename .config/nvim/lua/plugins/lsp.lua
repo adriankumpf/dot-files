@@ -74,7 +74,7 @@ return {
 	{
 		"mfussenegger/nvim-lint",
 		event = "BufWritePost",
-		init = function()
+		config = function()
 			local lint = require("lint")
 
 			lint.linters_by_ft = {
@@ -96,7 +96,7 @@ return {
 		event = { "BufWritePre" },
 		cmd = { "ConformInfo" },
 		opts = {
-			format_on_save = { timeout_ms = 5000, lsp_fallback = true },
+			format_on_save = { timeout_ms = 5000, lsp_format = "fallback" },
 
 			formatters_by_ft = {
 				lua = { "stylua" },

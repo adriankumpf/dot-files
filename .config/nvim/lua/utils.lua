@@ -12,8 +12,7 @@ M.is_work_machine = function()
 	return string.find(vim.fn.hostname(), "^Remote") ~= nil
 end
 
--- We cache the results of "git rev-parse"
--- Process creation is expensive in Windows, so this reduces latency
+-- Cache the result of "git rev-parse" to avoid repeated shell-outs
 local is_inside_work_tree = {}
 
 M.is_git_repo = function()

@@ -37,5 +37,3 @@ vim.diagnostic.config({ virtual_text = true })
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
 vim.opt.whichwrap:append("<>[]hl")
-
-vim.g.mapleader = " "

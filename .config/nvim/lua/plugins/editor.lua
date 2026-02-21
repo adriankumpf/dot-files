@@ -183,6 +183,7 @@ return {
 				function()
 					require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
 				end,
+				ft = "qf",
 				desc = "Expand quickfix context",
 			},
 			{
@@ -190,6 +191,7 @@ return {
 				function()
 					require("quicker").collapse()
 				end,
+				ft = "qf",
 				desc = "Collapse quickfix context",
 			},
 		},
