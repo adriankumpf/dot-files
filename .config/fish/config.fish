@@ -71,8 +71,11 @@ if type -q zoxide
 end
 
 # --- Mise ---
+# Strip the eager __mise_env_eval call from the activation script — it's
+# already registered on fish_prompt, so deferring it to first-prompt time
+# saves ~60ms.  Mise tools stay available during config via shims PATH.
 if type -q mise
-    mise activate fish | source
+    mise activate fish | string match -v -r '^__mise_env_eval$' | source
     fish_add_path "$HOME/.local/share/mise/shims"
 end
 
