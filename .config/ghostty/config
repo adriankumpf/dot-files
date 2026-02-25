@@ -1,8 +1,9 @@
-
 shell-integration-features = sudo
 
 theme = Gruvbox Dark
 # theme = GitHub Light Default
+# env = ITERM_PROFILE=light
+
 macos-titlebar-style = tabs
 macos-option-as-alt = true
 
@@ -21,7 +22,6 @@ keybind = ctrl+h=goto_split:left
 keybind = ctrl+j=goto_split:bottom
 keybind = ctrl+k=goto_split:top
 keybind = ctrl+l=goto_split:right
-
 
 # Search entire scrollback history in default text editor
 keybind = cmd+f=write_scrollback_file:open

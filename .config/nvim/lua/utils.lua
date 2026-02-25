@@ -1,7 +1,7 @@
 local M = {}
 
 M.colorscheme = function()
-	if vim.o.background == "light" then
+	if vim.env.ITERM_PROFILE == "light" then
 		return "github_light"
 	else
 		return "gruvbox"
