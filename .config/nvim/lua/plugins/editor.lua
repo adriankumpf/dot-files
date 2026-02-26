@@ -14,8 +14,19 @@ return {
 		},
 	},
 
-	-- Transition between multi- & single-line code (gJ | gS)
-	{ "AndrewRadev/splitjoin.vim", event = "VeryLazy" },
+	-- Transition between multi- & single-line code
+	{
+		"Wansmer/treesj",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		keys = {
+			{ "gJ", function() require("treesj").join() end, desc = "Join lines" },
+			{ "gS", function() require("treesj").split() end, desc = "Split lines" },
+		},
+		opts = {
+			use_default_keymaps = false,
+			max_join_length = 150,
+		},
+	},
 
 	-- Quick on-screen jumps
 	{
