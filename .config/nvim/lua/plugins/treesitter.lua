@@ -1,44 +1,45 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	dependencies = { "RRethy/nvim-treesitter-textsubjects" },
+	branch = "main",
+	lazy = false,
 	build = ":TSUpdate",
-	event = "BufReadPost",
 	config = function()
-		require("nvim-treesitter.configs").setup({
-			ensure_installed = {
-				"comment",
-				"css",
-				"dockerfile",
-				"eex",
-				"elixir",
-				"erlang",
-				"fish",
-				"go",
-				"heex",
-				"html",
-				"javascript",
-				"json",
-				"lua",
-				"make",
-				"markdown",
-				"python",
-				"regex",
-				"ruby",
-				"rust",
-				"scss",
-				"vim",
-				"vue",
-				"yaml",
-				"bash",
-			},
-			highlight = { enable = true },
-			indent = { enable = true },
-			textsubjects = {
-				enable = true,
-				keymaps = {
-					["<cr>"] = "textsubjects-smart", -- works in visual mode
-				},
-			},
+		if vim.fn.executable("tree-sitter") == 0 then
+			vim.notify("tree-sitter CLI not found — parsers won't be installed", vim.log.levels.WARN)
+			return
+		end
+
+		require("nvim-treesitter").install({
+			"bash",
+			"comment",
+			"css",
+			"dockerfile",
+			"eex",
+			"elixir",
+			"erlang",
+			"fish",
+			"go",
+			"heex",
+			"html",
+			"javascript",
+			"json",
+			"lua",
+			"make",
+			"markdown",
+			"python",
+			"regex",
+			"ruby",
+			"rust",
+			"scss",
+			"vim",
+			"vue",
+			"yaml",
+		})
+
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function()
+				pcall(vim.treesitter.start)
+			end,
 		})
 	end,
 }
