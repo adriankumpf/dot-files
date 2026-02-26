@@ -40,13 +40,9 @@ return {
 	-- Modifying surrounding delimiter pairs
 	{ "kylechui/nvim-surround", event = "VeryLazy", config = true },
 
-	-- Comments
-	{ "numToStr/Comment.nvim", event = "VeryLazy", config = true },
-
 	-- Git Stuff
 	{
 		"lewis6991/gitsigns.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
 		event = "BufReadPre",
 		opts = {
 			current_line_blame = true,

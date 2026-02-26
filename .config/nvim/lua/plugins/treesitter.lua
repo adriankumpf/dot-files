@@ -1,6 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	dependencies = { "nvim-treesitter/nvim-treesitter-refactor", "RRethy/nvim-treesitter-textsubjects" },
+	dependencies = { "RRethy/nvim-treesitter-textsubjects" },
 	build = ":TSUpdate",
 	event = "BufReadPost",
 	config = function()
@@ -33,11 +33,6 @@ return {
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
-			refactor = {
-				smart_rename = { enable = true, keymaps = { smart_rename = "gR" } },
-				highlight_definitions = { enable = true },
-				highlight_current_scope = { enable = false },
-			},
 			textsubjects = {
 				enable = true,
 				keymaps = {
