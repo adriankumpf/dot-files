@@ -1,10 +1,20 @@
 local colorscheme = require("utils").colorscheme
 
 return {
+	-- Icons (compatibility shim replaces nvim-web-devicons)
+	{
+		"nvim-mini/mini.icons",
+		opts = {},
+		config = function(_, opts)
+			require("mini.icons").setup(opts)
+			MiniIcons.mock_nvim_web_devicons()
+		end,
+	},
+
 	-- Statusline
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-mini/mini.icons" },
 		event = "VeryLazy",
 		opts = function()
 			local function diff_source()
@@ -59,7 +69,7 @@ return {
 	{
 		"akinsho/bufferline.nvim",
 		dependencies = {
-			"nvim-tree/nvim-web-devicons",
+			"nvim-mini/mini.icons",
 			{ "tiagovla/scope.nvim", config = true },
 		},
 		event = "VeryLazy",
@@ -119,7 +129,7 @@ return {
 	--  Directory viewer
 	{
 		"stevearc/oil.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-mini/mini.icons" },
 		opts = {
 			view_options = {
 				show_hidden = true,
