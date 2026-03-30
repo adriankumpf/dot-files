@@ -1,10 +1,11 @@
-local cs = require("utils").colorscheme()
+local cs = require("utils").colorscheme
 
 if cs == "gruvbox" then
 	vim.pack.add({ "https://github.com/ellisonleao/gruvbox.nvim" }, { confirm = false })
 
 	local palette = require("gruvbox").palette
 
+	-- Match sign column background to editor background
 	require("gruvbox").setup({
 		overrides = {
 			GitSignsAdd = { fg = palette.bright_green, bg = palette.dark0 },

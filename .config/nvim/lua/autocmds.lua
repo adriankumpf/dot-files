@@ -1,4 +1,3 @@
--- autocmds
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("FileType", {
@@ -9,49 +8,37 @@ autocmd("FileType", {
 })
 
 autocmd("TextYankPost", {
-	pattern = "*",
 	callback = function()
-		require("vim.hl").on_yank()
+		vim.hl.on_yank()
 	end,
 })
 
-autocmd("VimEnter", {
-	pattern = "*",
+-- Force transparent sign column regardless of colorscheme
+autocmd("ColorScheme", {
 	callback = function()
 		vim.api.nvim_set_hl(0, "SignColumn", {})
 	end,
 })
 
 autocmd("VimResized", {
-	pattern = "*",
 	callback = function()
-		vim.cmd([[:wincmd =]])
+		vim.cmd.wincmd("=")
 	end,
 })
 
-autocmd("BufReadPost", {
-	pattern = { "*" },
-	callback = function()
-		if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
-			vim.cmd([[normal! g'"]])
-		end
-	end,
-})
+-- Show cmdheight while recording macros (otherwise invisible with cmdheight=0)
+local recording_timer = vim.uv.new_timer()
 
 autocmd("RecordingEnter", {
-	pattern = "*",
 	callback = function()
 		vim.opt_local.cmdheight = 1
 	end,
 })
 
 autocmd("RecordingLeave", {
-	pattern = "*",
 	callback = function()
-		local timer = vim.uv.new_timer()
-		-- NOTE: Timer is here because we need to close cmdheight AFTER
-		-- the macro is ended, not during the Leave event
-		timer:start(
+		-- Delay hiding cmdheight until after the macro has fully ended
+		recording_timer:start(
 			50,
 			0,
 			vim.schedule_wrap(function()

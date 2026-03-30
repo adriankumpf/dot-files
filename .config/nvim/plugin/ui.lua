@@ -1,4 +1,4 @@
-local cs = require("utils").colorscheme()
+local cs = require("utils").colorscheme
 
 vim.pack.add({
 	"https://github.com/nvim-mini/mini.icons",
@@ -11,7 +11,7 @@ vim.pack.add({
 	"https://github.com/ironhouzi/starlite-nvim",
 }, { confirm = false })
 
--- Icons
+-- Icons — mock nvim-web-devicons API so plugins that depend on it use mini.icons
 require("mini.icons").setup()
 MiniIcons.mock_nvim_web_devicons()
 
@@ -33,7 +33,7 @@ require("snacks").setup({
 
 vim.keymap.set("n", ",d", function()
 	Snacks.bufdelete()
-end, { desc = "Delete Buffer" })
+end, { desc = "Delete buffer (keep window)" })
 vim.keymap.set("n", "<leader>gB", function()
 	Snacks.gitbrowse()
 end, { desc = "Git Browse" })
@@ -61,9 +61,9 @@ require("oil").setup({
 	},
 })
 
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "-", "<Cmd>Oil<CR>", { desc = "Open parent directory" })
 
--- Lualine
+-- Lualine — pull diff stats from gitsigns instead of shelling out to git
 local function diff_source()
 	local gitsigns = vim.b.gitsigns_status_dict
 	if gitsigns then
@@ -112,23 +112,15 @@ require("lualine").setup({
 -- Bufferline
 require("scope").setup()
 
+-- Override all bufferline background colors to match gruvbox's dark background
 local bufferline_highlights
 if cs == "gruvbox" then
-	local palette = require("gruvbox").palette
-	local background_color = palette.dark0
+	local bg = require("gruvbox").palette.dark0
 
 	bufferline_highlights = function(config)
 		local hl = {}
-		for name, tbl in pairs(config.highlights) do
-			local tbl_copy = {}
-			for k, v in pairs(tbl) do
-				if k == "bg" then
-					tbl_copy[k] = background_color
-				else
-					tbl_copy[k] = v
-				end
-			end
-			hl[name] = tbl_copy
+		for group, def in pairs(config.highlights) do
+			hl[group] = vim.tbl_extend("force", def, { bg = bg })
 		end
 		return hl
 	end
@@ -167,13 +159,15 @@ end
 
 vim.keymap.set("n", "*", star_search("star"), { silent = true, desc = "Search forward" })
 vim.keymap.set("n", "g*", star_search("g_star"), { silent = true, desc = "Search forward (partial)" })
-vim.keymap.set("n", "#", star_search("hash"), { silent = true })
-vim.keymap.set("n", "g#", star_search("g_hash"), { silent = true })
-vim.keymap.set("n", "n", function()
-	vim.cmd("normal! " .. vim.v.count1 .. "nzzzv")
-	require("hlslens").start()
-end, { silent = true })
-vim.keymap.set("n", "N", function()
-	vim.cmd("normal! " .. vim.v.count1 .. "Nzzzv")
-	require("hlslens").start()
-end, { silent = true })
+vim.keymap.set("n", "#", star_search("hash"), { silent = true, desc = "Search backward" })
+vim.keymap.set("n", "g#", star_search("g_hash"), { silent = true, desc = "Search backward (partial)" })
+
+local function search_nav(key)
+	return function()
+		vim.cmd("normal! " .. vim.v.count1 .. key .. "zzzv")
+		require("hlslens").start()
+	end
+end
+
+vim.keymap.set("n", "n", search_nav("n"), { silent = true, desc = "Next search result" })
+vim.keymap.set("n", "N", search_nav("N"), { silent = true, desc = "Prev search result" })

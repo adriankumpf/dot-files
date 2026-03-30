@@ -11,7 +11,7 @@ vim.pack.add({
 	"https://github.com/iamcco/markdown-preview.nvim",
 }, { confirm = false })
 
-vim.keymap.set("n", ",q", vim.cmd.Sayonara, { desc = "Delete Buffer" })
+vim.keymap.set("n", ",q", vim.cmd.Sayonara, { desc = "Close buffer and window" })
 
 local treesj = require("treesj")
 treesj.setup({ use_default_keymaps = false, max_join_length = 150 })
