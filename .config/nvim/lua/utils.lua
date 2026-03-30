@@ -8,10 +8,6 @@ M.colorscheme = function()
 	end
 end
 
-M.is_work_machine = function()
-	return string.find(vim.fn.hostname(), "^Remote") ~= nil
-end
-
 -- Cache the result of "git rev-parse" to avoid repeated shell-outs
 local is_inside_work_tree = {}
 
