@@ -19,8 +19,6 @@ vim.keymap.set("n", ",s", ":%s/\\<<C-r><C-w>\\>//gc<Left><Left><Left>", { desc =
 
 vim.keymap.set("n", "Q", "@q", { desc = "Replay macro q" })
 
-vim.keymap.set({ "n", "v" }, "/", [[/\v\c]], { desc = "Search (very magic, case insensitive)" })
-
 vim.keymap.set("n", "<leader>y", function()
 	vim.fn.setreg("+", vim.fn.expand("%:.") .. ":" .. vim.fn.line("."))
 end, { desc = "Copy file path and line number" })

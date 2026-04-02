@@ -1,13 +1,8 @@
 local autocmd = vim.api.nvim_create_autocmd
-
-autocmd("FileType", {
-	pattern = "qf",
-	callback = function()
-		vim.opt_local.buflisted = false
-	end,
-})
+local augroup = vim.api.nvim_create_augroup("core", { clear = true })
 
 autocmd("TextYankPost", {
+	group = augroup,
 	callback = function()
 		vim.hl.on_yank()
 	end,
@@ -15,35 +10,33 @@ autocmd("TextYankPost", {
 
 -- Force transparent sign column regardless of colorscheme
 autocmd("ColorScheme", {
+	group = augroup,
 	callback = function()
 		vim.api.nvim_set_hl(0, "SignColumn", {})
 	end,
 })
 
 autocmd("VimResized", {
+	group = augroup,
 	callback = function()
 		vim.cmd.wincmd("=")
 	end,
 })
 
 -- Show cmdheight while recording macros (otherwise invisible with cmdheight=0)
-local recording_timer = vim.uv.new_timer()
-
 autocmd("RecordingEnter", {
+	group = augroup,
 	callback = function()
-		vim.opt_local.cmdheight = 1
+		vim.o.cmdheight = 1
 	end,
 })
 
 autocmd("RecordingLeave", {
+	group = augroup,
 	callback = function()
 		-- Delay hiding cmdheight until after the macro has fully ended
-		recording_timer:start(
-			50,
-			0,
-			vim.schedule_wrap(function()
-				vim.opt_local.cmdheight = 0
-			end)
-		)
+		vim.defer_fn(function()
+			vim.o.cmdheight = 0
+		end, 50)
 	end,
 })

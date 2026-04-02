@@ -28,6 +28,7 @@ require("conform").setup({
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 local lint = require("lint")
+local lint_group = vim.api.nvim_create_augroup("lint", { clear = true })
 
 lint.linters_by_ft = {
 	elixir = { "credo" },
@@ -36,6 +37,7 @@ lint.linters_by_ft = {
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	group = lint_group,
 	callback = function()
 		lint.try_lint()
 	end,

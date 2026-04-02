@@ -31,7 +31,10 @@ local pack_hooks = {
 	end },
 }
 
+local pack_group = vim.api.nvim_create_augroup("pack_hooks", { clear = true })
+
 vim.api.nvim_create_autocmd("PackChanged", {
+	group = pack_group,
 	callback = function(ev)
 		local hook = pack_hooks[ev.data.spec.name]
 		if hook and hook.on[ev.data.kind] then
@@ -43,3 +46,4 @@ vim.api.nvim_create_autocmd("PackChanged", {
 require("options")
 require("mappings")
 require("autocmds")
+require("filetypes")

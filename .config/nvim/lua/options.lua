@@ -38,6 +38,8 @@ vim.opt.whichwrap:append("<>[]hl")
 vim.opt.complete:append({ "kspell" })
 vim.opt.wildmode = "longest,full"
 vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 vim.opt.shortmess:append({ c = true })
 vim.opt.spell = false
 

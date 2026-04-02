@@ -40,16 +40,4 @@ require("quicker").setup({
 	},
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "qf",
-	callback = function(ev)
-		vim.keymap.set("n", ">", function()
-			require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
-		end, { buffer = ev.buf, desc = "Expand quickfix context" })
-		vim.keymap.set("n", "<", function()
-			require("quicker").collapse()
-		end, { buffer = ev.buf, desc = "Collapse quickfix context" })
-	end,
-})
-
 vim.keymap.set("n", "<leader>m", vim.cmd.MarkdownPreview, { silent = true, desc = "Markdown Preview" })
