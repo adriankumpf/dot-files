@@ -163,8 +163,9 @@ vim.keymap.set("n", "g#", star_search("g_hash"), { silent = true, desc = "Search
 
 local function search_nav(key)
 	return function()
-		vim.cmd("normal! " .. vim.v.count1 .. key .. "zzzv")
-		require("hlslens").start()
+		if pcall(vim.cmd, "normal! " .. vim.v.count1 .. key .. "zzzv") then
+			require("hlslens").start()
+		end
 	end
 end
 
