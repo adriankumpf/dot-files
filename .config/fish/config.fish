@@ -37,6 +37,7 @@ end
 if set -q __fish_brew_prefix
     fish_add_path "$__fish_brew_prefix/sbin"
     set -gx HOMEBREW_NO_ANALYTICS 1
+    set -gx HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS 1
     set -gx HOMEBREW_PREFIX $__fish_brew_prefix
 end
 
