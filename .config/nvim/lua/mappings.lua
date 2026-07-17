@@ -6,8 +6,8 @@ vim.keymap.set("n", "<Leader><Leader>", "<C-^>", { desc = "Switch to alternate f
 
 vim.keymap.set("n", "<Leader>z", "1z=", { desc = "Fix spelling with first suggestion" })
 
-vim.keymap.set("n", "k", 'v:count == 0 ? "gk" : "k"', { expr = true, desc = "Move up (display line)" })
-vim.keymap.set("n", "j", 'v:count == 0 ? "gj" : "j"', { expr = true, desc = "Move down (display line)" })
+vim.keymap.set({ "n", "x" }, "k", 'v:count == 0 ? "gk" : "k"', { expr = true, desc = "Move up (display line)" })
+vim.keymap.set({ "n", "x" }, "j", 'v:count == 0 ? "gj" : "j"', { expr = true, desc = "Move down (display line)" })
 
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines (keep cursor)" })
 vim.keymap.set("n", "S", "mzi<CR><ESC>`z", { desc = "Split line at cursor" })
