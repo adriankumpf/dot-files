@@ -1,3 +1,5 @@
+config-version = 2
+
 after-login-command = []
 after-startup-command = []
 
