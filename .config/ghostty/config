@@ -8,6 +8,7 @@ macos-titlebar-style = tabs
 macos-option-as-alt = true
 
 mouse-hide-while-typing = true
+focus-follows-mouse = true
 
 font-size = 12
 font-family = "Maple Mono NF"
