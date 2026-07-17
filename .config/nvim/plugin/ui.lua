@@ -20,6 +20,7 @@ require("snacks").setup({
 	dashboard = { enabled = false },
 	input = { enabled = true },
 	notifier = { enabled = true },
+	words = { enabled = true },
 	picker = {
 		win = {
 			input = {
@@ -53,6 +54,12 @@ end, { desc = "Find Files (All)" })
 vim.keymap.set({ "n", "x" }, ",S", function()
 	Snacks.picker.grep_word({ regex = false })
 end, { desc = "Find Word" })
+vim.keymap.set("n", "]]", function()
+	Snacks.words.jump(vim.v.count1, true)
+end, { desc = "Next Reference" })
+vim.keymap.set("n", "[[", function()
+	Snacks.words.jump(-vim.v.count1, true)
+end, { desc = "Prev Reference" })
 
 -- Oil
 require("oil").setup({
