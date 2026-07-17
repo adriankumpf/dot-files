@@ -14,17 +14,6 @@ local pack_hooks = {
 		ensure_loaded(ev)
 		vim.cmd.TSUpdate()
 	end },
-	["blink.cmp"] = { on = { install = true, update = true }, run = function()
-		-- blink.cmp ships a Rust fuzzy matcher that must be compiled locally
-		local dir = vim.fn.stdpath("data") .. "/site/pack/core/opt/blink.cmp"
-		vim.system({ "cargo", "build", "--release" }, { cwd = dir }, function(result)
-			if result.code ~= 0 then
-				vim.schedule(function()
-					vim.notify("blink.cmp: cargo build failed", vim.log.levels.ERROR)
-				end)
-			end
-		end)
-	end },
 	["markdown-preview.nvim"] = { on = { install = true }, run = function(ev)
 		ensure_loaded(ev)
 		vim.fn["mkdp#util#install"]()
