@@ -14,7 +14,7 @@ local pack_hooks = {
 		ensure_loaded(ev)
 		vim.cmd.TSUpdate()
 	end },
-	["markdown-preview.nvim"] = { on = { install = true }, run = function(ev)
+	["markdown-preview.nvim"] = { on = { install = true, update = true }, run = function(ev)
 		ensure_loaded(ev)
 		vim.fn["mkdp#util#install"]()
 	end },
