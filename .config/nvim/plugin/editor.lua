@@ -1,5 +1,4 @@
 vim.pack.add({
-	"https://github.com/mhinz/vim-sayonara",
 	"https://github.com/Wansmer/treesj",
 	"https://github.com/folke/flash.nvim",
 	"https://github.com/tpope/vim-sleuth",
@@ -10,7 +9,16 @@ vim.pack.add({
 	"https://github.com/iamcco/markdown-preview.nvim",
 }, { confirm = false })
 
-vim.keymap.set("n", ",q", vim.cmd.Sayonara, { desc = "Close buffer and window" })
+-- Delete the buffer along with its window; quit when it's the last listed
+-- buffer. In unlisted buffers (help, quickfix, ...) just close.
+-- :confirm prompts instead of failing on unsaved changes.
+vim.keymap.set("n", ",q", function()
+	if #vim.fn.getbufinfo({ buflisted = 1 }) <= 1 and vim.bo.buflisted then
+		vim.cmd("confirm quitall")
+	else
+		vim.cmd("confirm bdelete")
+	end
+end, { desc = "Close buffer and window" })
 
 local treesj = require("treesj")
 treesj.setup({ use_default_keymaps = false, max_join_length = 150 })
