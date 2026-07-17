@@ -1,6 +1,7 @@
-local cs = require("utils").colorscheme
+local utils = require("utils")
+local cs = utils.colorscheme
 
-vim.pack.add({
+utils.pack_add({
 	"https://github.com/nvim-mini/mini.icons",
 	"https://github.com/folke/snacks.nvim",
 	"https://github.com/stevearc/oil.nvim",
@@ -8,7 +9,7 @@ vim.pack.add({
 	"https://github.com/akinsho/bufferline.nvim",
 	"https://github.com/tiagovla/scope.nvim",
 	"https://github.com/kevinhwang91/nvim-hlslens",
-}, { confirm = false })
+})
 
 -- Icons — mock nvim-web-devicons API so plugins that depend on it use mini.icons
 require("mini.icons").setup()

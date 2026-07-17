@@ -1,7 +1,8 @@
-local cs = require("utils").colorscheme
+local utils = require("utils")
+local cs = utils.colorscheme
 
 if cs == "gruvbox" then
-	vim.pack.add({ "https://github.com/ellisonleao/gruvbox.nvim" }, { confirm = false })
+	utils.pack_add({ "https://github.com/ellisonleao/gruvbox.nvim" })
 
 	local palette = require("gruvbox").palette
 
@@ -21,7 +22,7 @@ if cs == "gruvbox" then
 		},
 	})
 elseif cs == "github_light" then
-	vim.pack.add({ "https://github.com/projekt0n/github-nvim-theme" }, { confirm = false })
+	utils.pack_add({ "https://github.com/projekt0n/github-nvim-theme" })
 end
 
 vim.cmd.colorscheme(cs)

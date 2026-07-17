@@ -1,4 +1,4 @@
-vim.pack.add({
+require("utils").pack_add({
 	"https://github.com/Wansmer/treesj",
 	"https://github.com/folke/flash.nvim",
 	"https://github.com/tpope/vim-sleuth",
@@ -7,7 +7,7 @@ vim.pack.add({
 	"https://github.com/yorickpeterse/nvim-tree-pairs",
 	"https://github.com/stevearc/quicker.nvim",
 	"https://github.com/iamcco/markdown-preview.nvim",
-}, { confirm = false })
+})
 
 -- Delete the buffer along with its window; quit when it's the last listed
 -- buffer. In unlisted buffers (help, quickfix, ...) just close.

@@ -1,7 +1,7 @@
-vim.pack.add({
+require("utils").pack_add({
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.x") },
 	"https://github.com/rafamadriz/friendly-snippets",
-}, { confirm = false })
+})
 
 require("blink.cmp").setup({
 	keymap = {
