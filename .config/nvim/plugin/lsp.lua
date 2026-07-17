@@ -36,7 +36,7 @@ lint.linters_by_ft = {
 	sh = { "shellcheck" },
 }
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "InsertLeave" }, {
 	group = lint_group,
 	callback = function()
 		lint.try_lint()
