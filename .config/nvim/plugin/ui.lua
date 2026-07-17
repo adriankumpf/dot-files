@@ -8,7 +8,6 @@ vim.pack.add({
 	"https://github.com/akinsho/bufferline.nvim",
 	"https://github.com/tiagovla/scope.nvim",
 	"https://github.com/kevinhwang91/nvim-hlslens",
-	"https://github.com/ironhouzi/starlite-nvim",
 }, { confirm = false })
 
 -- Icons — mock nvim-web-devicons API so plugins that depend on it use mini.icons
@@ -156,17 +155,25 @@ require("hlslens").setup({
 	nearest_only = true,
 })
 
-local function star_search(method)
+-- Highlight the word under cursor without jumping; pressing again jumps
+local function star_search(fmt, forward)
 	return function()
-		require("starlite")[method]()
+		local pattern = fmt:format(vim.fn.expand("<cword>"))
+		vim.v.searchforward = forward and 1 or 0
+		if vim.v.hlsearch == 1 and vim.fn.getreg("/") == pattern then
+			vim.cmd.normal({ "n", bang = true })
+		else
+			vim.fn.setreg("/", pattern)
+			vim.v.hlsearch = 1
+		end
 		require("hlslens").start()
 	end
 end
 
-vim.keymap.set("n", "*", star_search("star"), { silent = true, desc = "Search forward" })
-vim.keymap.set("n", "g*", star_search("g_star"), { silent = true, desc = "Search forward (partial)" })
-vim.keymap.set("n", "#", star_search("hash"), { silent = true, desc = "Search backward" })
-vim.keymap.set("n", "g#", star_search("g_hash"), { silent = true, desc = "Search backward (partial)" })
+vim.keymap.set("n", "*", star_search([[\<%s\>]], true), { silent = true, desc = "Search forward" })
+vim.keymap.set("n", "g*", star_search([[%s]], true), { silent = true, desc = "Search forward (partial)" })
+vim.keymap.set("n", "#", star_search([[\<%s\>]], false), { silent = true, desc = "Search backward" })
+vim.keymap.set("n", "g#", star_search([[%s]], false), { silent = true, desc = "Search backward (partial)" })
 
 local function search_nav(key)
 	return function()
