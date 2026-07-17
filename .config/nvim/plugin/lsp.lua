@@ -43,10 +43,4 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	end,
 })
 
-vim.lsp.config("dexter", {
-	cmd = { "dexter", "lsp" },
-	root_markers = { ".dexter.db", ".git", "mix.exs" },
-	filetypes = { "elixir", "eelixir" },
-})
-
 vim.lsp.enable("dexter")
