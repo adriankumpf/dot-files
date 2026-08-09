@@ -11,7 +11,7 @@ utils.pack_add({
 	"https://github.com/kevinhwang91/nvim-hlslens",
 })
 
--- Icons — mock nvim-web-devicons API so plugins that depend on it use mini.icons
+-- Route nvim-web-devicons-only plugins through mini.icons
 require("mini.icons").setup()
 MiniIcons.mock_nvim_web_devicons()
 
@@ -39,15 +39,13 @@ vim.keymap.set("n", "<leader>gB", function()
 	Snacks.gitbrowse()
 end, { desc = "Git Browse" })
 vim.keymap.set("n", "<leader>f", function()
-	if require("utils").is_git_repo() then
+	if utils.is_git_repo() then
 		Snacks.picker.git_files()
 	else
 		Snacks.picker.files()
 	end
 end, { desc = "Find Files (Project)" })
-vim.keymap.set("n", "<leader>r", function()
-	Snacks.picker.grep()
-end, { desc = "Find in Files (Grep)" })
+vim.keymap.set("n", "<leader>r", Snacks.picker.grep, { desc = "Find in Files (Grep)" })
 vim.keymap.set("n", "<leader>a", function()
 	Snacks.picker.files({ follow = true, ignored = true, hidden = true })
 end, { desc = "Find Files (All)" })
@@ -118,7 +116,9 @@ require("lualine").setup({
 -- Bufferline
 require("scope").setup()
 
--- Override all bufferline background colors to match gruvbox's dark background
+-- Override all bufferline background colors to match gruvbox's dark background.
+-- Relies on 00-colorscheme.lua having already added gruvbox (its "00-" prefix
+-- makes it the first plugin/ file sourced).
 local bufferline_highlights
 if cs == "gruvbox" then
 	local bg = require("gruvbox").palette.dark0
@@ -141,14 +141,14 @@ require("bufferline").setup({
 	highlights = bufferline_highlights,
 })
 
-vim.keymap.set("n", "<M-,>", "<Cmd>BufferLineCyclePrev<CR>", { silent = true })
-vim.keymap.set("n", "<M-.>", "<Cmd>BufferLineCycleNext<CR>", { silent = true })
-vim.keymap.set("n", "<M-S-,>", "<Cmd>BufferLineMovePrev<CR>", { silent = true })
-vim.keymap.set("n", "<M-S-.>", "<Cmd>BufferLineMoveNext<CR>", { silent = true })
+vim.keymap.set("n", "<M-,>", "<Cmd>BufferLineCyclePrev<CR>", { silent = true, desc = "Previous buffer" })
+vim.keymap.set("n", "<M-.>", "<Cmd>BufferLineCycleNext<CR>", { silent = true, desc = "Next buffer" })
+vim.keymap.set("n", "<M-S-,>", "<Cmd>BufferLineMovePrev<CR>", { silent = true, desc = "Move buffer left" })
+vim.keymap.set("n", "<M-S-.>", "<Cmd>BufferLineMoveNext<CR>", { silent = true, desc = "Move buffer right" })
 vim.keymap.set("n", "<M-c>", function()
 	vim.cmd("BufferLineCloseRight")
 	vim.cmd("BufferLineCloseLeft")
-end, { silent = true })
+end, { silent = true, desc = "Close other buffers" })
 
 -- Hlslens
 require("hlslens").setup({

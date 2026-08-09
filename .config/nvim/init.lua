@@ -10,24 +10,22 @@ end
 -- PackChanged hooks must be registered before any vim.pack.add() call
 -- (plugin/ files are sourced after init.lua)
 local pack_hooks = {
-	["nvim-treesitter"] = { on = { install = true, update = true }, run = function(ev)
+	["nvim-treesitter"] = function(ev)
 		ensure_loaded(ev)
 		vim.cmd.TSUpdate()
-	end },
-	["markdown-preview.nvim"] = { on = { install = true, update = true }, run = function(ev)
+	end,
+	["markdown-preview.nvim"] = function(ev)
 		ensure_loaded(ev)
 		vim.fn["mkdp#util#install"]()
-	end },
+	end,
 }
 
-local pack_group = vim.api.nvim_create_augroup("pack_hooks", { clear = true })
-
 vim.api.nvim_create_autocmd("PackChanged", {
-	group = pack_group,
+	group = vim.api.nvim_create_augroup("pack_hooks", { clear = true }),
 	callback = function(ev)
 		local hook = pack_hooks[ev.data.spec.name]
-		if hook and hook.on[ev.data.kind] then
-			hook.run(ev)
+		if hook and ev.data.kind ~= "delete" then
+			hook(ev)
 		end
 	end,
 })

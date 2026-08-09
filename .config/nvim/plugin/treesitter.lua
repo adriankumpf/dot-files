@@ -37,30 +37,11 @@ else
 	})
 end
 
-local treesitter_group = vim.api.nvim_create_augroup("treesitter", { clear = true })
-
--- start() attaches an empty highlighter when a parser is installed but its
--- queries are not (install() only checks for the parser, so a queries/<lang>
--- symlink orphaned by a plugin-manager migration goes unnoticed), and the
--- buffer silently renders as plain text. update() relinks them; warn once per
--- language rather than per buffer.
-local warned = {}
-
+-- Missing/orphaned queries for an installed parser show up in
+-- :checkhealth nvim-treesitter; run require("nvim-treesitter").update() to relink.
 vim.api.nvim_create_autocmd("FileType", {
-	group = treesitter_group,
+	group = vim.api.nvim_create_augroup("treesitter", { clear = true }),
 	callback = function(args)
-		if not pcall(vim.treesitter.start, args.buf) then
-			return -- no parser for this filetype, which is the normal case
-		end
-
-		local lang = vim.treesitter.language.get_lang(args.match) or args.match
-		if not vim.treesitter.query.get(lang, "highlights") and not warned[lang] then
-			warned[lang] = true
-			vim.notify(
-				("treesitter: no highlights query for %s — run :lua require('nvim-treesitter').update()")
-					:format(lang),
-				vim.log.levels.WARN
-			)
-		end
+		pcall(vim.treesitter.start, args.buf)
 	end,
 })

@@ -1,42 +1,42 @@
 -- Indentation
-vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.smartindent = true
+vim.o.expandtab = true
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.smartindent = true
 
 -- Display
-vim.opt.list = true
+vim.o.list = true
 vim.opt.listchars = { tab = "┆·", trail = "·", precedes = "", extends = "", nbsp = "‗" }
-vim.opt.showbreak = "↪"
-vim.opt.number = false
-vim.opt.relativenumber = false
-vim.opt.scrolloff = 7
-vim.opt.signcolumn = "yes"
-vim.opt.showmode = false
-vim.opt.cmdheight = 0 -- paired with RecordingEnter/Leave autocmds
-vim.opt.laststatus = 3
-vim.opt.pumblend = 35 -- semi-transparent popup menu
+vim.o.showbreak = "↪"
+vim.o.number = false
+vim.o.relativenumber = false
+vim.o.scrolloff = 7
+vim.o.signcolumn = "yes"
+vim.o.showmode = false
+vim.o.cmdheight = 0 -- paired with RecordingEnter/Leave autocmds
+vim.o.laststatus = 3
+vim.o.pumblend = 35
 
 -- Backup / undo
-vim.opt.swapfile = false
-vim.opt.writebackup = false
-vim.opt.undofile = true
+vim.o.swapfile = false
+vim.o.writebackup = false
+vim.o.undofile = true
 
 -- Behavior
 vim.opt.clipboard:append({ "unnamedplus" })
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.switchbuf = "useopen"
-vim.opt.mouse = "a"
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.switchbuf = "useopen"
+vim.o.mouse = "a"
 vim.opt.whichwrap:append("<>[]hl")
 
 -- Completion / command line
 vim.opt.complete:append({ "kspell" })
-vim.opt.wildmode = "longest,full"
+vim.o.wildmode = "longest,full"
 vim.opt.completeopt = { "menuone", "noselect" }
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 vim.opt.shortmess:append({ c = true })
 
 vim.diagnostic.config({ virtual_text = true })

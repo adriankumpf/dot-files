@@ -2,9 +2,9 @@ vim.keymap.set("i", "jj", "<esc>", { desc = "Exit insert mode" })
 
 vim.keymap.set("n", ",w", "<Cmd>w<CR>", { silent = true, desc = "Save file" })
 
-vim.keymap.set("n", "<Leader><Leader>", "<C-^>", { desc = "Switch to alternate file" })
+vim.keymap.set("n", "<leader><leader>", "<C-^>", { desc = "Switch to alternate file" })
 
-vim.keymap.set("n", "<Leader>z", "1z=", { desc = "Fix spelling with first suggestion" })
+vim.keymap.set("n", "<leader>z", "1z=", { desc = "Fix spelling with first suggestion" })
 
 vim.keymap.set({ "n", "x" }, "k", 'v:count == 0 ? "gk" : "k"', { expr = true, desc = "Move up (display line)" })
 vim.keymap.set({ "n", "x" }, "j", 'v:count == 0 ? "gj" : "j"', { expr = true, desc = "Move down (display line)" })
