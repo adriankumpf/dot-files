@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-if [ "$(uname)" == "Darwin" ]; then
-    stat -f "%OLp" $1
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    stat --format '%a' $1
-fi

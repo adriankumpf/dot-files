@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Print file permissions in octal.
+
+set -euo pipefail
+
+if [ $# -eq 0 ]; then
+    echo "Usage: ${0##*/} FILE..." >&2
+    exit 2
+fi
+
+case "$(uname -s)" in
+    Darwin) stat -f '%OLp' "$@" ;;
+    Linux) stat --format '%a' "$@" ;;
+    *)
+        echo "${0##*/}: unsupported platform" >&2
+        exit 1
+        ;;
+esac
