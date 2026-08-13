@@ -1,3 +1,4 @@
---theme=gruvbox
+--theme-dark=gruvbox
+--theme-light=GitHub
 --italic-text=always
 --paging=never

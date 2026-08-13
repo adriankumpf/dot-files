@@ -22,11 +22,12 @@ if status is-interactive
         end
     end
 
-    # Override command color for readability in light/dark iTerm profiles
-    if [ "$ITERM_PROFILE" = light ]
+    if test "$ITERM_PROFILE" = light
         set fish_color_command black --bold
+        set -gx BAT_THEME light
     else
         set fish_color_command white --bold
+        set -gx BAT_THEME dark
     end
 
     # Use bat as a cat replacement
@@ -92,10 +93,4 @@ if set -q __fish_brew_prefix
     if set -q pg_dirs[1]
         fish_add_path -g $pg_dirs[-1]
     end
-end
-
-# --- Bat light theme (interactive-only) ---
-# Placed after env vars section since it overrides BAT_CONFIG_PATH.
-if status is-interactive; and test "$ITERM_PROFILE" = light
-    set -gx BAT_CONFIG_PATH ~/.config/bat/config_theme_light
 end
