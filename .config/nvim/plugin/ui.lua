@@ -157,7 +157,9 @@ require("hlslens").setup({
 -- Highlight the word under cursor without jumping; pressing again jumps
 local function star_search(fmt, forward)
 	return function()
-		local pattern = fmt:format(vim.fn.expand("<cword>"))
+		-- Escape first: iskeyword can include regex-magic characters such as
+		-- `.`, which would otherwise make the pattern over-match.
+		local pattern = fmt:format(vim.fn.escape(vim.fn.expand("<cword>"), "\\/.*$^~[]"))
 		vim.v.searchforward = forward and 1 or 0
 		if vim.v.hlsearch == 1 and vim.fn.getreg("/") == pattern then
 			vim.cmd.normal({ "n", bang = true })
