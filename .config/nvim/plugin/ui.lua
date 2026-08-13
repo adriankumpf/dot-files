@@ -124,11 +124,9 @@ if cs == "gruvbox" then
 	local bg = require("gruvbox").palette.dark0
 
 	bufferline_highlights = function(config)
-		local hl = {}
-		for group, def in pairs(config.highlights) do
-			hl[group] = vim.tbl_extend("force", def, { bg = bg })
-		end
-		return hl
+		return vim.tbl_map(function(def)
+			return vim.tbl_extend("force", def, { bg = bg })
+		end, config.highlights)
 	end
 end
 
