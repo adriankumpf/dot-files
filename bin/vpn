@@ -1,14 +1,21 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 if [ $# -ne 1 ]; then
-    echo 1>&2 "Usage: $0 VPN_NAME"
-  exit 3
+    echo "Usage: $0 VPN_NAME" >&2
+    exit 2
 fi
 
-IS_CONNECTED=$(test -z "$(scutil --nc status "$1" | grep Connected)" && echo 0 || echo 1);
+# Only the first line holds the state; the Extended Status dictionary below it
+# always contains a ConnectedCount key, which a plain grep would match.
+status=$(scutil --nc status "$1" 2>/dev/null | head -n 1) || true
 
-if [ "$IS_CONNECTED" = 1 ]; then
-  scutil --nc stop "$1"
-else
-  scutil --nc start "$1"
-fi
+case "$status" in
+    Connected | Connecting) scutil --nc stop "$1" ;;
+    Disconnected | Disconnecting) scutil --nc start "$1" ;;
+    *)
+        echo "$0: unexpected state for '$1': ${status:-no such service}" >&2
+        exit 1
+        ;;
+esac
