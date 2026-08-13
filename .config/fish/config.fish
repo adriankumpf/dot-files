@@ -35,17 +35,17 @@ if not set -q __fish_brew_prefix; or not test -d "$__fish_brew_prefix"
 end
 
 if set -q __fish_brew_prefix
-    fish_add_path "$__fish_brew_prefix/sbin"
+    fish_add_path -g "$__fish_brew_prefix/sbin"
     set -gx HOMEBREW_NO_ANALYTICS 1
     set -gx HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS 1
     set -gx HOMEBREW_PREFIX $__fish_brew_prefix
 end
 
 # --- PATH additions ---
-fish_add_path "$HOME/.local/bin" /usr/local/sbin "$HOME/bin"
+fish_add_path -g "$HOME/.local/bin" /usr/local/sbin "$HOME/bin"
 
 if test -d "$HOME/.cargo/bin"
-    fish_add_path "$HOME/.cargo/bin"
+    fish_add_path -g "$HOME/.cargo/bin"
 end
 
 # Cache python3 user-base path (~73ms to compute) in a universal variable.
@@ -56,7 +56,7 @@ if type -q pip3
         set -U __fish_python_user_base (python3 -m site --user-base)
         set -U __fish_python_user_base_mtime (path mtime $py_bin)
     end
-    fish_add_path "$__fish_python_user_base/bin"
+    fish_add_path -g "$__fish_python_user_base/bin"
 end
 
 # --- Environment variables ---
@@ -77,12 +77,12 @@ end
 # saves ~60ms.  Mise tools stay available during config via shims PATH.
 if type -q mise
     mise activate fish | string match -v -r '^__mise_env_eval$' | source
-    fish_add_path "$HOME/.local/share/mise/shims"
+    fish_add_path -g "$HOME/.local/share/mise/shims"
 end
 
 # --- Mix escripts ---
 if type -q mix
-    fish_add_path "$HOME/.mix/escripts"
+    fish_add_path -g "$HOME/.mix/escripts"
 end
 
 # --- PostgreSQL ---
@@ -91,7 +91,7 @@ end
 if set -q __fish_brew_prefix
     set -l pg_dirs $__fish_brew_prefix/opt/postgresql@*/bin
     if set -q pg_dirs[1]
-        fish_add_path $pg_dirs[-1]
+        fish_add_path -g $pg_dirs[-1]
     end
 end
 
