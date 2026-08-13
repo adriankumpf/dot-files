@@ -27,12 +27,13 @@ main () {
     bat cache --build
   fi
 
-  if [ -d "$HOME/.terminfo" ]; then
-    echo "Updating terminfo"
-    tic "$HOME/.terminfo/xterm-256color.terminfo"
-    tic "$HOME/.terminfo/tmux-256color.terminfo"
-    tic "$HOME/.terminfo/tmux.terminfo"
-  fi
+  # Globbed rather than listed, so a new .terminfo file is picked up too.
+  # -x compiles extended capabilities, should any be added later.
+  for terminfo in "$HOME"/.terminfo/*.terminfo; do
+    [ -e "$terminfo" ] || continue
+    echo "Compiling ${terminfo##*/}"
+    tic -x "$terminfo"
+  done
 }
 
 install_homebrew () {
