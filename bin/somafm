@@ -1,54 +1,66 @@
 #!/usr/bin/env bash
 
-cmd="${1}"
+# Listen to SomaFM in the terminal.
 
-function help() {
-  echo 'somafm - Listen to SomaFM in your terminal'
-  echo
-  echo 'USAGE:'
-  echo '    somafm <channel>'
-  echo
-  echo 'ARGS:'
-  echo '    <channel>    The channel to listen to (optional)'
+set -euo pipefail
+
+usage() {
+    cat <<'EOF'
+somafm - Listen to SomaFM in your terminal
+
+USAGE:
+    somafm [channel]
+
+ARGS:
+    <channel>    The channel to listen to; picked interactively if omitted
+EOF
 }
 
-function check_dependencies() {
-  for command in jq mpv fzf; do
-    if ! command -v $command &> /dev/null; then
-        echo "$command could not be found"
+case "${1-}" in
+    -h | --help)
+        usage
+        exit 0
+        ;;
+esac
+
+for cmd in jq mpv fzf curl; do
+    if ! command -v "$cmd" >/dev/null; then
+        echo "somafm: $cmd is required but not installed" >&2
         exit 1
     fi
-  done
-}
+done
 
-function play() {
-  local channel=$cmd
-  local channels
-  local playlist
+channel="${1-}"
 
-  channels=$(curl -s -H 'Accept: application/json' https://somafm.com/channels.json)
+channels=$(curl -fsS -H 'Accept: application/json' https://somafm.com/channels.json)
 
-  if [ "$channel" == "" ]; then
-    channel=$( echo "$channels" | \
-      jq -r '.channels | sort_by(.listeners | tonumber) | reverse | .[]' | \
-      jq -r '.id + " | " + .listeners + " listeners | " + .description' | \
-      fzf --layout=reverse| \
-      awk '{print $1}')
+if [ -z "$channel" ]; then
+    channel=$(
+        jq -r '.channels
+               | sort_by(.listeners | tonumber)
+               | reverse
+               | .[]
+               | .id + " | " + .listeners + " listeners | " + .description' <<<"$channels" |
+            fzf --layout=reverse | awk '{print $1}'
+    )
     clear
-  fi
+    [ -n "$channel" ] || exit 130
+fi
 
-  playlist=$(echo "$channels" | \
-    jq -r ".channels | map(select(.id == \"$channel\")) | .[]" | \
-    jq -r ".playlists | map(select(.quality == \"highest\")) | limit(1;.[]) | .url")
+# --arg keeps the channel name out of the jq program text.
+playlist=$(jq -r --arg id "$channel" \
+    '.channels[]
+     | select(.id == $id)
+     | .playlists
+     | map(select(.quality == "highest"))
+     | first
+     | .url' <<<"$channels")
 
-  case "$playlist" in
-    '') return 1 ;;
-    *) mpv --no-config "$playlist" 2> /dev/null | \
-       awk '/title/ { s = ""; for (i = 2; i <= NF; i++) s = s $i " "; cmd="(date +'%H:%M:%S')"; cmd | getline d; print d,"|",s; close(cmd) }' ;;
-  esac
-}
+if [ -z "$playlist" ] || [ "$playlist" = null ]; then
+    echo "somafm: unknown channel '$channel'" >&2
+    exit 1
+fi
 
-case "$cmd" in
-  --help|-h) help; exit 0 ;;
-  *) check_dependencies; play; exit "$?" ;;
-esac
+# Print each announced track with a local timestamp.
+mpv --no-config "$playlist" 2>/dev/null |
+    awk '/title/ { $1 = ""; sub(/^ +/, ""); print strftime("%H:%M:%S"), "|", $0 }'
