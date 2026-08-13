@@ -11,7 +11,6 @@
     pruneTags = true
     all = true
 [color]
-    status = always
     ui = true
 [core]
     excludesfile = ~/.gitignore
