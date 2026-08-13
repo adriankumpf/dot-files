@@ -14,7 +14,7 @@ main () {
 
     if ! command -v brew >/dev/null 2>&1; then
       echo "Installing homebrew"
-      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      install_homebrew
     fi
 
     echo "Configuring macOS"
@@ -33,6 +33,19 @@ main () {
     tic "$HOME/.terminfo/tmux-256color.terminfo"
     tic "$HOME/.terminfo/tmux.terminfo"
   fi
+}
+
+install_homebrew () {
+  # Download first and run from a file: piping straight into an interpreter
+  # hides curl failures, and `set -e` does not catch them in that position.
+  local installer
+  installer=$(mktemp)
+  # shellcheck disable=SC2064  # expand installer now, not at trap time
+  trap "rm -f '$installer'" RETURN
+
+  curl -fsSL -o "$installer" \
+    https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+  /bin/bash "$installer"
 }
 
 configure_macos () {
