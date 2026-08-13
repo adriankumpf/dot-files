@@ -1,84 +1,34 @@
-# Compiled sources
-# ===========================
+# Global excludes (core.excludesfile). Only machine- and tool-level noise
+# belongs here: anything project-specific goes in that project's .gitignore,
+# where it is visible to everyone working on it.
 
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-
-# Packages
-# ===========================
-
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-
-# Logs and databases
-# ===========================
-
-*.log
-*.sql
-*.sqlite
-
-# OS generated files
-# ===========================
-
+# OS
 .DS_Store
 .DS_Store?
 ._*
 .Trashes
-ehthumbs.db
 Thumbs.db
-
-# Codekits
-# ===========================
-
-.sass-cache/
-.codekit-config.json
-config.codekit
+ehthumbs.db
 
 # Editors
-# ===========================
-
-# VIM
 Session.vim
 .*.swo
 .*.swp
 *~
-
-# Idea
 .idea/
 
-# Node
-# ===========================
+# Language servers and local tooling
+.elixir_ls/
+.dexter.db*
+.sass-cache/
 
-npm-debug.log*
-node_modules/
-
-# Version Manager
-# ===========================
+# Local version-manager pins
 .nvmrc
 .fnmrc
 .mise.toml
 
-# Elixir
-# ===========================
-
-_build/
-.elixir_ls/
-.dexter.db*
-
 # Secrets
-# ===========================
 .env
 
-# AI Assistants
-# ===========================
+# AI assistants
 .claude
