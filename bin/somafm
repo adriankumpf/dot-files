@@ -61,6 +61,13 @@ if [ -z "$playlist" ] || [ "$playlist" = null ]; then
     exit 1
 fi
 
-# Print each announced track with a local timestamp.
+# Print each announced track with a local timestamp. strftime() is a gawk
+# extension, and macOS ships the one-true-awk, so shell out to date instead.
 mpv --no-config "$playlist" 2>/dev/null |
-    awk '/title/ { $1 = ""; sub(/^ +/, ""); print strftime("%H:%M:%S"), "|", $0 }'
+    awk '/title/ {
+        $1 = ""
+        sub(/^ +/, "")
+        "date +%H:%M:%S" | getline ts
+        close("date +%H:%M:%S")
+        print ts, "|", $0
+    }'
