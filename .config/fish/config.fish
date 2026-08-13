@@ -42,11 +42,7 @@ if set -q __fish_brew_prefix
 end
 
 # --- PATH additions ---
-fish_add_path -g "$HOME/.local/bin" /usr/local/sbin "$HOME/bin"
-
-if test -d "$HOME/.cargo/bin"
-    fish_add_path -g "$HOME/.cargo/bin"
-end
+fish_add_path -g "$HOME/.local/bin" /usr/local/sbin "$HOME/bin" "$HOME/.cargo/bin" "$HOME/.mix/escripts"
 
 # Cache python3 user-base path (~73ms to compute) in a universal variable.
 # Invalidated when python3 binary's mtime changes (e.g. brew upgrade).
@@ -78,11 +74,6 @@ end
 if type -q mise
     mise activate fish | string match -v -r '^__mise_env_eval$' | source
     fish_add_path -g "$HOME/.local/share/mise/shims"
-end
-
-# --- Mix escripts ---
-if type -q mix
-    fish_add_path -g "$HOME/.mix/escripts"
 end
 
 # --- PostgreSQL ---
