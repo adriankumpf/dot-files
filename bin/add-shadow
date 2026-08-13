@@ -1,3 +1,14 @@
 #!/usr/bin/env bash
 
-convert "$1" -trim \( +clone -background grey25 -shadow 80x40+5+30 \) +swap -background transparent -layers merge +repage "$1-shadow.png"
+# Add a drop shadow to an image.
+
+set -euo pipefail
+
+if [ $# -ne 1 ]; then
+    echo "Usage: ${0##*/} IMAGE" >&2
+    exit 2
+fi
+
+# ImageMagick 7 renamed `convert` to `magick`.
+magick "$1" -trim \( +clone -background grey25 -shadow 80x40+5+30 \) +swap \
+    -background transparent -layers merge +repage "${1%.*}-shadow.png"

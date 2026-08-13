@@ -1,3 +1,12 @@
 #!/usr/bin/env bash
 
-ffmpeg -i $1 -ac 1 -ab 128000 -f mp4 -c:a aac  -y -ss 0 -t 40  ringtone.m4r
+# Convert the first 40 seconds of an audio file into an iOS ringtone.
+
+set -euo pipefail
+
+if [ $# -ne 1 ]; then
+    echo "Usage: ${0##*/} AUDIO_FILE" >&2
+    exit 2
+fi
+
+ffmpeg -i "$1" -ss 0 -t 40 -ac 1 -c:a aac -b:a 128k -f mp4 -y ringtone.m4r

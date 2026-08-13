@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-set -eu
+# Stream Deutschlandfunk.
 
-curl -L -s 'https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3' | mpg123 -
+set -euo pipefail
+
+curl -fsL 'https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3' | mpg123 -
