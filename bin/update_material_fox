@@ -1,21 +1,43 @@
 #!/usr/bin/env bash
 
-FIREFOX_PROFILES_DIR="$HOME/Library/Application Support/Firefox/Profiles"
-DOWNLOAD_URL="https://github.com/edelvarden/material-fox-updated/releases/latest/download/chrome.zip"
-DOWNLOAD_FILE="/tmp/chrome.zip"
+# Install the latest MaterialFox theme into the default Firefox profile.
 
-FIREFOX_PROFILE_DIR=$(find "$FIREFOX_PROFILES_DIR" -mindepth 1 -maxdepth 1 -type d)
-if [ "$FIREFOX_PROFILE_DIR" = "" ] || [ "$(echo "$FIREFOX_PROFILE_DIR" | wc -l)" -ne 1 ]; then
-  echo "Error: Expected exactly one Firefox profile, but found an unexpected number." >&2
-  exit 1
-fi
+set -euo pipefail
 
-if curl -sSLo "$DOWNLOAD_FILE" "$DOWNLOAD_URL" && \
-   unzip -qo "$DOWNLOAD_FILE" -d "/tmp" && \
-   rm -rf "$FIREFOX_PROFILE_DIR/chrome" && \
-   mv "/tmp/chrome" "$FIREFOX_PROFILE_DIR"; then
-    echo "MaterialFox updated successfully"
-else
-    echo "Update failed." >&2
+profiles_dir="$HOME/Library/Application Support/Firefox/Profiles"
+download_url="https://github.com/edelvarden/material-fox-updated/releases/latest/download/chrome.zip"
+
+profile=""
+count=0
+while IFS= read -r dir; do
+    profile="$dir"
+    count=$((count + 1))
+done < <(find "$profiles_dir" -mindepth 1 -maxdepth 1 -type d)
+
+if [ "$count" -ne 1 ]; then
+    echo "Error: expected exactly one Firefox profile, found $count" >&2
     exit 1
 fi
+
+# A fixed /tmp path would let any local user pre-create the target and get
+# their own files installed as Firefox chrome code.
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
+curl -fsSL -o "$tmp/chrome.zip" "$download_url"
+unzip -q "$tmp/chrome.zip" -d "$tmp"
+
+if [ ! -d "$tmp/chrome" ]; then
+    echo "Error: archive contained no chrome/ directory" >&2
+    exit 1
+fi
+
+# Swap in the new directory only once it is known good, so a failed download
+# can't leave the profile with no chrome/ at all.
+rm -rf "$profile/chrome.bak"
+if [ -d "$profile/chrome" ]; then
+    mv "$profile/chrome" "$profile/chrome.bak"
+fi
+mv "$tmp/chrome" "$profile/chrome"
+
+echo "MaterialFox updated successfully"
