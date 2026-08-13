@@ -1,36 +1,58 @@
 #!/usr/bin/env bash
 
-set -e
+# Observe a remote Elixir node over an SSH tunnel.
 
-if [ $# -ne 3 ]; then
-cat << EOF
-Usage: $0 <remote host> <app name> <cookie>
+set -euo pipefail
+
+if [ $# -lt 2 ] || [ $# -gt 3 ]; then
+    cat >&2 <<EOF
+Usage: ${0##*/} <remote host> <app name> [cookie]
 
 Observe a remote elixir node using ssh port forwarding.
+The cookie is prompted for when omitted, which keeps it out of shell history.
 EOF
-exit 1
+    exit 2
 fi
 
-REMOTE_HOST=$1
-REMOTE_NAME=$2
-COOKIE="$3"
+remote_host=$1
+remote_name=$2
+cookie=${3-}
 
-EPMD_PORT=$(ssh "${REMOTE_HOST}" "epmd -names" | grep epmd | sed 's/[^0-9]//g')
-NODE_PORT=$(ssh "${REMOTE_HOST}" "epmd -names" | grep name | sed 's/[^0-9]//g')
+if [ -z "$cookie" ]; then
+    read -rsp 'Erlang cookie: ' cookie
+    echo
+fi
 
-printf "Creating tunnel for ports: [epmd=%s] [node=%s]\n" \
-  "${EPMD_PORT}" "$NODE_PORT"
+# Query once; the previous version ran epmd twice and stripped every non-digit
+# from the line, which glued digits from the node name onto the port number.
+epmd_out=$(ssh "$remote_host" 'epmd -names')
 
-ssh \
-  -f -o ExitOnForwardFailure=yes \
-  -L "${EPMD_PORT}:${REMOTE_HOST}:${EPMD_PORT}"  \
-  -L "${NODE_PORT}:${REMOTE_HOST}:${NODE_PORT}" \
-  "${REMOTE_HOST}" \
-  sleep 5
+epmd_port=$(printf '%s\n' "$epmd_out" | sed -n 's/^epmd: up and running on port \([0-9]\{1,\}\).*/\1/p')
+node_port=$(printf '%s\n' "$epmd_out" | sed -n "s/^name ${remote_name} at port \([0-9]\{1,\}\)\$/\1/p")
 
-printf "Connecting with node [%s] \n\n" "$REMOTE_NAME"
+if [ -z "$epmd_port" ] || [ -z "$node_port" ]; then
+    echo "Could not determine epmd/node ports for '$remote_name' on $remote_host:" >&2
+    printf '%s\n' "$epmd_out" >&2
+    exit 1
+fi
 
-iex  \
-  --name "debug@127.0.0.1" \
-  --cookie "$COOKIE" \
-  -e "Node.connect(:\"$REMOTE_NAME@127.0.0.1\"); :observer.start()"
+printf 'Creating tunnel for ports: [epmd=%s] [node=%s]\n' "$epmd_port" "$node_port"
+
+# Forward to 127.0.0.1: the destination is resolved on the remote side, where
+# an ssh-config alias for $remote_host would not resolve.
+ssh -f -o ExitOnForwardFailure=yes \
+    -L "${epmd_port}:127.0.0.1:${epmd_port}" \
+    -L "${node_port}:127.0.0.1:${node_port}" \
+    "$remote_host" \
+    sleep 5
+
+printf 'Connecting with node [%s] \n\n' "$remote_name"
+
+# Pass the cookie through a 0600 file so it never appears in the process table.
+cookie_home=$(mktemp -d)
+trap 'rm -rf "$cookie_home"' EXIT
+(umask 077 && printf '%s' "$cookie" >"$cookie_home/.erlang.cookie")
+
+HOME="$cookie_home" iex \
+    --name "debug@127.0.0.1" \
+    -e "Node.connect(:\"$remote_name@127.0.0.1\"); :observer.start()"
