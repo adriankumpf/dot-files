@@ -1,3 +1,29 @@
 #!/usr/bin/env bash
 
-/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py --output all.pdf *.pdf
+# Merge every PDF in the current directory into one file.
+
+set -euo pipefail
+
+out=${1:-merged.pdf}
+
+if ! command -v pdfunite >/dev/null; then
+    # This used to call the Automator join.py action, which Apple removed
+    # along with the bundled Python 2.
+    echo "${0##*/}: pdfunite is required (brew install poppler)" >&2
+    exit 1
+fi
+
+shopt -s nullglob
+inputs=()
+for f in *.pdf; do
+    # Skip a previous run's output so it is not folded back into the inputs.
+    [ "$f" = "$out" ] || inputs+=("$f")
+done
+
+if [ "${#inputs[@]}" -eq 0 ]; then
+    echo "${0##*/}: no PDFs to merge in $PWD" >&2
+    exit 1
+fi
+
+pdfunite "${inputs[@]}" "$out"
+echo "Wrote $out (${#inputs[@]} files)"
