@@ -22,7 +22,7 @@ outer.top =        [{ monitor.built-in = 0 }, 12]
 outer.right =      [{ monitor.built-in = 0 }, 12]
 
 [mode.main.binding]
-alt-enter = 'exec-and-forget open -n /Applications/iTerm.app'
+alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
 
 alt-h = 'focus left'
 alt-j = 'focus down'
