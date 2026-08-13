@@ -18,7 +18,7 @@ if set -q __fish_brew_prefix
     set -gx HOMEBREW_NO_ANALYTICS 1
     set -gx HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS 1
 
-    fish_add_path -g $__fish_brew_prefix/sbin
+    fish_add_path -g $__fish_brew_prefix/bin $__fish_brew_prefix/sbin
 
     # Highest installed PostgreSQL. Fish sorts globs naturally, so the last
     # match is the newest version.
