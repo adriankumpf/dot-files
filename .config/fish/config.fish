@@ -7,11 +7,19 @@ set fish_greeting
 
 # --- Interactive-only setup ---
 if status is-interactive
-    # Auto-install Fisher plugin manager on first launch
+    # Bootstrap the fisher plugin manager on first launch. Downloading to a temp
+    # file first keeps an HTTP error page from landing in functions/.
     if not functions -q fisher
-        set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
-        curl https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
-        fish -c fisher
+        set -l tmp (mktemp)
+        if curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish -o $tmp
+            mkdir -p $__fish_config_dir/functions
+            mv $tmp $__fish_config_dir/functions/fisher.fish
+            source $__fish_config_dir/functions/fisher.fish
+            fisher update
+        else
+            rm -f $tmp
+            echo "fisher: download failed" >&2
+        end
     end
 
     # Override command color for readability in light/dark iTerm profiles
