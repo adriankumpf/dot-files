@@ -69,7 +69,8 @@ configure_macos () {
   # Auto Rearrange Spaces Based on Most Recent Use (Disable)
   defaults write com.apple.dock mru-spaces -bool false
 
-  killall Dock
+  # Not fatal: there is no Dock to restart over SSH.
+  killall Dock || true
 
   # Show All File Extensions
   defaults write -g AppleShowAllExtensions -bool true
