@@ -37,8 +37,9 @@ end
 # Cache brew --prefix in a universal variable to avoid ~200ms startup cost.
 # Re-resolves if the cached directory no longer exists.
 if not set -q __fish_brew_prefix; or not test -d "$__fish_brew_prefix"
-    if type -q brew
-        set -U __fish_brew_prefix (brew --prefix)
+    if command -q brew
+        set -l prefix (brew --prefix)
+        test -n "$prefix"; and set -U __fish_brew_prefix $prefix
     end
 end
 
@@ -52,13 +53,12 @@ end
 # --- PATH additions ---
 fish_add_path -g "$HOME/.local/bin" /usr/local/sbin "$HOME/bin" "$HOME/.cargo/bin" "$HOME/.mix/escripts"
 
-# Cache python3 user-base path (~73ms to compute) in a universal variable.
-# Invalidated when python3 binary's mtime changes (e.g. brew upgrade).
-if type -q pip3
-    set -l py_bin (command -s python3)
-    if not set -q __fish_python_user_base; or test (path mtime $py_bin) -gt (set -q __fish_python_user_base_mtime; and echo $__fish_python_user_base_mtime; or echo 0)
+# python3 -m site --user-base costs ~73ms. Cache it until the binary changes.
+if command -q python3
+    set -l mtime (path mtime (command -s python3))
+    if test "$mtime" != "$__fish_python_user_base_mtime"
         set -U __fish_python_user_base (python3 -m site --user-base)
-        set -U __fish_python_user_base_mtime (path mtime $py_bin)
+        set -U __fish_python_user_base_mtime $mtime
     end
     fish_add_path -g "$__fish_python_user_base/bin"
 end
