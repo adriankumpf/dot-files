@@ -1,113 +1,91 @@
 #!/usr/bin/env bash
 
-set -eu
+set -euo pipefail
 
 repo_url="git@github.com:adriankumpf/dot-files.git"
 
-main () {
-  if [ ! "$(yadm remote get-url origin)" = $repo_url ]; then
-    echo "Updating the yadm repo origin URL"
-    yadm remote set-url origin $repo_url
-  fi
-
-  if [ "$(uname -s)" = "Darwin" ]; then
-
-    if ! command -v brew >/dev/null 2>&1; then
-      echo "Installing homebrew"
-      install_homebrew
+main() {
+    if [ "$(yadm remote get-url origin)" != "$repo_url" ]; then
+        echo "Updating the yadm repo origin URL"
+        yadm remote set-url origin "$repo_url"
     fi
 
-    echo "Configuring macOS"
-    configure_macos
+    if [ "$(uname -s)" = Darwin ]; then
+        if ! command -v brew >/dev/null; then
+            echo "Installing homebrew"
+            install_homebrew
+        fi
 
-  fi
+        echo "Configuring macOS"
+        configure_macos
+    fi
 
-  if command -v bat >/dev/null 2>&1; then
-    echo "Updating bat cache"
-    bat cache --build
-  fi
+    if command -v bat >/dev/null; then
+        echo "Updating bat cache"
+        bat cache --build
+    fi
 
-  # Globbed rather than listed, so a new .terminfo file is picked up too.
-  # -x compiles extended capabilities, should any be added later.
-  for terminfo in "$HOME"/.terminfo/*.terminfo; do
-    [ -e "$terminfo" ] || continue
-    echo "Compiling ${terminfo##*/}"
-    tic -x "$terminfo"
-  done
+    # Globbed rather than listed, so a new .terminfo file is picked up too.
+    # -x compiles extended capabilities, should any be added later.
+    for terminfo in "$HOME"/.terminfo/*.terminfo; do
+        [ -e "$terminfo" ] || continue
+        echo "Compiling ${terminfo##*/}"
+        tic -x "$terminfo"
+    done
 }
 
-install_homebrew () {
-  # Download first and run from a file: piping straight into an interpreter
-  # hides curl failures, and `set -e` does not catch them in that position.
-  local installer
-  installer=$(mktemp)
-  # shellcheck disable=SC2064  # expand installer now, not at trap time
-  trap "rm -f '$installer'" RETURN
+install_homebrew() {
+    # Download first and run from a file: piping straight into an interpreter
+    # hides curl failures, and `set -e` does not catch them in that position.
+    local installer
+    installer=$(mktemp)
+    # shellcheck disable=SC2064  # expand installer now, not at trap time
+    trap "rm -f '$installer'" RETURN
 
-  curl -fsSL -o "$installer" \
-    https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-  /bin/bash "$installer"
+    curl -fsSL -o "$installer" \
+        https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+    /bin/bash "$installer"
 }
 
-configure_macos () {
-  # https://github.com/herrbischoff/awesome-osx-command-line
+configure_macos() {
+    # https://github.com/herrbischoff/awesome-osx-command-line
 
-  # Install Command Line Tools without Xcode
-  # xcode-select --install
+    # Dock
+    defaults write com.apple.dock autohide -bool true
+    defaults write com.apple.dock autohide-delay -float 0
+    defaults write com.apple.dock autohide-time-modifier -float 0.5
+    defaults write com.apple.dock expose-animation-duration -float 0.15
+    defaults write com.apple.dock largesize -float 42
+    defaults write com.apple.dock magnification -bool true
+    defaults write com.apple.dock minimize-to-application -bool false
+    defaults write com.apple.dock orientation -string left
+    # Don't rearrange spaces by most recent use
+    defaults write com.apple.dock mru-spaces -bool false
 
-  # Set Dock Settings
-  defaults write com.apple.Dock autohide -float 1
-  defaults write com.apple.Dock autohide-delay -float 0
-  defaults write com.apple.Dock autohide-time-modifier -float 0.5
-  defaults write com.apple.Dock expose-animation-duration -float 0.15
-  defaults write com.apple.Dock largesize -float 42
-  defaults write com.apple.Dock magnification -float 1
-  defaults write com.apple.Dock minimize-to-application -float 0
-  defaults write com.apple.Dock autohide-delay -float 0
-  defaults write com.apple.Dock orientation -string left
+    # Finder
+    defaults write -g AppleShowAllExtensions -bool true
+    defaults write com.apple.finder FXDefaultSearchScope -string SCcf
+    defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 
-  # Auto Rearrange Spaces Based on Most Recent Use (Disable)
-  defaults write com.apple.dock mru-spaces -bool false
+    # Don't write metadata files to network or USB volumes
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+    defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
-  # Not fatal: there is no Dock to restart over SSH.
-  killall Dock || true
+    # Save to disk rather than iCloud by default
+    defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
 
-  # Show All File Extensions
-  defaults write -g AppleShowAllExtensions -bool true
+    # Key repeat
+    defaults write -g InitialKeyRepeat -int 15
+    defaults write -g KeyRepeat -int 2
 
-  # Show Full Path in Finder Title
-  # defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+    # Require the password immediately after the screensaver starts
+    defaults write com.apple.screensaver askForPassword -int 1
+    defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-  # Save to Disk by Default
-  defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+    defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 
-  # Set Current Folder as Default Search Scope
-  defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
-
-  # Disable Creation of Metadata Files on Network Volumes
-  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-
-  # Disable Creation of Metadata Files on USB Volumes
-  defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
-
-  # Hide removable media
-  defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
-
-  # Key Repeat Rate
-  defaults write -g InitialKeyRepeat -int 15
-  defaults write -g KeyRepeat -int 2
-
-  # Screensaver Immediate Lock
-  defaults write com.apple.screensaver askForPasswordDelay -int 0
-
-  # Screensaver Password Enable
-  defaults write com.apple.screensaver askForPassword -int 1
-
-  # Set Login Window Text
-  # sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText ""
-
-  # Disable window-opening animation
-  defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
+    # Not fatal: there is no Dock to restart over SSH.
+    killall Dock || true
 }
 
-main "$@"; exit
+main "$@"
