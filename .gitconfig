@@ -49,13 +49,9 @@
 [difftool "difftastic"]
     cmd = difft "$LOCAL" "$REMOTE"
 [pager]
+    # Nothing else belongs here: pager.<cmd> overrides core.pager wholesale,
+    # which would drop its --features argument and disable the delta profiles.
     difftool = true
-    diff = delta
-    show = delta
-    log = delta
-    blame = delta
-    grep = delta
-    reflog = delta
 [interactive]
     diffFilter = delta --color-only --features "${ITERM_PROFILE:-dark}"
 [delta]
