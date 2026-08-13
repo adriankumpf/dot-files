@@ -16,8 +16,6 @@
     excludesfile = ~/.gitignore
     editor = nvim
     pager = delta --features "${ITERM_PROFILE:-dark}"
-    # fsmonitor = true
-    # untrackedCache = true
 [help]
     autocorrect = prompt
 [alias]
@@ -80,9 +78,6 @@
 [rerere]
     enabled = true
     autoupdate = true
-[merge "npm-merge-driver"]
-    name = automatically merge npm lockfiles
-    driver = npx npm-merge-driver merge %A %O %B %P
 [filter "lfs"]
     required = true
     clean = git-lfs clean -- %f
