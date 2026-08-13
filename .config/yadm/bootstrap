@@ -17,16 +17,6 @@ main () {
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
 
-    if [ -f "$HOME/.Brewfile" ]; then
-      echo "Updating homebrew bundle"
-      brew bundle --global
-    fi
-
-    if [ -d "$HOME/.iterm2" ]; then
-      echo "Setting iTerm preference folder"
-      defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
-    fi
-
     echo "Configuring macOS"
     configure_macos
 
