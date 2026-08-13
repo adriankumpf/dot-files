@@ -21,7 +21,7 @@ end, { desc = "Close buffer and window" })
 
 -- treesj.setup() eagerly requires a module per supported language (~18ms), so
 -- load it on first use instead. `load = false` still puts it on the runtimepath.
-vim.pack.add({ "https://github.com/Wansmer/treesj" }, { confirm = false, load = false })
+require("utils").pack_add({ "https://github.com/Wansmer/treesj" }, { load = false })
 
 local treesj
 local function treesj_cmd(action)
