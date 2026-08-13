@@ -1,4 +1,30 @@
 #!/usr/bin/env bash
 
-sudo /usr/local/bin/ntfs-3g /dev/disk2s1 /Volumes/NTFS -olocal -oallow_other
+# Mount an NTFS volume read-write via ntfs-3g.
 
+set -euo pipefail
+
+device=${1:-}
+mountpoint=${2:-/Volumes/NTFS}
+
+if [ -z "$device" ]; then
+    echo "Usage: ${0##*/} DEVICE [MOUNTPOINT]" >&2
+    echo "Run 'diskutil list' to find the device; passing a fixed disk number" >&2
+    echo "is unsafe because enumeration order changes between boots." >&2
+    exit 2
+fi
+
+if ! ntfs_3g=$(command -v ntfs-3g); then
+    echo "${0##*/}: ntfs-3g not found" >&2
+    exit 1
+fi
+
+mkdir -p "$mountpoint"
+
+# default_permissions makes the kernel enforce ownership; allow_other on its
+# own would expose the volume read-write to every local account.
+sudo "$ntfs_3g" "$device" "$mountpoint" \
+    -o local \
+    -o allow_other \
+    -o default_permissions \
+    -o uid="$(id -u)",gid="$(id -g)"
