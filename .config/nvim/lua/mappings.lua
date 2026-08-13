@@ -15,7 +15,7 @@ vim.keymap.set("n", "S", "mzi<CR><ESC>`z", { desc = "Split line at cursor" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
 
-vim.keymap.set("n", ",s", ":%s/\\<<C-r><C-w>\\>//gc<Left><Left><Left>", { desc = "Search and replace word under cursor" })
+vim.keymap.set("n", ",s", ":%s/\\<<C-r><C-w>\\>//gc<Left><Left><Left>", { desc = "Replace word under cursor" })
 
 vim.keymap.set("n", "Q", "@q", { desc = "Replay macro q" })
 
