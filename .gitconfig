@@ -31,7 +31,7 @@
     ps = push
     st = status -sb
     lo = log --oneline -n 15
-    wc = whatchanged -p --abbrev-commit --pretty=medium -- :!*package-lock.json :!*(yarn|Cargo).lock
+    wc = whatchanged -p --abbrev-commit --pretty=medium -- :!*package-lock.json :!*yarn.lock :!*Cargo.lock
     stash-all = stash save --include-untracked
     unstage = reset HEAD --
     # Show the branches, ordered by most recently updated closest to prompt.
