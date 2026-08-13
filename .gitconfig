@@ -19,7 +19,7 @@
     # fsmonitor = true
     # untrackedCache = true
 [help]
-    autocorrect = 1
+    autocorrect = prompt
 [alias]
     aa = add --all
     ap = add --patch
