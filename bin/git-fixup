@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Thanks to https://github.com/deiwin/git-dotfiles
 

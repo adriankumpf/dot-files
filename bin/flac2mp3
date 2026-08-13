@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # usage: find ~/Music/ -name '*.flac' -exec ~/bin/flac2mp3 {} \;
 
