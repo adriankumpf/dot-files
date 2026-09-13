@@ -1,0 +1,105 @@
+[settings]
+default_disable = false
+
+animate = true
+animation_duration = 0.1
+animation_fps = 120
+
+focus_follows_mouse = true
+mouse_follows_focus = true
+mouse_hides_on_focus = true
+focus_follows_mouse_disable_hotkey = "Fn"
+
+[settings.layout]
+mode = "traditional"
+
+[settings.layout.traditional]
+window_insertion_point = "next_to_selection"
+
+[settings.layout.master_stack]
+master_ratio = 0.6
+master_count = 1
+master_side = "left"
+new_window_placement = "stack"
+
+[settings.layout.gaps.outer]
+top = 0.0
+left = 0.0
+bottom = 0.0
+right = 0.0
+
+[settings.layout.gaps.inner]
+horizontal = 0.0
+vertical = 0.0
+
+[settings.ui.menu_bar]
+enabled = true
+mode = "active"
+display_style = "label"
+active_label = "name"
+
+[settings.gestures]
+enabled = true
+consume_dock_swipe = true
+skip_empty = true
+fingers = 3
+haptics_enabled = false
+haptic_pattern = "level_change"
+
+[keys]
+"Alt + Z" = "toggle_space_activated"
+
+"Alt + H" = { move_focus = "left" }
+"Alt + J" = { move_focus = "down" }
+"Alt + K" = { move_focus = "up" }
+"Alt + L" = { move_focus = "right" }
+
+"Meta + Shift + H" = { move_node = "left" }
+"Meta + Shift + J" = { move_node = "down" }
+"Meta + Shift + K" = { move_node = "up" }
+"Meta + Shift + L" = { move_node = "right" }
+
+"Alt + Shift + H" = { join_window = "left" }
+"Alt + Shift + J" = { join_window = "down" }
+"Alt + Shift + K" = { join_window = "up" }
+"Alt + Shift + L" = { join_window = "right" }
+
+"Alt + F" = "toggle_fullscreen"
+"Alt + W" = "toggle_stack"
+"Alt + E" = "toggle_orientation"
+"Alt + T" = "toggle_window_floating"
+
+"Alt + 1" = { switch_to_workspace = 0 }
+"Alt + 2" = { switch_to_workspace = 1 }
+"Alt + 3" = { switch_to_workspace = 2 }
+"Alt + 4" = { switch_to_workspace = 3 }
+"Alt + 5" = { switch_to_workspace = 4 }
+"Alt + 6" = { switch_to_workspace = 5 }
+"Alt + 7" = { switch_to_workspace = 6 }
+"Alt + 8" = { switch_to_workspace = 7 }
+"Alt + 9" = { switch_to_workspace = 8 }
+"Alt + 0" = { switch_to_workspace = 9 }
+
+"Alt + Shift + 1" = { move_window_to_workspace = 0 }
+"Alt + Shift + 2" = { move_window_to_workspace = 1 }
+"Alt + Shift + 3" = { move_window_to_workspace = 2 }
+"Alt + Shift + 4" = { move_window_to_workspace = 3 }
+"Alt + Shift + 5" = { move_window_to_workspace = 4 }
+"Alt + Shift + 6" = { move_window_to_workspace = 5 }
+"Alt + Shift + 7" = { move_window_to_workspace = 6 }
+"Alt + Shift + 8" = { move_window_to_workspace = 7 }
+"Alt + Shift + 9" = { move_window_to_workspace = 8 }
+"Alt + Shift + 0" = { move_window_to_workspace = 9 }
+
+"Alt + Shift + C" = "reload_config"
+
+[virtual_workspaces]
+enabled = true
+default_workspace_count = 10
+workspace_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+workspace_auto_back_and_forth = false
+
+app_rules = [
+  { app_name = "System Settings", floating = true }
+]
+
