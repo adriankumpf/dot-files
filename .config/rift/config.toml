@@ -43,8 +43,8 @@ enabled = true
 consume_dock_swipe = true
 skip_empty = true
 fingers = 3
+distance_pct = 0.16
 haptics_enabled = false
-haptic_pattern = "level_change"
 
 [keys]
 "Alt + Z" = "toggle_space_activated"
@@ -91,8 +91,6 @@ haptic_pattern = "level_change"
 "Alt + Shift + 9" = { move_window_to_workspace = 8 }
 "Alt + Shift + 0" = { move_window_to_workspace = 9 }
 
-"Alt + Shift + C" = "reload_config"
-
 [virtual_workspaces]
 enabled = true
 default_workspace_count = 10
@@ -100,6 +98,7 @@ workspace_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 workspace_auto_back_and_forth = false
 
 app_rules = [
-  { app_name = "System Settings", floating = true }
+  { app_name = "System Settings", floating = true },
+  { app_id = "org.mozilla.firefox", title_substring = "Picture-in-Picture", manage = false },
 ]
 
