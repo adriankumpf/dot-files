@@ -6,8 +6,8 @@ animation_duration = 0.1
 animation_fps = 120
 
 focus_follows_mouse = true
-mouse_follows_focus = true
-mouse_hides_on_focus = true
+mouse_follows_focus = false
+mouse_hides_on_focus = false
 focus_follows_mouse_disable_hotkey = "Fn"
 
 [settings.layout]
@@ -32,6 +32,16 @@ right = 0.0
 horizontal = 0.0
 vertical = 0.0
 
+[settings.layout.gaps.per_display.034C0B69-DDB3-46CD-96BB-15B8C15F050A.outer]
+top = 12.0
+left = 12.0
+bottom = 12.0
+right = 12.0
+
+[settings.layout.gaps.per_display.034C0B69-DDB3-46CD-96BB-15B8C15F050A.inner]
+horizontal = 6.0
+vertical = 6.0
+
 [settings.ui.menu_bar]
 enabled = true
 mode = "active"
@@ -43,7 +53,7 @@ enabled = true
 consume_dock_swipe = true
 skip_empty = true
 fingers = 3
-distance_pct = 0.16
+distance_pct = 0.12
 haptics_enabled = false
 
 [keys]
@@ -99,6 +109,11 @@ workspace_auto_back_and_forth = false
 
 app_rules = [
   { app_name = "System Settings", floating = true },
-  { app_id = "org.mozilla.firefox", title_substring = "Picture-in-Picture", manage = false },
+
+  { title_substring = "Picture-in-Picture", manage = false },
+  { title_substring = "Picture in Picture", manage = false },
+
+  { app_id = "com.apple.mail", workspace = "2" },
+  { app_id = "com.spotify.client", workspace = "6" },
 ]
 
