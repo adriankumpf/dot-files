@@ -42,6 +42,16 @@ right = 12.0
 horizontal = 6.0
 vertical = 6.0
 
+[settings.layout.gaps.per_display.5184252E-1FBC-4685-AAD9-298D0A5E736D.outer]
+top = 12.0
+left = 12.0
+bottom = 12.0
+right = 12.0
+
+[settings.layout.gaps.per_display.5184252E-1FBC-4685-AAD9-298D0A5E736D.inner]
+horizontal = 6.0
+vertical = 6.0
+
 [settings.ui.menu_bar]
 enabled = true
 mode = "active"
