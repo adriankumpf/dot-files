@@ -91,7 +91,8 @@
 [gpg]
     format = ssh
 [gpg "ssh"]
-    program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+    allowedSignersFile = /Users/adrian/.ssh/allowed_signers
+    program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [tag]
     gpgsign = true
     sort = version:refname
