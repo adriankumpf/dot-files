@@ -1,3 +1,6 @@
+# Only non-default values are set here. Defaults are listed in the schema:
+# https://acsandmann.github.io/rift-docs/schema/rift-config.schema.json
+
 [settings]
 default_disable = false
 
@@ -5,54 +8,25 @@ animate = true
 animation_duration = 0.1
 animation_fps = 120
 
-focus_follows_mouse = true
 mouse_follows_focus = false
 mouse_hides_on_focus = false
 focus_follows_mouse_disable_hotkey = "Fn"
 
-[settings.layout]
-mode = "traditional"
-
-[settings.layout.traditional]
-window_insertion_point = "next_to_selection"
-
 [settings.layout.master_stack]
-master_ratio = 0.6
-master_count = 1
-master_side = "left"
 new_window_placement = "stack"
 
-[settings.layout.gaps.outer]
-top = 0.0
-left = 0.0
-bottom = 0.0
-right = 0.0
-
-[settings.layout.gaps.inner]
-horizontal = 0.0
-vertical = 0.0
-
-[settings.layout.gaps.per_display."DELL U3224KBA".outer]
-top = 12.0
-left = 12.0
-bottom = 12.0
-right = 12.0
-
-[settings.layout.gaps.per_display."DELL U3224KBA".inner]
-horizontal = 6.0
-vertical = 6.0
+[settings.layout.gaps.per_display."DELL U3224KBA"]
+outer = { top = 12.0, left = 12.0, bottom = 12.0, right = 12.0 }
+inner = { horizontal = 6.0, vertical = 6.0 }
 
 [settings.ui.menu_bar]
-enabled = true
 mode = "active"
 display_style = "label"
 active_label = "name"
 
 [settings.gestures]
 enabled = true
-consume_dock_swipe = true
 skip_empty = true
-fingers = 3
 distance_pct = 0.12
 haptics_enabled = false
 
@@ -105,10 +79,8 @@ preview = false
 "Alt + Shift + 0" = { move_window_to_workspace = 9 }
 
 [virtual_workspaces]
-enabled = true
 default_workspace_count = 10
 workspace_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-workspace_auto_back_and_forth = false
 
 app_rules = [
   { app_name = "System Settings", floating = true },
@@ -120,6 +92,18 @@ app_rules = [
   { app_id = "com.spotify.client", workspace = "6" },
 ]
 
-[[virtual_workspaces.workspace_rules]]
-workspace = "10"
-display = ["builtin"]
+# The external monitor sits left of the laptop. Without it, "left" resolves
+# to the built-in display, so 1-9 land there. "10" (Alt+0) stays on the
+# built-in display. Display rules only apply in global mode (the default).
+workspace_rules = [
+  { workspace = "1", display = ["left"] },
+  { workspace = "2", display = ["left"] },
+  { workspace = "3", display = ["left"] },
+  { workspace = "4", display = ["left"] },
+  { workspace = "5", display = ["left"] },
+  { workspace = "6", display = ["left"] },
+  { workspace = "7", display = ["left"] },
+  { workspace = "8", display = ["left"] },
+  { workspace = "9", display = ["left"] },
+  { workspace = "10", display = ["builtin"] },
+]
